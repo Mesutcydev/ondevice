@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-Hans" data-theme="system">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0b0d" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfcfd" media="(prefers-color-scheme: light)">
+<title>OnDevice — 跑在 iPhone 上的本地推理运行时，两种形态交付</title>
+<meta name="description" content="OnDevice 用 MLX、llama.cpp、whisper.cpp 与 Core ML 在 iPhone 上运行开源模型。OnDevice LLM 是工作台：对话、镜头、语音与模型管理。On Device: LAS 是同一运行时裁剪后的本地服务器，提供 bearer 鉴权的 OpenAI、Anthropic、Ollama 兼容接口。无需账号，没有遥测，不会悄悄回落到云端。">
+<link rel="canonical" href="https://ondevice.fun/zh/">
+<link rel="alternate" hreflang="en" href="https://ondevice.fun/">
+<link rel="alternate" hreflang="tr" href="https://ondevice.fun/tr/">
+<link rel="alternate" hreflang="zh-Hans" href="https://ondevice.fun/zh/">
+<link rel="alternate" hreflang="x-default" href="https://ondevice.fun/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OnDevice">
+<meta property="og:title" content="OnDevice — 跑在 iPhone 上的本地推理运行时，两种形态交付">
+<meta property="og:description" content="OnDevice LLM 是工作台，On Device: LAS 是服务器。同一套端侧运行时、同一份权重、同一套内存与温度策略。">
+<meta property="og:url" content="https://ondevice.fun/zh/">
+<meta property="og:image" content="https://ondevice.fun/assets/og-zh.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OnDevice — iPhone 上的本地推理运行时">
+<meta name="twitter:description" content="同一套本地运行时的两种形态：你亲手驱动的工作台，和你的工具驱动的 OpenAI 兼容服务器。">
+<meta name="twitter:image" content="https://ondevice.fun/assets/og-zh.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script>
+  (function () {
+    var m = 'system';
+    try { m = localStorage.getItem('ondevice-theme') || 'system'; } catch (e) {}
+    if (m !== 'dark' && m !== 'light') m = 'system';
+    document.documentElement.setAttribute('data-theme', m);
+  })();
+</script>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top">
+    <img src="/assets/icon-128.png" width="22" height="22" alt="">
+    <b>OnDevice</b><span class="split tail">/</span><span class="tail">LLM</span><span class="split tail">+</span><span class="srv tail">LAS</span>
+  </a>
+  <span class="links">
+    <a href="#editions" class="hide-md">版本</a>
+    <a href="#studio" class="hide-md">工作台</a>
+    <a href="#server" class="hide-md">服务器</a>
+    <a href="#api" class="hide-sm">接口</a>
+    <a href="#quickstart" class="hide-sm">快速上手</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm" class="hide-sm">源码</a>
+    <span class="ctl" role="group" aria-label="语言">
+      <a href="/" lang="en">EN</a>
+      <a href="/tr/" lang="tr">TR</a>
+      <a href="/zh/" aria-current="page" lang="zh-Hans">中文</a>
+    </span>
+    <span class="ctl" role="group" aria-label="主题">
+      <button type="button" data-theme-set="light" aria-pressed="false" title="浅色" aria-label="浅色主题">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/></svg>
+      </button>
+      <button type="button" data-theme-set="dark" aria-pressed="false" title="深色" aria-label="深色主题">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 14.2A8.4 8.4 0 0 1 9.8 3.6a8.4 8.4 0 1 0 10.6 10.6z"/></svg>
+      </button>
+      <button type="button" data-theme-set="system" aria-pressed="true" title="跟随系统" aria-label="跟随系统主题">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20h6M12 16.5V20"/></svg>
+      </button>
+    </span>
+    <a class="nav-dl" href="#editions">下载</a>
+  </span>
+</div></nav>
+
+<header id="top"><div class="wrap">
+  <div class="pill hero-in">
+    <span class="dot"></span> MLX + llama.cpp 端侧运行
+    <span class="sep">·</span> iOS 18+
+    <span class="sep">·</span> MIT 开源
+    <span class="sep">·</span> 无遥测
+  </div>
+  <h1 class="hero-in d1">一套本地推理运行时，<em>两种形态</em>交付 iPhone。</h1>
+  <p class="lede hero-in d2">
+    <strong>OnDevice LLM</strong> 是工作台：对话、镜头、语音、模型管理，整个闭环都在设备上、
+    看得见摸得着。<strong>On Device: LAS</strong> 是同一套运行时去掉这些界面后留下的 HTTP
+    服务器——bearer 鉴权，兼容 OpenAI、Anthropic、Ollama，在你自己的局域网里监听。
+  </p>
+  <p class="lede hero-in d3">
+    同一份权重、同一套内存准入、同一套温度策略。没有任何请求被转发到云端，也不需要注册账号。
+  </p>
+  <div class="cta hero-in d4">
+    <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">
+      下载 OnDevice LLM <span class="k">3.2.7 · 51.2 MiB</span>
+    </a>
+    <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">
+      下载 On Device: LAS <span class="k">3.2.6 · 25.1 MiB</span>
+    </a>
+    <span class="cta-note">侧载安装 · 需自行重签</span>
+  </div>
+
+  <div class="term hero-in d5" id="term" data-scene="studio">
+    <div class="term-bar">
+      <i class="lights"></i><i class="lights"></i><i class="lights"></i>
+      <span class="t" id="term-title">ondevice llm — 本地会话</span>
+      <span class="term-tabs" role="tablist" aria-label="运行时场景">
+        <button class="term-tab" role="tab" id="tab-studio" aria-controls="term-out" aria-selected="true" data-scene="studio" type="button">工作台</button>
+        <button class="term-tab" role="tab" id="tab-server" aria-controls="term-out" aria-selected="false" data-scene="server" type="button">服务器</button>
+      </span>
+    </div>
+    <pre class="term-body" id="term-out" role="tabpanel" aria-live="off"></pre>
+  </div>
+</div></header>
+
+<section id="overview"><div class="wrap">
+  <div class="spec" data-reveal>
+    <div class="spec-bar">
+      <i></i><i></i><i></i>
+      <span class="local"><i></i> 本地</span>
+    </div>
+
+    <div class="spec-head">
+      <svg class="logo" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 14c5-6 23-6 28 0-5 6-23 6-28 0z"/><circle cx="24" cy="14" r="3.2"/>
+        <rect x="10" y="26" width="28" height="7" rx="2"/><rect x="10" y="36" width="28" height="7" rx="2"/>
+        <circle cx="15" cy="29.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="39.5" r="1.1" fill="currentColor" stroke="none"/>
+        <line x1="30" y1="29.5" x2="34" y2="29.5"/><line x1="30" y1="39.5" x2="34" y2="39.5"/>
+      </svg>
+      <div class="t">
+        <b>ONDEVICE&nbsp;RUNTIME</b>
+        <span>两种版本共用 · iPhone 与 Apple 芯片 Mac Catalyst</span>
+      </div>
+    </div>
+
+    <div class="spec-cols">
+      <div class="spec-col plain">
+        <h4>共用运行时</h4>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/></svg> MLX <span class="meta">语言模型</span></div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/></svg> llama.cpp <span class="meta">GGUF</span></div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/></svg> whisper.cpp <span class="meta">语音</span></div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12c0 1.66 3.13 3 7 3s7-1.34 7-3"/></svg> ModelResidency</div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5" rx="0.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg> MemoryAdvisor</div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 8-7 9.6C8 19 5 15.4 5 11V6z"/></svg> 温度闸门</div>
+      </div>
+
+      <div class="spec-col">
+        <h4>OnDevice LLM · 工作台</h4>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 12h8M12 8v8"/></svg> 助手</div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/><circle cx="12" cy="12" r="3"/></svg> 镜头 <span class="meta">视觉 + OCR</span></div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg> 语音 <span class="meta">STT + TTS</span></div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 19h16"/></svg> 模型 <span class="meta">HF 下载</span></div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg> Mac 配对 <span class="meta">可选</span></div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 3v11M8 7l4-4 4 4"/></svg> 分享扩展</div>
+      </div>
+
+      <div class="spec-col amber">
+        <h4>On Device: LAS · 服务器</h4>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 2.5 15.6 0 18M12 3c-2.5 2.4-2.5 15.6 0 18"/></svg> LocalAPIServer <span class="meta">:11434</span></div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Bearer 鉴权</div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l6-5-6-5"/><path d="M12 19h8"/></svg> 逐 token SSE</div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 7l3-3 4 4-3 3M10 17l-3 3-4-4 3-3M8 14l6-6"/></svg> 工具调用</div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> reasoning_content</div>
+        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><polyline points="14 3 14 8 18 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="16.5" x2="14" y2="16.5"/></svg> RuntimeLogCenter</div>
+      </div>
+    </div>
+
+    <div class="spec-foot">
+      <span class="prompt">&gt;_</span>
+      <span>无需账号</span><span class="sep">·</span>
+      <span>没有遥测</span><span class="sep">·</span>
+      <span>不悄悄回落云端</span><span class="sep">·</span>
+      <span>不随包分发权重</span>
+    </div>
+  </div>
+</div></section>
+
+<section id="editions"><div class="wrap">
+  <div class="eyebrow" data-reveal><span class="n">01</span> 两种版本</div>
+  <h2 data-reveal>选你真正需要的那一面</h2>
+  <p class="sub" data-reveal>
+    两个 IPA 出自同一份源码，都是为重签工具准备的 ad-hoc 签名包，bundle id 不同、可以并存安装。
+    工作台保留全部界面；服务器只留运行时、砍掉其余部分——所以体积只有前者的一半左右。
+  </p>
+
+  <div class="editions">
+    <article class="edition" data-reveal>
+      <div class="edition-head">
+        <img src="/assets/icon-128.png" width="46" height="46" alt="OnDevice LLM 应用图标">
+        <div class="t">
+          <h3>OnDevice LLM</h3>
+          <div class="role">本地优先的 AI 工作台 · 工作台版</div>
+        </div>
+        <span class="badge">主线</span>
+      </div>
+      <div class="edition-body">
+        <dl class="kvlist">
+          <div><dt>版本</dt><dd>3.2.7 <span class="no">(112)</span> <span class="ok">· 当前</span></dd></div>
+          <div><dt>包名</dt><dd>com.mesutcydev.ioslocalllm.IOSLocalLLM</dd></div>
+          <div><dt>平台</dt><dd>iOS 18+ <span class="no">·</span> Mac Catalyst</dd></div>
+          <div><dt>产物</dt><dd>51.2 MiB IPA<span class="hash">IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa</span></dd></div>
+          <div><dt>权限</dt><dd>App Group <span class="no">+</span> iCloud <span class="no">+</span> 内存 <span class="no">+</span> EVA</dd></div>
+          <div><dt>界面</dt><dd><span class="ok">助手 · 镜头 · 语音 · 模型 · Mac · 分享</span></dd></div>
+          <div><dt>本地接口</dt><dd>可选开启 <span class="no">— 与 LAS 路由相同</span></dd></div>
+        </dl>
+      </div>
+      <div class="edition-foot">
+        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">下载 IPA <span class="k">↓</span></a>
+        <span class="alt"><a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.7-112">版本说明 + SHA-256 ↗</a></span>
+      </div>
+    </article>
+
+    <article class="edition" data-reveal>
+      <div class="edition-head">
+        <img src="/assets/icon-128.png" width="46" height="46" alt="On Device LAS 应用图标">
+        <div class="t">
+          <h3>On Device: LAS</h3>
+          <div class="role">本地 API 服务器 · 面向智能体与局域网客户端</div>
+        </div>
+        <span class="badge">测试</span>
+      </div>
+      <div class="edition-body">
+        <dl class="kvlist">
+          <div><dt>版本</dt><dd>3.2.6 <span class="no">(143)</span> <span class="ok">· 最新</span></dd></div>
+          <div><dt>包名</dt><dd>com.mesutcydev.ondevicelas</dd></div>
+          <div><dt>平台</dt><dd>iOS 18+ <span class="no">·</span> arm64</dd></div>
+          <div><dt>产物</dt><dd>25.1 MiB IPA<span class="hash">OnDeviceLAS-sideload-entitled-latest.ipa</span></dd></div>
+          <div><dt>权限</dt><dd>increased-memory-limit <span class="no">+</span> extended-virtual-addressing</dd></div>
+          <div><dt>界面</dt><dd><span class="no">助手 · 镜头 · 语音 · 分享 已移除</span></dd></div>
+          <div><dt>本地接口</dt><dd><span class="ok">产品本体 — 11434 端口，始终在前</span></dd></div>
+        </dl>
+      </div>
+      <div class="edition-foot">
+        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">下载 IPA <span class="k">↓</span></a>
+        <span class="alt"><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ON_DEVICE_LAS.md">LAS 文档 ↗</a></span>
+      </div>
+    </article>
+  </div>
+
+  <div class="tbl-scroll" style="margin-top:18px" data-reveal><table>
+    <thead><tr>
+      <th scope="col">能力</th>
+      <th scope="col">OnDevice LLM</th>
+      <th scope="col">On Device: LAS</th>
+      <th scope="col">说明</th>
+    </tr></thead>
+    <tbody>
+      <tr><th scope="row" class="row">端侧推理</th><td class="yes">●</td><td class="yes">●</td><td class="tdim">MLX 与 llama.cpp，同一套驻留路径</td></tr>
+      <tr><th scope="row" class="row">导入 GGUF</th><td class="yes">●</td><td class="yes">●</td><td class="tdim">权重自带；包内不含任何权重</td></tr>
+      <tr><th scope="row" class="row">助手对话</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">服务器版有意移除</td></tr>
+      <tr><th scope="row" class="row">镜头 · 视觉 + OCR</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">相机画面与导入的照片</td></tr>
+      <tr><th scope="row" class="row">语音 · STT + TTS</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">whisper.cpp，本地合成</td></tr>
+      <tr><th scope="row" class="row">Mac 配对通道</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">带版本号、配对鉴权的工具协议</td></tr>
+      <tr><th scope="row" class="row">分享扩展</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">entitlement 按组件逐一保留</td></tr>
+      <tr><th scope="row" class="row">OpenAI / Anthropic / Ollama</th><td class="yes">可选</td><td class="yes">●</td><td class="tdim">同一套 <span class="mono">LocalAPIServer</span> 路由</td></tr>
+      <tr><th scope="row" class="row">结构化工具调用</th><td class="yes">可选</td><td class="yes">●</td><td class="tdim">MLX 上采用文法约束解码</td></tr>
+      <tr><th scope="row" class="row">详细服务器终端</th><td class="nope">—</td><td class="yes">●</td><td class="tdim">每一条请求与生命周期事件</td></tr>
+      <tr><th scope="row" class="row">后台运行</th><td class="nope">—</td><td class="nope">—</td><td class="tdim">iOS 将应用切到后台时监听即停止</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note with-icon" style="margin-top:22px" data-reveal>
+    <img src="/assets/icon-128.png" width="44" height="44" loading="lazy" alt="OnDevice Core 应用图标">
+    <div>
+      <strong>第三种形态。</strong><em>OnDevice Core</em> 1.0.0 (10) 是独立的 iOS 27+ 版本，底层换成
+      Apple Core AI 而非 MLX 与 llama.cpp——包名 <code>com.mesutcydev.ondevicecore</code>，49.6 MiB。
+      <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/ondevice-core-1.0.0-10">下载 OnDevice Core ↗</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="studio"><div class="wrap">
+  <div class="eyebrow" data-reveal><span class="n">02</span> OnDevice LLM</div>
+  <h2 data-reveal>一间只做本地工作的安静房间</h2>
+  <p class="sub" data-reveal>
+    工作台让闭环始终可见：什么模型驻留着、占了多少内存、此刻正在做什么。用下载好的模型对话，
+    用镜头看代码，不经过云端说话，在一个界面里管理权重。
+  </p>
+  <div class="shots five">
+    <div class="shot" data-reveal>
+      <a class="frame" href="/assets/previews/home-3.2.7-light.png" target="_blank" rel="noopener">
+        <img src="/assets/previews/home-3.2.7-light.png" width="620" height="1348" loading="lazy" alt="OnDevice LLM 主面板：本地工具与会话历史">
+      </a>
+      <div class="cap"><b>主面板</b>工具路由、模型状态与历史，一眼看全。</div>
+    </div>
+    <div class="shot" data-reveal>
+      <a class="frame" href="/assets/previews/assistant-dark.png" target="_blank" rel="noopener">
+        <img src="/assets/previews/assistant-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM 助手界面，深色模式，显示本地模型状态与提示操作">
+      </a>
+      <div class="cap"><b>助手</b>加载、暂停、继续，模型状态始终在眼前。</div>
+    </div>
+    <div class="shot" data-reveal>
+      <a class="frame" href="/assets/previews/lens-dark.png" target="_blank" rel="noopener">
+        <img src="/assets/previews/lens-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM 镜头界面，深色模式">
+      </a>
+      <div class="cap"><b>镜头</b>相机画面、OCR 与导入照片都留在本地。</div>
+    </div>
+    <div class="shot" data-reveal>
+      <a class="frame" href="/assets/previews/voice-dark.png" target="_blank" rel="noopener">
+        <img src="/assets/previews/voice-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM 语音界面，深色模式，显示本地语音控制">
+      </a>
+      <div class="cap"><b>语音</b>听写与语音回复都在设备上转写。</div>
+    </div>
+    <div class="shot" data-reveal>
+      <a class="frame" href="/assets/previews/models-dark.png" target="_blank" rel="noopener">
+        <img src="/assets/previews/models-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM 模型界面：模型家族与推荐的 Qwen3 卡片">
+      </a>
+      <div class="cap"><b>模型</b>家族、内存适配、下载状态与角色集中呈现。</div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:34px">
+    <div class="card" data-reveal>
+      <span class="tag">文本 / LLM</span>
+      <h3>助手模型</h3>
+      <p>对设备上的模型写代码、做解释、审 diff、排计划；家族支持时带上工具调用与结构化参数。</p>
+    </div>
+    <div class="card" data-reveal>
+      <span class="tag">视觉 / OCR</span>
+      <h3>视觉模型</h3>
+      <p>看图、扫代码、问屏幕上的内容。视觉走本地 OCR 兜底，不经过云端中转。</p>
+    </div>
+    <div class="card" data-reveal>
+      <span class="tag">语音 / TTS</span>
+      <h3>语音模型</h3>
+      <p>本地语音活动检测、转写与合成，和文本同处一个闭环——听写和语音回复都不出手机。</p>
+    </div>
+    <div class="card" data-reveal>
+      <span class="tag">图像 / diffusion</span>
+      <h3>生成模型</h3>
+      <p>基于 diffusion 的本地图像生成，模型按实测设备能力挑选，而不是按固定档位表。</p>
+    </div>
+    <div class="card" data-reveal>
+      <span class="tag">配对 / LAN</span>
+      <h3>Mac 桥接</h3>
+      <p>可选开启的 iPhone–Mac 工具协议，配对鉴权，每次调用带明确的风险等级。不开就是关的。</p>
+    </div>
+    <div class="card" data-reveal>
+      <span class="tag">显式 / HF</span>
+      <h3>模型发现</h3>
+      <p>在 Hugging Face 搜索、下载前先看内存是否放得下、中断了可以续传。联网只在你主动发起时发生。</p>
+    </div>
+  </div>
+
+  <p class="shot-note" data-reveal><span class="dot"></span> 截图取自开源构建的 iPhone 模拟器，深色外观，未经修饰。不含用户内容、账号、token 或权重。</p>
+</div></section>
+
+<section id="server"><div class="wrap">
+  <div class="eyebrow amber" data-reveal><span class="n">03</span> On Device: LAS</div>
+  <h2 data-reveal>是服务器构建，不是聊天应用</h2>
+  <p class="sub" data-reveal>
+    LAS 保留模型加载、内存与温度安全、鉴权和 API 兼容层，整体去掉助手、镜头、语音与分享扩展。
+    它的职责只有一个：让模型驻留，然后应答 HTTP。首页就是一块控制面板：运行时状态、内存
+    准入、实时日志。
+  </p>
+  <div class="shots">
+    <div class="shot" data-reveal>
+      <a class="frame" href="/assets/shots/las-home.png" target="_blank" rel="noopener">
+        <img src="/assets/shots/las-home.png" width="660" height="1434" loading="lazy" alt="LAS 服务器首页：设备健康、内存余量与 Local API 状态">
+      </a>
+      <div class="cap"><b>服务器首页</b>设备健康、内存余量与 Local API 开关。</div>
+    </div>
+    <div class="shot" data-reveal>
+      <a class="frame" href="/assets/shots/las-models.png" target="_blank" rel="noopener">
+        <img src="/assets/shots/las-models.png" width="660" height="1434" loading="lazy" alt="LAS 模型库：已安装的端侧模型与容量读数">
+      </a>
+      <div class="cap"><b>模型库</b>导入、下载，并让 MLX 或 GGUF 模型驻留。</div>
+    </div>
+    <div class="shot" data-reveal>
+      <a class="frame" href="/assets/shots/las-debugger.png" target="_blank" rel="noopener">
+        <img src="/assets/shots/las-debugger.png" width="660" height="1434" loading="lazy" alt="LAS 端上调试器：内存准入快照">
+      </a>
+      <div class="cap"><b>端上调试器</b>进程预算、entitlement、温度状态。</div>
+    </div>
+    <div class="shot" data-reveal>
+      <a class="frame" href="/assets/shots/las-terminal.png" target="_blank" rel="noopener">
+        <img src="/assets/shots/las-terminal.png" width="660" height="1434" loading="lazy" alt="LAS 详细终端：实时服务器日志流">
+      </a>
+      <div class="cap"><b>详细终端</b>每条请求与生命周期事件，实时滚动。</div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:34px">
+    <div class="card" data-reveal>
+      <span class="tag">兼容性</span>
+      <h3>三种方言，一个端口</h3>
+      <p>OpenAI、Anthropic Messages、Ollama 路由都由同一个监听器在 <code>11434</code> 上提供。
+         客户端用现成的 SDK 直接连。</p>
+    </div>
+    <div class="card" data-reveal>
+      <span class="tag">流式</span>
+      <h3>逐 token 的 SSE</h3>
+      <p>帧按 token 写出并立即 flush，客户端边解码边渲染，不必等整段生成完。</p>
+    </div>
+    <div class="card" data-reveal>
+      <span class="tag">推理过程</span>
+      <h3>与答案分开</h3>
+      <p>思维链走 <code>reasoning_content</code>，<code>content</code> 只装最终答案。跨 token
+         边界被截断的标记也能正确处理，解析器先于工具调用提取运行。</p>
+    </div>
+    <div class="card" data-reveal>
+      <span class="tag">工具</span>
+      <h3>靠约束，不靠指望</h3>
+      <p>MLX 上用 token 级响应文法解码：只允许「纯文本」或「已声明的工具调用」两种形态，参数
+         始终是合法 JSON；解码后仍做 schema 校验。若 tokenizer 给不出可用的文法入口，则回落到
+         解析器路径，而不是把生成卡死。</p>
+    </div>
+    <div class="card" data-reveal>
+      <span class="tag">诚实</span>
+      <h3>能力边界明确</h3>
+      <p>运行时没实现的选项，安全的就忽略，不安全的就明确拒绝。Anthropic <code>thinking</code>
+         这类用不到的字段会被忽略，而不是变成 400。</p>
+    </div>
+    <div class="card" data-reveal>
+      <span class="tag">开关</span>
+      <h3>兼容性开关</h3>
+      <p>首页可开关：隐藏推理过程、按方言启用工具调用、并行工具调用、参数严格 JSON schema
+         校验，以及应用回到前台时可选的自动加载。</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="api"><div class="wrap">
+  <div class="eyebrow amber" data-reveal><span class="n">04</span> 接口</div>
+  <h2 data-reveal>11434 端口上应答什么</h2>
+  <p class="sub" data-reveal>
+    两个版本都由 <code>LocalAPIServer.swift</code> 提供——工作台里可选开启，LAS 里始终开启。
+    所有路由都是 bearer 鉴权的明文 HTTP，只面向你能掌控的网络。
+  </p>
+  <div class="api">
+    <div class="api-col" data-reveal>
+      <h3>OpenAI</h3>
+      <p class="who">aider · Continue · openai-python</p>
+      <ul>
+        <li><span class="verb">GET</span>/v1/models</li>
+        <li><span class="verb">GET</span>/v1/models/{model}</li>
+        <li><span class="verb">POST</span>/v1/chat/completions</li>
+        <li><span class="verb">POST</span>/v1/responses</li>
+      </ul>
+    </div>
+    <div class="api-col" data-reveal>
+      <h3>Anthropic</h3>
+      <p class="who">anthropic-sdk · Messages API</p>
+      <ul>
+        <li><span class="verb">POST</span>/v1/messages</li>
+      </ul>
+    </div>
+    <div class="api-col" data-reveal>
+      <h3>Ollama</h3>
+      <p class="who">Ollama 原生客户端</p>
+      <ul>
+        <li><span class="verb">GET</span>/api/tags</li>
+        <li><span class="verb">GET</span>/api/ps</li>
+        <li><span class="verb">GET</span>/api/version</li>
+        <li><span class="verb">POST</span>/api/show</li>
+        <li><span class="verb">POST</span>/api/chat</li>
+        <li><span class="verb">POST</span>/api/generate</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="requirements"><div class="wrap">
+  <div class="eyebrow" data-reveal><span class="n">05</span> 要求</div>
+  <h2 data-reveal>编码智能体到底需要什么</h2>
+  <p class="sub" data-reveal>
+    aider 这类智能体客户端跑的是长工具调用会话，这才是吃力的场景——不是聊天。模型必须真的扛住
+    <strong>65,536 token</strong> 上下文和与之匹配的 KV 缓存，服务器才会认为它「智能体就绪」；
+    达不到时应用给出 Hermes 兼容性警告，而不是在会话中途崩掉。
+  </p>
+  <div class="tbl-scroll" data-reveal><table>
+    <thead><tr>
+      <th scope="col">模型家族</th><th scope="col">上下文</th><th scope="col">工具解析器</th>
+      <th scope="col">并行</th><th scope="col">最大输出</th><th scope="col">KV 缓存</th>
+    </tr></thead>
+    <tbody>
+      <tr><th scope="row" class="row">Qwen3<br><span class="tdim">需 YaRN ×2</span></th><td class="k acc">65,536</td><td class="k">hermes</td><td class="k">2</td><td class="k">4,096</td><td class="k">1.1–4.3 GB</td></tr>
+      <tr><th scope="row" class="row">Qwen3.5</th><td class="k acc">65,536</td><td class="k">qwen3_coder</td><td class="k">2</td><td class="k">4,096</td><td class="k">~1.1 GB</td></tr>
+      <tr><th scope="row" class="row">Ornith</th><td class="k acc">65,536</td><td class="k">qwen3_xml</td><td class="k">2</td><td class="k">4,096</td><td class="k">~1.1 GB</td></tr>
+      <tr><th scope="row" class="row">Bonsai<br><span class="tdim">不满足智能体要求</span></th><td class="k">≤ 32,768</td><td class="k">qwen3_coder</td><td class="k">1</td><td class="k">2,048</td><td class="k">≤ 0.5 GB</td></tr>
+      <tr><th scope="row" class="row">其他 / 自行导入<br><span class="tdim">无工具支持</span></th><td class="k">见目录</td><td class="k">无</td><td class="k">1</td><td class="k">≤ 4,096</td><td class="k">视模型而定</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="grid" style="margin-top:22px">
+    <div class="card" data-reveal>
+      <h3>为什么是 64K 而不是 32K</h3>
+      <p>Qwen3 原生只有 32K。要跑到真正的 65,536 token，需要 2 倍 YaRN，在 MLX 解码前写入模型
+         配置——你的原始配置会被备份，不会被覆盖。</p>
+    </div>
+    <div class="card" data-reveal>
+      <h3>KV 缓存为什么关键</h3>
+      <p>64K 缓存在小 Qwen3 上约 1.1&nbsp;GB，在 8B 上约 4.3&nbsp;GB，还要叠在权重之上。这就是
+         下面那些内存 entitlement 并非可选项的原因。</p>
+    </div>
+    <div class="card" data-reveal>
+      <h3>并行工具调用</h3>
+      <p>在表现可靠的家族上最多 2 个并发调用，其余强制串行。这个上限也可以按安装单独设置。</p>
+    </div>
+  </div>
+
+  <p class="sub" style="margin:30px 0 12px" data-reveal>实测跑通的模型</p>
+  <ul class="chips" data-reveal>
+    <li>Qwen 3.5 系列</li>
+    <li>Ornith 1.0 9B</li>
+    <li>Ternary Bonsai 27B</li>
+    <li>Nanbeige</li>
+    <li>更多</li>
+  </ul>
+  <p class="sub" style="margin:0" data-reveal>
+    能否运行取决于设备内存、温度余量、模型许可和你选择的量化方式，而不是一张固定的支持清单。
+  </p>
+</div></section>
+
+<section id="quickstart"><div class="wrap">
+  <div class="eyebrow amber" data-reveal><span class="n">06</span> 快速上手</div>
+  <h2 data-reveal>和你的电话对话</h2>
+  <p class="sub" data-reveal>
+    LAS 会在服务器首页显示局域网地址和 bearer key。装好后先轮换一次 key，再把客户端指过去。
+    在工作台里则要先开启本地接口——路由完全相同。
+  </p>
+  <div class="steps">
+    <div data-reveal>
+      <div class="step-h"><span class="step-n">01</span> 确认模型已驻留</div>
+      <pre><span class="c-dim">$</span> curl -s http://192.168.1.8:11434/v1/models \
+    -H <span class="c-amb">"Authorization: Bearer $KEY"</span> | jq .data[0].id</pre>
+    </div>
+    <div data-reveal>
+      <div class="step-h"><span class="step-n">02</span> 流式请求一次补全</div>
+      <pre><span class="c-dim">$</span> curl -N http://192.168.1.8:11434/v1/chat/completions \
+    -H <span class="c-amb">"Authorization: Bearer $KEY"</span> \
+    -H <span class="c-amb">'Content-Type: application/json'</span> \
+    -d <span class="c-amb">'{"model":"你的模型id","stream":true,
+         "messages":[{"role":"user","content":"一句话解释 SSE。"}]}'</span></pre>
+    </div>
+    <div data-reveal>
+      <div class="step-h"><span class="step-n">03</span> 让 aider 指过来</div>
+      <pre><span class="c-dim">$</span> export OPENAI_API_BASE=http://192.168.1.8:11434/v1
+<span class="c-dim">$</span> export OPENAI_API_KEY=<span class="c-amb">&lt;应用里显示的 key&gt;</span>
+<span class="c-dim">$</span> aider --model openai/你的模型id</pre>
+    </div>
+    <div data-reveal>
+      <div class="step-h"><span class="step-n">04</span> 或者用 Anthropic 方言</div>
+      <pre><span class="c-dim">$</span> export ANTHROPIC_BASE_URL=http://192.168.1.8:11434
+<span class="c-dim">$</span> export ANTHROPIC_API_KEY=<span class="c-amb">&lt;同一个 key&gt;</span>
+<span class="c-dim">$</span> curl -s $ANTHROPIC_BASE_URL/v1/messages \
+    -H <span class="c-amb">"x-api-key: $ANTHROPIC_API_KEY"</span> \
+    -d <span class="c-amb">'{"model":"你的模型id","max_tokens":512,
+         "messages":[{"role":"user","content":"ping"}]}'</span></pre>
+    </div>
+  </div>
+</div></section>
+
+<section id="install"><div class="wrap">
+  <div class="eyebrow" data-reveal><span class="n">07</span> 安装</div>
+  <h2 data-reveal>带 entitlement 侧载</h2>
+  <p class="sub" data-reveal>
+    两个 IPA 都可以用 <strong>AltStore</strong> / AltServer 或 <strong>SideStore</strong> 安装；
+    想直接在设备上重签，可以用
+    <a href="https://github.com/Mesutcydev/ForgeSign-iOS">ForgeSign</a>。TrollStore 已经不是通用
+    方案了——只覆盖少数旧版 iOS。
+  </p>
+  <p class="sub" data-reveal>
+    两个 IPA 都是 ad-hoc 签名并声明了内存 entitlement。上述工具都会用你自己的证书重签，所以
+    <strong>务必确认 entitlement 在重签后还在</strong>——否则 iOS 会把进程内存压到远低于可用模型
+    所需的水平，大模型不是降级运行，而是加载时直接被杀。
+  </p>
+  <div class="tbl-scroll" data-reveal><table>
+    <thead><tr><th scope="col">Entitlement</th><th scope="col">为什么需要</th></tr></thead>
+    <tbody>
+      <tr><td class="k acc">com.apple.developer.kernel.increased-memory-limit</td><td>提高单进程内存上限，让数十亿参数的权重和 KV 缓存能驻留。</td></tr>
+      <tr><td class="k acc">com.apple.developer.kernel.extended-virtual-addressing</td><td>允许 MLX 与 llama.cpp 分配器做大块虚拟地址预留。</td></tr>
+    </tbody>
+  </table></div>
+  <p class="sub" style="margin:26px 0 0" data-reveal>
+    两个包名是分开的——工作台是 <code>com.mesutcydev.ioslocalllm.IOSLocalLLM</code>，服务器是
+    <code>com.mesutcydev.ondevicelas</code>——因此可以并存安装。仓库不含模型权重：先在设备上加载
+    或导入模型，再让它驻留。
+  </p>
+  <p class="sub" style="margin:14px 0 0" data-reveal>
+    想一次添加、长期更新？<a href="https://raw.githubusercontent.com/Mesutcydev/ios-local-llm/main/altstore/source.json">AltStore 源</a>
+    里两个应用和产品线其余应用都在。
+  </p>
+</div></section>
+
+<section id="security"><div class="wrap">
+  <div class="eyebrow" data-reveal><span class="n">08</span> 边界</div>
+  <h2 data-reveal>它做什么、不做什么</h2>
+  <div class="grid">
+    <div class="card" data-reveal>
+      <h3>只面向可信局域网</h3>
+      <p>bearer 鉴权的明文 HTTP，为你能掌控的网络设计，不适合暴露到公网。不要做端口转发。</p>
+    </div>
+    <div class="card" data-reveal>
+      <h3>只在前台工作</h3>
+      <p>iOS 把应用切到后台时监听停止。模型尚未驻留时到来的请求会收到 service-unavailable，
+         而不是挂起。</p>
+    </div>
+    <div class="card" data-reveal>
+      <h3>不擅自执行</h3>
+      <p>服务器只返回工具调用，不执行它们。是否执行永远由客户端决定；非法的工具名或参数会在
+         客户端动手之前被拒绝。</p>
+    </div>
+    <div class="card" data-reveal>
+      <h3>不悄悄回落云端</h3>
+      <p>模型进不了内存时会明确告诉你。不会因为设备说了「不」，就把推理悄悄挪到托管端点。</p>
+    </div>
+    <div class="card" data-reveal>
+      <h3>联网行为显式</h3>
+      <p>唯一的外发流量是你自己发起的模型下载。提示词、权重和输出都留在应用存储里。</p>
+    </div>
+    <div class="card" data-reveal>
+      <h3>可审计</h3>
+      <p>MIT 源码，带 CI 校验、CodeQL、OpenSSF 评分卡、SPDX SBOM，以及每个版本的 SHA-256
+         校验和与第三方声明。</p>
+    </div>
+  </div>
+  <div class="note" style="margin-top:26px" data-reveal>
+    <strong>独立项目。</strong>OnDevice 由社区维护，与 Apple Inc. 无关，也未获其认可或支持。以源码
+    和侧载构建形式分发；本仓库目前没有 App Store 二进制。模拟器截图不能替代真机上的温度、内存与
+    性能验证。
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="row">
+    <a href="https://github.com/Mesutcydev/ios-local-llm">代码仓库</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm/releases">全部版本</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">智能体集成</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ON_DEVICE_LAS.md">LAS 文档</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ARCHITECTURE.md">架构</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/SECURITY.md">安全策略</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/PRIVACY_POLICY.md">隐私</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/LICENSE">MIT 许可证</a>
+  </div>
+  <p class="disclaimer">
+    基于 Swift、SwiftUI、MLX、llama.cpp、whisper.cpp 与 Core ML 构建。Apple、iPhone、Mac 为
+    Apple Inc. 的商标。模型权重不随本项目分发，各自适用其许可证——使用前请阅读模型卡片。
+  </p>
+  <div class="sums">
+    <div><b>OnDevice LLM 3.2.7 (112)</b> · sha256 de432ca3c9cc7b715d1879066aabfbc4d4439b59ac3028e2ba4b78527f62a19d</div>
+    <div><b>OnDevice Core 1.0.0 (10)</b> · sha256 55099346d1893534c1418079851e1bdeacfc38db43ec01a61743965c60af2b44</div>
+    <div><b>On Device: LAS 3.2.6 (143)</b> · <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.6-143">校验和见版本页 ↗</a></div>
+  </div>
+</div></footer>
+
+<script>
+  window.ONDEVICE_SCENES = {
+    studio: {
+      title: 'ondevice llm — 本地会话',
+      lines: [
+        { t: '$ ondevice llm run --model qwen3.5-4b --ctx 65536', c: '' },
+        { t: '', c: '' },
+        { t: 'resident  MLX  4-bit  weights 2.4 GB  kv 1.1 GB @ 65,536 ctx', c: 'c-dim' },
+        { t: 'admitted  memory ok  thermal nominal  entitlements ok', c: 'c-dim' },
+        { t: '', c: '' },
+        { t: '> 到底有什么留在了这台设备上？', c: 'c-txt' },
+        { t: '', c: '' },
+        { t: 'ANSWER', c: 'stream' },
+        { t: '', c: '' },
+        { t: '42.1 tok/s  ·  0 次网络请求  ·  历史存于应用存储', c: 'c-acc' }
+      ],
+      tokens: ['一切', '。', ' 权重', '从', '本地', '存储', ' memory', '-', 'map', ' 进来',
+               '，', '在', ' GPU', ' 上', '解码', '——', '提示词', '、', 'KV', ' 缓存', '和',
+               '这条', '回答', '，', '都', '不会', '离开', '手机', '。']
+    },
+    server: {
+      title: 'bash — 来自 192.168.1.8:11434 的流',
+      lines: [
+        { t: '$ curl -N .../v1/chat/completions -d \'{"stream":true,...}\'', c: '' },
+        { t: '', c: '' },
+        { t: 'data: {"choices":[{"delta":{"role":"assistant"}}]}', c: 'c-dim' },
+        { t: 'STREAM', c: 'stream' },
+        { t: '', c: '' },
+        { t: 'data: {"choices":[{"delta":{},"finish_reason":"stop"}]}', c: 'c-dim' },
+        { t: 'data: [DONE]', c: 'c-vio' }
+      ],
+      tokens: ['服务器', '事件', '逐', ' token', ' 流出', '，', '走', '同一条', ' 打开的',
+               ' HTTP', ' 响应', '。']
+    }
+  };
+</script>
+<script src="/assets/site.js"></script>
+</body>
+</html>
