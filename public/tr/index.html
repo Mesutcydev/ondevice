@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a0b0d" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#fbfcfd" media="(prefers-color-scheme: light)">
-<title>OnDevice — iPhone için yerel model runtime'ı, iki sürüm hâlinde</title>
-<meta name="description" content="OnDevice, açık kaynak modelleri iPhone'da MLX, llama.cpp, whisper.cpp ve Core ML ile çalıştırır. OnDevice LLM stüdyodur: sohbet, lens, ses ve model yönetimi. On Device: LAS ise aynı runtime'ın bearer kimlik doğrulamalı, OpenAI-, Anthropic- ve Ollama-uyumlu bir LAN sunucusuna indirgenmiş hâlidir. Hesap yok, telemetri yok, buluta kaçış yok.">
+<title>OnDevice — modelleriniz, iPhone'unuzda</title>
+<meta name="description" content="OnDevice, açık kaynak modelleri iPhone'da MLX, llama.cpp, whisper.cpp ve Core ML ile çalıştırır. OnDevice LLM eksiksiz bir AI çalışma alanıdır. On Device: LAS ise telefonunuzu araçlarınız için bearer kimlik doğrulamalı, OpenAI-, Anthropic- ve Ollama-uyumlu bir sunucuya dönüştürür. Hesap yok, telemetri yok, buluta kaçış yok.">
 <link rel="canonical" href="https://ondevice.fun/tr/">
 <link rel="alternate" hreflang="en" href="https://ondevice.fun/">
 <link rel="alternate" hreflang="tr" href="https://ondevice.fun/tr/">
@@ -14,16 +14,16 @@
 <link rel="alternate" hreflang="x-default" href="https://ondevice.fun/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OnDevice">
-<meta property="og:title" content="OnDevice — iPhone için yerel model runtime'ı, iki sürüm hâlinde">
-<meta property="og:description" content="OnDevice LLM stüdyodur. On Device: LAS sunucudur. Aynı cihaz üstü runtime, aynı ağırlıklar, aynı bellek ve termal politika.">
+<meta property="og:title" content="OnDevice — modelleriniz, iPhone'unuzda">
+<meta property="og:description" content="Eksiksiz bir AI çalışma alanı — ya da araçlarınız için yerel bir model sunucusu. Aynı cihaz üstü runtime, aynı ağırlıklar, aynı bellek ve termal politika.">
 <meta property="og:url" content="https://ondevice.fun/tr/">
 <meta property="og:image" content="https://ondevice.fun/assets/og-tr.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
 <meta property="og:locale" content="tr_TR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OnDevice — iPhone için yerel model runtime'ı">
-<meta name="twitter:description" content="Aynı yerel runtime'ın iki sürümü: sizin sürdüğünüz bir stüdyo ve araçlarınızın sürdüğü OpenAI-uyumlu bir sunucu.">
+<meta name="twitter:title" content="OnDevice — modelleriniz, iPhone'unuzda">
+<meta name="twitter:description" content="Eksiksiz bir AI çalışma alanı — ya da araçlarınız için yerel bir model sunucusu.">
 <meta name="twitter:image" content="https://ondevice.fun/assets/og-tr.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -32,7 +32,9 @@
     var m = 'system';
     try { m = localStorage.getItem('ondevice-theme') || 'system'; } catch (e) {}
     if (m !== 'dark' && m !== 'light') m = 'system';
-    document.documentElement.setAttribute('data-theme', m);
+    var r = document.documentElement;
+    r.setAttribute('data-theme', m);
+    r.classList.add('js');
   })();
 </script>
 <link rel="stylesheet" href="/assets/site.css">
@@ -41,16 +43,15 @@
 
 <nav><div class="wrap">
   <a class="brand" href="#top">
-    <img src="/assets/icon-128.png" width="22" height="22" alt="">
-    <b>OnDevice</b><span class="split tail">/</span><span class="tail">LLM</span><span class="split tail">+</span><span class="srv tail">LAS</span>
+    <img src="/assets/icon-128.png" width="24" height="24" alt="">
+    <b>OnDevice</b><span class="tail">/ LLM + LAS</span>
   </a>
-  <span class="links">
-    <a href="#editions" class="hide-md">Sürümler</a>
-    <a href="#studio" class="hide-md">Stüdyo</a>
-    <a href="#server" class="hide-md">Sunucu</a>
-    <a href="#api" class="hide-sm">API</a>
-    <a href="#quickstart" class="hide-sm">Hızlı başlangıç</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm" class="hide-sm">Kaynak</a>
+  <span class="nav-mid" aria-label="Birincil">
+    <a href="#editions">Sürümler</a>
+    <a href="#showcase">Vitrin</a>
+    <a href="#developers" class="hide-md">Geliştiriciler</a>
+  </span>
+  <span class="nav-end">
     <span class="ctl" role="group" aria-label="Dil">
       <a href="/" lang="en">EN</a>
       <a href="/tr/" aria-current="page" lang="tr">TR</a>
@@ -58,392 +59,387 @@
     </span>
     <span class="ctl" role="group" aria-label="Tema">
       <button type="button" data-theme-set="light" aria-pressed="false" title="Açık" aria-label="Açık tema">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/></svg>
       </button>
       <button type="button" data-theme-set="dark" aria-pressed="false" title="Koyu" aria-label="Koyu tema">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 14.2A8.4 8.4 0 0 1 9.8 3.6a8.4 8.4 0 1 0 10.6 10.6z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 14.2A8.4 8.4 0 0 1 9.8 3.6a8.4 8.4 0 1 0 10.6 10.6z"/></svg>
       </button>
       <button type="button" data-theme-set="system" aria-pressed="true" title="Sistem" aria-label="Sistem temasını izle">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20h6M12 16.5V20"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20h6M12 16.5V20"/></svg>
       </button>
     </span>
-    <a class="nav-dl" href="#editions">İndir</a>
+    <a class="plain" href="https://github.com/Mesutcydev/ios-local-llm">Kaynak</a>
+    <a class="btn sm solid" href="#get">OnDevice'i al</a>
+    <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-drop" aria-label="Menü">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </span>
+  <span class="nav-drop" id="nav-drop" hidden>
+    <a href="#editions">Sürümler</a>
+    <a href="#showcase">Vitrin</a>
+    <a href="#developers">Geliştiriciler</a>
+    <a href="#install">Nasıl kurulur</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm">GitHub'da kaynak</a>
   </span>
 </div></nav>
 
-<header id="top"><div class="wrap">
-  <div class="pill hero-in">
-    <span class="dot"></span> MLX + llama.cpp cihazda
-    <span class="sep">·</span> iOS 18+
-    <span class="sep">·</span> MIT kaynak
-    <span class="sep">·</span> telemetri yok
-  </div>
-  <h1 class="hero-in d1">iPhone'da tek yerel runtime, <em>iki sürüm</em> hâlinde.</h1>
-  <p class="lede hero-in d2">
-    <strong>OnDevice LLM</strong> stüdyodur: sohbet, lens, ses ve model yönetimi — döngünün tamamı
-    cihazın üzerinde, gözünüzün önünde. <strong>On Device: LAS</strong> ise aynı runtime'ın bu
-    yüzeylerden arındırılmış, geriye yalnızca bir HTTP sunucusu bırakılmış hâlidir: bearer kimlik
-    doğrulamalı, OpenAI-, Anthropic- ve Ollama-uyumlu, kendi ağınızda dinler.
-  </p>
-  <p class="lede hero-in d3">
-    Aynı ağırlıklar, aynı bellek kabulü, aynı termal politika. Hiçbir şey buluttaki bir uç noktaya
-    aktarılmaz ve açılacak bir hesap da yoktur.
-  </p>
-  <div class="cta hero-in d4">
-    <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">
-      OnDevice LLM indir <span class="k">3.2.7 · 51.2 MiB</span>
-    </a>
-    <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">
-      On Device: LAS indir <span class="k">3.2.6 · 25.1 MiB</span>
-    </a>
-    <span class="cta-note">sideload · yeniden imzalama gerekir</span>
-  </div>
-
-  <div class="term hero-in d5" id="term" data-scene="studio">
-    <div class="term-bar">
-      <i class="lights"></i><i class="lights"></i><i class="lights"></i>
-      <span class="t" id="term-title">ondevice llm — yerel oturum</span>
-      <span class="term-tabs" role="tablist" aria-label="Çalışma zamanı sahneleri">
-        <button class="term-tab" role="tab" id="tab-studio" aria-controls="term-out" aria-selected="true" data-scene="studio" type="button">stüdyo</button>
-        <button class="term-tab" role="tab" id="tab-server" aria-controls="term-out" aria-selected="false" data-scene="server" type="button">sunucu</button>
-      </span>
+<header class="hero" id="top"><div class="wrap">
+  <span id="overview" style="position:absolute" aria-hidden="true"></span>
+  <div class="hero-grid">
+    <div>
+      <div class="pill hero-in"><span class="dot"></span> tamamen cihazda çalışır <span class="sep">·</span> hesap yok <span class="sep">·</span> telemetri yok</div>
+      <h1 class="hero-in d1">Modelleriniz.<br>Cihazınız. <em>Kontrol sizde.</em></h1>
+      <p class="lede hero-in d2">
+        Eksiksiz bir AI çalışma alanı — ya da araçlarınız için yerel bir model sunucusu.
+        <strong>Nasıl çalışacağınızı siz seçin.</strong>
+      </p>
+      <div class="cta hero-in d3">
+        <a class="btn solid" href="#editions">Sürümleri incele</a>
+        <a class="btn quiet" href="#showcase">Çalışırken görün</a>
+      </div>
     </div>
-    <pre class="term-body" id="term-out" role="tabpanel" aria-live="off"></pre>
+
+    <div class="device-wrap hero-in d2">
+      <div class="device">
+        <div class="device-screen" id="device-screen" role="tabpanel" aria-label="Cihaz önizlemesi">
+          <span class="device-island" aria-hidden="true"></span>
+          <img src="/assets/previews/home-3.2.7-light.png" width="620" height="1348" class="is-active" data-scene="studio" alt="OnDevice LLM ana ekranı: yerel araçlar, model durumu ve oturum geçmişi">
+          <img src="/assets/shots/las-home.png" width="660" height="1434" data-scene="server" alt="LAS sunucu ana sayfası: cihaz sağlığı, bellek payı ve Local API durumu">
+        </div>
+      </div>
+      <span class="seg" role="tablist" aria-label="Önizlenecek deneyimi seçin">
+        <button role="tab" id="dev-studio" aria-selected="true" aria-controls="device-screen"
+                data-imgs="#device-screen" data-caption="#device-cap" data-term-scene="studio"
+                data-cap-title="OnDevice LLM — stüdyo" data-cap-sub="Sohbet, lens, ses ve modeller; döngünün tamamı gözünüzün önünde.">Stüdyo</button>
+        <button role="tab" id="dev-server" aria-selected="false" aria-controls="device-screen"
+                data-imgs="#device-screen" data-caption="#device-cap" data-term-scene="server"
+                data-cap-title="On Device: LAS — sunucu" data-cap-sub="Aynı runtime, LAN'ınızda HTTP'ye cevap veriyor.">Sunucu</button>
+      </span>
+      <div class="device-cap" id="device-cap">
+        <b>OnDevice LLM — stüdyo</b>
+        <span>Sohbet, lens, ses ve modeller; döngünün tamamı gözünüzün önünde.</span>
+      </div>
+    </div>
+
+    <div class="hero-strip hero-in d4">
+      <span><b>iOS 18+</b> iPhone ve Mac Catalyst</span>
+      <span><b>MLX · llama.cpp · whisper.cpp</b></span>
+      <span><b>OpenAI / Anthropic / Ollama</b> uyumlu</span>
+      <span><b>MIT</b> kaynak</span>
+    </div>
   </div>
 </div></header>
 
-<section id="overview"><div class="wrap">
-  <div class="spec" data-reveal>
-    <div class="spec-bar">
-      <i></i><i></i><i></i>
-      <span class="local"><i></i> YEREL</span>
-    </div>
-
-    <div class="spec-head">
-      <svg class="logo" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M10 14c5-6 23-6 28 0-5 6-23 6-28 0z"/><circle cx="24" cy="14" r="3.2"/>
-        <rect x="10" y="26" width="28" height="7" rx="2"/><rect x="10" y="36" width="28" height="7" rx="2"/>
-        <circle cx="15" cy="29.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="39.5" r="1.1" fill="currentColor" stroke="none"/>
-        <line x1="30" y1="29.5" x2="34" y2="29.5"/><line x1="30" y1="39.5" x2="34" y2="39.5"/>
-      </svg>
-      <div class="t">
-        <b>ONDEVICE&nbsp;RUNTIME</b>
-        <span>İki sürümün de ortak katmanı · iPhone ve Apple silicon Mac Catalyst</span>
-      </div>
-    </div>
-
-    <div class="spec-cols">
-      <div class="spec-col plain">
-        <h4>Ortak runtime</h4>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/></svg> MLX <span class="meta">dil</span></div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/></svg> llama.cpp <span class="meta">GGUF</span></div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/></svg> whisper.cpp <span class="meta">konuşma</span></div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.66 3.13 3 7 3s7-1.34 7-3V6"/><path d="M5 12c0 1.66 3.13 3 7 3s7-1.34 7-3"/></svg> ModelResidency</div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5" rx="0.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg> MemoryAdvisor</div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 8-7 9.6C8 19 5 15.4 5 11V6z"/></svg> Termal eşik</div>
-      </div>
-
-      <div class="spec-col">
-        <h4>OnDevice LLM · stüdyo</h4>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 1 1-3.2-6.4"/><path d="M8 12h8M12 8v8"/></svg> Asistan</div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/><circle cx="12" cy="12" r="3"/></svg> Lens <span class="meta">görü + OCR</span></div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg> Ses <span class="meta">STT + TTS</span></div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 19h16"/></svg> Modeller <span class="meta">HF indirme</span></div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg> Mac eşleşmesi <span class="meta">isteğe bağlı</span></div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 3v11M8 7l4-4 4 4"/></svg> Paylaşma uzantısı</div>
-      </div>
-
-      <div class="spec-col amber">
-        <h4>On Device: LAS · sunucu</h4>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.4 2.5 15.6 0 18M12 3c-2.5 2.4-2.5 15.6 0 18"/></svg> LocalAPIServer <span class="meta">:11434</span></div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Bearer auth</div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l6-5-6-5"/><path d="M12 19h8"/></svg> Token başına SSE</div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 7l3-3 4 4-3 3M10 17l-3 3-4-4 3-3M8 14l6-6"/></svg> Tool calling</div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> reasoning_content</div>
-        <div class="spec-row"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><polyline points="14 3 14 8 18 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="16.5" x2="14" y2="16.5"/></svg> RuntimeLogCenter</div>
-      </div>
-    </div>
-
-    <div class="spec-foot">
-      <span class="prompt">&gt;_</span>
-      <span>Hesap yok</span><span class="sep">·</span>
-      <span>Telemetri yok</span><span class="sep">·</span>
-      <span>Sessiz bulut kaçışı yok</span><span class="sep">·</span>
-      <span>Ağırlık dağıtılmaz</span>
-    </div>
-  </div>
-</div></section>
-
 <section id="editions"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">01</span> İki sürüm</div>
-  <h2 data-reveal>Gerçekten ihtiyacınız olan yüzeyi seçin</h2>
+  <div class="eyebrow" data-reveal><span class="n">01</span> Sürümler</div>
+  <h2 data-reveal>Tek runtime'ın iki sürümü</h2>
   <p class="sub" data-reveal>
-    İki IPA da aynı kaynak ağacından derlenir ve ikisi de yeniden imzalayıcı için ad-hoc imzalanmıştır;
-    farklı paket kimlikleriyle yan yana kurulurlar. Stüdyo bütün yüzeyleri korur, sunucu ise yalnızca
-    runtime'ı koruyup gerisini bırakır — boyutunun yarıya inmesinin sebebi budur.
+    Aynı ağırlıklar, aynı bellek kabulü, aynı termal politika — iki yüzey. Nasıl çalışmayı
+    düşünüyorsanız ona uygun olanı seçin; ikisini isterseniz yan yana da kurabilirsiniz.
   </p>
 
   <div class="editions">
     <article class="edition" data-reveal>
       <div class="edition-head">
-        <img src="/assets/icon-128.png" width="46" height="46" alt="OnDevice LLM uygulama simgesi">
-        <div class="t">
-          <h3>OnDevice LLM</h3>
-          <div class="role">Yerel öncelikli AI çalışma tezgâhı · stüdyo</div>
-        </div>
+        <img src="/assets/icon-128.png" width="52" height="52" alt="OnDevice LLM uygulama simgesi">
+        <h3>OnDevice LLM</h3>
         <span class="badge">Ana</span>
       </div>
-      <div class="edition-body">
-        <dl class="kvlist">
-          <div><dt>Sürüm</dt><dd>3.2.7 <span class="no">(112)</span> <span class="ok">· güncel</span></dd></div>
-          <div><dt>Paket</dt><dd>com.mesutcydev.ioslocalllm.IOSLocalLLM</dd></div>
-          <div><dt>Platform</dt><dd>iOS 18+ <span class="no">·</span> Mac Catalyst</dd></div>
-          <div><dt>Artefakt</dt><dd>51.2 MiB IPA<span class="hash">IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa</span></dd></div>
-          <div><dt>Entitlement</dt><dd>App Group <span class="no">+</span> iCloud <span class="no">+</span> bellek <span class="no">+</span> EVA</dd></div>
-          <div><dt>Yüzeyler</dt><dd><span class="ok">Asistan · Lens · Ses · Modeller · Mac · Paylaşma</span></dd></div>
-          <div><dt>Yerel API</dt><dd>isteğe bağlı <span class="no">— LAS ile aynı rotalar</span></dd></div>
-        </dl>
+      <p class="edition-for">Modelleriyle doğrudan çalışacaklar için.</p>
+      <p class="edition-benefit">
+        Model durumunun her zaman görünür olduğu sakin bir çalışma alanı: ne resident, bellekte neye
+        mal oluyor ve şu anda ne yapıyor.
+      </p>
+      <div class="edition-preview">
+        <img src="/assets/previews/assistant-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM asistan ekranı, koyu modda">
       </div>
-      <div class="edition-foot">
+      <ul class="edition-points">
+        <li>Cihazda depolanan modellerle sohbet, kod incelemesi ve planlama</li>
+        <li>Kamera kareleri ve OCR için Lens, dikte ve sesli yanıt için Ses</li>
+        <li>Bellek uyumu kontrolü ve sürdürülebilir indirmelerle model keşfi</li>
+      </ul>
+      <div class="edition-sum">
+        <span><b>iOS 18+</b> · Mac Catalyst</span>
+        <span><b>3.2.7 (112)</b> · 51.2 MiB</span>
+      </div>
+      <div class="edition-actions">
         <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">IPA indir <span class="k">↓</span></a>
-        <span class="alt"><a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.7-112">Sürüm notları + SHA-256 ↗</a></span>
+        <a class="textlink" href="#install">Nasıl kurulur</a>
+      </div>
+      <div class="disclosure">
+        <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="td-studio">
+          Teknik ayrıntılar
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+        <div class="disclosure-body" id="td-studio"><div><div class="disclosure-inner">
+          <dl class="kv"><dt>Paket</dt><dd>com.mesutcydev.ioslocalllm.IOSLocalLLM</dd></dl>
+          <dl class="kv"><dt>Artefakt</dt><dd>IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa</dd></dl>
+          <dl class="kv"><dt>İmzalama</dt><dd>ad-hoc · kendi sertifikanızla yeniden imzalayın</dd></dl>
+          <dl class="kv"><dt>Entitlement</dt><dd>App Group + iCloud + increased-memory-limit + extended-virtual-addressing</dd></dl>
+          <dl class="kv"><dt>Yerel API</dt><dd>isteğe bağlı · LAS ile aynı rotalar</dd></dl>
+          <dl class="kv"><dt>Sağlama</dt><dd>sha256 de432ca3…7f62a19d · <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.7-112">sürüm ↗</a></dd></dl>
+        </div></div></div>
       </div>
     </article>
 
-    <article class="edition" data-reveal>
+    <article class="edition srv" data-reveal>
       <div class="edition-head">
-        <img src="/assets/icon-128.png" width="46" height="46" alt="On Device LAS uygulama simgesi">
-        <div class="t">
-          <h3>On Device: LAS</h3>
-          <div class="role">Yerel API sunucusu · ajanlar ve LAN istemcileri için</div>
-        </div>
+        <img src="/assets/icon-128.png" width="52" height="52" alt="On Device LAS uygulama simgesi">
+        <h3>On Device: LAS</h3>
         <span class="badge">Beta</span>
       </div>
-      <div class="edition-body">
-        <dl class="kvlist">
-          <div><dt>Sürüm</dt><dd>3.2.6 <span class="no">(143)</span> <span class="ok">· en yeni</span></dd></div>
-          <div><dt>Paket</dt><dd>com.mesutcydev.ondevicelas</dd></div>
-          <div><dt>Platform</dt><dd>iOS 18+ <span class="no">·</span> arm64</dd></div>
-          <div><dt>Artefakt</dt><dd>25.1 MiB IPA<span class="hash">OnDeviceLAS-sideload-entitled-latest.ipa</span></dd></div>
-          <div><dt>Entitlement</dt><dd>increased-memory-limit <span class="no">+</span> extended-virtual-addressing</dd></div>
-          <div><dt>Yüzeyler</dt><dd><span class="no">asistan · lens · ses · paylaşma kaldırıldı</span></dd></div>
-          <div><dt>Yerel API</dt><dd><span class="ok">ürünün kendisi — 11434 portu, her zaman önde</span></dd></div>
-        </dl>
+      <p class="edition-for">Mevcut araçlarını yerel bir modele bağlayacaklar için.</p>
+      <p class="edition-benefit">
+        Asistan, lens ve ses yüzeyleri kaldırılır, geriye bir HTTP sunucusu bırakılır. aider'ı,
+        Continue'ı ya da herhangi bir OpenAI istemcisini telefonunuza yöneltin.
+      </p>
+      <div class="edition-preview">
+        <img src="/assets/shots/las-terminal.png" width="660" height="1434" loading="lazy" alt="LAS ayrıntılı terminali: canlı sunucu log akışı">
       </div>
-      <div class="edition-foot">
+      <ul class="edition-points">
+        <li>Tek portta OpenAI, Anthropic Messages ve Ollama rotaları, bearer kimlik doğrulamalı</li>
+        <li>Token düzeyinde SSE akışı ve MLX'te grammar kısıtlı tool call'lar</li>
+        <li>Bir kontrol yüzeyi: runtime durumu, bellek kabulü ve canlı istek logu</li>
+      </ul>
+      <div class="edition-sum">
+        <span><b>iOS 18+</b> · arm64</span>
+        <span><b>3.2.6 (143)</b> · 25.1 MiB</span>
+      </div>
+      <div class="edition-actions">
         <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">IPA indir <span class="k">↓</span></a>
-        <span class="alt"><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ON_DEVICE_LAS.md">LAS belgeleri ↗</a></span>
+        <a class="textlink" href="#install">Nasıl kurulur</a>
+      </div>
+      <div class="disclosure">
+        <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="td-server">
+          Teknik ayrıntılar
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+        <div class="disclosure-body" id="td-server"><div><div class="disclosure-inner">
+          <dl class="kv"><dt>Paket</dt><dd>com.mesutcydev.ondevicelas</dd></dl>
+          <dl class="kv"><dt>Artefakt</dt><dd>OnDeviceLAS-sideload-entitled-latest.ipa</dd></dl>
+          <dl class="kv"><dt>İmzalama</dt><dd>ad-hoc · kendi sertifikanızla yeniden imzalayın</dd></dl>
+          <dl class="kv"><dt>Entitlement</dt><dd>increased-memory-limit + extended-virtual-addressing</dd></dl>
+          <dl class="kv"><dt>Dinleyici</dt><dd>11434 portu · iOS uygulamayı arka plana alınca durur</dd></dl>
+          <dl class="kv"><dt>Sağlama</dt><dd><a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.6-143">sürümde ↗</a></dd></dl>
+        </div></div></div>
       </div>
     </article>
   </div>
 
-  <div class="tbl-scroll" style="margin-top:18px" data-reveal><table>
-    <thead><tr>
-      <th scope="col">Yetenek</th>
-      <th scope="col">OnDevice LLM</th>
-      <th scope="col">On Device: LAS</th>
-      <th scope="col">Not</th>
-    </tr></thead>
-    <tbody>
-      <tr><th scope="row" class="row">Cihaz üstü çıkarım</th><td class="yes">●</td><td class="yes">●</td><td class="tdim">MLX ve llama.cpp, aynı residency yolu</td></tr>
-      <tr><th scope="row" class="row">GGUF içe aktarma</th><td class="yes">●</td><td class="yes">●</td><td class="tdim">ağırlığı siz getirirsiniz; hiçbir şey pakete gömülü değil</td></tr>
-      <tr><th scope="row" class="row">Asistan sohbeti</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">sunucu sürümünden bilinçli olarak çıkarıldı</td></tr>
-      <tr><th scope="row" class="row">Lens · görü + OCR</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">kamera kareleri ve içe aktarılan fotoğraflar</td></tr>
-      <tr><th scope="row" class="row">Ses · STT + TTS</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">whisper.cpp, yerel sentez</td></tr>
-      <tr><th scope="row" class="row">Mac eşleşme kanalı</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">sürümlü, eşleşme kimlikli araç protokolü</td></tr>
-      <tr><th scope="row" class="row">Paylaşma uzantısı</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">entitlement'lar bileşen başına korunur</td></tr>
-      <tr><th scope="row" class="row">OpenAI / Anthropic / Ollama</th><td class="yes">isteğe bağlı</td><td class="yes">●</td><td class="tdim">aynı <span class="mono">LocalAPIServer</span> rotaları</td></tr>
-      <tr><th scope="row" class="row">Yapılandırılmış tool call</th><td class="yes">isteğe bağlı</td><td class="yes">●</td><td class="tdim">MLX'te grammar kısıtlı çözme</td></tr>
-      <tr><th scope="row" class="row">Ayrıntılı sunucu terminali</th><td class="nope">—</td><td class="yes">●</td><td class="tdim">her istek ve yaşam döngüsü olayı</td></tr>
-      <tr><th scope="row" class="row">Arka planda çalışır</th><td class="nope">—</td><td class="nope">—</td><td class="tdim">iOS uygulamayı arka plana alınca dinleyici durur</td></tr>
-    </tbody>
-  </table></div>
-
-  <div class="note with-icon" style="margin-top:22px" data-reveal>
-    <img src="/assets/icon-128.png" width="44" height="44" loading="lazy" alt="OnDevice Core uygulama simgesi">
+  <div class="core-panel" data-reveal>
+    <img src="/assets/icon-128.png" width="52" height="52" loading="lazy" alt="OnDevice Core uygulama simgesi">
     <div>
-      <strong>Üçüncü varyant.</strong> <em>OnDevice Core</em> 1.0.0 (10), MLX ve llama.cpp yerine Apple
-      Core AI kullanan ayrı bir iOS 27+ derlemesidir — paket <code>com.mesutcydev.ondevicecore</code>,
-      49.6 MiB.
-      <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/ondevice-core-1.0.0-10">OnDevice Core indir ↗</a>
+      <h3>OnDevice Core — özel varyant</h3>
+      <p>
+        MLX ve llama.cpp yerine Apple Core AI kullanan ayrı bir iOS 27+ derlemesi. Sistem runtime'ı
+        üzerine kurulu cihazlar ve iş akışları için vardır; yukarıdaki iki sürümün birebir yerine
+        geçmez.
+      </p>
+      <p class="req">iOS 27+ · com.mesutcydev.ondevicecore · 49.6 MiB · yeniden imzalama gerekir</p>
+    </div>
+    <a class="btn" href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/ondevice-core-1.0.0-10">Core 1.0.0 (10) indir</a>
+  </div>
+
+  <div class="compare" data-reveal>
+    <div class="tbl-scroll"><table>
+      <caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">OnDevice LLM ile On Device: LAS arasındaki temel farklar</caption>
+      <thead><tr><th scope="col">Karar</th><th scope="col">OnDevice LLM</th><th scope="col">On Device: LAS</th></tr></thead>
+      <tbody>
+        <tr><th scope="row" class="row">Modeli kendiniz sürüyorsunuz</th><td class="yes">●</td><td class="nope">—</td></tr>
+        <tr><th scope="row" class="row">Araçlarınız modeli HTTP üzerinden sürüyor</th><td class="yes">isteğe bağlı</td><td class="yes">●</td></tr>
+        <tr><th scope="row" class="row">Kamera, ses ve paylaşma yüzeyleri</th><td class="yes">●</td><td class="nope">kaldırıldı</td></tr>
+      </tbody>
+    </table></div>
+    <div class="disclosure compare-toggle">
+      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="cmp-full">
+        Tüm yetenekleri karşılaştır
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
+      <div class="disclosure-body" id="cmp-full"><div><div class="disclosure-inner">
+        <div class="tbl-scroll tbl-fade"><table>
+          <thead><tr><th scope="col">Yetenek</th><th scope="col">OnDevice LLM</th><th scope="col">On Device: LAS</th><th scope="col">Not</th></tr></thead>
+          <tbody>
+            <tr><th scope="row" class="row">Cihaz üstü çıkarım</th><td class="yes">●</td><td class="yes">●</td><td class="tdim">MLX ve llama.cpp, aynı residency yolu</td></tr>
+            <tr><th scope="row" class="row">GGUF içe aktarma</th><td class="yes">●</td><td class="yes">●</td><td class="tdim">ağırlığı siz getirirsiniz; hiçbir şey gömülü değil</td></tr>
+            <tr><th scope="row" class="row">Asistan sohbeti</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">sunucu sürümünden bilinçli olarak çıkarıldı</td></tr>
+            <tr><th scope="row" class="row">Lens · görü + OCR</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">kamera kareleri ve içe aktarılan fotoğraflar</td></tr>
+            <tr><th scope="row" class="row">Ses · STT + TTS</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">whisper.cpp, yerel sentez</td></tr>
+            <tr><th scope="row" class="row">Mac eşleşme kanalı</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">sürümlü, eşleşme kimlikli araç protokolü</td></tr>
+            <tr><th scope="row" class="row">Paylaşma uzantısı</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">entitlement'lar bileşen başına korunur</td></tr>
+            <tr><th scope="row" class="row">OpenAI / Anthropic / Ollama</th><td class="yes">isteğe bağlı</td><td class="yes">●</td><td class="tdim">aynı LocalAPIServer rotaları</td></tr>
+            <tr><th scope="row" class="row">Yapılandırılmış tool call</th><td class="yes">isteğe bağlı</td><td class="yes">●</td><td class="tdim">MLX'te grammar kısıtlı çözme</td></tr>
+            <tr><th scope="row" class="row">Ayrıntılı sunucu terminali</th><td class="nope">—</td><td class="yes">●</td><td class="tdim">her istek ve yaşam döngüsü olayı</td></tr>
+            <tr><th scope="row" class="row">Arka planda çalışır</th><td class="nope">—</td><td class="nope">—</td><td class="tdim">iOS uygulamayı arka plana alınca dinleyici durur</td></tr>
+          </tbody>
+        </table></div>
+      </div></div></div>
     </div>
   </div>
 </div></section>
 
-<section id="studio"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">02</span> OnDevice LLM</div>
-  <h2 data-reveal>Yerel iş için odaklı bir oda</h2>
+<section id="showcase"><div class="wrap">
+  <div class="eyebrow" data-reveal><span class="n">02</span> Vitrin</div>
+  <h2 data-reveal>Her yüzeyi iş başında görün</h2>
   <p class="sub" data-reveal>
-    Stüdyo döngüyü görünür tutar: ne resident, bellekte neye mal oluyor ve model şu anda ne yapıyor.
-    İndirdiğiniz modellerle sohbet edin, Lens ile kodu inceleyin, buluta hiç uğramadan konuşun ve
-    ağırlıkları tek bir yüzeyden yönetin.
+    Her seferinde tek ekran ve ne gördüğünüzü anlatan kısa bir açıklama. Tam boy görmek için kareye
+    dokunun.
   </p>
-  <div class="shots five">
-    <div class="shot" data-reveal>
-      <a class="frame" href="/assets/previews/home-3.2.7-light.png" target="_blank" rel="noopener">
-        <img src="/assets/previews/home-3.2.7-light.png" width="620" height="1348" loading="lazy" alt="OnDevice LLM ana paneli: yerel araçlar ve oturum geçmişi">
-      </a>
-      <div class="cap"><b>Ana panel</b>Araç yönlendirme, model durumu ve geçmiş tek bakışta.</div>
-    </div>
-    <div class="shot" data-reveal>
-      <a class="frame" href="/assets/previews/assistant-dark.png" target="_blank" rel="noopener">
-        <img src="/assets/previews/assistant-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM asistan ekranı, koyu modda yerel model durumu ve komut önerileriyle">
-      </a>
-      <div class="cap"><b>Asistan</b>Model durumunu görerek yükleyin, duraklatın, sürdürün.</div>
-    </div>
-    <div class="shot" data-reveal>
-      <a class="frame" href="/assets/previews/lens-dark.png" target="_blank" rel="noopener">
-        <img src="/assets/previews/lens-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM Lens ekranı, koyu modda">
-      </a>
-      <div class="cap"><b>Lens</b>Kamera kareleri, OCR ve içe aktarılan fotoğraflar yerelde kalır.</div>
-    </div>
-    <div class="shot" data-reveal>
-      <a class="frame" href="/assets/previews/voice-dark.png" target="_blank" rel="noopener">
-        <img src="/assets/previews/voice-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM ses ekranı, koyu modda yerel konuşma kontrolleriyle">
-      </a>
-      <div class="cap"><b>Ses</b>Dikte ve sesli yanıtlar cihazda yazıya dökülür.</div>
-    </div>
-    <div class="shot" data-reveal>
-      <a class="frame" href="/assets/previews/models-dark.png" target="_blank" rel="noopener">
-        <img src="/assets/previews/models-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM modeller ekranı: model aileleri ve önerilen Qwen3 kartı">
-      </a>
-      <div class="cap"><b>Modeller</b>Aile, bellek uyumu, indirme durumu ve rol bir arada.</div>
+
+  <div id="studio" style="scroll-margin-top:88px">
+    <div class="showcase" data-reveal>
+      <span class="showcase-nav seg" role="tablist" aria-label="Stüdyo ekranları" aria-orientation="vertical">
+        <button role="tab" aria-selected="true" aria-controls="sc-studio-stage"
+          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
+          data-viewer-src="/assets/previews/home-3.2.7-light.png" data-viewer-title="Ana panel"
+          data-viewer-cap="OnDevice LLM ana paneli: araç yönlendirme, model durumu ve oturum geçmişi."
+          data-cap-title="Ana panel" data-cap-sub="Araç yönlendirme, model durumu ve geçmiş tek bakışta.">Ana panel</button>
+        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
+          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
+          data-viewer-src="/assets/previews/assistant-dark.png" data-viewer-title="Asistan"
+          data-viewer-cap="Koyu modda asistan ekranı: yerel model durumu ve komut önerileri."
+          data-cap-title="Asistan" data-cap-sub="Model durumunu görerek yükleyin, duraklatın, sürdürün.">Asistan</button>
+        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
+          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
+          data-viewer-src="/assets/previews/lens-dark.png" data-viewer-title="Lens"
+          data-viewer-cap="Koyu modda Lens ekranı: kamera kareleri, OCR ve içe aktarılan fotoğraflar yerelde kalır."
+          data-cap-title="Lens" data-cap-sub="Kamera kareleri, OCR ve içe aktarılan fotoğraflar cihazda kalır.">Lens</button>
+        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
+          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
+          data-viewer-src="/assets/previews/voice-dark.png" data-viewer-title="Ses"
+          data-viewer-cap="Koyu modda ses ekranı: yerel konuşma kontrolleri."
+          data-cap-title="Ses" data-cap-sub="Dikte ve sesli yanıtlar cihazda yazıya dökülür.">Ses</button>
+        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
+          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
+          data-viewer-src="/assets/previews/models-dark.png" data-viewer-title="Modeller"
+          data-viewer-cap="Model ailelerini ve önerilen Qwen3 kartını gösteren modeller ekranı."
+          data-cap-title="Modeller" data-cap-sub="Aile, bellek uyumu, indirme durumu ve rol bir arada.">Modeller</button>
+      </span>
+      <div class="showcase-stage" id="sc-studio-stage" role="tabpanel" aria-label="Seçili stüdyo ekranı">
+        <button class="showcase-frame" type="button" data-viewer-sync
+                data-viewer-src="/assets/previews/home-3.2.7-light.png" data-viewer-title="Ana panel"
+                data-viewer-cap="OnDevice LLM ana paneli: araç yönlendirme, model durumu ve oturum geçmişi."
+                aria-label="Seçili stüdyo ekranını tam boy aç">
+          <span class="showcase-screen" id="sc-studio-imgs">
+            <img src="/assets/previews/home-3.2.7-light.png" width="620" height="1348" class="is-active" alt="OnDevice LLM ana paneli">
+            <img src="/assets/previews/assistant-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM asistan ekranı">
+            <img src="/assets/previews/lens-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM Lens ekranı">
+            <img src="/assets/previews/voice-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM ses ekranı">
+            <img src="/assets/previews/models-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM modeller ekranı">
+          </span>
+        </button>
+        <div class="showcase-copy" id="sc-studio-copy">
+          <h3>Ana panel</h3>
+          <p>Araç yönlendirme, model durumu ve geçmiş tek bakışta.</p>
+        </div>
+        <div class="showcase-actions">
+          <a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">Stüdyoyu alın</a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="grid" style="margin-top:34px">
-    <div class="card" data-reveal>
-      <span class="tag">Metin / LLM</span>
-      <h3>Asistan modelleri</h3>
-      <p>Cihazda depolanan modellere karşı kod yazın, açıklayın, gözden geçirin ve planlayın; aile
-         destekliyorsa tool calling ve yapılandırılmış argümanlarla.</p>
-    </div>
-    <div class="card" data-reveal>
-      <span class="tag">Görü / OCR</span>
-      <h3>Görsel modeller</h3>
-      <p>Görüntüleri inceleyin, kod tarayın, ekrandakine sorun. Görü, buluta kaçmak yerine yerel bir
-         OCR yedeğiyle çalışır.</p>
-    </div>
-    <div class="card" data-reveal>
-      <span class="tag">Konuşma / TTS</span>
-      <h3>Ses modelleri</h3>
-      <p>Yerel ses etkinliği algılama, yazıya dökme ve sentez, metinle aynı döngünün içinde — dikte de
-         sesli yanıt da telefondan çıkmaz.</p>
-    </div>
-    <div class="card" data-reveal>
-      <span class="tag">Görsel / diffusion</span>
-      <h3>Üretim modelleri</h3>
-      <p>Sabit bir kademe listesi yerine ölçülen cihaz kapasitesine göre seçilen modellerle
-         diffusion tabanlı görsel üretimi.</p>
-    </div>
-    <div class="card" data-reveal>
-      <span class="tag">Eşleşme / LAN</span>
-      <h3>Mac köprüsü</h3>
-      <p>İsteğe bağlı, eşleşme kimlikli bir iPhone–Mac araç protokolü; çağrı başına açık risk
-         seviyeleriyle. Siz açmadıkça kapalıdır.</p>
-    </div>
-    <div class="card" data-reveal>
-      <span class="tag">Açık / HF</span>
-      <h3>Model keşfi</h3>
-      <p>Hugging Face'te arayın, indirmeden önce bellek uyumunu görün, yarıda kesilen indirmeleri
-         sürdürün. Ağ kullanımı istek üzerine olur, asla örtük değil.</p>
+  <div id="server" style="scroll-margin-top:88px; margin-top:64px">
+    <div class="showcase" data-reveal>
+      <span class="showcase-nav seg" role="tablist" aria-label="Sunucu ekranları" aria-orientation="vertical">
+        <button role="tab" aria-selected="true" aria-controls="sc-server-stage"
+          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
+          data-viewer-src="/assets/shots/las-home.png" data-viewer-title="Sunucu ana sayfası"
+          data-viewer-cap="LAS sunucu ana sayfası: cihaz sağlığı, bellek payı ve Local API anahtarı."
+          data-cap-title="Sunucu ana sayfası" data-cap-sub="Cihaz sağlığı, bellek payı ve Local API anahtarı.">Runtime</button>
+        <button role="tab" aria-selected="false" aria-controls="sc-server-stage"
+          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
+          data-viewer-src="/assets/shots/las-models.png" data-viewer-title="Model kitaplığı"
+          data-viewer-cap="Kurulu cihaz üstü modelleri kapasite göstergeleriyle listeleyen LAS model kitaplığı."
+          data-cap-title="Model kitaplığı" data-cap-sub="MLX veya GGUF modeli içe aktarın, indirin, resident yapın.">Modeller</button>
+        <button role="tab" aria-selected="false" aria-controls="sc-server-stage"
+          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
+          data-viewer-src="/assets/shots/las-debugger.png" data-viewer-title="Cihaz üstü hata ayıklayıcı"
+          data-viewer-cap="Bellek kabul anlık görüntüsünü gösteren LAS cihaz üstü hata ayıklayıcısı."
+          data-cap-title="Cihaz üstü hata ayıklayıcı" data-cap-sub="Süreç bütçesi, entitlement'lar ve termal durum.">Hata ayıklayıcı</button>
+        <button role="tab" aria-selected="false" aria-controls="sc-server-stage"
+          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
+          data-viewer-src="/assets/shots/las-terminal.png" data-viewer-title="Ayrıntılı terminal"
+          data-viewer-cap="Canlı sunucu log olaylarını akıtan LAS ayrıntılı terminali."
+          data-cap-title="Ayrıntılı terminal" data-cap-sub="Her istek ve yaşam döngüsü olayı, canlı.">Etkinlik</button>
+      </span>
+      <div class="showcase-stage" id="sc-server-stage" role="tabpanel" aria-label="Seçili sunucu ekranı">
+        <button class="showcase-frame" type="button" data-viewer-sync
+                data-viewer-src="/assets/shots/las-home.png" data-viewer-title="Sunucu ana sayfası"
+                data-viewer-cap="LAS sunucu ana sayfası: cihaz sağlığı, bellek payı ve Local API anahtarı."
+                aria-label="Seçili sunucu ekranını tam boy aç">
+          <span class="showcase-screen" id="sc-server-imgs">
+            <img src="/assets/shots/las-home.png" width="660" height="1434" class="is-active" alt="LAS sunucu ana sayfası">
+            <img src="/assets/shots/las-models.png" width="660" height="1434" loading="lazy" alt="LAS model kitaplığı">
+            <img src="/assets/shots/las-debugger.png" width="660" height="1434" loading="lazy" alt="LAS cihaz üstü hata ayıklayıcısı">
+            <img src="/assets/shots/las-terminal.png" width="660" height="1434" loading="lazy" alt="LAS ayrıntılı terminali">
+          </span>
+        </button>
+        <div class="showcase-copy" id="sc-server-copy">
+          <h3>Sunucu ana sayfası</h3>
+          <p>Cihaz sağlığı, bellek payı ve Local API anahtarı.</p>
+        </div>
+        <div class="showcase-actions">
+          <a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">Sunucuyu alın</a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <p class="shot-note" data-reveal><span class="dot"></span> Açık kaynak derlemeden alınmış, düzenlenmemiş iPhone Simulator yakalamaları (koyu görünüm). Kullanıcı içeriği, hesap, token veya ağırlık içermez.</p>
+  <p class="sub" style="margin:28px 0 0" data-reveal>
+    Açık kaynak derlemeden alınmış, düzenlenmemiş iPhone Simulator yakalamaları; koyu görünümde.
+    Kullanıcı içeriği, hesap, token veya ağırlık içermez.
+  </p>
 </div></section>
 
-<section id="server"><div class="wrap">
-  <div class="eyebrow amber" data-reveal><span class="n">03</span> On Device: LAS</div>
-  <h2 data-reveal>Bir sohbet uygulaması değil, sunucu derlemesi</h2>
+<section id="install"><div class="wrap">
+  <div class="eyebrow" data-reveal><span class="n">03</span> Kurulum</div>
+  <h2 data-reveal>İndirmeden resident modele</h2>
   <p class="sub" data-reveal>
-    LAS model yüklemeyi, bellek ve termal güvenliği, kimlik doğrulamayı ve API uyumluluk katmanını
-    korur; asistan, lens, ses ve paylaşma uzantısı yüzeylerini tamamen bırakır. Uygulamanın işi bir
-    modeli resident tutup HTTP'ye cevap vermektir. Ana sayfası bir kontrol yüzeyidir: çalışma zamanı
-    durumu, bellek kabulü ve canlı log.
+    İki sürüm için de aynı üç aşama. Dürüst kısmı: sideload IPA'lar kendi sertifikanızla yeniden
+    imzalanmalıdır ve bellek entitlement'larının bu adımdan sağ çıkması gerekir.
   </p>
-  <div class="shots">
-    <div class="shot" data-reveal>
-      <a class="frame" href="/assets/shots/las-home.png" target="_blank" rel="noopener">
-        <img src="/assets/shots/las-home.png" width="660" height="1434" loading="lazy" alt="LAS sunucu ana sayfası: cihaz sağlığı, bellek payı ve Local API durumu">
-      </a>
-      <div class="cap"><b>Sunucu ana sayfası</b>Cihaz sağlığı, bellek payı ve Local API anahtarı.</div>
+  <div class="steps three">
+    <div class="step" data-reveal>
+      <span class="n">01</span>
+      <h3>Sürümünüzü seçin</h3>
+      <p>Stüdyo ya da sunucu için IPA'yı indirin. İkisi de yeniden imzalayıcıya yönelik ad-hoc imzalı
+         varlıklardır; ikisi de App Store ikilisi değildir.</p>
     </div>
-    <div class="shot" data-reveal>
-      <a class="frame" href="/assets/shots/las-models.png" target="_blank" rel="noopener">
-        <img src="/assets/shots/las-models.png" width="660" height="1434" loading="lazy" alt="LAS model kitaplığı: kurulu cihaz üstü modeller ve kapasite göstergeleri">
-      </a>
-      <div class="cap"><b>Model kitaplığı</b>MLX veya GGUF modeli içe aktarın, indirin, resident yapın.</div>
+    <div class="step" data-reveal>
+      <span class="n">02</span>
+      <h3>Kurun ve yeniden imzalayın</h3>
+      <p>AltStore / AltServer, SideStore kullanın ya da cihazda imzalamak için ForgeSign'ı deneyin.
+         Bellek entitlement'larının korunduğunu kontrol edin — yoksa iOS süreci sınırlar ve büyük
+         modeller yüklenirken öldürülür.</p>
     </div>
-    <div class="shot" data-reveal>
-      <a class="frame" href="/assets/shots/las-debugger.png" target="_blank" rel="noopener">
-        <img src="/assets/shots/las-debugger.png" width="660" height="1434" loading="lazy" alt="LAS cihaz üstü hata ayıklayıcısı: bellek kabul anlık görüntüsü">
-      </a>
-      <div class="cap"><b>Cihaz üstü hata ayıklayıcı</b>Süreç bütçesi, entitlement'lar, termal durum.</div>
-    </div>
-    <div class="shot" data-reveal>
-      <a class="frame" href="/assets/shots/las-terminal.png" target="_blank" rel="noopener">
-        <img src="/assets/shots/las-terminal.png" width="660" height="1434" loading="lazy" alt="LAS ayrıntılı terminali: canlı sunucu log akışı">
-      </a>
-      <div class="cap"><b>Ayrıntılı terminal</b>Her istek ve yaşam döngüsü olayı, canlı.</div>
+    <div class="step" data-reveal>
+      <span class="n">03</span>
+      <h3>Bir model yükleyin</h3>
+      <p>Depo ağırlık içermez. Cihazda bir GGUF içe aktarın ya da bir MLX modeli indirin, sonra
+         resident yapın. LAS'ta bearer anahtarını döndürüp istemciyi LAN adresine yöneltin.</p>
     </div>
   </div>
-
-  <div class="grid" style="margin-top:34px">
-    <div class="card" data-reveal>
-      <span class="tag">Uyumluluk</span>
-      <h3>Üç lehçe, tek port</h3>
-      <p>OpenAI, Anthropic Messages ve Ollama rotaları aynı dinleyiciden, <code>11434</code>
-         üzerinden servis edilir. İstemciler zaten kullandıkları SDK ile bağlanır.</p>
-    </div>
-    <div class="card" data-reveal>
-      <span class="tag">Akış</span>
-      <h3>Token düzeyinde SSE</h3>
-      <p>Çerçeveler token başına yazılıp flush edilir; istemci metni üretim bitsin diye beklemeden,
-         model çözdükçe ekrana basar.</p>
-    </div>
-    <div class="card" data-reveal>
-      <span class="tag">Akıl yürütme</span>
-      <h3>Yanıtın dışında tutulur</h3>
-      <p>Zincir düşünce <code>reasoning_content</code> olarak akar, <code>content</code> yalnızca son
-         yanıtı taşır. Token sınırlarına bölünmüş işaretçiler ele alınır ve ayrıştırıcı, tool call
-         çıkarımından önce çalışır.</p>
-    </div>
-    <div class="card" data-reveal>
-      <span class="tag">Araçlar</span>
-      <h3>Umulan değil, kısıtlanan</h3>
-      <p>MLX'te çözme, ya metin ya da bildirilmiş tool call kabul eden token düzeyinde bir yanıt
-         grammar'ı kullanır ve argümanları geçerli JSON'da tutar. Şema doğrulaması yine de sonra
-         çalışır. Tokenizer kullanılabilir bir grammar girdisi veremiyorsa, kilitlenmek yerine
-         ayrıştırıcı yoluna düşer.</p>
-    </div>
-    <div class="card" data-reveal>
-      <span class="tag">Dürüstlük</span>
-      <h3>Bilinçli kapsam</h3>
-      <p>Runtime'ın uygulamadığı seçenekler, güvenliyse yok sayılır, değilse açıkça reddedilir.
-         Anthropic <code>thinking</code> gibi kullanılmayan sağlayıcı alanları 400'e dönüşmez,
-         yok sayılır.</p>
-    </div>
-    <div class="card" data-reveal>
-      <span class="tag">Kontroller</span>
-      <h3>Uyumluluk anahtarları</h3>
-      <p>Ana sayfa; gizli akıl yürütmeyi, lehçe başına tool call'ları, paralel tool call'ları,
-         argümanlar için sıkı JSON şema doğrulamasını ve uygulama öne gelince isteğe bağlı otomatik
-         yüklemeyi açmanıza imkân verir.</p>
-    </div>
+  <div class="note" style="margin-top:28px" data-reveal>
+    <strong>Entitlement'lar neden önemli.</strong>
+    <code>com.apple.developer.kernel.increased-memory-limit</code> süreç başına bellek tavanını
+    yükseltir; milyarlarca parametreli ağırlıklar ve KV önbelleği resident kalır.
+    <code>com.apple.developer.kernel.extended-virtual-addressing</code> ise MLX ve llama.cpp
+    ayırıcılarının yaptığı büyük sanal adres rezervasyonlarına izin verir. Yeniden imzalama araçları
+    ikisini de sessizce düşürebilir.
   </div>
 </div></section>
 
-<section id="api"><div class="wrap">
-  <div class="eyebrow amber" data-reveal><span class="n">04</span> Uç noktalar</div>
-  <h2 data-reveal>11434 portunda ne cevap veriyor</h2>
+<section id="developers"><div class="wrap">
+  <span id="api" style="position:absolute" aria-hidden="true"></span>
+  <div class="eyebrow amber" data-reveal><span class="n">04</span> Geliştiriciler</div>
+  <h2 data-reveal>Araçlarınızı telefona yöneltin</h2>
   <p class="sub" data-reveal>
-    Her iki derlemede de <code>LocalAPIServer.swift</code> servis eder — stüdyoda isteğe bağlı,
-    LAS'ta her zaman açık. Tüm rotalar, kontrolünüzdeki bir ağ için tasarlanmış bearer kimlik
-    doğrulamalı düz HTTP'dir.
+    İki sürümde de <code>LocalAPIServer.swift</code> servis eder — stüdyoda isteğe bağlı, LAS'ta her
+    zaman açık. Bearer kimlik doğrulamalı düz HTTP; kontrolünüzdeki bir ağ için tasarlandı.
   </p>
-  <div class="api">
-    <div class="api-col" data-reveal>
+
+  <div class="api" data-reveal>
+    <div class="api-col">
       <h3>OpenAI</h3>
       <p class="who">aider · Continue · openai-python</p>
       <ul>
@@ -453,14 +449,14 @@
         <li><span class="verb">POST</span>/v1/responses</li>
       </ul>
     </div>
-    <div class="api-col" data-reveal>
+    <div class="api-col">
       <h3>Anthropic</h3>
       <p class="who">anthropic-sdk · Messages API</p>
       <ul>
         <li><span class="verb">POST</span>/v1/messages</li>
       </ul>
     </div>
-    <div class="api-col" data-reveal>
+    <div class="api-col">
       <h3>Ollama</h3>
       <p class="who">Ollama yerel istemcileri</p>
       <ul>
@@ -473,141 +469,99 @@
       </ul>
     </div>
   </div>
-</div></section>
 
-<section id="requirements"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">05</span> Gereksinimler</div>
-  <h2 data-reveal>Bir kodlama ajanının ihtiyacı olan</h2>
-  <p class="sub" data-reveal>
-    aider gibi ajan istemcileri uzun tool call sohbetleri sürer ve zorlayıcı senaryo budur — sohbet
-    değil. Sunucunun bir modeli ajan hazır sayması için modelin gerçek bir <strong>65.536 token</strong>
-    bağlamı ve ona denk bir KV önbelleği taşıması gerekir; altında kalırsa uygulama oturumun ortasında
-    çökmek yerine bir Hermes uyumluluk uyarısı gösterir.
-  </p>
-  <div class="tbl-scroll" data-reveal><table>
-    <thead><tr>
-      <th scope="col">Model ailesi</th><th scope="col">Bağlam</th><th scope="col">Tool ayrıştırıcı</th>
-      <th scope="col">Paralel</th><th scope="col">Azami çıktı</th><th scope="col">KV önbellek</th>
-    </tr></thead>
-    <tbody>
-      <tr><th scope="row" class="row">Qwen3<br><span class="tdim">YaRN ×2 gerekir</span></th><td class="k acc">65.536</td><td class="k">hermes</td><td class="k">2</td><td class="k">4.096</td><td class="k">1.1–4.3 GB</td></tr>
-      <tr><th scope="row" class="row">Qwen3.5</th><td class="k acc">65.536</td><td class="k">qwen3_coder</td><td class="k">2</td><td class="k">4.096</td><td class="k">~1.1 GB</td></tr>
-      <tr><th scope="row" class="row">Ornith</th><td class="k acc">65.536</td><td class="k">qwen3_xml</td><td class="k">2</td><td class="k">4.096</td><td class="k">~1.1 GB</td></tr>
-      <tr><th scope="row" class="row">Bonsai<br><span class="tdim">ajan hazır değil</span></th><td class="k">≤ 32.768</td><td class="k">qwen3_coder</td><td class="k">1</td><td class="k">2.048</td><td class="k">≤ 0.5 GB</td></tr>
-      <tr><th scope="row" class="row">Diğer / içe aktarılan<br><span class="tdim">tool desteği yok</span></th><td class="k">katalog</td><td class="k">yok</td><td class="k">1</td><td class="k">≤ 4.096</td><td class="k">değişir</td></tr>
-    </tbody>
-  </table></div>
-
-  <div class="grid" style="margin-top:22px">
-    <div class="card" data-reveal>
-      <h3>Neden 64K, 32K değil</h3>
-      <p>Qwen3 doğuştan 32K'tır. Gerçek bir 65.536 token runtime'ına ulaşmak için 2 katlı bir YaRN
-         gerekir; bu, MLX çözmeden önce model yapılandırmasına uygulanır — özgün yapılandırmanız
-         üzerine yazılmaz, yedeklenir.</p>
+  <div id="quickstart" style="margin-top:48px; scroll-margin-top:88px">
+    <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between" data-reveal>
+      <h3 style="margin:0; font-size:17px; font-weight:640">Her seferinde tek örnek</h3>
+      <span class="seg" role="tablist" aria-label="Örnek dili">
+        <button role="tab" id="ex-curl" aria-selected="true" aria-controls="ex-panel-curl">curl</button>
+        <button role="tab" id="ex-aider" aria-selected="false" aria-controls="ex-panel-aider">aider</button>
+        <button role="tab" id="ex-anthropic" aria-selected="false" aria-controls="ex-panel-anthropic">Anthropic SDK</button>
+      </span>
     </div>
-    <div class="card" data-reveal>
-      <h3>KV önbellek neden önemli</h3>
-      <p>64K'lık bir önbellek, küçük bir Qwen3'te 1.1&nbsp;GB, bir 8B'de yaklaşık 4.3&nbsp;GB tutar —
-         ağırlıkların üstüne. Aşağıdaki bellek entitlement'larının isteğe bağlı olmamasının sebebi
-         budur.</p>
-    </div>
-    <div class="card" data-reveal>
-      <h3>Paralel tool call</h3>
-      <p>Bunları güvenilir biçimde yöneten ailelerde en fazla 2 eşzamanlı çağrı, diğerlerinde zorunlu
-         sıralı çalıştırma. Sınır kurulum başına da ayarlanabilir.</p>
-    </div>
-  </div>
-
-  <p class="sub" style="margin:30px 0 12px" data-reveal>Denenmiş model çalıştırmaları</p>
-  <ul class="chips" data-reveal>
-    <li>Qwen 3.5 serisi</li>
-    <li>Ornith 1.0 9B</li>
-    <li>Ternary Bonsai 27B</li>
-    <li>Nanbeige</li>
-    <li>+ fazlası</li>
-  </ul>
-  <p class="sub" style="margin:0" data-reveal>
-    Kullanılabilirliği sabit bir destek listesi değil; cihaz belleği, termal pay, model lisansı ve
-    seçtiğiniz niceleme belirler.
-  </p>
-</div></section>
-
-<section id="quickstart"><div class="wrap">
-  <div class="eyebrow amber" data-reveal><span class="n">06</span> Hızlı başlangıç</div>
-  <h2 data-reveal>Telefonunuzla konuşmak</h2>
-  <p class="sub" data-reveal>
-    LAS, LAN adresini ve bearer anahtarını sunucu ana sayfasında gösterir. Kurulumdan sonra anahtarı
-    döndürün, ardından istemcinizi ona yöneltin. Stüdyoda önce yerel API'yi açın — rotalar aynıdır.
-  </p>
-  <div class="steps">
-    <div data-reveal>
-      <div class="step-h"><span class="step-n">01</span> Modelin resident olduğunu doğrulayın</div>
-      <pre><span class="c-dim">$</span> curl -s http://192.168.1.8:11434/v1/models \
-    -H <span class="c-amb">"Authorization: Bearer $KEY"</span> | jq .data[0].id</pre>
-    </div>
-    <div data-reveal>
-      <div class="step-h"><span class="step-n">02</span> Bir tamamlamayı akıtın</div>
-      <pre><span class="c-dim">$</span> curl -N http://192.168.1.8:11434/v1/chat/completions \
+    <div style="margin-top:16px" data-reveal>
+      <div class="code-block" id="ex-panel-curl" role="tabpanel" aria-label="curl örneği">
+        <button class="copy" type="button" data-done="✓ kopyalandı">kopyala</button>
+        <pre><span class="c-dim"># LAN'ınızdaki telefondan akışlı tamamlama</span>
+<span class="c-dim">$</span> curl -N http://192.168.1.8:11434/v1/chat/completions \
     -H <span class="c-amb">"Authorization: Bearer $KEY"</span> \
     -H <span class="c-amb">'Content-Type: application/json'</span> \
     -d <span class="c-amb">'{"model":"model-id-niz","stream":true,
          "messages":[{"role":"user","content":"SSE'yi tek satırda açıkla."}]}'</span></pre>
-    </div>
-    <div data-reveal>
-      <div class="step-h"><span class="step-n">03</span> aider'ı ona yöneltin</div>
-      <pre><span class="c-dim">$</span> export OPENAI_API_BASE=http://192.168.1.8:11434/v1
+      </div>
+      <div class="code-block" id="ex-panel-aider" role="tabpanel" aria-label="aider örneği" hidden>
+        <button class="copy" type="button" data-done="✓ kopyalandı">kopyala</button>
+        <pre><span class="c-dim"># aider'ı telefona yöneltin</span>
+<span class="c-dim">$</span> export OPENAI_API_BASE=http://192.168.1.8:11434/v1
 <span class="c-dim">$</span> export OPENAI_API_KEY=<span class="c-amb">&lt;uygulamadaki anahtar&gt;</span>
 <span class="c-dim">$</span> aider --model openai/model-id-niz</pre>
-    </div>
-    <div data-reveal>
-      <div class="step-h"><span class="step-n">04</span> Ya Anthropic lehçesini kullanın</div>
-      <pre><span class="c-dim">$</span> export ANTHROPIC_BASE_URL=http://192.168.1.8:11434
+      </div>
+      <div class="code-block" id="ex-panel-anthropic" role="tabpanel" aria-label="Anthropic SDK örneği" hidden>
+        <button class="copy" type="button" data-done="✓ kopyalandı">kopyala</button>
+        <pre><span class="c-dim"># ya da aynı anahtarla Anthropic lehçesini kullanın</span>
+<span class="c-dim">$</span> export ANTHROPIC_BASE_URL=http://192.168.1.8:11434
 <span class="c-dim">$</span> export ANTHROPIC_API_KEY=<span class="c-amb">&lt;aynı anahtar&gt;</span>
 <span class="c-dim">$</span> curl -s $ANTHROPIC_BASE_URL/v1/messages \
     -H <span class="c-amb">"x-api-key: $ANTHROPIC_API_KEY"</span> \
     -d <span class="c-amb">'{"model":"model-id-niz","max_tokens":512,
          "messages":[{"role":"user","content":"ping"}]}'</span></pre>
+      </div>
+      <p class="textlink" style="margin-top:14px">
+        <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">Ajan entegrasyonu belgelerinin tamamı ↗</a>
+      </p>
+    </div>
+
+    <div style="margin-top:36px" data-reveal>
+      <div class="term" id="term" data-scene="studio" aria-label="Simüle terminal gösterimi">
+        <div class="term-bar">
+          <i class="lights"></i><i class="lights"></i><i class="lights"></i>
+          <span class="t" id="term-title">ondevice llm — yerel oturum</span>
+        </div>
+        <pre class="term-body" id="term-out" aria-live="off"></pre>
+      </div>
+      <p class="textlink" style="margin-top:10px; font-family:var(--mono); font-size:12px">
+        Görselleştirme için simüle edilmiş döküm — süreler ve hızlar ölçüm değildir.
+      </p>
+    </div>
+  </div>
+
+  <div id="requirements" style="margin-top:48px; scroll-margin-top:88px" data-reveal>
+    <div class="disclosure">
+      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="req-full">
+        Ajan işleri için tam model gereksinimleri
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
+      <div class="disclosure-body" id="req-full"><div><div class="disclosure-inner">
+        <p style="margin:0 0 14px; color:var(--text-dim); font-size:14.5px">
+          Ajan istemcileri uzun tool call sohbetleri sürer. Sunucunun bir modeli ajan hazır sayması için
+          modelin gerçek bir 65.536 token bağlamı ve ona denk bir KV önbelleği taşıması gerekir; altında
+          kalırsa oturum ortasında çökme yerine bir Hermes uyumluluk uyarısı görürsünüz.
+        </p>
+        <div class="tbl-scroll"><table>
+          <thead><tr>
+            <th scope="col">Model ailesi</th><th scope="col">Bağlam</th><th scope="col">Tool ayrıştırıcı</th>
+            <th scope="col">Paralel</th><th scope="col">Azami çıktı</th><th scope="col">KV önbellek</th>
+          </tr></thead>
+          <tbody>
+            <tr><th scope="row" class="row">Qwen3<br><span class="tdim">YaRN ×2 gerekir</span></th><td class="k acc">65.536</td><td class="k">hermes</td><td class="k">2</td><td class="k">4.096</td><td class="k">1.1–4.3 GB</td></tr>
+            <tr><th scope="row" class="row">Qwen3.5</th><td class="k acc">65.536</td><td class="k">qwen3_coder</td><td class="k">2</td><td class="k">4.096</td><td class="k">~1.1 GB</td></tr>
+            <tr><th scope="row" class="row">Ornith</th><td class="k acc">65.536</td><td class="k">qwen3_xml</td><td class="k">2</td><td class="k">4.096</td><td class="k">~1.1 GB</td></tr>
+            <tr><th scope="row" class="row">Bonsai<br><span class="tdim">ajan hazır değil</span></th><td class="k">≤ 32.768</td><td class="k">qwen3_coder</td><td class="k">1</td><td class="k">2.048</td><td class="k">≤ 0.5 GB</td></tr>
+            <tr><th scope="row" class="row">Diğer / içe aktarılan<br><span class="tdim">tool desteği yok</span></th><td class="k">katalog</td><td class="k">yok</td><td class="k">1</td><td class="k">≤ 4.096</td><td class="k">değişir</td></tr>
+          </tbody>
+        </table></div>
+        <p style="margin:14px 0 0; color:var(--text-dim); font-size:14.5px">Denenmiş çalıştırmalar:
+          Qwen 3.5 serisi · Ornith 1.0 9B · Ternary Bonsai 27B · Nanbeige. Kullanılabilirlik cihaz
+          belleğine, termal paya, model lisansına ve nicelemeye bağlıdır — sabit bir destek listesine değil.</p>
+      </div></div></div>
     </div>
   </div>
 </div></section>
 
-<section id="install"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">07</span> Kurulum</div>
-  <h2 data-reveal>Entitlement'larla sideload</h2>
-  <p class="sub" data-reveal>
-    İki IPA'yı da <strong>AltStore</strong> / AltServer ya da <strong>SideStore</strong> ile kurun;
-    imzalamayı cihazın üzerinde yapmak isterseniz
-    <a href="https://github.com/Mesutcydev/ForgeSign-iOS">ForgeSign</a> var. TrollStore artık genel bir
-    seçenek değil — yalnızca eski iOS sürümlerinin dar bir aralığını kapsıyor.
-  </p>
-  <p class="sub" data-reveal>
-    İki IPA da ad-hoc imzalıdır ve bellek entitlement'ları bildirir. Bu araçların hepsi kendi
-    sertifikanızla yeniden imzaladığı için <strong>entitlement'ların bu adımdan sağ çıktığını
-    kontrol edin</strong> — yoksa iOS süreci yararlı bir modelin çok altına sınırlar ve büyük modeller
-    degrade olmak yerine yüklenirken öldürülür.
-  </p>
-  <div class="tbl-scroll" data-reveal><table>
-    <thead><tr><th scope="col">Entitlement</th><th scope="col">Neden var</th></tr></thead>
-    <tbody>
-      <tr><td class="k acc">com.apple.developer.kernel.increased-memory-limit</td><td>Süreç başına bellek tavanını yükseltir; milyarlarca parametreli ağırlıklar ve KV önbellekleri resident kalır.</td></tr>
-      <tr><td class="k acc">com.apple.developer.kernel.extended-virtual-addressing</td><td>MLX ve llama.cpp ayırıcılarının yaptığı büyük sanal adres rezervasyonlarına izin verir.</td></tr>
-    </tbody>
-  </table></div>
-  <p class="sub" style="margin:26px 0 0" data-reveal>
-    Paket kimlikleri ayrıdır — stüdyo için <code>com.mesutcydev.ioslocalllm.IOSLocalLLM</code>, sunucu
-    için <code>com.mesutcydev.ondevicelas</code> — böylece ikisi yan yana kurulabilir. Depoda model
-    ağırlığı yoktur: modeli cihazda yükleyin ya da içe aktarın, sonra resident yapın.
-  </p>
-  <p class="sub" style="margin:14px 0 0" data-reveal>
-    Bir kez ekleyeceğiniz bir kaynak mı istersiniz?
-    <a href="https://raw.githubusercontent.com/Mesutcydev/ios-local-llm/main/altstore/source.json">AltStore kaynağı</a>
-    iki uygulamayı da ürün ailesinin geri kalanıyla birlikte listeler.
-  </p>
-</div></section>
-
 <section id="security"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">08</span> Sınırlar</div>
+  <div class="eyebrow" data-reveal><span class="n">05</span> Sınırlar</div>
   <h2 data-reveal>Ne yapar, ne yapmaz</h2>
+  <p class="sub" data-reveal>Açıkça söylenmiş hâliyle; çünkü burada güven ürünün kendisidir.</p>
   <div class="grid">
     <div class="card" data-reveal>
       <h3>Yalnızca güvenilir LAN</h3>
@@ -616,13 +570,13 @@
     </div>
     <div class="card" data-reveal>
       <h3>Yalnızca ön planda</h3>
-      <p>iOS uygulamayı arka plana alınca dinleyici durur. Bir model resident olmadan gelen istek,
-         donma yerine service-unavailable yanıtı alır.</p>
+      <p>iOS uygulamayı arka plana alınca dinleyici durur. Bir model resident olmadan gelen istek, donma
+         yerine service-unavailable yanıtı alır.</p>
     </div>
     <div class="card" data-reveal>
       <h3>Sessiz çalıştırma yok</h3>
       <p>Sunucu tool call'ları döndürür, onları çalıştırmaz. Bir çağrıyı yürütmek her zaman istemcinin
-         kararıdır; geçersiz adlar ve argümanlar istemci harekete geçmeden reddedilir.</p>
+         kararıdır; geçersiz adlar ve argümanlar önce reddedilir.</p>
     </div>
     <div class="card" data-reveal>
       <h3>Sessiz bulut kaçışı yok</h3>
@@ -636,15 +590,74 @@
     </div>
     <div class="card" data-reveal>
       <h3>Denetlenebilir</h3>
-      <p>CI doğrulamalı, CodeQL'li, OpenSSF skor kartlı, SPDX SBOM'lu ve sürüm başına SHA-256
-         sağlamalı MIT kaynak.</p>
+      <p>CI doğrulamalı, CodeQL'li, OpenSSF skor kartlı, SPDX SBOM'lu ve sürüm başına SHA-256 sağlamalı
+         MIT kaynak.</p>
     </div>
   </div>
-  <div class="note" style="margin-top:26px" data-reveal>
-    <strong>Bağımsız proje.</strong> OnDevice topluluk tarafından sürdürülür; Apple Inc. ile bağlantılı,
-    onun tarafından onaylanmış ya da desteklenmiş değildir. Kaynak olarak ve sideload derlemeleri olarak
-    dağıtılır; bu depodan çıkan bir App Store ikili dosyası şu an yoktur. Simulator yakalamaları, fiziksel
-    cihazdaki termal, bellek ve performans kanıtının yerine geçmez.
+
+  <div class="faq" style="margin-top:40px" data-reveal>
+    <div class="disclosure">
+      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-1">Cihazdan dışarı bir şey çıkıyor mu?</button>
+      <div class="disclosure-body" id="faq-1"><div><div class="disclosure-inner">
+        <p>Yalnızca açıkça başlattığınız şeyler: Hugging Face'ten bir model indirmesi ya da kendi
+           LAN'ınızda isteğe bağlı Mac eşleşme kanalı. Prompt'lar, ağırlıklar, geçmiş ve çıktılar
+           uygulama deposunda kalır. Telemetri ve analitik SDK'sı yoktur.</p>
+      </div></div></div>
+    </div>
+    <div class="disclosure">
+      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-2">Bilgisayarsız kullanabilir miyim?</button>
+      <div class="disclosure-body" id="faq-2"><div><div class="disclosure-inner">
+        <p>İmzalama için ForgeSign IPA'ları doğrudan cihazda yeniden imzalar. AltStore ve SideStore,
+           sertifikanıza bağlı olarak periyodik yenilemeler için bir bilgisayar ya da sunucu ister.</p>
+      </div></div></div>
+    </div>
+    <div class="disclosure">
+      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-3">Hangi modeller çalışır?</button>
+      <div class="disclosure-body" id="faq-3"><div><div class="disclosure-inner">
+        <p>Cihaz belleğinizin taşıyabildiği her MLX modeli veya GGUF; modelin lisansına tabidir. Uygulama
+           indirmeden önce bellek uyumunu kontrol eder ve bir ailede tool call desteği yoksa oturum
+           ortasında çökmek yerine uyarır.</p>
+      </div></div></div>
+    </div>
+    <div class="disclosure">
+      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-4">App Store sürümü var mı?</button>
+      <div class="disclosure-body" id="faq-4"><div><div class="disclosure-inner">
+        <p>Şu an yok. Depo, kaynak dağıtımın resmî adresidir; sideload derlemeleri Releases altında
+           görünür. Uygulama daha önce App Store üzerinden dağıtılmıştı.</p>
+      </div></div></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="get" style="border-bottom:0"><div class="wrap">
+  <div class="eyebrow" data-reveal><span class="n">06</span> OnDevice'i alın</div>
+  <h2 data-reveal>Yüzeyinizi seçin</h2>
+  <p class="sub" data-reveal>İki sürüm, tek runtime. Birini kurun, ya da ikisini yan yana.</p>
+  <div class="final">
+    <article class="edition" data-reveal>
+      <div class="edition-head">
+        <img src="/assets/icon-128.png" width="52" height="52" alt="OnDevice LLM uygulama simgesi">
+        <h3>OnDevice LLM</h3>
+      </div>
+      <p class="edition-for">Modelleriyle doğrudan çalışacaklar için.</p>
+      <p class="edition-benefit">Stüdyo: sohbet, lens, ses ve model yönetimi.</p>
+      <div class="edition-actions">
+        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">3.2.7 (112) indir <span class="k">51.2 MiB</span></a>
+        <a class="textlink" href="#install">Nasıl kurulur</a>
+      </div>
+    </article>
+    <article class="edition srv" data-reveal>
+      <div class="edition-head">
+        <img src="/assets/icon-128.png" width="52" height="52" alt="On Device LAS uygulama simgesi">
+        <h3>On Device: LAS</h3>
+      </div>
+      <p class="edition-for">Mevcut araçlarını yerel bir modele bağlayacaklar için.</p>
+      <p class="edition-benefit">Sunucu: 11434 portunda OpenAI-, Anthropic- ve Ollama-uyumlu.</p>
+      <div class="edition-actions">
+        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">3.2.6 (143) indir <span class="k">25.1 MiB</span></a>
+        <a class="textlink" href="#install">Nasıl kurulur</a>
+      </div>
+    </article>
   </div>
 </div></section>
 
@@ -662,7 +675,9 @@
   <p class="disclaimer">
     Swift, SwiftUI, MLX, llama.cpp, whisper.cpp ve Core ML ile geliştirildi. Apple, iPhone ve Mac,
     Apple Inc.'in ticari markalarıdır. Model ağırlıkları bu projeyle dağıtılmaz ve kendi lisanslarına
-    tabidir — kullanmadan önce model kartını okuyun.
+    tabidir — kullanmadan önce model kartını okuyun. Bağımsız projedir; Apple Inc. ile bağlantılı
+    değildir ve onun tarafından onaylanmamıştır. Simulator yakalamaları fiziksel cihaz kanıtının yerine
+    geçmez.
   </p>
   <div class="sums">
     <div><b>OnDevice LLM 3.2.7 (112)</b> · sha256 de432ca3c9cc7b715d1879066aabfbc4d4439b59ac3028e2ba4b78527f62a19d</div>
@@ -670,6 +685,17 @@
     <div><b>On Device: LAS 3.2.6 (143)</b> · <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.6-143">sağlama toplamı sürümde ↗</a></div>
   </div>
 </div></footer>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title" hidden>
+  <div class="viewer-panel">
+    <div class="viewer-bar">
+      <span id="viewer-title">Önizleme</span>
+      <button type="button" data-viewer-close>Kapat ×</button>
+    </div>
+    <div class="viewer-body"><img src="" alt=""></div>
+    <div class="viewer-cap"></div>
+  </div>
+</div>
 
 <script>
   window.ONDEVICE_SCENES = {

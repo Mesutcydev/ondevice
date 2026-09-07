@@ -1,7 +1,7 @@
 # ondevice.fun
 
-Marketing site for the **OnDevice** product line, served by a Cloudflare Worker with
-static assets. One page covering both builds that ship from
+Product site for the **OnDevice** line, served by a Cloudflare Worker with static
+assets. One page per locale covering the two builds that ship from
 [`Mesutcydev/ios-local-llm`](https://github.com/Mesutcydev/ios-local-llm):
 
 | Build | What it is |
@@ -9,98 +9,104 @@ static assets. One page covering both builds that ship from
 | **OnDevice LLM** | The studio — assistant, lens, voice, model control, opt-in local API |
 | **On Device: LAS** | The server — same runtime reduced to a bearer-authenticated local API |
 
-Available in three locales: English (`/`), Turkish (`/tr/`), Simplified Chinese (`/zh/`).
+Locales: English (`/`), Turkish (`/tr/`), Simplified Chinese (`/zh/`).
+
+## Page architecture
+
+Product-first, engineering one layer deeper:
+
+1. **Hero** — proposition + a stable device frame with a Studio/Server switch
+   (crossfade inside one frame; the frame, selector and outer height never move).
+2. **Editions** — decision cards: who it's for → benefit → preview → three
+   differentiators → platform/release summary → download + *How to install* →
+   *Technical details* disclosure (bundle id, artifact, entitlements, checksum).
+   Below: a deliberate full-width **Core** panel, a 3-row decision table, and an
+   expandable full comparison.
+3. **Showcase** — guided demonstrations: one selected screen, one heading, one
+   explanation, per surface. Frames open an accessible screenshot viewer.
+4. **Install** — three stages + the honest entitlements note.
+5. **Developers** — endpoints, one example at a time (curl / aider / Anthropic SDK
+   tabs with copy buttons), a labelled simulated terminal, and the full model
+   requirements table inside a disclosure.
+6. **Boundaries + FAQ**, then a calm **Get OnDevice** return to the choice.
 
 ## Layout
 
 ```
 public/
-  index.html         English page
-  tr/index.html      Turkish page
-  zh/index.html      Simplified Chinese page
-  404.html           not-found page (assets.not_found_handling = "404-page")
+  index.html         English
+  tr/index.html      Turkish
+  zh/index.html      Simplified Chinese
+  404.html           not-found page
   _headers           cache + security headers
-  _redirects         old GitHub Pages paths → anchors on the new page
+  _redirects         legacy paths → current anchors
   assets/
-    site.css         shared design system: tokens, layout, motion, theming
-    site.js          theme control, scroll reveal, nav shadow, terminal scenes
-    icon-128.png     grey-eye brand mark (nav + edition cards)
+    site.css         design system: tokens, layout, motion, theming
+    site.js          tabs, disclosures, viewer, copy, reveals, terminal
+    icon-128.png     grey-eye brand mark
     favicon.png / apple-touch-icon.png
-    og-en/tr/zh.png  monochrome Open Graph cards, one per locale
-    previews/        studio screenshots (620px wide)
+    og-en/tr/zh.png  monochrome OG cards per locale
+    previews/        studio screenshots (620px)
     shots/           LAS screenshots
 wrangler.jsonc       Worker config: assets dir + custom domains
 ```
 
-No bundler, no `package.json`. Wrangler runs through `npx` in Workers Builds, so the
-deploy has nothing to install.
+No bundler, no `package.json`. Wrangler runs through `npx` in Workers Builds.
 
-## Theming
+## Design system
 
-`data-theme` on `<html>` is `dark`, `light`, or `system` (default). An inline boot
-script in `<head>` reads `localStorage['ondevice-theme']` before first paint, so there
-is no flash of the wrong scheme. The nav toggle writes the preference; `system` follows
-`prefers-color-scheme`. All colours come from CSS custom properties, so both schemes
-stay in sync automatically.
-
-## Locales
-
-Each locale is a full standalone page (no runtime i18n) sharing `site.css` / `site.js`.
-Translations are written natively, not machine-translated: technical terms that
-developers keep in English stay in English (`tool calling`, `entitlement`, `KV cache`),
-and numbers follow local convention (Turkish uses `65.536`, Chinese keeps `65,536`).
-The terminal scenes are localised per page via `window.ONDEVICE_SCENES`, set before
-`site.js` loads. `hreflang` links, `og:locale`, canonicals, and the sitemap with
-`xhtml:link` alternates keep the three in sync for search engines.
+Tokens (starting specs, tuned against the rendered page): content width 1200px;
+gutters 20px mobile / 32–48px desktop; section spacing 64–80px mobile /
+104–128px desktop; grid gaps 24px; card radius 24px, controls 12–14px; buttons
+46px; body 16–17px / 1.6; measure ~62ch. Three surface levels (`--bg`,
+`--surface`, `--surface-2`). Mono reserved for code, identifiers, versions.
+Body text targets ≥4.5:1 contrast in both schemes.
 
 ## Motion
 
-- Hero: staggered masked rise (`clip-path` + translate), 60–360ms offsets.
-- Sections: `data-reveal` scroll reveals via IntersectionObserver, staggered per
-  container (60ms steps, capped at 6).
-- Terminal: token-by-token streaming; tab switches blur-fade (140ms) so the two scenes
-  never visibly overlap.
-- Buttons: `scale(.97)` on press; cards and shots lift 2–3px on hover (hover-capable
-  pointers only).
-- Nav gains a shadow once scrolled.
-- Everything collapses to static under `prefers-reduced-motion: reduce`.
+One non-bouncy easing family; different energy per interaction. Hero 8px rise
+(460ms); section reveals 12px once (420ms, 50ms stagger, capped at 6); card hover
+3px lift (180ms, hover-capable pointers only); press `scale(.985)` (100ms);
+Studio/Server switch crossfade + 8px directional movement in a stable frame
+(250ms); disclosures natural-height with chevron rotation (250ms); viewer backdrop
+fade + slight scale (200ms). No scroll hijacking, no pinned sequences. Under
+`prefers-reduced-motion` everything collapses to static or minimal fades, and the
+terminal renders its final state.
 
-## Local preview
+## Accessibility
 
-```sh
-npx wrangler dev
-```
+- Tabs follow the W3C APG pattern: roving tabindex, arrow/Home/End keys,
+  `aria-selected`, associated `role="tabpanel"` panels.
+- Screenshot viewer is a modal dialog: Escape closes, focus is trapped and
+  returned to the trigger, backdrop click closes.
+- Content is visible without JavaScript: the `.js` class gates all entrance
+  animation, disclosures render open, and nav links remain reachable.
+- Touch targets ≥36–46px; the simulated terminal is labelled as a simulation.
 
-Requires a Cloudflare login: `npx wrangler login`. Custom domains are not attached
-during local dev — use the printed `localhost` URL.
+## Theming
+
+`data-theme` on `<html>`: `dark`, `light`, `system` (default). An inline boot
+script reads `localStorage['ondevice-theme']` before first paint (no flash) and
+adds the `.js` class. The nav toggle writes the preference.
+
+## Locales
+
+Full standalone pages, not machine translation: protocol terms stay English where
+developers keep them (`tool calling`, `entitlement`, `KV cache`), numbers follow
+local convention (`65.536` in Turkish), terminal scenes localised via
+`window.ONDEVICE_SCENES`. `hreflang` alternates, `og:locale`, canonicals and a
+sitemap with `xhtml:link` keep the three in sync.
 
 ## Deploy
 
-Pushing to `main` triggers a Workers Build that runs `npx wrangler deploy`. To deploy
-manually: `npx wrangler deploy`.
+Push to `main` → Workers Build runs `npx wrangler deploy`. Custom domains
+`ondevice.fun` + `www.ondevice.fun` are declared in `wrangler.jsonc` routes;
+Cloudflare creates DNS records and certificates (needs DNS Edit on the zone).
 
-### Domain
+## Facts
 
-`routes` in `wrangler.jsonc` declares `ondevice.fun` and `www.ondevice.fun` as
-**custom domains**. Cloudflare creates the DNS records and issues the certificates on
-deploy, which needs the deploy token to have **DNS Edit** on the zone.
-
-## Assets
-
-Screenshots and icons are vendored from the `gh-pages` branch and release assets of
-`ios-local-llm`, downscaled with `sips`. Nothing hotlinks GitHub Pages. The brand mark
-is the grey-eye icon pinned by `altstore/source.json` for OnDevice LLM (byte-identical
-to the OnDevice Core release icon). OG cards are generated with `PIL` from
-`/tmp/gen_og.py` — monochrome, matching the site palette; regenerate after any
-headline or locale change.
-
-## Facts on this page
-
-Version numbers, build numbers, IPA sizes, bundle identifiers, checksums, entitlement
-names, endpoints, and the model requirements table are taken from the source
-repository's `README.md`, `ON_DEVICE_LAS.md`, `altstore/source.json`, and the release
-assets. When a new build ships, update in **all three locales**:
-
-- the two hero download buttons
-- the `#editions` cards (`Version`, `Artifact`, hash filename)
-- the SHA-256 lines in the footer
+Versions, build numbers, IPA sizes, bundle ids, checksums, entitlements, endpoints
+and the model requirements table come from the source repo's `README.md`,
+`ON_DEVICE_LAS.md`, `altstore/source.json` and release assets. When a build ships,
+update in **all three locales**: hero strip is unaffected, but the edition cards
+(summary + technical details), the `#get` buttons, and the footer checksums.

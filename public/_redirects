@@ -1,3 +1,4 @@
-# The previous GitHub Pages site served the server build at /ondevice.html.
-# Keep that path working now that both builds live on one page.
+# Old GitHub Pages paths and pre-redesign anchors keep working.
 /ondevice.html /#server 301
+/studio /#showcase 301
+/las /#server 301
