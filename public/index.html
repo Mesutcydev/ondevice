@@ -269,13 +269,16 @@
 
   /* ---------- previews ---------- */
   .shots { display: grid; gap: 22px; grid-template-columns: repeat(4, 1fr); }
+  .shots.five { grid-template-columns: repeat(5, 1fr); gap: 18px; }
   .shots > * { min-width: 0; }
   .shot .frame { display: block; border: 1px solid var(--line-bright); border-radius: 20px; background: var(--bg-raised); padding: 6px; overflow: hidden; transition: border-color .15s; }
   .shot .frame:hover { border-color: var(--text-faint); text-decoration: none; }
   .shot .frame img { display: block; width: 100%; height: auto; border-radius: 14px; }
   .shot .cap { margin-top: 13px; font-size: 13px; line-height: 1.52; color: var(--text-dim); }
   .shot .cap b { display: block; margin-bottom: 3px; color: var(--text); font-family: var(--mono); font-size: 12.6px; font-weight: 600; letter-spacing: -0.01em; }
+  @media (max-width: 1000px) { .shots.five { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 900px) { .shots { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
+  @media (max-width: 620px) { .shots.five { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 480px) { .shots { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; } }
   .shot-note { margin: 22px 0 0; font-family: var(--mono); font-size: 12px; color: var(--text-faint); display: flex; align-items: center; gap: 8px; }
 
@@ -295,6 +298,8 @@
 
   /* ---------- callout ---------- */
   .note { border: 1px solid var(--line-bright); border-left: 3px solid var(--amber); background: var(--bg-raised); border-radius: 0 var(--radius) var(--radius) 0; padding: 18px 22px; font-size: 14.2px; color: var(--text-dim); }
+  .note.with-icon { display: flex; gap: 16px; align-items: flex-start; }
+  .note.with-icon img { width: 44px; height: 44px; border-radius: 10px; flex: none; display: block; }
   .note strong { color: var(--text); font-weight: 600; }
   .note code { color: var(--accent); font-size: .93em; }
   .note + .note { margin-top: 14px; }
@@ -568,10 +573,13 @@
     </tbody>
   </table></div>
 
-  <div class="note" style="margin-top:22px">
-    <strong>Third variant.</strong> <em>OnDevice Core</em> 1.0.0 (10) is a separate iOS 27+ build backed by
-    Apple Core AI instead of MLX and llama.cpp — bundle <code>com.mesutcydev.ondevicecore</code>, 49.6 MiB.
-    <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/ondevice-core-1.0.0-10">Download OnDevice Core ↗</a>
+  <div class="note with-icon" style="margin-top:22px">
+    <img src="/assets/core-icon.png" width="44" height="44" loading="lazy" alt="OnDevice Core app icon">
+    <div>
+      <strong>Third variant.</strong> <em>OnDevice Core</em> 1.0.0 (10) is a separate iOS 27+ build backed by
+      Apple Core AI instead of MLX and llama.cpp — bundle <code>com.mesutcydev.ondevicecore</code>, 49.6 MiB.
+      <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/ondevice-core-1.0.0-10">Download OnDevice Core ↗</a>
+    </div>
   </div>
 </div></section>
 
@@ -583,7 +591,7 @@
     is doing right now. Chat with downloaded models, inspect code through Lens, speak without a cloud
     round trip, and manage weights from one surface.
   </p>
-  <div class="shots">
+  <div class="shots five">
     <div class="shot">
       <a class="frame" href="/assets/previews/home-3.2.7-light.png" target="_blank" rel="noopener">
         <img src="/assets/previews/home-3.2.7-light.png" width="620" height="1348" loading="lazy" alt="OnDevice LLM home dashboard showing local tools and session history">
@@ -601,6 +609,12 @@
         <img src="/assets/previews/lens-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM Lens screen in dark mode">
       </a>
       <div class="cap"><b>Lens</b>Camera frames, OCR, and imported photos stay local.</div>
+    </div>
+    <div class="shot">
+      <a class="frame" href="/assets/previews/voice-dark.png" target="_blank" rel="noopener">
+        <img src="/assets/previews/voice-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM voice screen in dark mode showing local speech controls">
+      </a>
+      <div class="cap"><b>Voice</b>Dictation and spoken replies, transcribed on device.</div>
     </div>
     <div class="shot">
       <a class="frame" href="/assets/previews/models-dark.png" target="_blank" rel="noopener">
