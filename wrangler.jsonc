@@ -1,0 +1,17 @@
+{
+  // Static site for ondevice.fun — served entirely from Workers static assets.
+  // No Worker script: assets-only deploys are simpler and skip invoke-per-request.
+  "name": "ondevice",
+  "compatibility_date": "2026-09-07",
+  "assets": {
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  // Custom domains: Cloudflare creates the DNS records and issues the
+  // certificates automatically. Requires DNS Edit permission on the zone.
+  "routes": [
+    { "pattern": "ondevice.fun", "custom_domain": true },
+    { "pattern": "www.ondevice.fun", "custom_domain": true }
+  ]
+}

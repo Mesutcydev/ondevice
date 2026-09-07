@@ -1,0 +1,3 @@
+# The previous GitHub Pages site served the server build at /ondevice.html.
+# Keep that path working now that both builds live on one page.
+/ondevice.html /#server 301

@@ -1,0 +1,10 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  X-Frame-Options: DENY
+
+# Screenshots are re-captured per release but keep stable filenames, so cache
+# for a day and serve stale while revalidating instead of caching forever.
+/assets/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
