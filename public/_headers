@@ -9,10 +9,8 @@
 /assets/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-# site.css and site.js are referenced with a ?v= query string that is bumped on
-# every change; the bare paths must always revalidate so a deploy lands at once.
-/assets/site.css
-  Cache-Control: no-cache
-
-/assets/site.js
+# Styles and scripts live outside /assets and are referenced with a ?v= query
+# string bumped on every change; the bare paths always revalidate so a deploy
+# reaches returning visitors immediately.
+/shell/*
   Cache-Control: no-cache

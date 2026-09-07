@@ -41,13 +41,14 @@ public/
   _headers           cache + security headers
   _redirects         legacy paths → current anchors
   assets/
-    site.css         design system: tokens, layout, motion, theming
-    site.js          tabs, disclosures, viewer, copy, reveals, terminal
     icon-128.png     grey-eye brand mark
     favicon.png / apple-touch-icon.png
     og-en/tr/zh.png  monochrome OG cards per locale
     previews/        studio screenshots (620px)
     shots/           LAS screenshots
+  shell/
+    site.css         design system: tokens, layout, motion, theming
+    site.js          tabs, disclosures, viewer, copy, reveals, terminal
 wrangler.jsonc       Worker config: assets dir + custom domains
 ```
 
