@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0a0b0d" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#fbfcfd" media="(prefers-color-scheme: light)">
-<title>OnDevice — 你的模型，在你的 iPhone 上</title>
-<meta name="description" content="OnDevice 用 MLX、llama.cpp、whisper.cpp 与 Core ML 在 iPhone 上运行开源模型。OnDevice LLM 是完整的 AI 工作台；On Device: LAS 把手机变成 bearer 鉴权、兼容 OpenAI、Anthropic、Ollama 的本地服务器，供你的工具调用。无需账号，没有遥测，不会悄悄回落云端。">
+<meta name="theme-color" content="#0C0D0F" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)">
+<title>OnDevice — 在 iPhone 上运行本地模型</title>
+<meta name="description" content="OnDevice 是一个开源工作台，在 iPhone 上运行语言、视觉与语音模型。在应用里工作，或把工具接到端侧 API。MIT 开源，无需账号，没有遥测。">
 <link rel="canonical" href="https://ondevice.fun/zh/">
 <link rel="alternate" hreflang="en" href="https://ondevice.fun/">
 <link rel="alternate" hreflang="tr" href="https://ondevice.fun/tr/">
@@ -14,16 +14,16 @@
 <link rel="alternate" hreflang="x-default" href="https://ondevice.fun/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OnDevice">
-<meta property="og:title" content="OnDevice — 你的模型，在你的 iPhone 上">
-<meta property="og:description" content="完整的 AI 工作台——或者供你的工具调用的本地模型服务器。同一套端侧运行时、同一份权重、同一套内存与温度策略。">
+<meta property="og:title" content="OnDevice — 在 iPhone 上运行本地模型">
+<meta property="og:description" content="在应用里工作，或把工具接到端侧 API。开源、MIT 许可、无需账号。">
 <meta property="og:url" content="https://ondevice.fun/zh/">
 <meta property="og:image" content="https://ondevice.fun/assets/og-zh.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OnDevice — 你的模型，在你的 iPhone 上">
-<meta name="twitter:description" content="完整的 AI 工作台——或者供你的工具调用的本地模型服务器。">
+<meta name="twitter:title" content="OnDevice — 在 iPhone 上运行本地模型">
+<meta name="twitter:description" content="在应用里工作，或把工具接到端侧 API。">
 <meta name="twitter:image" content="https://ondevice.fun/assets/og-zh.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -37,656 +37,314 @@
     r.classList.add('js');
   })();
 </script>
-<link rel="stylesheet" href="/shell/site.css?v=2">
+<link rel="stylesheet" href="/shell/site.css?v=3">
 </head>
 <body>
 
-<nav><div class="wrap">
+<header class="mast"><div class="wrap">
   <a class="brand" href="#top">
-    <img src="/assets/icon-128.png" width="24" height="24" alt="">
-    <b>OnDevice</b><span class="tail">/ LLM + LAS</span>
+    <img src="/assets/icon-128.png" width="26" height="26" alt="">
+    OnDevice
   </a>
-  <span class="nav-mid" aria-label="主导航">
+  <nav aria-label="主导航">
+    <a href="#product">产品</a>
     <a href="#editions">版本</a>
-    <a href="#showcase">演示</a>
-    <a href="#developers" class="hide-md">开发者</a>
-  </span>
-  <span class="nav-end">
-    <span class="ctl" role="group" aria-label="语言">
+    <a href="#install">安装</a>
+  </nav>
+  <span class="mast-end">
+    <span class="langs" role="group" aria-label="语言">
       <a href="/" lang="en">EN</a>
       <a href="/tr/" lang="tr">TR</a>
       <a href="/zh/" aria-current="page" lang="zh-Hans">中文</a>
     </span>
-    <span class="ctl" role="group" aria-label="主题">
-      <button type="button" data-theme-set="light" aria-pressed="false" title="浅色" aria-label="浅色主题">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/></svg>
-      </button>
-      <button type="button" data-theme-set="dark" aria-pressed="false" title="深色" aria-label="深色主题">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 14.2A8.4 8.4 0 0 1 9.8 3.6a8.4 8.4 0 1 0 10.6 10.6z"/></svg>
-      </button>
-      <button type="button" data-theme-set="system" aria-pressed="true" title="跟随系统" aria-label="跟随系统主题">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20h6M12 16.5V20"/></svg>
-      </button>
-    </span>
-    <a class="plain" href="https://github.com/Mesutcydev/ios-local-llm">源码</a>
-    <a class="btn sm solid" href="#get">获取 OnDevice</a>
-    <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-drop" aria-label="菜单">
+    <a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm">GitHub</a>
+    <button class="mast-menu" type="button" aria-expanded="false" aria-controls="mast-drop" aria-label="菜单">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
   </span>
-  <span class="nav-drop" id="nav-drop" hidden>
+  <span class="mast-drop" id="mast-drop" hidden>
+    <a href="#product">产品</a>
     <a href="#editions">版本</a>
-    <a href="#showcase">演示</a>
-    <a href="#developers">开发者</a>
-    <a href="#install">安装方法</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm">GitHub 源码</a>
-    <span class="ctl" role="group" aria-label="主题">
-      <button type="button" data-theme-set="light" aria-pressed="false" title="浅色" aria-label="浅色主题">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/></svg>
-      </button>
-      <button type="button" data-theme-set="dark" aria-pressed="false" title="深色" aria-label="深色主题">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 14.2A8.4 8.4 0 0 1 9.8 3.6a8.4 8.4 0 1 0 10.6 10.6z"/></svg>
-      </button>
-      <button type="button" data-theme-set="system" aria-pressed="true" title="跟随系统" aria-label="跟随系统主题">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20h6M12 16.5V20"/></svg>
-      </button>
-    </span>
+    <a href="#install">安装</a>
+    <a href="#source">源码</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm">GitHub ↗</a>
   </span>
-</div></nav>
-
-<header class="hero" id="top"><div class="wrap">
-  <span id="overview" style="position:absolute" aria-hidden="true"></span>
-  <div class="hero-grid">
-    <div>
-      <div class="pill hero-in"><span class="dot"></span> 完全在设备端运行 <span class="sep">·</span> 无需账号 <span class="sep">·</span> 没有遥测</div>
-      <h1 class="hero-in d1">你的模型。<br>你的设备。<em>你的掌控。</em></h1>
-      <p class="lede hero-in d2">
-        一个完整的 AI 工作台——或者一台供你的工具调用的本地模型服务器。
-        <strong>怎么选，由你决定。</strong>
-      </p>
-      <div class="cta hero-in d3">
-        <a class="btn solid" href="#editions">了解两个版本</a>
-        <a class="btn quiet" href="#showcase">看它实际运行</a>
-      </div>
-    </div>
-
-    <div class="device-wrap hero-in d2">
-      <div class="device">
-        <div class="device-screen" id="device-screen" role="tabpanel" aria-label="设备预览">
-          <span class="device-island" aria-hidden="true"></span>
-          <img src="/assets/previews/home-3.2.7-light.png" width="620" height="1348" class="is-active" data-scene="studio" alt="OnDevice LLM 主界面：本地工具、模型状态与会话历史">
-          <img src="/assets/shots/las-home.png" width="660" height="1434" data-scene="server" alt="LAS 服务器首页：设备健康、内存余量与 Local API 状态">
-        </div>
-      </div>
-      <span class="seg" role="tablist" aria-label="选择要预览的体验">
-        <button role="tab" id="dev-studio" aria-selected="true" aria-controls="device-screen"
-                data-imgs="#device-screen" data-caption="#device-cap" data-term-scene="studio"
-                data-cap-title="OnDevice LLM — 工作台" data-cap-sub="对话、镜头、语音与模型，整个闭环尽收眼底。">工作台</button>
-        <button role="tab" id="dev-server" aria-selected="false" aria-controls="device-screen"
-                data-imgs="#device-screen" data-caption="#device-cap" data-term-scene="server"
-                data-cap-title="On Device: LAS — 服务器" data-cap-sub="同一套运行时，在你的局域网里应答 HTTP。">服务器</button>
-      </span>
-      <div class="device-cap" id="device-cap">
-        <b>OnDevice LLM — 工作台</b>
-        <span>对话、镜头、语音与模型，整个闭环尽收眼底。</span>
-      </div>
-    </div>
-
-    <div class="hero-strip hero-in d4">
-      <span><b>iOS 18+</b> iPhone 与 Mac Catalyst</span>
-      <span><b>MLX · llama.cpp · whisper.cpp</b></span>
-      <span><b>兼容 OpenAI / Anthropic / Ollama</b></span>
-      <span><b>MIT</b> 开源</span>
-    </div>
-  </div>
 </div></header>
 
-<section id="editions"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">01</span> 版本</div>
-  <h2 data-reveal>一套运行时，两种版本</h2>
-  <p class="sub" data-reveal>
-    同一份权重、同一套内存准入、同一套温度策略——两种界面。按你的工作方式选一个；两个都想要，
-    也可以并存安装。
-  </p>
-
-  <div class="editions">
-    <article class="edition" data-reveal>
-      <div class="edition-head">
-        <img src="/assets/icon-128.png" width="52" height="52" alt="OnDevice LLM 应用图标">
-        <h3>OnDevice LLM</h3>
-        <span class="badge">主线</span>
+<main id="top">
+<section class="hero" style="border-top:0"><div class="wrap">
+  <span id="overview" style="position:absolute" aria-hidden="true"></span>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1>你的 iPhone<span class="l2">能跑这个模型。</span></h1>
+      <p class="hero-sub">在 iPhone 上运行本地模型：在应用里工作，或把工具接到端侧 API。</p>
+      <div class="hero-cta">
+        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm">在 GitHub 查看</a>
+        <a class="btn ghost" href="#editions">获取应用</a>
       </div>
-      <p class="edition-for">适合亲手使用模型的人。</p>
-      <p class="edition-benefit">
-        一个安静的工作台，模型状态始终可见：什么在驻留、占了多少内存、此刻正在做什么。
+      <p class="hero-facts">
+        <span><b>开源</b> · MIT</span>
+        <span><b>无需账号</b> · 没有遥测</span>
+        <span><b>iOS 18+</b> · iPhone 与 Mac Catalyst</span>
       </p>
-      <div class="edition-preview">
-        <img src="/assets/previews/assistant-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM 助手界面，深色模式">
-      </div>
-      <ul class="edition-points">
-        <li>用设备上的模型对话、审代码、做规划</li>
-        <li>镜头处理相机画面与 OCR，语音负责听写与朗读回复</li>
-        <li>模型发现带内存适配检查，下载中断可续传</li>
-      </ul>
-      <div class="edition-sum">
-        <span><b>iOS 18+</b> · Mac Catalyst</span>
-        <span><b>3.2.7 (112)</b> · 51.2 MiB</span>
-      </div>
-      <div class="edition-actions">
-        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">下载 IPA <span class="k">↓</span></a>
-        <a class="textlink" href="#install">安装方法</a>
-      </div>
-      <div class="disclosure">
-        <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="td-studio">
-          技术细节
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-        </button>
-        <div class="disclosure-body" id="td-studio"><div><div class="disclosure-inner">
-          <dl class="kv"><dt>包名</dt><dd>com.mesutcydev.ioslocalllm.IOSLocalLLM</dd></dl>
-          <dl class="kv"><dt>产物</dt><dd>IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa</dd></dl>
-          <dl class="kv"><dt>签名</dt><dd>ad-hoc · 需用你自己的证书重签</dd></dl>
-          <dl class="kv"><dt>权限</dt><dd>App Group + iCloud + increased-memory-limit + extended-virtual-addressing</dd></dl>
-          <dl class="kv"><dt>本地接口</dt><dd>可选开启 · 与 LAS 路由相同</dd></dl>
-          <dl class="kv"><dt>校验和</dt><dd>sha256 de432ca3…7f62a19d · <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.7-112">版本页 ↗</a></dd></dl>
-        </div></div></div>
-      </div>
-    </article>
-
-    <article class="edition srv" data-reveal>
-      <div class="edition-head">
-        <img src="/assets/icon-128.png" width="52" height="52" alt="On Device LAS 应用图标">
-        <h3>On Device: LAS</h3>
-        <span class="badge">测试</span>
-      </div>
-      <p class="edition-for">适合把现有工具接到本地模型的人。</p>
-      <p class="edition-benefit">
-        去掉助手、镜头与语音界面，留下一台 HTTP 服务器。把 aider、Continue 或任何 OpenAI
-        客户端指向你的手机即可。
-      </p>
-      <div class="edition-preview">
-        <img src="/assets/shots/las-terminal.png" width="660" height="1434" loading="lazy" alt="LAS 详细终端：实时服务器日志流">
-      </div>
-      <ul class="edition-points">
-        <li>OpenAI、Anthropic Messages 与 Ollama 路由共用一个端口，bearer 鉴权</li>
-        <li>逐 token 的 SSE 流式输出，MLX 上采用文法约束的工具调用</li>
-        <li>一块控制面板：运行时状态、内存准入与实时请求日志</li>
-      </ul>
-      <div class="edition-sum">
-        <span><b>iOS 18+</b> · arm64</span>
-        <span><b>3.2.6 (143)</b> · 25.1 MiB</span>
-      </div>
-      <div class="edition-actions">
-        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">下载 IPA <span class="k">↓</span></a>
-        <a class="textlink" href="#install">安装方法</a>
-      </div>
-      <div class="disclosure">
-        <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="td-server">
-          技术细节
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-        </button>
-        <div class="disclosure-body" id="td-server"><div><div class="disclosure-inner">
-          <dl class="kv"><dt>包名</dt><dd>com.mesutcydev.ondevicelas</dd></dl>
-          <dl class="kv"><dt>产物</dt><dd>OnDeviceLAS-sideload-entitled-latest.ipa</dd></dl>
-          <dl class="kv"><dt>签名</dt><dd>ad-hoc · 需用你自己的证书重签</dd></dl>
-          <dl class="kv"><dt>权限</dt><dd>increased-memory-limit + extended-virtual-addressing</dd></dl>
-          <dl class="kv"><dt>监听</dt><dd>11434 端口 · iOS 切后台即停止</dd></dl>
-          <dl class="kv"><dt>校验和</dt><dd><a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.6-143">见版本页 ↗</a></dd></dl>
-        </div></div></div>
-      </div>
-    </article>
-  </div>
-
-  <div class="core-panel" data-reveal>
-    <img src="/assets/icon-128.png" width="52" height="52" loading="lazy" alt="OnDevice Core 应用图标">
-    <div>
-      <h3>OnDevice Core — 专用变体</h3>
-      <p>
-        一个独立的 iOS 27+ 版本，用 Apple Core AI 取代 MLX 与 llama.cpp。它面向围绕系统运行时构建的
-        设备与工作流，并不是上面两个版本的直接替代品。
-      </p>
-      <p class="req">iOS 27+ · com.mesutcydev.ondevicecore · 49.6 MiB · 需重签安装</p>
     </div>
-    <a class="btn" href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/ondevice-core-1.0.0-10">下载 Core 1.0.0 (10)</a>
-  </div>
-
-  <div class="compare" data-reveal>
-    <div class="tbl-scroll"><table>
-      <caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">OnDevice LLM 与 On Device: LAS 的关键区别</caption>
-      <thead><tr><th scope="col">要做的决定</th><th scope="col">OnDevice LLM</th><th scope="col">On Device: LAS</th></tr></thead>
-      <tbody>
-        <tr><th scope="row" class="row">你自己驱动模型</th><td class="yes">●</td><td class="nope">—</td></tr>
-        <tr><th scope="row" class="row">你的工具通过 HTTP 驱动模型</th><td class="yes">可选</td><td class="yes">●</td></tr>
-        <tr><th scope="row" class="row">相机、语音与分享界面</th><td class="yes">●</td><td class="nope">已移除</td></tr>
-      </tbody>
-    </table></div>
-    <div class="disclosure compare-toggle">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="cmp-full">
-        对比全部能力
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-      </button>
-      <div class="disclosure-body" id="cmp-full"><div><div class="disclosure-inner">
-        <div class="tbl-scroll tbl-fade"><table>
-          <thead><tr><th scope="col">能力</th><th scope="col">OnDevice LLM</th><th scope="col">On Device: LAS</th><th scope="col">说明</th></tr></thead>
-          <tbody>
-            <tr><th scope="row" class="row">端侧推理</th><td class="yes">●</td><td class="yes">●</td><td class="tdim">MLX 与 llama.cpp，同一套驻留路径</td></tr>
-            <tr><th scope="row" class="row">导入 GGUF</th><td class="yes">●</td><td class="yes">●</td><td class="tdim">权重自带；包内不含任何权重</td></tr>
-            <tr><th scope="row" class="row">助手对话</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">服务器版有意移除</td></tr>
-            <tr><th scope="row" class="row">镜头 · 视觉 + OCR</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">相机画面与导入的照片</td></tr>
-            <tr><th scope="row" class="row">语音 · STT + TTS</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">whisper.cpp，本地合成</td></tr>
-            <tr><th scope="row" class="row">Mac 配对通道</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">带版本号、配对鉴权的工具协议</td></tr>
-            <tr><th scope="row" class="row">分享扩展</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">entitlement 按组件逐一保留</td></tr>
-            <tr><th scope="row" class="row">OpenAI / Anthropic / Ollama</th><td class="yes">可选</td><td class="yes">●</td><td class="tdim">同一套 LocalAPIServer 路由</td></tr>
-            <tr><th scope="row" class="row">结构化工具调用</th><td class="yes">可选</td><td class="yes">●</td><td class="tdim">MLX 上采用文法约束解码</td></tr>
-            <tr><th scope="row" class="row">详细服务器终端</th><td class="nope">—</td><td class="yes">●</td><td class="tdim">每一条请求与生命周期事件</td></tr>
-            <tr><th scope="row" class="row">后台运行</th><td class="nope">—</td><td class="nope">—</td><td class="tdim">iOS 将应用切到后台时监听即停止</td></tr>
-          </tbody>
-        </table></div>
-      </div></div></div>
+    <div class="hero-media">
+      <div class="device-box">
+        <img src="/assets/hero-models.png" width="1320" height="2868" fetchpriority="high"
+             alt="iPhone 上的 OnDevice LLM 模型库：Qwen3.5-4B 显示为 Loaded 并标出内存占用，下方是可下载的模型家族及其体积与内存适配信息">
+        <span class="inspect-mark" aria-hidden="true"></span>
+        <span class="inspect-line" aria-hidden="true"></span>
+      </div>
+      <figure class="inspect">
+        <img src="/assets/inspect-loaded.png" width="744" height="176"
+             alt="同一屏幕的放大细节：处于 Loaded 状态的 Qwen3.5-4B 一行">
+        <figcaption><b>Loaded</b> — 4-bit Qwen3.5 以 3.06 GB 驻留在设备上</figcaption>
+      </figure>
+      <button class="btn sm ghost enlarge" type="button"
+              data-viewer-src="/assets/hero-models.png" data-viewer-title="模型库"
+              data-viewer-cap="OnDevice LLM 模型库：Qwen3.5-4B 已加载并显示内存占用，下方是可下载的模型家族及其体积与内存适配信息。">放大截图</button>
     </div>
   </div>
 </div></section>
 
-<section id="showcase"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">02</span> 演示</div>
-  <h2 data-reveal>看每个界面各司其职</h2>
-  <p class="sub" data-reveal>
-    一次只看一个界面，配一段简短说明告诉你正在看什么。点按画面可打开大图。
-  </p>
+<section id="product"><div class="wrap">
+  <span id="showcase" style="position:absolute" aria-hidden="true"></span>
+  <div class="sec-head">
+    <h2>用应用，或接上你的工具。</h2>
+    <p>一套运行时，两种入口。下面的一切都跑在设备上——权重、上下文与回答，除非你自己发起下载，否则都留在口袋里。</p>
+  </div>
 
-  <div id="studio" style="scroll-margin-top:88px">
-    <div class="showcase" data-reveal>
-      <span class="showcase-nav seg" role="tablist" aria-label="工作台界面" aria-orientation="vertical">
-        <button role="tab" aria-selected="true" aria-controls="sc-studio-stage"
-          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
-          data-viewer-src="/assets/previews/home-3.2.7-light.png" data-viewer-title="主面板"
-          data-viewer-cap="OnDevice LLM 主面板：工具路由、模型状态与会话历史。"
-          data-cap-title="主面板" data-cap-sub="工具路由、模型状态与历史，一眼看全。">主面板</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
-          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
-          data-viewer-src="/assets/previews/assistant-dark.png" data-viewer-title="助手"
-          data-viewer-cap="深色模式下的助手界面，显示本地模型状态与提示操作。"
-          data-cap-title="助手" data-cap-sub="加载、暂停、继续，模型状态始终在眼前。">助手</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
-          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
-          data-viewer-src="/assets/previews/lens-dark.png" data-viewer-title="镜头"
-          data-viewer-cap="深色模式下的镜头界面：相机画面、OCR 与导入照片都留在本地。"
-          data-cap-title="镜头" data-cap-sub="相机画面、OCR 与导入照片都留在设备上。">镜头</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
-          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
-          data-viewer-src="/assets/previews/voice-dark.png" data-viewer-title="语音"
-          data-viewer-cap="深色模式下的语音界面，显示本地语音控制。"
-          data-cap-title="语音" data-cap-sub="听写与语音回复，都在设备上转写。">语音</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
-          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
-          data-viewer-src="/assets/previews/models-dark.png" data-viewer-title="模型"
-          data-viewer-cap="模型界面：模型家族与推荐的 Qwen3 卡片。"
-          data-cap-title="模型" data-cap-sub="家族、内存适配、下载状态与角色集中呈现。">模型</button>
-      </span>
-      <div class="showcase-stage" id="sc-studio-stage" role="tabpanel" aria-label="当前选中的工作台界面">
-        <button class="showcase-frame" type="button" data-viewer-sync
-                data-viewer-src="/assets/previews/home-3.2.7-light.png" data-viewer-title="主面板"
-                data-viewer-cap="OnDevice LLM 主面板：工具路由、模型状态与会话历史。"
-                aria-label="以大图打开当前选中的工作台界面">
-          <span class="showcase-screen" id="sc-studio-imgs">
-            <img src="/assets/previews/home-3.2.7-light.png" width="620" height="1348" class="is-active" alt="OnDevice LLM 主面板">
-            <img src="/assets/previews/assistant-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM 助手界面">
-            <img src="/assets/previews/lens-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM 镜头界面">
-            <img src="/assets/previews/voice-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM 语音界面">
-            <img src="/assets/previews/models-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM 模型界面">
-          </span>
-        </button>
-        <div class="showcase-copy" id="sc-studio-copy">
-          <h3>主面板</h3>
-          <p>工具路由、模型状态与历史，一眼看全。</p>
-        </div>
-        <div class="showcase-actions">
-          <a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">获取工作台</a>
-        </div>
+  <div class="story-tabs" role="tablist" aria-label="使用 OnDevice 的方式">
+    <button role="tab" id="tab-app" aria-selected="true" aria-controls="panel-app">在应用里</button>
+    <button role="tab" id="tab-tools" aria-selected="false" aria-controls="panel-tools">从你的工具</button>
+  </div>
+
+  <div class="story-panel" id="panel-app" role="tabpanel" aria-labelledby="tab-app">
+    <span id="studio" style="position:absolute" aria-hidden="true"></span>
+    <div class="story-media">
+      <img src="/assets/story-app.png" width="1320" height="2868" class="is-active" loading="lazy"
+           alt="iPhone 上的 OnDevice LLM 助手：一段对话中模型用代码块回答 SwiftUI 问题，顶部显示模型状态">
+    </div>
+    <div class="story-copy">
+      <h3>载入模型，问它任何事。</h3>
+      <p class="story-lead">用设备上的模型对话、审代码、做规划——模型状态与内存开销始终在眼前。</p>
+      <p>同一套运行时还驱动相机与 OCR 界面、听写与语音回复，以及一个下载前先检查内存适配的模型库。中断的下载可以续传。</p>
+      <p class="story-note">截图取自开源构建的 iPhone 模拟器，未经修饰。其中不含用户内容、账号或 token。</p>
+      <button class="btn sm ghost" type="button"
+              data-viewer-src="/assets/story-app.png" data-viewer-title="助手"
+              data-viewer-cap="OnDevice LLM 助手：端侧模型用代码块回答的一段对话。">放大截图</button>
+    </div>
+  </div>
+
+  <div class="story-panel" id="panel-tools" role="tabpanel" aria-labelledby="tab-tools" hidden>
+    <span id="server" style="position:absolute" aria-hidden="true"></span>
+    <span id="api" style="position:absolute" aria-hidden="true"></span>
+    <div class="story-media">
+      <img src="/assets/story-tools.png" width="990" height="2151" loading="lazy"
+           alt="iPhone 上的 On Device: LAS 服务器首页：服务器显示 Running，带局域网地址、bearer key 控制与它所服务的已加载模型">
+    </div>
+    <div class="story-copy">
+      <h3>把你的工具接到 iPhone 上的模型。</h3>
+      <p class="story-lead">On Device: LAS 在你的局域网内应答兼容 OpenAI、Anthropic 与 Ollama 的请求，背后是你自己掌控的 bearer key。</p>
+      <div class="code-row">
+        <button class="copy-btn" type="button" data-done="✓">复制</button>
+        <pre class="example"><span class="c"># 示例请求——占位符，非真实值</span>
+curl -N http://手机IP:11434/v1/chat/completions \
+  -H <span class="v">"Authorization: Bearer $KEY"</span> \
+  -d <span class="v">'{"model":"模型ID","stream":true,
+       "messages":[{"role":"user","content":"…"}]}'</span></pre>
+      </div>
+      <p class="story-note"><b>边界：</b>监听只服务你的局域网，iOS 将应用切到后台时即停止。安装后请轮换 key；不要做端口转发。</p>
+      <button class="btn sm ghost" type="button"
+              data-viewer-src="/assets/story-tools.png" data-viewer-title="服务器首页"
+              data-viewer-cap="On Device: LAS 服务器首页：运行状态、局域网地址、bearer key 与已加载模型。">放大截图</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="editions"><div class="wrap">
+  <div class="sec-head">
+    <h2>两个版本，一套运行时。</h2>
+    <p>按你的工作方式选择界面。两个都想要，也可以并存安装。</p>
+  </div>
+
+  <div class="rows">
+    <div class="row-item">
+      <div>
+        <h3>OnDevice LLM</h3>
+        <p class="what">完整工作台：助手、相机与 OCR、语音，以及带内存适配检查的模型库。</p>
+      </div>
+      <div class="row-meta">
+        <div><span class="status">主线版本</span></div>
+        <div>iOS 18+ · Mac Catalyst</div>
+        <div><b>3.2.7 (112)</b> · 51.2 MiB IPA</div>
+      </div>
+      <div class="row-actions">
+        <a class="btn" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">下载 IPA</a>
+        <a class="btn ghost" href="#install">安装指南</a>
+        <a class="btn ghost" href="https://github.com/Mesutcydev/ios-local-llm">源码</a>
+      </div>
+    </div>
+
+    <div class="row-item">
+      <div>
+        <h3>On Device: LAS</h3>
+        <p class="what">面向外部工具的本地模型服务器：单端口提供兼容 OpenAI、Anthropic 与 Ollama 的路由，置于 bearer key 之后。</p>
+      </div>
+      <div class="row-meta">
+        <div><span class="status beta">测试版</span></div>
+        <div>iOS 18+ · arm64</div>
+        <div><b>3.2.6 (143)</b> · 25.1 MiB IPA</div>
+      </div>
+      <div class="row-actions">
+        <a class="btn" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">下载 IPA</a>
+        <a class="btn ghost" href="#install">安装指南</a>
+        <a class="btn ghost" href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ON_DEVICE_LAS.md">LAS 文档</a>
+      </div>
+    </div>
+
+    <div class="row-item secondary">
+      <div>
+        <h3>OnDevice Core</h3>
+        <p class="what">基于 Apple Core AI 而非 MLX 与 llama.cpp 的 iOS 27+ 专用变体。独立应用、独立运行时——不是上面两个版本的直接替代。</p>
+      </div>
+      <div class="row-meta">
+        <div>iOS 27+ · 49.6 MiB IPA</div>
+      </div>
+      <div class="row-actions">
+        <a class="btn ghost" href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/ondevice-core-1.0.0-10">版本页</a>
       </div>
     </div>
   </div>
 
-  <div id="server" style="scroll-margin-top:88px; margin-top:64px">
-    <div class="showcase" data-reveal>
-      <span class="showcase-nav seg" role="tablist" aria-label="服务器界面" aria-orientation="vertical">
-        <button role="tab" aria-selected="true" aria-controls="sc-server-stage"
-          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
-          data-viewer-src="/assets/shots/las-home.png" data-viewer-title="服务器首页"
-          data-viewer-cap="LAS 服务器首页：设备健康、内存余量与 Local API 开关。"
-          data-cap-title="服务器首页" data-cap-sub="设备健康、内存余量与 Local API 开关。">运行时</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-server-stage"
-          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
-          data-viewer-src="/assets/shots/las-models.png" data-viewer-title="模型库"
-          data-viewer-cap="LAS 模型库：已安装的端侧模型与容量读数。"
-          data-cap-title="模型库" data-cap-sub="导入、下载，并让 MLX 或 GGUF 模型驻留。">模型</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-server-stage"
-          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
-          data-viewer-src="/assets/shots/las-debugger.png" data-viewer-title="端上调试器"
-          data-viewer-cap="LAS 端上调试器：内存准入快照。"
-          data-cap-title="端上调试器" data-cap-sub="进程预算、entitlement 与温度状态。">调试器</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-server-stage"
-          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
-          data-viewer-src="/assets/shots/las-terminal.png" data-viewer-title="详细终端"
-          data-viewer-cap="LAS 详细终端：实时滚动的服务器日志。"
-          data-cap-title="详细终端" data-cap-sub="每条请求与生命周期事件，实时滚动。">活动</button>
-      </span>
-      <div class="showcase-stage" id="sc-server-stage" role="tabpanel" aria-label="当前选中的服务器界面">
-        <button class="showcase-frame" type="button" data-viewer-sync
-                data-viewer-src="/assets/shots/las-home.png" data-viewer-title="服务器首页"
-                data-viewer-cap="LAS 服务器首页：设备健康、内存余量与 Local API 开关。"
-                aria-label="以大图打开当前选中的服务器界面">
-          <span class="showcase-screen" id="sc-server-imgs">
-            <img src="/assets/shots/las-home.png" width="660" height="1434" class="is-active" alt="LAS 服务器首页">
-            <img src="/assets/shots/las-models.png" width="660" height="1434" loading="lazy" alt="LAS 模型库">
-            <img src="/assets/shots/las-debugger.png" width="660" height="1434" loading="lazy" alt="LAS 端上调试器">
-            <img src="/assets/shots/las-terminal.png" width="660" height="1434" loading="lazy" alt="LAS 详细终端">
-          </span>
-        </button>
-        <div class="showcase-copy" id="sc-server-copy">
-          <h3>服务器首页</h3>
-          <p>设备健康、内存余量与 Local API 开关。</p>
-        </div>
-        <div class="showcase-actions">
-          <a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">获取服务器</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <p class="sub" style="margin:28px 0 0" data-reveal>
-    截图取自开源构建的 iPhone 模拟器，深色外观，未经修饰。不含用户内容、账号、token 或权重。
+  <p class="sign-note">
+    <b>侧载，而非 App Store。</b>这些 IPA 是面向重签工具的 ad-hoc 签名产物——请用 AltStore、SideStore
+    或设备上的 ForgeSign 安装。仓库是源码分发的正式地址；目前没有 App Store 安装包。
   </p>
+
+  <div class="disclosure">
+    <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="tech-details">
+      技术细节
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+    <div class="disclosure-body" id="tech-details"><div><div class="disclosure-inner">
+      <dl class="kv"><dt>LLM 包名</dt><dd>com.mesutcydev.ioslocalllm.IOSLocalLLM</dd></dl>
+      <dl class="kv"><dt>LAS 包名</dt><dd>com.mesutcydev.ondevicelas</dd></dl>
+      <dl class="kv"><dt>Core 包名</dt><dd>com.mesutcydev.ondevicecore</dd></dl>
+      <dl class="kv"><dt>LLM 产物</dt><dd>IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa</dd></dl>
+      <dl class="kv"><dt>LAS 产物</dt><dd>OnDeviceLAS-sideload-entitled-latest.ipa</dd></dl>
+      <dl class="kv"><dt>权限</dt><dd>increased-memory-limit + extended-virtual-addressing（LLM 另含 App Group + iCloud）</dd></dl>
+      <dl class="kv"><dt>LLM 校验和</dt><dd>sha256 de432ca3c9cc7b715d1879066aabfbc4d4439b59ac3028e2ba4b78527f62a19d</dd></dl>
+      <dl class="kv"><dt>Core 校验和</dt><dd>sha256 55099346d1893534c1418079851e1bdeacfc38db43ec01a61743965c60af2b44</dd></dl>
+      <dl class="kv"><dt>版本</dt><dd><a href="https://github.com/Mesutcydev/ios-local-llm/releases">全部版本与说明 ↗</a></dd></dl>
+    </div></div></div>
+  </div>
 </div></section>
 
 <section id="install"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">03</span> 安装</div>
-  <h2 data-reveal>从下载到模型驻留</h2>
-  <p class="sub" data-reveal>
-    两个版本都是同样的三步。需要说清楚的一点：侧载 IPA 必须用你自己的证书重签，而内存
-    entitlement 必须在这一步之后仍然存在。
-  </p>
-  <div class="steps three">
-    <div class="step" data-reveal>
+  <span id="quickstart" style="position:absolute" aria-hidden="true"></span>
+  <div class="sec-head">
+    <h2>从下载到模型驻留。</h2>
+    <p>两个版本都是同样的三步。这里没有一键完成，这是实话：侧载构建需要你的证书。</p>
+  </div>
+  <div class="steps">
+    <div class="step">
       <span class="n">01</span>
-      <h3>选定版本</h3>
-      <p>下载工作台或服务器的 IPA。两者都是面向重签工具的 ad-hoc 签名产物，都不是 App Store
-         安装包。</p>
+      <div>
+        <h3>下载你需要的版本</h3>
+        <p>从版本页取 IPA。两者都是面向重签工具的 ad-hoc 签名产物——不是 App Store 安装。</p>
+      </div>
     </div>
-    <div class="step" data-reveal>
+    <div class="step">
       <span class="n">02</span>
-      <h3>安装并重签</h3>
-      <p>用 AltStore / AltServer、SideStore，或想在设备上直接签名就用 ForgeSign。确认内存
-         entitlement 还在——否则 iOS 会压低进程上限，大模型在加载时直接被杀。</p>
+      <div>
+        <h3>安装并重签</h3>
+        <p>使用 <b>AltStore / AltServer</b>、<b>SideStore</b>，或在设备上用 <b>ForgeSign</b> 签名。确认重签后内存 entitlement 仍在：缺少 <code>increased-memory-limit</code> 与 <code>extended-virtual-addressing</code> 时，iOS 会压低进程上限，大模型不是降级运行，而是加载时直接被杀。</p>
+      </div>
     </div>
-    <div class="step" data-reveal>
+    <div class="step">
       <span class="n">03</span>
-      <h3>载入模型</h3>
-      <p>仓库不含权重。在设备上导入 GGUF 或下载 MLX 模型，然后让它驻留。LAS 里轮换一次 bearer
-         key，再把客户端指向局域网地址。</p>
-    </div>
-  </div>
-  <div class="note" style="margin-top:28px" data-reveal>
-    <strong>entitlement 为什么关键。</strong>
-    <code>com.apple.developer.kernel.increased-memory-limit</code> 提高单进程内存上限，让数十亿
-    参数的权重和 KV 缓存能够驻留；<code>com.apple.developer.kernel.extended-virtual-addressing</code>
-    允许 MLX 与 llama.cpp 分配器做大块虚拟地址预留。重签工具可能会悄悄丢掉这两项。
-  </div>
-</div></section>
-
-<section id="developers"><div class="wrap">
-  <span id="api" style="position:absolute" aria-hidden="true"></span>
-  <div class="eyebrow amber" data-reveal><span class="n">04</span> 开发者</div>
-  <h2 data-reveal>把你的工具指向手机</h2>
-  <p class="sub" data-reveal>
-    两个版本都由 <code>LocalAPIServer.swift</code> 提供——工作台里可选开启，LAS 里始终开启。
-    bearer 鉴权的明文 HTTP，只面向你能掌控的网络。
-  </p>
-
-  <div class="api" data-reveal>
-    <div class="api-col">
-      <h3>OpenAI</h3>
-      <p class="who">aider · Continue · openai-python</p>
-      <ul>
-        <li><span class="verb">GET</span>/v1/models</li>
-        <li><span class="verb">GET</span>/v1/models/{model}</li>
-        <li><span class="verb">POST</span>/v1/chat/completions</li>
-        <li><span class="verb">POST</span>/v1/responses</li>
-      </ul>
-    </div>
-    <div class="api-col">
-      <h3>Anthropic</h3>
-      <p class="who">anthropic-sdk · Messages API</p>
-      <ul>
-        <li><span class="verb">POST</span>/v1/messages</li>
-      </ul>
-    </div>
-    <div class="api-col">
-      <h3>Ollama</h3>
-      <p class="who">Ollama 原生客户端</p>
-      <ul>
-        <li><span class="verb">GET</span>/api/tags</li>
-        <li><span class="verb">GET</span>/api/ps</li>
-        <li><span class="verb">GET</span>/api/version</li>
-        <li><span class="verb">POST</span>/api/show</li>
-        <li><span class="verb">POST</span>/api/chat</li>
-        <li><span class="verb">POST</span>/api/generate</li>
-      </ul>
-    </div>
-  </div>
-
-  <div id="quickstart" style="margin-top:48px; scroll-margin-top:88px">
-    <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between" data-reveal>
-      <h3 style="margin:0; font-size:17px; font-weight:640">一次一个示例</h3>
-      <span class="seg" role="tablist" aria-label="示例语言">
-        <button role="tab" id="ex-curl" aria-selected="true" aria-controls="ex-panel-curl">curl</button>
-        <button role="tab" id="ex-aider" aria-selected="false" aria-controls="ex-panel-aider">aider</button>
-        <button role="tab" id="ex-anthropic" aria-selected="false" aria-controls="ex-panel-anthropic">Anthropic SDK</button>
-      </span>
-    </div>
-    <div style="margin-top:16px" data-reveal>
-      <div class="code-block" id="ex-panel-curl" role="tabpanel" aria-label="curl 示例">
-        <button class="copy" type="button" data-done="✓ 已复制">复制</button>
-        <pre><span class="c-dim"># 从局域网里的手机流式请求一次补全</span>
-<span class="c-dim">$</span> curl -N http://192.168.1.8:11434/v1/chat/completions \
-    -H <span class="c-amb">"Authorization: Bearer $KEY"</span> \
-    -H <span class="c-amb">'Content-Type: application/json'</span> \
-    -d <span class="c-amb">'{"model":"你的模型id","stream":true,
-         "messages":[{"role":"user","content":"一句话解释 SSE。"}]}'</span></pre>
+      <div>
+        <h3>载入模型并让它驻留</h3>
+        <p>仓库不含权重。在设备上导入 GGUF 或下载 MLX 模型，然后载入。LAS 中请轮换 bearer key，并把客户端指向应用显示的局域网地址。</p>
       </div>
-      <div class="code-block" id="ex-panel-aider" role="tabpanel" aria-label="aider 示例" hidden>
-        <button class="copy" type="button" data-done="✓ 已复制">复制</button>
-        <pre><span class="c-dim"># 让 aider 指向手机</span>
-<span class="c-dim">$</span> export OPENAI_API_BASE=http://192.168.1.8:11434/v1
-<span class="c-dim">$</span> export OPENAI_API_KEY=<span class="c-amb">&lt;应用里显示的 key&gt;</span>
-<span class="c-dim">$</span> aider --model openai/你的模型id</pre>
-      </div>
-      <div class="code-block" id="ex-panel-anthropic" role="tabpanel" aria-label="Anthropic SDK 示例" hidden>
-        <button class="copy" type="button" data-done="✓ 已复制">复制</button>
-        <pre><span class="c-dim"># 或者用同一个 key 走 Anthropic 方言</span>
-<span class="c-dim">$</span> export ANTHROPIC_BASE_URL=http://192.168.1.8:11434
-<span class="c-dim">$</span> export ANTHROPIC_API_KEY=<span class="c-amb">&lt;同一个 key&gt;</span>
-<span class="c-dim">$</span> curl -s $ANTHROPIC_BASE_URL/v1/messages \
-    -H <span class="c-amb">"x-api-key: $ANTHROPIC_API_KEY"</span> \
-    -d <span class="c-amb">'{"model":"你的模型id","max_tokens":512,
-         "messages":[{"role":"user","content":"ping"}]}'</span></pre>
-      </div>
-      <p class="textlink" style="margin-top:14px">
-        <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">完整的智能体集成文档 ↗</a>
-      </p>
-    </div>
-
-    <div style="margin-top:36px" data-reveal>
-      <div class="term" id="term" data-scene="studio" aria-label="模拟终端演示">
-        <div class="term-bar">
-          <i class="lights"></i><i class="lights"></i><i class="lights"></i>
-          <span class="t" id="term-title">ondevice llm — 本地会话</span>
-        </div>
-        <pre class="term-body" id="term-out" aria-live="off"></pre>
-      </div>
-      <p class="textlink" style="margin-top:10px; font-family:var(--mono); font-size:12px">
-        仅为演示的模拟输出——其中的耗时与速度并非实测数据。
-      </p>
-    </div>
-  </div>
-
-  <div id="requirements" style="margin-top:48px; scroll-margin-top:88px" data-reveal>
-    <div class="disclosure">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="req-full">
-        智能体场景的完整模型要求
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-      </button>
-      <div class="disclosure-body" id="req-full"><div><div class="disclosure-inner">
-        <p style="margin:0 0 14px; color:var(--text-dim); font-size:14.5px">
-          智能体客户端跑的是长工具调用会话。模型必须真的扛住 65,536 token 上下文和与之匹配的 KV
-          缓存，服务器才会认为它「智能体就绪」；达不到时你会看到 Hermes 兼容性警告，而不是会话
-          中途失败。
-        </p>
-        <div class="tbl-scroll"><table>
-          <thead><tr>
-            <th scope="col">模型家族</th><th scope="col">上下文</th><th scope="col">工具解析器</th>
-            <th scope="col">并行</th><th scope="col">最大输出</th><th scope="col">KV 缓存</th>
-          </tr></thead>
-          <tbody>
-            <tr><th scope="row" class="row">Qwen3<br><span class="tdim">需 YaRN ×2</span></th><td class="k acc">65,536</td><td class="k">hermes</td><td class="k">2</td><td class="k">4,096</td><td class="k">1.1–4.3 GB</td></tr>
-            <tr><th scope="row" class="row">Qwen3.5</th><td class="k acc">65,536</td><td class="k">qwen3_coder</td><td class="k">2</td><td class="k">4,096</td><td class="k">~1.1 GB</td></tr>
-            <tr><th scope="row" class="row">Ornith</th><td class="k acc">65,536</td><td class="k">qwen3_xml</td><td class="k">2</td><td class="k">4,096</td><td class="k">~1.1 GB</td></tr>
-            <tr><th scope="row" class="row">Bonsai<br><span class="tdim">不满足智能体要求</span></th><td class="k">≤ 32,768</td><td class="k">qwen3_coder</td><td class="k">1</td><td class="k">2,048</td><td class="k">≤ 0.5 GB</td></tr>
-            <tr><th scope="row" class="row">其他 / 自行导入<br><span class="tdim">无工具支持</span></th><td class="k">见目录</td><td class="k">无</td><td class="k">1</td><td class="k">≤ 4,096</td><td class="k">视模型而定</td></tr>
-          </tbody>
-        </table></div>
-        <p style="margin:14px 0 0; color:var(--text-dim); font-size:14.5px">实测跑通：
-          Qwen 3.5 系列 · Ornith 1.0 9B · Ternary Bonsai 27B · Nanbeige。能否运行取决于设备内存、
-          温度余量、模型许可与量化方式，而不是一张固定的支持清单。</p>
-      </div></div></div>
     </div>
   </div>
 </div></section>
 
-<section id="security"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">05</span> 边界</div>
-  <h2 data-reveal>它做什么、不做什么</h2>
-  <p class="sub" data-reveal>把话说清楚，因为在这里信任就是产品本身。</p>
-  <div class="grid">
-    <div class="card" data-reveal>
-      <h3>只面向可信局域网</h3>
-      <p>bearer 鉴权的明文 HTTP，为你能掌控的网络设计，不适合暴露到公网。不要做端口转发。</p>
+<section id="source"><div class="wrap">
+  <div class="source-grid">
+    <div>
+      <h2 style="margin-bottom:24px">用它、读它、在它之上构建。</h2>
+      <p>OnDevice 公开开发：基于 MLX、llama.cpp、whisper.cpp 与 Core ML 的 SwiftUI 工作台，本地 API 层被单独抽出，供其他项目复用。</p>
+      <p>从版本页<b>运行</b>它，在仓库里<b>阅读</b>它，<b>报告</b>一个可复现的问题，或<b>贡献</b>一个修复。架构、验证策略与组件目录都有文档，写给想在其部分能力之上构建、而非接管整个应用的人。</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px">
+        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm">在 GitHub 加星</a>
+        <a class="btn ghost" href="https://github.com/Mesutcydev/ios-local-llm/issues">报告问题</a>
+      </div>
     </div>
-    <div class="card" data-reveal>
-      <h3>只在前台工作</h3>
-      <p>iOS 把应用切到后台时监听停止。模型尚未驻留时到来的请求会收到 service-unavailable，
-         而不是挂起。</p>
-    </div>
-    <div class="card" data-reveal>
-      <h3>不擅自执行</h3>
-      <p>服务器只返回工具调用，不执行它们。是否执行永远由客户端决定；非法的工具名或参数会先被
-         拒绝。</p>
-    </div>
-    <div class="card" data-reveal>
-      <h3>不悄悄回落云端</h3>
-      <p>模型进不了内存时会明确告诉你。不会因为设备说了「不」，就把推理悄悄挪到托管端点。</p>
-    </div>
-    <div class="card" data-reveal>
-      <h3>联网行为显式</h3>
-      <p>唯一的外发流量是你自己发起的模型下载。提示词、权重和输出都留在应用存储里。</p>
-    </div>
-    <div class="card" data-reveal>
-      <h3>可审计</h3>
-      <p>MIT 源码，带 CI 校验、CodeQL、OpenSSF 评分卡、SPDX SBOM，以及每个版本的 SHA-256
-         校验和与第三方声明。</p>
-    </div>
-  </div>
-
-  <div class="faq" style="margin-top:40px" data-reveal>
-    <div class="disclosure">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-1">有数据会离开设备吗？</button>
-      <div class="disclosure-body" id="faq-1"><div><div class="disclosure-inner">
-        <p>只有你主动发起的：从 Hugging Face 下载模型，或在你自己局域网里可选开启的 Mac 配对通道。
-           提示词、权重、历史和输出都留在应用存储里。没有遥测，也没有分析 SDK。</p>
-      </div></div></div>
-    </div>
-    <div class="disclosure">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-2">不用电脑可以吗？</button>
-      <div class="disclosure-body" id="faq-2"><div><div class="disclosure-inner">
-        <p>签名环节可以：ForgeSign 直接在设备上重签 IPA。AltStore 和 SideStore 则视你的证书而定，
-           周期性刷新可能需要电脑或服务器。</p>
-      </div></div></div>
-    </div>
-    <div class="disclosure">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-3">哪些模型能用？</button>
-      <div class="disclosure-body" id="faq-3"><div><div class="disclosure-inner">
-        <p>设备内存装得下的任何 MLX 模型或 GGUF，同时受模型许可约束。应用会在下载前检查内存适配，
-           某个家族不支持工具调用时会提前警告，而不是在会话中途失败。</p>
-      </div></div></div>
-    </div>
-    <div class="disclosure">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-4">有 App Store 版本吗？</button>
-      <div class="disclosure-body" id="faq-4"><div><div class="disclosure-inner">
-        <p>目前没有。仓库是源码分发的正式地址，侧载构建出现在 Releases 下。该应用此前曾通过
-           App Store 分发。</p>
-      </div></div></div>
-    </div>
+    <ul class="link-list">
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm">仓库 <span>事实来源</span></a></li>
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/CONTRIBUTING.md">贡献指南 <span>如何提交改动</span></a></li>
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ARCHITECTURE.md">架构 <span>分层与不变量</span></a></li>
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">智能体集成 <span>路由与示例</span></a></li>
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/REUSABLE_COMPONENTS.md">可复用组件 <span>可抽离的部分</span></a></li>
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/SECURITY.md">安全策略 <span>报告方式</span></a></li>
+    </ul>
   </div>
 </div></section>
 
-<section id="get" style="border-bottom:0"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">06</span> 获取 OnDevice</div>
-  <h2 data-reveal>选择你的界面</h2>
-  <p class="sub" data-reveal>两个版本，一套运行时。装一个，或者两个并存。</p>
-  <div class="final">
-    <article class="edition" data-reveal>
-      <div class="edition-head">
-        <img src="/assets/icon-128.png" width="52" height="52" alt="OnDevice LLM 应用图标">
-        <h3>OnDevice LLM</h3>
-      </div>
-      <p class="edition-for">适合亲手使用模型的人。</p>
-      <p class="edition-benefit">工作台：对话、镜头、语音与模型管理。</p>
-      <div class="edition-actions">
-        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">下载 3.2.7 (112) <span class="k">51.2 MiB</span></a>
-        <a class="textlink" href="#install">安装方法</a>
-      </div>
-    </article>
-    <article class="edition srv" data-reveal>
-      <div class="edition-head">
-        <img src="/assets/icon-128.png" width="52" height="52" alt="On Device LAS 应用图标">
-        <h3>On Device: LAS</h3>
-      </div>
-      <p class="edition-for">适合把现有工具接到本地模型的人。</p>
-      <p class="edition-benefit">服务器：11434 端口，兼容 OpenAI、Anthropic 与 Ollama。</p>
-      <div class="edition-actions">
-        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">下载 3.2.6 (143) <span class="k">25.1 MiB</span></a>
-        <a class="textlink" href="#install">安装方法</a>
-      </div>
-    </article>
+<section id="boundaries"><div class="wrap">
+  <span id="security" style="position:absolute" aria-hidden="true"></span>
+  <div class="sec-head">
+    <h2>它不做什么。</h2>
+    <p>把话说清楚，因为信任就是产品本身。</p>
+  </div>
+  <div class="bounds">
+    <div><h3>不把自己暴露到公网</h3><p>本地 API 是 bearer 鉴权的明文 HTTP，只面向你能掌控的网络。不要做端口转发。</p></div>
+    <div><h3>不在后台继续服务</h3><p>iOS 将应用切到后台时监听停止。过早的请求收到 service-unavailable，而不是挂起。</p></div>
+    <div><h3>不替你执行工具</h3><p>服务器只返回工具调用；是否执行永远由客户端决定。</p></div>
+    <div><h3>不悄悄回落云端</h3><p>模型进不了内存时会明确告诉你。推理绝不会悄悄挪到托管端点。</p></div>
+    <div><h3>不向外回传</h3><p>没有遥测，没有分析 SDK。唯一的外发流量是你自己发起的模型下载。</p></div>
+    <div><h3>不超出证据说话</h3><p>模拟器截图会明确标注；真机的温度与内存验证另有文档说明。</p></div>
   </div>
 </div></section>
+
+<section class="end" id="get"><div class="wrap">
+  <h2>读源码。<br>跑模型。</h2>
+  <p>上面的一切都在同一个公开仓库里——工作台、服务器层，以及解释两者的文档。</p>
+  <div style="display:flex; gap:12px; flex-wrap:wrap">
+    <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm">在 GitHub 查看</a>
+    <a class="btn" href="#install">安装指南</a>
+  </div>
+</div></section>
+</main>
 
 <footer><div class="wrap">
-  <div class="row">
-    <a href="https://github.com/Mesutcydev/ios-local-llm">代码仓库</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm/releases">全部版本</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">智能体集成</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ON_DEVICE_LAS.md">LAS 文档</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ARCHITECTURE.md">架构</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/SECURITY.md">安全策略</a>
+  <div class="foot-row">
+    <a href="https://github.com/Mesutcydev/ios-local-llm">仓库</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm/releases">版本</a>
     <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/PRIVACY_POLICY.md">隐私</a>
     <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/LICENSE">MIT 许可证</a>
   </div>
-  <p class="disclaimer">
-    基于 Swift、SwiftUI、MLX、llama.cpp、whisper.cpp 与 Core ML 构建。Apple、iPhone、Mac 为
-    Apple Inc. 的商标。模型权重不随本项目分发，各自适用其许可证——使用前请阅读模型卡片。独立
-    项目，与 Apple Inc. 无关，也未获其认可或支持。模拟器截图不能替代真机验证。
-  </p>
-  <div class="sums">
-    <div><b>OnDevice LLM 3.2.7 (112)</b> · sha256 de432ca3c9cc7b715d1879066aabfbc4d4439b59ac3028e2ba4b78527f62a19d</div>
-    <div><b>OnDevice Core 1.0.0 (10)</b> · sha256 55099346d1893534c1418079851e1bdeacfc38db43ec01a61743965c60af2b44</div>
-    <div><b>On Device: LAS 3.2.6 (143)</b> · <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.6-143">校验和见版本页 ↗</a></div>
+  <div class="foot-sums">
+    <div><b>OnDevice LLM 3.2.7 (112)</b> sha256 de432ca3…7f62a19d · <b>OnDevice Core 1.0.0 (10)</b> sha256 55099346…60af2b44 · <b>LAS 3.2.6 (143)</b> 校验和见其版本页</div>
+    <div>基于 Swift、SwiftUI、MLX、llama.cpp、whisper.cpp 与 Core ML 构建。Apple、iPhone、Mac 为 Apple Inc. 的商标。模型权重不随本项目分发，各自适用其许可证。独立项目，与 Apple Inc. 无关，也未获其认可或支持。</div>
+  </div>
+  <div class="foot-theme">
+    <span>外观</span>
+    <span class="ctl" role="group" aria-label="主题">
+      <button type="button" data-theme-set="light" aria-pressed="false">浅色</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false">深色</button>
+      <button type="button" data-theme-set="system" aria-pressed="true">跟随系统</button>
+    </span>
   </div>
 </div></footer>
 
 <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title" hidden>
   <div class="viewer-panel">
     <div class="viewer-bar">
-      <span id="viewer-title">预览</span>
+      <span id="viewer-title">截图</span>
       <button type="button" data-viewer-close>关闭 ×</button>
     </div>
     <div class="viewer-body"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
@@ -694,42 +352,6 @@
   </div>
 </div>
 
-<script>
-  window.ONDEVICE_SCENES = {
-    studio: {
-      title: 'ondevice llm — 本地会话',
-      lines: [
-        { t: '$ ondevice llm run --model qwen3.5-4b --ctx 65536', c: '' },
-        { t: '', c: '' },
-        { t: 'resident  MLX  4-bit  weights 2.4 GB  kv 1.1 GB @ 65,536 ctx', c: 'c-dim' },
-        { t: 'admitted  memory ok  thermal nominal  entitlements ok', c: 'c-dim' },
-        { t: '', c: '' },
-        { t: '> 到底有什么留在了这台设备上？', c: 'c-txt' },
-        { t: '', c: '' },
-        { t: 'ANSWER', c: 'stream' },
-        { t: '', c: '' },
-        { t: '42.1 tok/s  ·  0 次网络请求  ·  历史存于应用存储', c: 'c-acc' }
-      ],
-      tokens: ['一切', '。', ' 权重', '从', '本地', '存储', ' memory', '-', 'map', ' 进来',
-               '，', '在', ' GPU', ' 上', '解码', '——', '提示词', '、', 'KV', ' 缓存', '和',
-               '这条', '回答', '，', '都', '不会', '离开', '手机', '。']
-    },
-    server: {
-      title: 'bash — 来自 192.168.1.8:11434 的流',
-      lines: [
-        { t: '$ curl -N .../v1/chat/completions -d \'{"stream":true,...}\'', c: '' },
-        { t: '', c: '' },
-        { t: 'data: {"choices":[{"delta":{"role":"assistant"}}]}', c: 'c-dim' },
-        { t: 'STREAM', c: 'stream' },
-        { t: '', c: '' },
-        { t: 'data: {"choices":[{"delta":{},"finish_reason":"stop"}]}', c: 'c-dim' },
-        { t: 'data: [DONE]', c: 'c-vio' }
-      ],
-      tokens: ['服务器', '事件', '逐', ' token', ' 流出', '，', '走', '同一条', ' 打开的',
-               ' HTTP', ' 响应', '。']
-    }
-  };
-</script>
-<script src="/shell/site.js?v=2"></script>
+<script src="/shell/site.js?v=3"></script>
 </body>
 </html>

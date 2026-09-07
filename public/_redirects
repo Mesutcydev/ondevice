@@ -1,4 +1,7 @@
-# Old GitHub Pages paths and pre-redesign anchors keep working.
-/ondevice.html /#server 301
-/studio /#showcase 301
-/las /#server 301
+# Legacy paths and pre-redesign anchors keep working.
+/ondevice.html /#product 301
+/studio /#product 301
+/las /#product 301
+/showcase /#product 301
+/requirements /#editions 301
+/security /#boundaries 301

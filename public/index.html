@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0a0b0d" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#fbfcfd" media="(prefers-color-scheme: light)">
-<title>OnDevice — your models, on your iPhone</title>
-<meta name="description" content="OnDevice runs open-source models on iPhone with MLX, llama.cpp, whisper.cpp and Core ML. OnDevice LLM is a complete AI workspace. On Device: LAS turns your phone into a bearer-authenticated OpenAI-, Anthropic- and Ollama-compatible server for your tools. No account, no telemetry, no cloud fallback.">
+<meta name="theme-color" content="#0C0D0F" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F4F3EF" media="(prefers-color-scheme: light)">
+<title>OnDevice — run local models on your iPhone</title>
+<meta name="description" content="OnDevice is an open-source workbench that runs language, vision and speech models on your iPhone. Work in the app, or connect your tools to an on-device API. MIT source, no account, no telemetry.">
 <link rel="canonical" href="https://ondevice.fun/">
 <link rel="alternate" hreflang="en" href="https://ondevice.fun/">
 <link rel="alternate" hreflang="tr" href="https://ondevice.fun/tr/">
@@ -14,8 +14,8 @@
 <link rel="alternate" hreflang="x-default" href="https://ondevice.fun/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OnDevice">
-<meta property="og:title" content="OnDevice — your models, on your iPhone">
-<meta property="og:description" content="A complete AI workspace — or a local model server for your tools. Same on-device runtime, same weights, same memory and thermal policy.">
+<meta property="og:title" content="OnDevice — run local models on your iPhone">
+<meta property="og:description" content="Work in the app, or connect your tools to an on-device API. Open source, MIT licensed, no account required.">
 <meta property="og:url" content="https://ondevice.fun/">
 <meta property="og:image" content="https://ondevice.fun/assets/og-en.png">
 <meta property="og:image:width" content="1280">
@@ -24,8 +24,8 @@
 <meta property="og:locale:alternate" content="tr_TR">
 <meta property="og:locale:alternate" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OnDevice — your models, on your iPhone">
-<meta name="twitter:description" content="A complete AI workspace — or a local model server for your tools.">
+<meta name="twitter:title" content="OnDevice — run local models on your iPhone">
+<meta name="twitter:description" content="Work in the app, or connect your tools to an on-device API.">
 <meta name="twitter:image" content="https://ondevice.fun/assets/og-en.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -39,668 +39,315 @@
     r.classList.add('js');
   })();
 </script>
-<link rel="stylesheet" href="/shell/site.css?v=2">
+<link rel="stylesheet" href="/shell/site.css?v=3">
 </head>
 <body>
 
-<nav><div class="wrap">
+<header class="mast"><div class="wrap">
   <a class="brand" href="#top">
-    <img src="/assets/icon-128.png" width="24" height="24" alt="">
-    <b>OnDevice</b><span class="tail">/ LLM + LAS</span>
+    <img src="/assets/icon-128.png" width="26" height="26" alt="">
+    OnDevice
   </a>
-  <span class="nav-mid" aria-label="Primary">
+  <nav aria-label="Primary">
+    <a href="#product">Product</a>
     <a href="#editions">Editions</a>
-    <a href="#showcase">Showcase</a>
-    <a href="#developers" class="hide-md">Developers</a>
-  </span>
-  <span class="nav-end">
-    <span class="ctl" role="group" aria-label="Language">
+    <a href="#install">Install</a>
+  </nav>
+  <span class="mast-end">
+    <span class="langs" role="group" aria-label="Language">
       <a href="/" aria-current="page" lang="en">EN</a>
       <a href="/tr/" lang="tr">TR</a>
       <a href="/zh/" lang="zh-Hans">中文</a>
     </span>
-    <span class="ctl" role="group" aria-label="Theme">
-      <button type="button" data-theme-set="light" aria-pressed="false" title="Light" aria-label="Light theme">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/></svg>
-      </button>
-      <button type="button" data-theme-set="dark" aria-pressed="false" title="Dark" aria-label="Dark theme">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 14.2A8.4 8.4 0 0 1 9.8 3.6a8.4 8.4 0 1 0 10.6 10.6z"/></svg>
-      </button>
-      <button type="button" data-theme-set="system" aria-pressed="true" title="System" aria-label="Follow system theme">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20h6M12 16.5V20"/></svg>
-      </button>
-    </span>
-    <a class="plain" href="https://github.com/Mesutcydev/ios-local-llm">Source</a>
-    <a class="btn sm solid" href="#get">Get OnDevice</a>
-    <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav-drop" aria-label="Menu">
+    <a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm">GitHub</a>
+    <button class="mast-menu" type="button" aria-expanded="false" aria-controls="mast-drop" aria-label="Menu">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
   </span>
-  <span class="nav-drop" id="nav-drop" hidden>
+  <span class="mast-drop" id="mast-drop" hidden>
+    <a href="#product">Product</a>
     <a href="#editions">Editions</a>
-    <a href="#showcase">Showcase</a>
-    <a href="#developers">Developers</a>
-    <a href="#install">How to install</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm">Source on GitHub</a>
-    <span class="ctl" role="group" aria-label="Theme">
-      <button type="button" data-theme-set="light" aria-pressed="false" title="Light" aria-label="Light theme">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/></svg>
-      </button>
-      <button type="button" data-theme-set="dark" aria-pressed="false" title="Dark" aria-label="Dark theme">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 14.2A8.4 8.4 0 0 1 9.8 3.6a8.4 8.4 0 1 0 10.6 10.6z"/></svg>
-      </button>
-      <button type="button" data-theme-set="system" aria-pressed="true" title="System" aria-label="Follow system theme">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20h6M12 16.5V20"/></svg>
-      </button>
-    </span>
+    <a href="#install">Install</a>
+    <a href="#source">Source</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm">GitHub ↗</a>
   </span>
-</div></nav>
-
-<header class="hero" id="top"><div class="wrap">
-  <span id="overview" style="position:absolute" aria-hidden="true"></span>
-  <div class="hero-grid">
-    <div>
-      <div class="pill hero-in"><span class="dot"></span> runs entirely on device <span class="sep">·</span> no account <span class="sep">·</span> no telemetry</div>
-      <h1 class="hero-in d1">Your models.<br>Your device. <em>Your control.</em></h1>
-      <p class="lede hero-in d2">
-        A complete AI workspace — or a local model server for your tools.
-        <strong>Choose how you work.</strong>
-      </p>
-      <div class="cta hero-in d3">
-        <a class="btn solid" href="#editions">Explore editions</a>
-        <a class="btn quiet" href="#showcase">See it in action</a>
-      </div>
-    </div>
-
-    <div class="device-wrap hero-in d2">
-      <div class="device">
-        <div class="device-screen" id="device-screen" role="tabpanel" aria-label="Device preview">
-          <span class="device-island" aria-hidden="true"></span>
-          <img src="/assets/previews/home-3.2.7-light.png" width="620" height="1348" class="is-active" data-scene="studio" alt="OnDevice LLM home screen: local tools, model state and session history">
-          <img src="/assets/shots/las-home.png" width="660" height="1434" data-scene="server" alt="On Device LAS server homepage: device health, memory headroom and Local API status">
-        </div>
-      </div>
-      <span class="seg" role="tablist" aria-label="Choose the experience to preview">
-        <button role="tab" id="dev-studio" aria-selected="true" aria-controls="device-screen"
-                data-imgs="#device-screen" data-caption="#device-cap" data-term-scene="studio"
-                data-cap-title="OnDevice LLM — the studio" data-cap-sub="Chat, lens, voice and models, with the whole loop in view.">Studio</button>
-        <button role="tab" id="dev-server" aria-selected="false" aria-controls="device-screen"
-                data-imgs="#device-screen" data-caption="#device-cap" data-term-scene="server"
-                data-cap-title="On Device: LAS — the server" data-cap-sub="The same runtime, answering HTTP on your LAN.">Server</button>
-      </span>
-      <div class="device-cap" id="device-cap">
-        <b>OnDevice LLM — the studio</b>
-        <span>Chat, lens, voice and models, with the whole loop in view.</span>
-      </div>
-    </div>
-
-    <div class="hero-strip hero-in d4">
-      <span><b>iOS 18+</b> iPhone &amp; Mac Catalyst</span>
-      <span><b>MLX · llama.cpp · whisper.cpp</b></span>
-      <span><b>OpenAI / Anthropic / Ollama</b> compatible</span>
-      <span><b>MIT</b> source</span>
-    </div>
-  </div>
 </div></header>
 
-<section id="editions"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">01</span> Editions</div>
-  <h2 data-reveal>Two editions of one runtime</h2>
-  <p class="sub" data-reveal>
-    Same weights, same memory admission, same thermal policy — two surfaces. Pick the one that
-    matches how you intend to work; both install side by side if you want both.
-  </p>
-
-  <div class="editions">
-    <article class="edition" data-reveal>
-      <div class="edition-head">
-        <img src="/assets/icon-128.png" width="52" height="52" alt="OnDevice LLM app icon">
-        <h3>OnDevice LLM</h3>
-        <span class="badge">Main</span>
+<main id="top">
+<section class="hero" style="border-top:0"><div class="wrap">
+  <span id="overview" style="position:absolute" aria-hidden="true"></span>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1>Your iPhone can<span class="l2">run the model.</span></h1>
+      <p class="hero-sub">Run local models on your iPhone. Work in the app, or connect your tools to an on-device API.</p>
+      <div class="hero-cta">
+        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm">View on GitHub</a>
+        <a class="btn ghost" href="#editions">Get the app</a>
       </div>
-      <p class="edition-for">For working directly with your models.</p>
-      <p class="edition-benefit">
-        A calm workspace where the model state is always visible: what is resident, what it costs in
-        memory, and what it is doing right now.
+      <p class="hero-facts">
+        <span><b>Open source</b> · MIT</span>
+        <span><b>No account</b> · no telemetry</span>
+        <span><b>iOS 18+</b> · iPhone &amp; Mac Catalyst</span>
       </p>
-      <div class="edition-preview">
-        <img src="/assets/previews/assistant-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM assistant screen in dark mode">
-      </div>
-      <ul class="edition-points">
-        <li>Chat, code review and planning against models stored on the device</li>
-        <li>Lens for camera frames and OCR, Voice for dictation and spoken replies</li>
-        <li>Model discovery with memory-fit checks and resumable downloads</li>
-      </ul>
-      <div class="edition-sum">
-        <span><b>iOS 18+</b> · Mac Catalyst</span>
-        <span><b>3.2.7 (112)</b> · 51.2 MiB</span>
-      </div>
-      <div class="edition-actions">
-        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">Download IPA <span class="k">↓</span></a>
-        <a class="textlink" href="#install">How to install</a>
-      </div>
-      <div class="disclosure">
-        <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="td-studio">
-          Technical details
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-        </button>
-        <div class="disclosure-body" id="td-studio"><div><div class="disclosure-inner">
-          <dl class="kv"><dt>Bundle</dt><dd>com.mesutcydev.ioslocalllm.IOSLocalLLM</dd></dl>
-          <dl class="kv"><dt>Artifact</dt><dd>IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa</dd></dl>
-          <dl class="kv"><dt>Signing</dt><dd>ad-hoc · re-sign with your own certificate</dd></dl>
-          <dl class="kv"><dt>Entitlements</dt><dd>App Group + iCloud + increased-memory-limit + extended-virtual-addressing</dd></dl>
-          <dl class="kv"><dt>Local API</dt><dd>opt-in · same routes as LAS</dd></dl>
-          <dl class="kv"><dt>Checksum</dt><dd>sha256 de432ca3…7f62a19d · <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.7-112">release ↗</a></dd></dl>
-        </div></div></div>
-      </div>
-    </article>
-
-    <article class="edition srv" data-reveal>
-      <div class="edition-head">
-        <img src="/assets/icon-128.png" width="52" height="52" alt="On Device LAS app icon">
-        <h3>On Device: LAS</h3>
-        <span class="badge">Beta</span>
-      </div>
-      <p class="edition-for">For connecting your existing tools to a local model.</p>
-      <p class="edition-benefit">
-        The assistant, lens and voice surfaces are removed and an HTTP server is left standing.
-        Point aider, Continue or any OpenAI client at your phone.
-      </p>
-      <div class="edition-preview">
-        <img src="/assets/shots/las-terminal.png" width="660" height="1434" loading="lazy" alt="LAS verbose terminal streaming live server log events">
-      </div>
-      <ul class="edition-points">
-        <li>OpenAI, Anthropic Messages and Ollama routes on one port, bearer-authenticated</li>
-        <li>Token-level SSE streaming and grammar-constrained tool calls on MLX</li>
-        <li>A control surface: runtime state, memory admission, and a live request log</li>
-      </ul>
-      <div class="edition-sum">
-        <span><b>iOS 18+</b> · arm64</span>
-        <span><b>3.2.6 (143)</b> · 25.1 MiB</span>
-      </div>
-      <div class="edition-actions">
-        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">Download IPA <span class="k">↓</span></a>
-        <a class="textlink" href="#install">How to install</a>
-      </div>
-      <div class="disclosure">
-        <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="td-server">
-          Technical details
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-        </button>
-        <div class="disclosure-body" id="td-server"><div><div class="disclosure-inner">
-          <dl class="kv"><dt>Bundle</dt><dd>com.mesutcydev.ondevicelas</dd></dl>
-          <dl class="kv"><dt>Artifact</dt><dd>OnDeviceLAS-sideload-entitled-latest.ipa</dd></dl>
-          <dl class="kv"><dt>Signing</dt><dd>ad-hoc · re-sign with your own certificate</dd></dl>
-          <dl class="kv"><dt>Entitlements</dt><dd>increased-memory-limit + extended-virtual-addressing</dd></dl>
-          <dl class="kv"><dt>Listener</dt><dd>port 11434 · stops when iOS backgrounds the app</dd></dl>
-          <dl class="kv"><dt>Checksum</dt><dd><a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.6-143">on the release ↗</a></dd></dl>
-        </div></div></div>
-      </div>
-    </article>
-  </div>
-
-  <div class="core-panel" data-reveal>
-    <img src="/assets/icon-128.png" width="52" height="52" loading="lazy" alt="OnDevice Core app icon">
-    <div>
-      <h3>OnDevice Core — specialized variant</h3>
-      <p>
-        A separate iOS 27+ build that swaps MLX and llama.cpp for Apple Core AI. It exists for devices
-        and workflows built around the system runtime rather than bundled inference engines, and it is
-        not a drop-in replacement for either edition above.
-      </p>
-      <p class="req">iOS 27+ · com.mesutcydev.ondevicecore · 49.6 MiB · installer re-signing required</p>
     </div>
-    <a class="btn" href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/ondevice-core-1.0.0-10">Download Core 1.0.0 (10)</a>
-  </div>
-
-  <div class="compare" data-reveal>
-    <div class="tbl-scroll"><table>
-      <caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Key differences between OnDevice LLM and On Device: LAS</caption>
-      <thead><tr><th scope="col">The decision</th><th scope="col">OnDevice LLM</th><th scope="col">On Device: LAS</th></tr></thead>
-      <tbody>
-        <tr><th scope="row" class="row">You drive the model yourself</th><td class="yes">●</td><td class="nope">—</td></tr>
-        <tr><th scope="row" class="row">Your tools drive the model over HTTP</th><td class="yes">opt-in</td><td class="yes">●</td></tr>
-        <tr><th scope="row" class="row">Camera, voice and share surfaces</th><td class="yes">●</td><td class="nope">removed</td></tr>
-      </tbody>
-    </table></div>
-    <div class="disclosure compare-toggle">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="cmp-full">
-        Compare all capabilities
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-      </button>
-      <div class="disclosure-body" id="cmp-full"><div><div class="disclosure-inner">
-        <div class="tbl-scroll tbl-fade"><table>
-          <thead><tr><th scope="col">Capability</th><th scope="col">OnDevice LLM</th><th scope="col">On Device: LAS</th><th scope="col">Notes</th></tr></thead>
-          <tbody>
-            <tr><th scope="row" class="row">On-device inference</th><td class="yes">●</td><td class="yes">●</td><td class="tdim">MLX and llama.cpp, identical residency path</td></tr>
-            <tr><th scope="row" class="row">GGUF import</th><td class="yes">●</td><td class="yes">●</td><td class="tdim">bring your own weights; none are bundled</td></tr>
-            <tr><th scope="row" class="row">Assistant chat</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">removed from the server build by design</td></tr>
-            <tr><th scope="row" class="row">Lens · vision + OCR</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">camera frames and imported photos</td></tr>
-            <tr><th scope="row" class="row">Voice · STT + TTS</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">whisper.cpp, local synthesis</td></tr>
-            <tr><th scope="row" class="row">Mac pairing channel</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">versioned, pairing-authenticated tool protocol</td></tr>
-            <tr><th scope="row" class="row">Share extension</th><td class="yes">●</td><td class="nope">—</td><td class="tdim">entitlements preserved per component</td></tr>
-            <tr><th scope="row" class="row">OpenAI / Anthropic / Ollama</th><td class="yes">opt-in</td><td class="yes">●</td><td class="tdim">same LocalAPIServer routes</td></tr>
-            <tr><th scope="row" class="row">Structured tool calls</th><td class="yes">opt-in</td><td class="yes">●</td><td class="tdim">grammar-constrained decoding on MLX</td></tr>
-            <tr><th scope="row" class="row">Verbose server terminal</th><td class="nope">—</td><td class="yes">●</td><td class="tdim">every request and lifecycle event</td></tr>
-            <tr><th scope="row" class="row">Runs in background</th><td class="nope">—</td><td class="nope">—</td><td class="tdim">listener stops when iOS backgrounds either app</td></tr>
-          </tbody>
-        </table></div>
-      </div></div></div>
+    <div class="hero-media">
+      <div class="device-box">
+        <img src="/assets/hero-models.png" width="1320" height="2868" fetchpriority="high"
+             alt="OnDevice LLM model library on iPhone: Qwen3.5-4B shown as Loaded with its memory footprint, above a list of downloadable model families with size and memory-fit details">
+        <span class="inspect-mark" aria-hidden="true"></span>
+        <span class="inspect-line" aria-hidden="true"></span>
+      </div>
+      <figure class="inspect">
+        <img src="/assets/inspect-loaded.png" width="744" height="176"
+             alt="Magnified detail of the same screen: the Qwen3.5-4B row with its Loaded state">
+        <figcaption><b>Loaded</b> — a 4-bit Qwen3.5 resident in 3.06 GB, on the device</figcaption>
+      </figure>
+      <button class="btn sm ghost enlarge" type="button"
+              data-viewer-src="/assets/hero-models.png" data-viewer-title="Model library"
+              data-viewer-cap="OnDevice LLM model library: Qwen3.5-4B loaded with its memory footprint, above downloadable model families with size and memory-fit details.">Enlarge screenshot</button>
     </div>
   </div>
 </div></section>
 
-<section id="showcase"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">02</span> Showcase</div>
-  <h2 data-reveal>See each surface doing its job</h2>
-  <p class="sub" data-reveal>
-    One screen at a time, with a short explanation of what you are looking at. Tap the frame to open a
-    full-size view.
-  </p>
+<section id="product"><div class="wrap">
+  <span id="showcase" style="position:absolute" aria-hidden="true"></span>
+  <div class="sec-head">
+    <h2>Use the app. Or connect your tools.</h2>
+    <p>One runtime, two ways in. Everything below runs on the device — weights, context and answers stay in your pocket unless you start a download yourself.</p>
+  </div>
 
-  <div id="studio" style="scroll-margin-top:88px">
-    <div class="showcase" data-reveal>
-      <span class="showcase-nav seg" role="tablist" aria-label="Studio screens" aria-orientation="vertical">
-        <button role="tab" aria-selected="true" aria-controls="sc-studio-stage"
-          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
-          data-viewer-src="/assets/previews/home-3.2.7-light.png" data-viewer-title="Home"
-          data-viewer-cap="OnDevice LLM home dashboard: tool routing, model state and session history."
-          data-cap-title="Home" data-cap-sub="Tool routing, model state and history at a glance.">Home</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
-          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
-          data-viewer-src="/assets/previews/assistant-dark.png" data-viewer-title="Assistant"
-          data-viewer-cap="Assistant screen in dark mode with local model status and prompt actions."
-          data-cap-title="Assistant" data-cap-sub="Load, pause and continue with the model state in view.">Assistant</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
-          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
-          data-viewer-src="/assets/previews/lens-dark.png" data-viewer-title="Lens"
-          data-viewer-cap="Lens screen in dark mode: camera frames, OCR and imported photos stay local."
-          data-cap-title="Lens" data-cap-sub="Camera frames, OCR and imported photos stay on the device.">Lens</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
-          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
-          data-viewer-src="/assets/previews/voice-dark.png" data-viewer-title="Voice"
-          data-viewer-cap="Voice screen in dark mode showing local speech controls."
-          data-cap-title="Voice" data-cap-sub="Dictation and spoken replies, transcribed on device.">Voice</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-studio-stage"
-          data-imgs="#sc-studio-imgs" data-caption="#sc-studio-copy"
-          data-viewer-src="/assets/previews/models-dark.png" data-viewer-title="Models"
-          data-viewer-cap="Models screen showing model families and a recommended Qwen3 card."
-          data-cap-title="Models" data-cap-sub="Family, memory fit, download state and role, together.">Models</button>
-      </span>
-      <div class="showcase-stage" id="sc-studio-stage" role="tabpanel" aria-label="Selected studio screen">
-        <button class="showcase-frame" type="button" data-viewer-sync
-                data-viewer-src="/assets/previews/home-3.2.7-light.png" data-viewer-title="Home"
-                data-viewer-cap="OnDevice LLM home dashboard: tool routing, model state and session history."
-                aria-label="Open the selected studio screen at full size">
-          <span class="showcase-screen" id="sc-studio-imgs">
-            <img src="/assets/previews/home-3.2.7-light.png" width="620" height="1348" class="is-active" alt="OnDevice LLM home dashboard">
-            <img src="/assets/previews/assistant-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM assistant screen">
-            <img src="/assets/previews/lens-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM Lens screen">
-            <img src="/assets/previews/voice-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM voice screen">
-            <img src="/assets/previews/models-dark.png" width="620" height="1347" loading="lazy" alt="OnDevice LLM models screen">
-          </span>
-        </button>
-        <div class="showcase-copy" id="sc-studio-copy">
-          <h3>Home</h3>
-          <p>Tool routing, model state and history at a glance.</p>
-        </div>
-        <div class="showcase-actions">
-          <a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">Get the studio</a>
-        </div>
+  <div class="story-tabs" role="tablist" aria-label="Ways to use OnDevice">
+    <button role="tab" id="tab-app" aria-selected="true" aria-controls="panel-app">In the app</button>
+    <button role="tab" id="tab-tools" aria-selected="false" aria-controls="panel-tools">From your tools</button>
+  </div>
+
+  <div class="story-panel" id="panel-app" role="tabpanel" aria-labelledby="tab-app">
+    <span id="studio" style="position:absolute" aria-hidden="true"></span>
+    <div class="story-media">
+      <img src="/assets/story-app.png" width="1320" height="2868" class="is-active" loading="lazy"
+           alt="OnDevice LLM assistant on iPhone: a conversation where the model answers a SwiftUI question with a code block, model state shown at the top">
+    </div>
+    <div class="story-copy">
+      <h3>Load a model, ask it anything.</h3>
+      <p class="story-lead">Chat, code review and planning against models stored on the device — with the model's state and memory cost always in view.</p>
+      <p>The same runtime drives the camera and OCR surfaces, dictation and spoken replies, and a model library that checks memory fit before it downloads anything. Interrupted downloads resume.</p>
+      <p class="story-note">Unedited iPhone Simulator capture from the open-source build. No user content, accounts or tokens appear in it.</p>
+      <button class="btn sm ghost" type="button"
+              data-viewer-src="/assets/story-app.png" data-viewer-title="Assistant"
+              data-viewer-cap="OnDevice LLM assistant: a conversation where the on-device model answers with a code block.">Enlarge screenshot</button>
+    </div>
+  </div>
+
+  <div class="story-panel" id="panel-tools" role="tabpanel" aria-labelledby="tab-tools" hidden>
+    <span id="server" style="position:absolute" aria-hidden="true"></span>
+    <span id="api" style="position:absolute" aria-hidden="true"></span>
+    <div class="story-media">
+      <img src="/assets/story-tools.png" width="990" height="2151" loading="lazy"
+           alt="On Device: LAS server homepage on iPhone: server shown Running with its local network address, bearer key controls, and the loaded models it serves">
+    </div>
+    <div class="story-copy">
+      <h3>Connect your tools to a model on your iPhone.</h3>
+      <p class="story-lead">On Device: LAS answers OpenAI-, Anthropic- and Ollama-compatible requests on your local network, behind a bearer key you control.</p>
+      <div class="code-row">
+        <button class="copy-btn" type="button" data-done="✓">copy</button>
+        <pre class="example"><span class="c"># example request — placeholders, not live values</span>
+curl -N http://PHONE-IP:11434/v1/chat/completions \
+  -H <span class="v">"Authorization: Bearer $KEY"</span> \
+  -d <span class="v">'{"model":"MODEL-ID","stream":true,
+       "messages":[{"role":"user","content":"…"}]}'</span></pre>
+      </div>
+      <p class="story-note"><b>Boundaries:</b> the listener serves your local network only and stops when iOS backgrounds the app. Rotate the key after installing; do not port-forward it.</p>
+      <button class="btn sm ghost" type="button"
+              data-viewer-src="/assets/story-tools.png" data-viewer-title="Server homepage"
+              data-viewer-cap="On Device: LAS server homepage: running state, local address, bearer key and loaded models.">Enlarge screenshot</button>
+    </div>
+  </div>
+</div></section>
+
+<section id="editions"><div class="wrap">
+  <div class="sec-head">
+    <h2>Two editions. One runtime.</h2>
+    <p>Pick the surface that matches how you work. Both install side by side if you want both.</p>
+  </div>
+
+  <div class="rows">
+    <div class="row-item">
+      <div>
+        <h3>OnDevice LLM</h3>
+        <p class="what">The full workbench: assistant, camera and OCR, voice, and a model library with memory-fit checks.</p>
+      </div>
+      <div class="row-meta">
+        <div><span class="status">Main edition</span></div>
+        <div>iOS 18+ · Mac Catalyst</div>
+        <div><b>3.2.7 (112)</b> · 51.2 MiB IPA</div>
+      </div>
+      <div class="row-actions">
+        <a class="btn" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">Download IPA</a>
+        <a class="btn ghost" href="#install">Installation guide</a>
+        <a class="btn ghost" href="https://github.com/Mesutcydev/ios-local-llm">Source code</a>
+      </div>
+    </div>
+
+    <div class="row-item">
+      <div>
+        <h3>On Device: LAS</h3>
+        <p class="what">A local model server for external tools: OpenAI-, Anthropic- and Ollama-compatible routes on one port, behind a bearer key.</p>
+      </div>
+      <div class="row-meta">
+        <div><span class="status beta">Beta</span></div>
+        <div>iOS 18+ · arm64</div>
+        <div><b>3.2.6 (143)</b> · 25.1 MiB IPA</div>
+      </div>
+      <div class="row-actions">
+        <a class="btn" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">Download IPA</a>
+        <a class="btn ghost" href="#install">Installation guide</a>
+        <a class="btn ghost" href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ON_DEVICE_LAS.md">LAS docs</a>
+      </div>
+    </div>
+
+    <div class="row-item secondary">
+      <div>
+        <h3>OnDevice Core</h3>
+        <p class="what">A specialized iOS 27+ variant built on Apple Core AI instead of MLX and llama.cpp. Separate app, separate runtime — not a drop-in for the editions above.</p>
+      </div>
+      <div class="row-meta">
+        <div>iOS 27+ · 49.6 MiB IPA</div>
+      </div>
+      <div class="row-actions">
+        <a class="btn ghost" href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/ondevice-core-1.0.0-10">Release page</a>
       </div>
     </div>
   </div>
 
-  <div id="server" style="scroll-margin-top:88px; margin-top:64px">
-    <div class="showcase" data-reveal>
-      <span class="showcase-nav seg" role="tablist" aria-label="Server screens" aria-orientation="vertical">
-        <button role="tab" aria-selected="true" aria-controls="sc-server-stage"
-          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
-          data-viewer-src="/assets/shots/las-home.png" data-viewer-title="Server homepage"
-          data-viewer-cap="LAS server homepage: device health, memory headroom and the Local API toggle."
-          data-cap-title="Server homepage" data-cap-sub="Device health, memory headroom and the Local API toggle.">Runtime</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-server-stage"
-          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
-          data-viewer-src="/assets/shots/las-models.png" data-viewer-title="Model library"
-          data-viewer-cap="LAS model library listing installed on-device models with capacity readouts."
-          data-cap-title="Model library" data-cap-sub="Import, download and make an MLX or GGUF model resident.">Models</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-server-stage"
-          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
-          data-viewer-src="/assets/shots/las-debugger.png" data-viewer-title="On-device debugger"
-          data-viewer-cap="LAS on-device debugger showing the memory admission snapshot."
-          data-cap-title="On-device debugger" data-cap-sub="Process budget, entitlements and thermal state.">Debugger</button>
-        <button role="tab" aria-selected="false" aria-controls="sc-server-stage"
-          data-imgs="#sc-server-imgs" data-caption="#sc-server-copy"
-          data-viewer-src="/assets/shots/las-terminal.png" data-viewer-title="Verbose terminal"
-          data-viewer-cap="LAS verbose terminal streaming live server log events."
-          data-cap-title="Verbose terminal" data-cap-sub="Every request and lifecycle event, live.">Activity</button>
-      </span>
-      <div class="showcase-stage" id="sc-server-stage" role="tabpanel" aria-label="Selected server screen">
-        <button class="showcase-frame" type="button" data-viewer-sync
-                data-viewer-src="/assets/shots/las-home.png" data-viewer-title="Server homepage"
-                data-viewer-cap="LAS server homepage: device health, memory headroom and the Local API toggle."
-                aria-label="Open the selected server screen at full size">
-          <span class="showcase-screen" id="sc-server-imgs">
-            <img src="/assets/shots/las-home.png" width="660" height="1434" class="is-active" alt="LAS server homepage">
-            <img src="/assets/shots/las-models.png" width="660" height="1434" loading="lazy" alt="LAS model library">
-            <img src="/assets/shots/las-debugger.png" width="660" height="1434" loading="lazy" alt="LAS on-device debugger">
-            <img src="/assets/shots/las-terminal.png" width="660" height="1434" loading="lazy" alt="LAS verbose terminal">
-          </span>
-        </button>
-        <div class="showcase-copy" id="sc-server-copy">
-          <h3>Server homepage</h3>
-          <p>Device health, memory headroom and the Local API toggle.</p>
-        </div>
-        <div class="showcase-actions">
-          <a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">Get the server</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <p class="sub" style="margin:28px 0 0" data-reveal>
-    Unedited iPhone Simulator captures from the open-source build, in Dark appearance. They contain no
-    user content, accounts, tokens or weights.
+  <p class="sign-note">
+    <b>Sideload, not App Store.</b> These IPAs are ad-hoc signed assets for a re-signer — install with
+    AltStore, SideStore, or ForgeSign on the device. The repository is the canonical source
+    distribution; there is currently no App Store binary.
   </p>
+
+  <div class="disclosure">
+    <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="tech-details">
+      Technical details
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+    </button>
+    <div class="disclosure-body" id="tech-details"><div><div class="disclosure-inner">
+      <dl class="kv"><dt>LLM bundle</dt><dd>com.mesutcydev.ioslocalllm.IOSLocalLLM</dd></dl>
+      <dl class="kv"><dt>LAS bundle</dt><dd>com.mesutcydev.ondevicelas</dd></dl>
+      <dl class="kv"><dt>Core bundle</dt><dd>com.mesutcydev.ondevicecore</dd></dl>
+      <dl class="kv"><dt>LLM artifact</dt><dd>IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa</dd></dl>
+      <dl class="kv"><dt>LAS artifact</dt><dd>OnDeviceLAS-sideload-entitled-latest.ipa</dd></dl>
+      <dl class="kv"><dt>Entitlements</dt><dd>increased-memory-limit + extended-virtual-addressing (LLM adds App Group + iCloud)</dd></dl>
+      <dl class="kv"><dt>LLM checksum</dt><dd>sha256 de432ca3c9cc7b715d1879066aabfbc4d4439b59ac3028e2ba4b78527f62a19d</dd></dl>
+      <dl class="kv"><dt>Core checksum</dt><dd>sha256 55099346d1893534c1418079851e1bdeacfc38db43ec01a61743965c60af2b44</dd></dl>
+      <dl class="kv"><dt>Releases</dt><dd><a href="https://github.com/Mesutcydev/ios-local-llm/releases">all releases and notes ↗</a></dd></dl>
+    </div></div></div>
+  </div>
 </div></section>
 
 <section id="install"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">03</span> Install</div>
-  <h2 data-reveal>From download to resident model</h2>
-  <p class="sub" data-reveal>
-    Three stages, the same for both editions. The honest part: sideloaded IPAs must be re-signed with
-    your own certificate, and the memory entitlements have to survive that step.
-  </p>
-  <div class="steps three">
-    <div class="step" data-reveal>
+  <span id="quickstart" style="position:absolute" aria-hidden="true"></span>
+  <div class="sec-head">
+    <h2>From download to resident model.</h2>
+    <p>Three stages, the same for both editions. Nothing here is one-tap, and that is honest: sideloaded builds need your certificate.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
       <span class="n">01</span>
-      <h3>Pick your edition</h3>
-      <p>Download the IPA for the studio or the server. Both are ad-hoc signed assets meant for a
-         re-signer; neither is an App Store binary.</p>
+      <div>
+        <h3>Download the edition you need</h3>
+        <p>Take the IPA from the release page. Both are ad-hoc signed assets meant for a re-signer — they are not App Store installs.</p>
+      </div>
     </div>
-    <div class="step" data-reveal>
+    <div class="step">
       <span class="n">02</span>
-      <h3>Install and re-sign</h3>
-      <p>Use AltStore / AltServer, SideStore, or ForgeSign to re-sign on the device. Check that the
-         memory entitlements survive — without them iOS caps the process and large models are killed
-         on load.</p>
+      <div>
+        <h3>Install and re-sign</h3>
+        <p>Use <b>AltStore / AltServer</b>, <b>SideStore</b>, or <b>ForgeSign</b> to sign on the device. Confirm the memory entitlements survive re-signing: without <code>increased-memory-limit</code> and <code>extended-virtual-addressing</code>, iOS caps the process and large models are killed on load instead of degrading.</p>
+      </div>
     </div>
-    <div class="step" data-reveal>
+    <div class="step">
       <span class="n">03</span>
-      <h3>Load a model</h3>
-      <p>The repository ships no weights. Import a GGUF or download an MLX model on the device, then
-         make it resident. In LAS, rotate the bearer key and point a client at the LAN URL.</p>
-    </div>
-  </div>
-  <div class="note" style="margin-top:28px" data-reveal>
-    <strong>Why the entitlements matter.</strong>
-    <code>com.apple.developer.kernel.increased-memory-limit</code> raises the per-process memory cap so
-    multi-billion-parameter weights and their KV cache stay resident;
-    <code>com.apple.developer.kernel.extended-virtual-addressing</code> allows the large virtual address
-    reservations the MLX and llama.cpp allocators make. Re-signing tools can silently drop both.
-  </div>
-</div></section>
-
-<section id="developers"><div class="wrap">
-  <span id="api" style="position:absolute" aria-hidden="true"></span>
-  <div class="eyebrow amber" data-reveal><span class="n">04</span> Developers</div>
-  <h2 data-reveal>Point your tools at the phone</h2>
-  <p class="sub" data-reveal>
-    Served by <code>LocalAPIServer.swift</code> in both editions — opt-in in the studio, always on in
-    LAS. Bearer-authenticated plain HTTP, intended for a network you control.
-  </p>
-
-  <div class="api" data-reveal>
-    <div class="api-col">
-      <h3>OpenAI</h3>
-      <p class="who">aider · Continue · openai-python</p>
-      <ul>
-        <li><span class="verb">GET</span>/v1/models</li>
-        <li><span class="verb">GET</span>/v1/models/{model}</li>
-        <li><span class="verb">POST</span>/v1/chat/completions</li>
-        <li><span class="verb">POST</span>/v1/responses</li>
-      </ul>
-    </div>
-    <div class="api-col">
-      <h3>Anthropic</h3>
-      <p class="who">anthropic-sdk · Messages API</p>
-      <ul>
-        <li><span class="verb">POST</span>/v1/messages</li>
-      </ul>
-    </div>
-    <div class="api-col">
-      <h3>Ollama</h3>
-      <p class="who">Ollama-native clients</p>
-      <ul>
-        <li><span class="verb">GET</span>/api/tags</li>
-        <li><span class="verb">GET</span>/api/ps</li>
-        <li><span class="verb">GET</span>/api/version</li>
-        <li><span class="verb">POST</span>/api/show</li>
-        <li><span class="verb">POST</span>/api/chat</li>
-        <li><span class="verb">POST</span>/api/generate</li>
-      </ul>
-    </div>
-  </div>
-
-  <div id="quickstart" style="margin-top:48px; scroll-margin-top:88px">
-    <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between" data-reveal>
-      <h3 style="margin:0; font-size:17px; font-weight:640">One example at a time</h3>
-      <span class="seg" role="tablist" aria-label="Example language">
-        <button role="tab" id="ex-curl" aria-selected="true" aria-controls="ex-panel-curl">curl</button>
-        <button role="tab" id="ex-aider" aria-selected="false" aria-controls="ex-panel-aider">aider</button>
-        <button role="tab" id="ex-anthropic" aria-selected="false" aria-controls="ex-panel-anthropic">Anthropic SDK</button>
-      </span>
-    </div>
-    <div style="margin-top:16px" data-reveal>
-      <div class="code-block" id="ex-panel-curl" role="tabpanel" aria-label="curl example">
-        <button class="copy" type="button" data-done="✓ copied">copy</button>
-        <pre><span class="c-dim"># stream a completion from the phone on your LAN</span>
-<span class="c-dim">$</span> curl -N http://192.168.1.8:11434/v1/chat/completions \
-    -H <span class="c-amb">"Authorization: Bearer $KEY"</span> \
-    -H <span class="c-amb">'Content-Type: application/json'</span> \
-    -d <span class="c-amb">'{"model":"your-model-id","stream":true,
-         "messages":[{"role":"user","content":"Explain SSE in one line."}]}'</span></pre>
+      <div>
+        <h3>Load a model and make it resident</h3>
+        <p>The repository ships no weights. Import a GGUF or download an MLX model on the device, then load it. In LAS, rotate the bearer key and point your client at the LAN address the app shows.</p>
       </div>
-      <div class="code-block" id="ex-panel-aider" role="tabpanel" aria-label="aider example" hidden>
-        <button class="copy" type="button" data-done="✓ copied">copy</button>
-        <pre><span class="c-dim"># point aider at the phone</span>
-<span class="c-dim">$</span> export OPENAI_API_BASE=http://192.168.1.8:11434/v1
-<span class="c-dim">$</span> export OPENAI_API_KEY=<span class="c-amb">&lt;key from the app&gt;</span>
-<span class="c-dim">$</span> aider --model openai/your-model-id</pre>
-      </div>
-      <div class="code-block" id="ex-panel-anthropic" role="tabpanel" aria-label="Anthropic SDK example" hidden>
-        <button class="copy" type="button" data-done="✓ copied">copy</button>
-        <pre><span class="c-dim"># or use the Anthropic dialect with the same key</span>
-<span class="c-dim">$</span> export ANTHROPIC_BASE_URL=http://192.168.1.8:11434
-<span class="c-dim">$</span> export ANTHROPIC_API_KEY=<span class="c-amb">&lt;same key&gt;</span>
-<span class="c-dim">$</span> curl -s $ANTHROPIC_BASE_URL/v1/messages \
-    -H <span class="c-amb">"x-api-key: $ANTHROPIC_API_KEY"</span> \
-    -d <span class="c-amb">'{"model":"your-model-id","max_tokens":512,
-         "messages":[{"role":"user","content":"ping"}]}'</span></pre>
-      </div>
-      <p class="textlink" style="margin-top:14px">
-        <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">Full agent integration docs ↗</a>
-      </p>
-    </div>
-
-    <div style="margin-top:36px" data-reveal>
-      <div class="term" id="term" data-scene="studio" aria-label="Simulated terminal demonstration">
-        <div class="term-bar">
-          <i class="lights"></i><i class="lights"></i><i class="lights"></i>
-          <span class="t" id="term-title">ondevice llm — local session</span>
-        </div>
-        <pre class="term-body" id="term-out" aria-live="off"></pre>
-      </div>
-      <p class="textlink" style="margin-top:10px; font-family:var(--mono); font-size:12px">
-        Simulated transcript for illustration — timings and speeds are not measurements.
-      </p>
-    </div>
-  </div>
-
-  <div id="requirements" style="margin-top:48px; scroll-margin-top:88px" data-reveal>
-    <div class="disclosure">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="req-full">
-        Full model requirements for agent work
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-      </button>
-      <div class="disclosure-body" id="req-full"><div><div class="disclosure-inner">
-        <p style="margin:0 0 14px; color:var(--text-dim); font-size:14.5px">
-          Agent clients drive long tool-calling conversations. A model must carry a real
-          65,536-token context and a matching KV cache before the server treats it as agent-ready;
-          below that you get a Hermes-compatibility warning instead of a mid-session failure.
-        </p>
-        <div class="tbl-scroll"><table>
-          <thead><tr>
-            <th scope="col">Model family</th><th scope="col">Context</th><th scope="col">Tool parser</th>
-            <th scope="col">Parallel</th><th scope="col">Max output</th><th scope="col">KV cache</th>
-          </tr></thead>
-          <tbody>
-            <tr><th scope="row" class="row">Qwen3<br><span class="tdim">needs YaRN ×2</span></th><td class="k acc">65,536</td><td class="k">hermes</td><td class="k">2</td><td class="k">4,096</td><td class="k">1.1–4.3 GB</td></tr>
-            <tr><th scope="row" class="row">Qwen3.5</th><td class="k acc">65,536</td><td class="k">qwen3_coder</td><td class="k">2</td><td class="k">4,096</td><td class="k">~1.1 GB</td></tr>
-            <tr><th scope="row" class="row">Ornith</th><td class="k acc">65,536</td><td class="k">qwen3_xml</td><td class="k">2</td><td class="k">4,096</td><td class="k">~1.1 GB</td></tr>
-            <tr><th scope="row" class="row">Bonsai<br><span class="tdim">not agent-ready</span></th><td class="k">≤ 32,768</td><td class="k">qwen3_coder</td><td class="k">1</td><td class="k">2,048</td><td class="k">≤ 0.5 GB</td></tr>
-            <tr><th scope="row" class="row">Other / imported<br><span class="tdim">no tool support</span></th><td class="k">catalog</td><td class="k">none</td><td class="k">1</td><td class="k">≤ 4,096</td><td class="k">varies</td></tr>
-          </tbody>
-        </table></div>
-        <p style="margin:14px 0 0; color:var(--text-dim); font-size:14.5px">Tested runs:
-          Qwen 3.5 series · Ornith 1.0 9B · Ternary Bonsai 27B · Nanbeige. Availability depends on device
-          memory, thermal headroom, model licence and quantization — not a fixed support list.</p>
-      </div></div></div>
     </div>
   </div>
 </div></section>
 
-<section id="security"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">05</span> Boundaries</div>
-  <h2 data-reveal>What it will and will not do</h2>
-  <p class="sub" data-reveal>Stated plainly, because trust is the product here.</p>
-  <div class="grid">
-    <div class="card" data-reveal>
-      <h3>Trusted LAN only</h3>
-      <p>Bearer-authenticated plain HTTP, designed for a network you control — not for exposure to the
-         internet. Do not port-forward it.</p>
+<section id="source"><div class="wrap">
+  <div class="source-grid">
+    <div>
+      <h2 style="margin-bottom:24px">Use it. Inspect it. Build on it.</h2>
+      <p>OnDevice is developed in the open: a SwiftUI workbench over MLX, llama.cpp, whisper.cpp and Core ML, with the local API layer extracted so other projects can reuse it.</p>
+      <p><b>Run it</b> from a release, <b>read it</b> in the repository, <b>report</b> a reproducible issue, or <b>contribute</b> a fix. The architecture, validation policy and component catalogue are documented for people who want to build on parts of it rather than the whole app.</p>
+      <div class="hero-ta" style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px">
+        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm">Star on GitHub</a>
+        <a class="btn ghost" href="https://github.com/Mesutcydev/ios-local-llm/issues">Report an issue</a>
+      </div>
     </div>
-    <div class="card" data-reveal>
-      <h3>Foreground only</h3>
-      <p>The listener stops when iOS backgrounds the app. A request that arrives before a model is
-         resident gets a service-unavailable response, not a hang.</p>
-    </div>
-    <div class="card" data-reveal>
-      <h3>No silent execution</h3>
-      <p>The server returns tool calls; it does not run them. Executing a call is always the client's
-         decision, and invalid names or arguments are rejected first.</p>
-    </div>
-    <div class="card" data-reveal>
-      <h3>No silent cloud fallback</h3>
-      <p>If a model cannot be admitted to memory, you are told. Inference does not quietly move to a
-         hosted endpoint because the device said no.</p>
-    </div>
-    <div class="card" data-reveal>
-      <h3>Explicit network use</h3>
-      <p>The only outbound traffic is a model download you start yourself. Prompts, weights and outputs
-         stay in app storage.</p>
-    </div>
-    <div class="card" data-reveal>
-      <h3>Auditable</h3>
-      <p>MIT source with CI validation, CodeQL, an OpenSSF scorecard, an SPDX SBOM, and per-release
-         SHA-256 checksums and third-party notices.</p>
-    </div>
-  </div>
-
-  <div class="faq" style="margin-top:40px" data-reveal>
-    <div class="disclosure">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-1">Does anything leave the device?</button>
-      <div class="disclosure-body" id="faq-1"><div><div class="disclosure-inner">
-        <p>Only what you explicitly start: a model download from Hugging Face, or the opt-in Mac pairing
-           channel on your own LAN. Prompts, weights, history and outputs stay in app storage. There is
-           no telemetry and no analytics SDK.</p>
-      </div></div></div>
-    </div>
-    <div class="disclosure">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-2">Can I use it without a computer?</button>
-      <div class="disclosure-body" id="faq-2"><div><div class="disclosure-inner">
-        <p>For signing, ForgeSign re-signs IPAs on the device itself. AltStore and SideStore need a
-           computer or a server for periodic refreshes, depending on your certificate.</p>
-      </div></div></div>
-    </div>
-    <div class="disclosure">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-3">Which models work?</button>
-      <div class="disclosure-body" id="faq-3"><div><div class="disclosure-inner">
-        <p>Any MLX model or GGUF your device memory can hold, subject to the model's licence. The app
-           checks memory fit before downloading and warns when a family lacks tool-call support rather
-           than failing mid-session.</p>
-      </div></div></div>
-    </div>
-    <div class="disclosure">
-      <button class="disclosure-btn" type="button" aria-expanded="false" aria-controls="faq-4">Is there an App Store version?</button>
-      <div class="disclosure-body" id="faq-4"><div><div class="disclosure-inner">
-        <p>Not currently. The repository is the canonical source distribution and sideload builds appear
-           under Releases. The app was previously distributed through the App Store.</p>
-      </div></div></div>
-    </div>
+    <ul class="link-list">
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm">Repository <span>source of truth</span></a></li>
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/CONTRIBUTING.md">Contributing guide <span>how to send changes</span></a></li>
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ARCHITECTURE.md">Architecture <span>layers and invariants</span></a></li>
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">Agent integration <span>routes and examples</span></a></li>
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/REUSABLE_COMPONENTS.md">Reusable components <span>extractable parts</span></a></li>
+      <li><a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/SECURITY.md">Security policy <span>reporting</span></a></li>
+    </ul>
   </div>
 </div></section>
 
-<section id="get" style="border-bottom:0"><div class="wrap">
-  <div class="eyebrow" data-reveal><span class="n">06</span> Get OnDevice</div>
-  <h2 data-reveal>Choose your surface</h2>
-  <p class="sub" data-reveal>Both editions, one runtime. Install one, or both side by side.</p>
-  <div class="final">
-    <article class="edition" data-reveal>
-      <div class="edition-head">
-        <img src="/assets/icon-128.png" width="52" height="52" alt="OnDevice LLM app icon">
-        <h3>OnDevice LLM</h3>
-      </div>
-      <p class="edition-for">For working directly with your models.</p>
-      <p class="edition-benefit">The studio: chat, lens, voice and model control.</p>
-      <div class="edition-actions">
-        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.7-112/IOSLocalLLM-3.2.7-112-sideload-entitled-full.ipa">Download 3.2.7 (112) <span class="k">51.2 MiB</span></a>
-        <a class="textlink" href="#install">How to install</a>
-      </div>
-    </article>
-    <article class="edition srv" data-reveal>
-      <div class="edition-head">
-        <img src="/assets/icon-128.png" width="52" height="52" alt="On Device LAS app icon">
-        <h3>On Device: LAS</h3>
-      </div>
-      <p class="edition-for">For connecting your existing tools to a local model.</p>
-      <p class="edition-benefit">The server: OpenAI-, Anthropic- and Ollama-compatible on port 11434.</p>
-      <div class="edition-actions">
-        <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">Download 3.2.6 (143) <span class="k">25.1 MiB</span></a>
-        <a class="textlink" href="#install">How to install</a>
-      </div>
-    </article>
+<section id="boundaries"><div class="wrap">
+  <span id="security" style="position:absolute" aria-hidden="true"></span>
+  <div class="sec-head">
+    <h2>What it will not do.</h2>
+    <p>Stated plainly, because trust is the product.</p>
+  </div>
+  <div class="bounds">
+    <div><h3>Expose itself to the internet</h3><p>The local API is bearer-authenticated plain HTTP for a network you control. Do not port-forward it.</p></div>
+    <div><h3>Keep serving in the background</h3><p>The listener stops when iOS backgrounds the app. Early requests get service-unavailable, not a hang.</p></div>
+    <div><h3>Run tools on your behalf</h3><p>The server returns tool calls; executing them is always the client's decision.</p></div>
+    <div><h3>Fall back to the cloud silently</h3><p>If a model cannot be admitted to memory, you are told. Inference never moves to a hosted endpoint quietly.</p></div>
+    <div><h3>Phone home</h3><p>No telemetry, no analytics SDK. The only outbound traffic is a model download you start.</p></div>
+    <div><h3>Pretend beyond its evidence</h3><p>Simulator captures are labelled as such; physical-device thermal and memory validation is documented separately.</p></div>
   </div>
 </div></section>
+
+<section class="end" id="get"><div class="wrap">
+  <h2>Read the source.<br>Run the model.</h2>
+  <p>Everything above is in one public repository — the workbench, the server layer, and the documentation that explains both.</p>
+  <div class="hero-ta">
+    <a class="btn solid" href="https://github.com/Mesutcydev/ios-local-llm">View on GitHub</a>
+    <a class="btn" href="#install">Installation guide</a>
+  </div>
+</div></section>
+</main>
 
 <footer><div class="wrap">
-  <div class="row">
+  <div class="foot-row">
     <a href="https://github.com/Mesutcydev/ios-local-llm">Repository</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm/releases">All releases</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">Agent integration</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ON_DEVICE_LAS.md">LAS docs</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/ARCHITECTURE.md">Architecture</a>
-    <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/SECURITY.md">Security policy</a>
+    <a href="https://github.com/Mesutcydev/ios-local-llm/releases">Releases</a>
     <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/PRIVACY_POLICY.md">Privacy</a>
     <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/LICENSE">MIT License</a>
   </div>
-  <p class="disclaimer">
-    Built with Swift, SwiftUI, MLX, llama.cpp, whisper.cpp and Core ML. Apple, iPhone and Mac are
-    trademarks of Apple Inc. Model weights are not distributed with this project and remain subject to
-    their own licences — read a model card before use. Independent project, not affiliated with or
-    endorsed by Apple Inc. Simulator captures are not a substitute for physical-device evidence.
-  </p>
-  <div class="sums">
-    <div><b>OnDevice LLM 3.2.7 (112)</b> · sha256 de432ca3c9cc7b715d1879066aabfbc4d4439b59ac3028e2ba4b78527f62a19d</div>
-    <div><b>OnDevice Core 1.0.0 (10)</b> · sha256 55099346d1893534c1418079851e1bdeacfc38db43ec01a61743965c60af2b44</div>
-    <div><b>On Device: LAS 3.2.6 (143)</b> · <a href="https://github.com/Mesutcydev/ios-local-llm/releases/tag/sideload-3.2.6-143">checksum on the release ↗</a></div>
+  <div class="foot-sums">
+    <div><b>OnDevice LLM 3.2.7 (112)</b> sha256 de432ca3…7f62a19d · <b>OnDevice Core 1.0.0 (10)</b> sha256 55099346…60af2b44 · <b>LAS 3.2.6 (143)</b> checksum on its release</div>
+    <div>Built with Swift, SwiftUI, MLX, llama.cpp, whisper.cpp and Core ML. Apple, iPhone and Mac are trademarks of Apple Inc. Model weights are not distributed with this project and remain subject to their own licences. Independent project, not affiliated with or endorsed by Apple Inc.</div>
+  </div>
+  <div class="foot-theme">
+    <span>Appearance</span>
+    <span class="ctl" role="group" aria-label="Theme">
+      <button type="button" data-theme-set="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false">Dark</button>
+      <button type="button" data-theme-set="system" aria-pressed="true">System</button>
+    </span>
   </div>
 </div></footer>
 
 <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title" hidden>
   <div class="viewer-panel">
     <div class="viewer-bar">
-      <span id="viewer-title">Preview</span>
+      <span id="viewer-title">Screenshot</span>
       <button type="button" data-viewer-close>Close ×</button>
     </div>
     <div class="viewer-body"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
@@ -708,6 +355,6 @@
   </div>
 </div>
 
-<script src="/shell/site.js?v=2"></script>
+<script src="/shell/site.js?v=3"></script>
 </body>
 </html>
