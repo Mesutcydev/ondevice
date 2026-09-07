@@ -152,6 +152,12 @@ nav .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: cen
   .nav-menu { display: inline-flex; justify-self: end; }
   .nav-end .plain, .nav-end .btn { display: none; }
 }
+@media (max-width: 560px) {
+  /* header keeps brand + language + menu; theme moves into the menu */
+  .nav-end .ctl[aria-label="Theme"] { display: none; }
+}
+.nav-drop .ctl { justify-self: start; margin-top: 8px; }
+@media (min-width: 761px) { .nav-drop .ctl { display: none; } }
 
 /* segmented utility controls (language, theme) */
 .ctl { display: flex; align-items: center; gap: 2px; border: 1px solid var(--line); border-radius: 10px; padding: 2px; background: var(--surface); }
