@@ -194,9 +194,10 @@ h1 .l2 { display: block; }
   .js .inspect { animation: inspectIn 500ms var(--ease) 250ms both; }
   @keyframes inspectIn { from { opacity: 0; transform: translateY(-50%) translateX(8px); } to { opacity: 1; transform: translateY(-50%); } }
 }
-/* below 768 the crop moves under the image; connector hidden */
+/* below 768 the image goes width-driven for legibility; crop stacks under it */
 @media (max-width: 767px) {
-  .device-box { margin: 0 auto; }
+  .device-box { margin: 0 auto; width: min(100%, 420px); }
+  .device-box > img { width: 100%; height: auto; }
   .inspect-line { display: none; }
   .inspect { position: static; transform: none; width: min(340px, 80%); margin: 20px auto 0; }
   .js .inspect { animation-name: inspectInStacked; }
