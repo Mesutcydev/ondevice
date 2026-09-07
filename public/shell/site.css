@@ -159,7 +159,7 @@ h1 .l2 { display: block; }
 /* hero media: one dominant device image + one inspection detail below it,
    joined by a single vertical rule from the marked source area */
 .hero-media { position: relative; min-width: 0; }
-.device-box { position: relative; width: min(100%, 400px); margin: 0 auto; }
+.device-box { position: relative; width: min(100%, 480px); margin: 0 auto; }
 .device-box > img {
   display: block; width: 100%; height: auto;
   border-radius: 28px; border: 1px solid var(--line);

@@ -1,34 +1,41 @@
 # ondevice.fun
 
-Product site for the **OnDevice** line, served by a Cloudflare Worker with static
-assets. One page per locale covering the two builds that ship from
+Promotional site for the **OnDevice** open-source project — an editorial
+software launch page, not a SaaS template. One page per locale:
+English (`/`), Turkish (`/tr/`), Simplified Chinese (`/zh/`).
+
+The promoted software ships from
 [`Mesutcydev/ios-local-llm`](https://github.com/Mesutcydev/ios-local-llm):
 
-| Build | What it is |
+| Product | What it is |
 | --- | --- |
-| **OnDevice LLM** | The studio — assistant, lens, voice, model control, opt-in local API |
-| **On Device: LAS** | The server — same runtime reduced to a bearer-authenticated local API |
+| **OnDevice LLM** | The workbench — assistant, camera/OCR, voice, model library |
+| **On Device: LAS** | The local API server — OpenAI/Anthropic/Ollama-compatible, bearer-authenticated |
+| **OnDevice Core** | Specialized iOS 27+ variant on Apple Core AI (secondary row, not a flagship) |
 
-Locales: English (`/`), Turkish (`/tr/`), Simplified Chinese (`/zh/`).
+## Page structure
 
-## Page architecture
+1. **Hero** — "Your iPhone can run the model." Oversized Inter headline beside a
+   complete, full-brightness model-library screenshot. The OnDevice signature: a
+   magnified crop of the *same* screenshot's `Loaded` row, joined to a marker on its
+   source column by one thin rule. Primary action is GitHub; "Get the app" leads to
+   the edition decision.
+2. **Product story** — "Use the app. Or connect your tools." One coordinated
+   showcase with a W3C-tabs selector switching a stable media frame. The tools view
+   shows a labelled example request with placeholders and keeps the operational
+   boundaries beside it.
+3. **Editions** (`#editions`) — open rows separated by thin rules: name, purpose,
+   status, platform, size, and only the actions that exist (Download IPA /
+   Installation guide / Source). Sideload-not-App-Store stated in the open.
+   Checksums, bundle ids and entitlements live in a technical disclosure.
+4. **Install** — three honest stages; entitlement survival called out.
+5. **Source** — "Use it. Inspect it. Build on it." with repository, contributing,
+   architecture, agent-integration and security links. Star invitation appears only
+   after the product is demonstrated.
+6. **Boundaries** — what it will not do, as a plain ruled list.
+7. **End** — quiet return to the source action.
 
-Product-first, engineering one layer deeper:
-
-1. **Hero** — proposition + a stable device frame with a Studio/Server switch
-   (crossfade inside one frame; the frame, selector and outer height never move).
-2. **Editions** — decision cards: who it's for → benefit → preview → three
-   differentiators → platform/release summary → download + *How to install* →
-   *Technical details* disclosure (bundle id, artifact, entitlements, checksum).
-   Below: a deliberate full-width **Core** panel, a 3-row decision table, and an
-   expandable full comparison.
-3. **Showcase** — guided demonstrations: one selected screen, one heading, one
-   explanation, per surface. Frames open an accessible screenshot viewer.
-4. **Install** — three stages + the honest entitlements note.
-5. **Developers** — endpoints, one example at a time (curl / aider / Anthropic SDK
-   tabs with copy buttons), a labelled simulated terminal, and the full model
-   requirements table inside a disclosure.
-6. **Boundaries + FAQ**, then a calm **Get OnDevice** return to the choice.
+No card grids, no bento, no badges-as-decoration, no fake terminals, no ambient glow.
 
 ## Layout
 
@@ -39,75 +46,54 @@ public/
   zh/index.html      Simplified Chinese
   404.html           not-found page
   _headers           cache + security headers
-  _redirects         legacy paths → current anchors
+  _redirects         legacy paths/anchors → current sections
   assets/
-    icon-128.png     grey-eye brand mark
-    favicon.png / apple-touch-icon.png
-    og-en/tr/zh.png  monochrome OG cards per locale
-    previews/        studio screenshots (620px)
-    shots/           LAS screenshots
+    hero-models.png      complete model-library capture (source aspect)
+    inspect-loaded.png   magnified crop of the same capture's Loaded row
+    story-app.png        assistant conversation capture
+    story-tools.png      LAS server homepage capture
+    og-en/tr/zh.png      share cards: brand + Inter + real product crop
+    fonts/               self-hosted Inter (OFL), woff2 latin + latin-ext
+    icon-128.png / favicon.png / apple-touch-icon.png
   shell/
-    site.css         design system: tokens, layout, motion, theming
-    site.js          tabs, disclosures, viewer, copy, reveals, terminal
+    site.css         editorial design system (tokens, type scale, motion)
+    site.js          tabs, viewer, menu, copy, disclosures
 wrangler.jsonc       Worker config: assets dir + custom domains
 ```
 
-No bundler, no `package.json`. Wrangler runs through `npx` in Workers Builds.
+No bundler, no `package.json`, no animation library. Wrangler runs through `npx` in
+Workers Builds; pushing to `main` deploys. Custom domains `ondevice.fun` and
+`www.ondevice.fun` are declared in `wrangler.jsonc` routes.
 
 ## Design system
 
-Tokens (starting specs, tuned against the rendered page): content width 1200px;
-gutters 20px mobile / 32–48px desktop; section spacing 64–80px mobile /
-104–128px desktop; grid gaps 24px; card radius 24px, controls 12–14px; buttons
-46px; body 16–17px / 1.6; measure ~62ch. Three surface levels (`--bg`,
-`--surface`, `--surface-2`). Mono reserved for code, identifiers, versions.
-Body text targets ≥4.5:1 contrast in both schemes.
+Dark neutral ground `#0C0D0F`, silver type `#F1F0EC`, secondary `#ADB0B7`, hairline
+`#30333A`, restrained accent `#86DDC8`; light scheme mirrors it. Body text verified
+≥4.5:1 in both. Inter (SIL OFL) self-hosted as variable woff2 subsets; monospace only
+for commands, exact values and small release details. 1200px content cap, 48px desktop
+gutters, 20px mobile, 4px-based spacing scale. Type scale: hero 42–104px, sections
+36–56px, body 17px/1.6, metadata 12–13px. Buttons 46px tall, 8px radius.
 
 ## Motion
 
-One non-bouncy easing family; different energy per interaction. Hero 8px rise
-(460ms); section reveals 12px once (420ms, 50ms stagger, capped at 6); card hover
-3px lift (180ms, hover-capable pointers only); press `scale(.985)` (100ms);
-Studio/Server switch crossfade + 8px directional movement in a stable frame
-(250ms); disclosures natural-height with chevron rotation (250ms); viewer backdrop
-fade + slight scale (200ms). No scroll hijacking, no pinned sequences. Under
-`prefers-reduced-motion` everything collapses to static or minimal fades, and the
-terminal renders its final state.
-
-## Accessibility
-
-- Tabs follow the W3C APG pattern: roving tabindex, arrow/Home/End keys,
-  `aria-selected`, associated `role="tabpanel"` panels.
-- Screenshot viewer is a modal dialog: Escape closes, focus is trapped and
-  returned to the trigger, backdrop click closes.
-- Content is visible without JavaScript: the `.js` class gates all entrance
-  animation, disclosures render open, and nav links remain reachable.
-- Touch targets ≥36–46px; the simulated terminal is labelled as a simulation.
-
-## Theming
-
-`data-theme` on `<html>`: `dark`, `light`, `system` (default). An inline boot
-script reads `localStorage['ondevice-theme']` before first paint (no flash) and
-adds the `.js` class. The nav toggle writes the preference.
-
-## Locales
-
-Full standalone pages, not machine translation: protocol terms stay English where
-developers keep them (`tool calling`, `entitlement`, `KV cache`), numbers follow
-local convention (`65.536` in Turkish), terminal scenes localised via
-`window.ONDEVICE_SCENES`. `hreflang` alternates, `og:locale`, canonicals and a
-sitemap with `xhtml:link` keep the three in sync.
-
-## Deploy
-
-Push to `main` → Workers Build runs `npx wrangler deploy`. Custom domains
-`ondevice.fun` + `www.ondevice.fun` are declared in `wrangler.jsonc` routes;
-Cloudflare creates DNS records and certificates (needs DNS Edit on the zone).
+One easing family `cubic-bezier(0.22, 1, 0.36, 1)`; transform and opacity only.
+Button 120–160ms, selection 160–200ms, showcase 220–280ms, viewer ~210ms, hero media
+460ms. Hero copy and actions never wait for media. No scroll hijacking, no pinned
+sequences, no perpetual motion. `prefers-reduced-motion` removes spatial entrances and
+switches views with a minimal fade while keeping all feedback. Content is fully visible
+without JavaScript (both story panels present; JS hides the inactive one).
 
 ## Facts
 
-Versions, build numbers, IPA sizes, bundle ids, checksums, entitlements, endpoints
-and the model requirements table come from the source repo's `README.md`,
-`ON_DEVICE_LAS.md`, `altstore/source.json` and release assets. When a build ships,
-update in **all three locales**: hero strip is unaffected, but the edition cards
-(summary + technical details), the `#get` buttons, and the footer checksums.
+Versions, sizes, bundle ids, checksums, entitlements and platform requirements come
+from the source repository's README, release assets and docs — never from screenshots.
+When a build ships, update in **all three locales**: the edition rows, the technical
+disclosure, and the footer checksum line.
+
+## Verified
+
+Builds green on every push; live checks at 360/390/768/1024/1440/1920 (no horizontal
+overflow, no clipped headings, ≥44px targets); direct `#editions` arrival shows the
+section heading below the sticky masthead; keyboard tab navigation with roving
+tabindex; viewer opens with focus on Close, Escape closes, focus returns; legacy
+anchors and paths redirect. Not verified: real-device install, conversion metrics.
