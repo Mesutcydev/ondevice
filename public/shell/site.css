@@ -156,11 +156,12 @@ h1 .l2 { display: block; }
 .hero-facts { margin: 34px 0 0; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px 20px; font-family: var(--mono); font-size: 12.5px; color: var(--faint); }
 .hero-facts b { color: var(--dim); font-weight: 500; }
 
-/* hero media: one dominant device image + one inspection detail */
-.hero-media { position: relative; min-width: 0; --devh: clamp(420px, 62vh, 720px); }
-.device-box { position: relative; width: fit-content; }
+/* hero media: one dominant device image + one inspection detail below it,
+   joined by a single vertical rule from the marked source area */
+.hero-media { position: relative; min-width: 0; }
+.device-box { position: relative; width: min(100%, 400px); margin: 0 auto; }
 .device-box > img {
-  display: block; height: var(--devh); width: auto; max-width: 100%;
+  display: block; width: 100%; height: auto;
   border-radius: 28px; border: 1px solid var(--line);
   background: var(--surface);
 }
@@ -173,36 +174,21 @@ h1 .l2 { display: block; }
   position: absolute; left: 4.2%; top: 9.1%; width: 56.4%; height: 6.2%;
   border: 1px solid var(--accent); border-radius: 3px; opacity: .85; pointer-events: none;
 }
-/* connector from marker to the magnified crop */
+/* one restrained vertical connection: marker column down to the crop */
 .inspect-line {
-  position: absolute; top: calc(var(--devh) * 0.1221);
-  left: calc(var(--devh) * 0.2789);
-  right: calc(100% - (var(--devh) * 0.4603 + 24px)); height: 1px;
+  position: absolute; left: 32.4%; top: 100%; width: 1px; height: 20px;
   background: color-mix(in srgb, var(--accent) 45%, transparent); pointer-events: none;
 }
-/* the magnified detail — always clear of the screenshot itself */
+/* the magnified detail */
 .inspect {
-  position: absolute; top: calc(var(--devh) * 0.1221); transform: translateY(-50%);
-  left: calc(var(--devh) * 0.4603 + 24px);
-  width: min(280px, calc(100% - var(--devh) * 0.4603 - 24px));
-  margin: 0;
+  width: min(340px, 86%); margin: 20px auto 0;
 }
 .inspect img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
 .inspect figcaption { margin-top: 8px; font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--faint); }
 .inspect figcaption b { color: var(--accent); font-weight: 500; }
 @media (prefers-reduced-motion: no-preference) {
   .js .inspect { animation: inspectIn 500ms var(--ease) 250ms both; }
-  @keyframes inspectIn { from { opacity: 0; transform: translateY(-50%) translateX(8px); } to { opacity: 1; transform: translateY(-50%); } }
-}
-/* below 1024 the layout is single-column, so the image goes width-driven
-   for legibility and the crop stacks under it; connector hidden */
-@media (max-width: 1023px) {
-  .device-box { margin: 0 auto; width: min(100%, 420px); }
-  .device-box > img { width: 100%; height: auto; }
-  .inspect-line { display: none; }
-  .inspect { position: static; transform: none; width: min(340px, 80%); margin: 20px auto 0; }
-  .js .inspect { animation-name: inspectInStacked; }
-  @keyframes inspectInStacked { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes inspectIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 }
 .hero-media .enlarge { margin-top: 18px; display: inline-flex; }
 
@@ -369,7 +355,5 @@ footer .wrap { display: grid; gap: 18px; }
   .story-panel:not([hidden]) { animation: none; }
   .story-media img, .viewer, .viewer-panel, .disclosure-body, .btn, .mast { transition: none; }
   .btn:active { transform: none; }
-  .inspect { transform: translateY(-50%); }
   .story-tabs [role="tab"], .copy-btn, .disclosure-btn svg, .langs a, .mast nav a { transition: none; }
 }
-@media (max-width: 1023px) and (prefers-reduced-motion: reduce) { .inspect { transform: none; } }
