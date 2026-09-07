@@ -194,8 +194,9 @@ h1 .l2 { display: block; }
   .js .inspect { animation: inspectIn 500ms var(--ease) 250ms both; }
   @keyframes inspectIn { from { opacity: 0; transform: translateY(-50%) translateX(8px); } to { opacity: 1; transform: translateY(-50%); } }
 }
-/* below 768 the image goes width-driven for legibility; crop stacks under it */
-@media (max-width: 767px) {
+/* below 1024 the layout is single-column, so the image goes width-driven
+   for legibility and the crop stacks under it; connector hidden */
+@media (max-width: 1023px) {
   .device-box { margin: 0 auto; width: min(100%, 420px); }
   .device-box > img { width: 100%; height: auto; }
   .inspect-line { display: none; }
@@ -371,4 +372,4 @@ footer .wrap { display: grid; gap: 18px; }
   .inspect { transform: translateY(-50%); }
   .story-tabs [role="tab"], .copy-btn, .disclosure-btn svg, .langs a, .mast nav a { transition: none; }
 }
-@media (max-width: 767px) and (prefers-reduced-motion: reduce) { .inspect { transform: none; } }
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) { .inspect { transform: none; } }
