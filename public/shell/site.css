@@ -121,6 +121,11 @@ nav .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: cen
 .nav-end a.plain { color: var(--text-dim); font-size: 14px; padding: 10px 4px; }
 .nav-end a.plain:hover { color: var(--text); text-decoration: none; }
 @media (max-width: 900px) { .nav-mid a.hide-md { display: none; } }
+/* true optical centring once there is room for the absolute middle column */
+@media (min-width: 1200px) {
+  nav .wrap { position: relative; }
+  .nav-mid { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+}
 @media (max-width: 760px) {
   nav { height: auto; }
   nav .wrap { grid-template-columns: auto 1fr; padding-top: 10px; padding-bottom: 10px; row-gap: 6px; height: auto; }
