@@ -9,10 +9,10 @@
 /assets/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-# site.css and site.js are hand-versioned via query string on change; allow a
-# short cache so a deploy reaches visitors promptly.
+# site.css and site.js are referenced with a ?v= query string that is bumped on
+# every change; the bare paths must always revalidate so a deploy lands at once.
 /assets/site.css
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cache-Control: no-cache
 
 /assets/site.js
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Cache-Control: no-cache
