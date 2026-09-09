@@ -37,7 +37,7 @@
     r.classList.add('js');
   })();
 </script>
-<link rel="stylesheet" href="/shell/site.css?v=3">
+<link rel="stylesheet" href="/shell/site.css?v=4">
 </head>
 <body>
 
@@ -52,11 +52,6 @@
     <a href="#install">安装</a>
   </nav>
   <span class="mast-end">
-    <span class="langs" role="group" aria-label="语言">
-      <a href="/" lang="en">EN</a>
-      <a href="/tr/" lang="tr">TR</a>
-      <a href="/zh/" aria-current="page" lang="zh-Hans">中文</a>
-    </span>
     <a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm">GitHub</a>
     <button class="mast-menu" type="button" aria-expanded="false" aria-controls="mast-drop" aria-label="菜单">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -68,6 +63,12 @@
     <a href="#install">安装</a>
     <a href="#source">源码</a>
     <a href="https://github.com/Mesutcydev/ios-local-llm">GitHub ↗</a>
+    <span class="mast-drop-label">语言</span>
+    <span class="mast-drop-langs">
+      <a href="/" lang="en">EN</a>
+      <a href="/tr/" lang="tr">TR</a>
+      <a href="/zh/" aria-current="page" lang="zh-Hans">中文</a>
+    </span>
   </span>
 </div></header>
 
@@ -91,18 +92,18 @@
     <div class="hero-media">
       <div class="device-box">
         <img src="/assets/hero-models.png" width="1320" height="2868" fetchpriority="high"
-             alt="iPhone 上的 OnDevice LLM 模型库：Qwen3.5-4B 显示为 Loaded 并标出内存占用，下方是可下载的模型家族及其体积与内存适配信息">
+             alt="iPhone 上的 OnDevice LLM 模型库：Qwen3-4B 2507 显示为推荐，内存占用 2.3 GB 且通过适配检查，下方是可下载的模型家族及其体积与内存适配信息">
         <span class="inspect-mark" aria-hidden="true"></span>
         <span class="inspect-line" aria-hidden="true"></span>
       </div>
       <figure class="inspect">
-        <img src="/assets/inspect-loaded.png" width="744" height="176"
-             alt="同一屏幕的放大细节：处于 Loaded 状态的 Qwen3.5-4B 一行">
-        <figcaption><b>Loaded</b> — 4-bit Qwen3.5 以 3.06 GB 驻留在设备上</figcaption>
+        <img src="/assets/inspect-loaded.png" width="1160" height="420"
+             alt="同一屏幕的放大细节：Qwen3-4B 2507 一行，显示 2.3 GB、适配状态和推荐标签">
+        <figcaption><b>适配检查</b> — 4-bit Qwen3-4B 2507，2.3 GB，推荐用于此设备</figcaption>
       </figure>
       <button class="btn sm ghost enlarge" type="button"
               data-viewer-src="/assets/hero-models.png" data-viewer-title="模型库"
-              data-viewer-cap="OnDevice LLM 模型库：Qwen3.5-4B 已加载并显示内存占用，下方是可下载的模型家族及其体积与内存适配信息。">放大截图</button>
+              data-viewer-cap="OnDevice LLM 模型库：Qwen3-4B 2507 显示为推荐，内存占用 2.3 GB 且通过适配检查，下方是可下载的模型家族及其体积与内存适配信息。">放大截图</button>
     </div>
   </div>
 </div></section>

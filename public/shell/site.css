@@ -109,10 +109,19 @@ section, [id] { scroll-margin-top: 84px; }
 .mast-drop { position: absolute; top: 64px; left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--line); padding: 8px var(--gutter) 16px; display: grid; gap: 2px; }
 .mast-drop a { color: var(--dim); padding: 12px 8px; font-size: 15.5px; font-weight: 500; border-radius: 6px; }
 .mast-drop a:hover { color: var(--text); background: var(--bg); text-decoration: none; }
+.mast-drop-label { margin: 12px 8px 2px; border-top: 1px solid var(--line); padding-top: 12px; color: var(--faint); font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; }
+.mast-drop-langs { display: flex; gap: 8px; padding: 4px 8px; }
+.mast-drop-langs a { padding: 10px 12px; border: 1px solid var(--line); font-size: 13px; }
 @media (max-width: 860px) {
   .mast nav { display: none; }
   .js .mast-menu { display: inline-flex; }
   .mast .wrap { gap: 14px; }
+}
+@media (max-width: 680px) {
+  .mast { height: 72px; }
+  .mast .wrap { height: 72px; padding-left: max(var(--gutter), env(safe-area-inset-left)); padding-right: max(var(--gutter), env(safe-area-inset-right)); }
+  .js .langs { display: none; }
+  .mast-drop { top: 72px; }
 }
 /* no-JS: keep nav reachable on small screens */
 @media (max-width: 860px) {
@@ -136,7 +145,7 @@ section, [id] { scroll-margin-top: 84px; }
 .btn.solid:hover { background: color-mix(in srgb, var(--text) 88%, var(--bg)); border-color: color-mix(in srgb, var(--text) 88%, var(--bg)); }
 .btn.ghost { border-color: transparent; color: var(--dim); }
 .btn.ghost:hover { color: var(--text); border-color: transparent; text-decoration: underline; text-underline-offset: 4px; }
-.btn.sm { min-height: 40px; padding: 0 14px; font-size: 13.5px; }
+.btn.sm { min-height: 44px; padding: 0 16px; font-size: 13.5px; }
 .btn .k { font-family: var(--mono); font-size: 11.5px; font-weight: 400; opacity: .7; }
 
 /* ---------- hero ---------- */
@@ -171,7 +180,7 @@ h1 .l2 { display: block; }
 }
 /* marker on the source area of the screenshot */
 .inspect-mark {
-  position: absolute; left: 4.2%; top: 9.1%; width: 56.4%; height: 6.2%;
+  position: absolute; left: 6.1%; top: 72.2%; width: 87.9%; height: 14.6%;
   border: 1px solid var(--accent); border-radius: 3px; opacity: .85; pointer-events: none;
 }
 /* one restrained vertical connection: marker column down to the crop */
@@ -192,6 +201,12 @@ h1 .l2 { display: block; }
 }
 .hero-media .enlarge { margin-top: 18px; display: inline-flex; }
 
+@media (max-width: 700px) {
+  .device-box { width: min(82vw, 340px); }
+  .inspect { width: min(82vw, 300px); }
+  .inspect-line { display: none; }
+}
+
 /* ---------- sections ---------- */
 section { padding: 88px 0; border-top: 1px solid var(--line); }
 @media (min-width: 1024px) { section { padding: 120px 0; } }
@@ -200,6 +215,12 @@ section { padding: 88px 0; border-top: 1px solid var(--line); }
 h2 { margin: 0; font-size: clamp(2.25rem, 4.6vw, 3.5rem); font-weight: 680; letter-spacing: -0.03em; line-height: 1.04; }
 .sec-head p, .lede { color: var(--dim); font-size: 1.0625rem; line-height: 1.6; max-width: 58ch; }
 .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--faint); margin: 0 0 18px; }
+
+@media (max-width: 700px) {
+  .hero { padding: 56px 0 72px; }
+  section { padding: 72px 0; }
+  .sec-head { margin-bottom: 36px; }
+}
 
 /* ---------- story: one coordinated showcase ---------- */
 .story-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 48px; }
@@ -217,14 +238,19 @@ h2 { margin: 0; font-size: clamp(2.25rem, 4.6vw, 3.5rem); font-weight: 680; lett
   @keyframes panelIn { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
 }
 @media (min-width: 1024px) { .story-panel { grid-template-columns: 6fr 6fr; gap: 64px; align-items: start; } }
-.story-media { position: relative; aspect-ratio: 1320 / 2868; width: min(100%, 360px); margin-inline: auto; }
+.story-media { width: min(100%, 360px); margin-inline: auto; }
 @media (min-width: 1024px) { .story-media { width: min(100%, 420px); } }
+
+@media (max-width: 700px) {
+  .story-media { width: min(82vw, 340px); }
+}
 .story-media img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
+  display: block; width: 100%; height: auto; object-fit: contain;
   opacity: 0; transition: opacity var(--t-show) var(--ease);
   border-radius: 24px; border: 1px solid var(--line); background: var(--surface);
 }
 .story-media img.is-active { opacity: 1; }
+.story-media img:not(.is-active) { display: none; }
 .story-copy h3 { margin: 0 0 16px; font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 640; letter-spacing: -0.02em; line-height: 1.15; }
 .story-copy p { margin: 0 0 16px; color: var(--dim); line-height: 1.65; max-width: 52ch; }
 .story-copy p strong { color: var(--text); font-weight: 600; }
