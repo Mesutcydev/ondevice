@@ -30,9 +30,10 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shell/site.css?v=8">
+<link rel="stylesheet" href="/shell/site.css?v=9">
 </head>
 <body>
+<a class="skip-link" href="#top">跳到主要内容</a>
 
 <header class="mast"><div class="wrap">
   <a class="brand" href="#top">
@@ -107,16 +108,16 @@
       </p>
     </div>
     <div class="hero-media">
-      <figure class="stage">
+      <div class="stage">
         <figure class="shot">
           <button class="shot-hit" type="button" data-viewer-src="/assets/hero-models.png" data-viewer-title="模型库" data-viewer-cap="OnDevice LLM 模型库：未裁剪的完整截图；Qwen3-4B 2507 显示内存适配与可下载模型家族。" aria-label="打开截图：OnDevice 模型库">
             <img src="/assets/hero-models.png" width="1320" height="2868" fetchpriority="high"
                  alt="iPhone 上的 OnDevice LLM 模型库：Qwen3-4B 2507 显示为推荐，内存占用 2.3 GB 且通过适配检查，下方是可下载的模型家族及其体积与内存适配信息">
           </button>
           <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-          <div class="shot-cap"><span>适配检查 — 4-bit Qwen3-4B 2507，2.3 GB，推荐用于此设备</span><span class="shot-index">01 / 库</span></div>
+          <figcaption class="shot-cap"><span>适配检查 — 4-bit Qwen3-4B 2507，2.3 GB，推荐用于此设备</span><span class="shot-index">01 / 库</span></figcaption>
         </figure>
-      </figure>
+      </div>
       <p class="label mono">完整图片 · 开源构建的模拟器截图</p>
     </div>
   </div>
@@ -207,7 +208,7 @@
              alt="iPhone 上的 OnDevice LLM 模型库：Qwen3-4B 2507 显示为推荐，内存占用 2.3 GB 且通过适配检查，下方是可下载的模型家族及其体积与内存适配信息">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <div class="shot-cap"><span>模型库 — 下载并加载模型，附内存适配检查。</span><span class="shot-index">01 / 模型</span></div>
+      <figcaption class="shot-cap"><span>模型库 — 下载并加载模型，附内存适配检查。</span><span class="shot-index">01 / 模型</span></figcaption>
     </figure>
     <figure class="shot">
       <button class="shot-hit" type="button" data-viewer-src="/assets/story-app.png" data-viewer-title="助手" data-viewer-cap="OnDevice LLM 助手：端侧模型用代码块回答 SwiftUI 问题。" aria-label="打开截图：OnDevice 助手">
@@ -215,7 +216,7 @@
              alt="iPhone 上的 OnDevice LLM 助手：一段对话中模型用代码块回答 SwiftUI 问题，顶部显示模型状态">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <div class="shot-cap"><span>助手 — 用设备上的模型对话、审代码、做规划。</span><span class="shot-index">02 / 助手</span></div>
+      <figcaption class="shot-cap"><span>助手 — 用设备上的模型对话、审代码、做规划。</span><span class="shot-index">02 / 助手</span></figcaption>
     </figure>
     <figure class="shot">
       <button class="shot-hit" type="button" data-viewer-src="/assets/story-tools.png" data-viewer-title="服务器首页" data-viewer-cap="On Device: LAS 服务器首页：运行状态、局域网地址、bearer key 与已加载模型。" aria-label="打开截图：On Device LAS 服务器首页">
@@ -223,7 +224,7 @@
              alt="iPhone 上的 On Device: LAS 服务器首页：服务器显示 Running，带局域网地址、bearer key 控制与它所服务的已加载模型">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <div class="shot-cap"><span>服务器首页 — 运行状态、局域网地址、bearer key 与已加载模型。</span><span class="shot-index">03 / 服务器</span></div>
+      <figcaption class="shot-cap"><span>服务器首页 — 运行状态、局域网地址、bearer key 与已加载模型。</span><span class="shot-index">03 / 服务器</span></figcaption>
     </figure>
   </div>
 </div></section>
@@ -273,7 +274,7 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
              alt="iPhone 上的 On Device: LAS 服务器首页：服务器显示 Running，带局域网地址、bearer key 控制与它所服务的已加载模型">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <div class="shot-cap"><span>On Device: LAS 服务器首页</span><span class="shot-index">05 / 服务器</span></div>
+      <figcaption class="shot-cap"><span>On Device: LAS 服务器首页</span><span class="shot-index">05 / 服务器</span></figcaption>
     </figure>
   </div>
 </div></section>
@@ -381,6 +382,6 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
   </div>
 </div>
 
-<script src="/shell/site.js?v=8"></script>
+<script src="/shell/site.js?v=9"></script>
 </body>
 </html>

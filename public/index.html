@@ -31,9 +31,10 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shell/site.css?v=8">
+<link rel="stylesheet" href="/shell/site.css?v=9">
 </head>
 <body>
+<a class="skip-link" href="#top">Skip to content</a>
 
 <header class="mast"><div class="wrap">
   <a class="brand" href="#top">
@@ -108,16 +109,16 @@
       </p>
     </div>
     <div class="hero-media">
-      <figure class="stage">
+      <div class="stage">
         <figure class="shot">
           <button class="shot-hit" type="button" data-viewer-src="/assets/hero-models.png" data-viewer-title="Model library" data-viewer-cap="OnDevice LLM model library: full uncropped screenshot; Qwen3-4B 2507 shown with memory fit and download families." aria-label="Open screenshot: OnDevice model library">
             <img src="/assets/hero-models.png" width="1320" height="2868" fetchpriority="high"
                  alt="OnDevice LLM model library on iPhone: Qwen3-4B 2507 shown as recommended with 2.3 GB and a fit verdict, above downloadable model families with size and memory-fit details">
           </button>
           <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-          <div class="shot-cap"><span>Fit check — 4-bit Qwen3-4B 2507, 2.3 GB, recommended for this device</span><span class="shot-index">01 / Library</span></div>
+          <figcaption class="shot-cap"><span>Fit check — 4-bit Qwen3-4B 2507, 2.3 GB, recommended for this device</span><span class="shot-index">01 / Library</span></figcaption>
         </figure>
-      </figure>
+      </div>
       <p class="label mono">Full image · simulator capture from the open-source build</p>
     </div>
   </div>
@@ -208,7 +209,7 @@
              alt="OnDevice LLM model library on iPhone: Qwen3-4B 2507 shown as recommended with 2.3 GB and a fit verdict, above downloadable model families with size and memory-fit details">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <div class="shot-cap"><span>Model library — download and load models with memory fit checks.</span><span class="shot-index">01 / Models</span></div>
+      <figcaption class="shot-cap"><span>Model library — download and load models with memory fit checks.</span><span class="shot-index">01 / Models</span></figcaption>
     </figure>
     <figure class="shot">
       <button class="shot-hit" type="button" data-viewer-src="/assets/story-app.png" data-viewer-title="Assistant" data-viewer-cap="OnDevice LLM assistant: on-device model answers a SwiftUI question with a code block." aria-label="Open screenshot: OnDevice assistant">
@@ -216,7 +217,7 @@
              alt="OnDevice LLM assistant on iPhone: a conversation where the model answers a SwiftUI question with a code block, model state shown at the top">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <div class="shot-cap"><span>Assistant — chat, code review and planning against models stored on the device.</span><span class="shot-index">02 / Assistant</span></div>
+      <figcaption class="shot-cap"><span>Assistant — chat, code review and planning against models stored on the device.</span><span class="shot-index">02 / Assistant</span></figcaption>
     </figure>
     <figure class="shot">
       <button class="shot-hit" type="button" data-viewer-src="/assets/story-tools.png" data-viewer-title="Server homepage" data-viewer-cap="On Device: LAS server homepage: running state, local address, bearer key and loaded models." aria-label="Open screenshot: On Device LAS server homepage">
@@ -224,7 +225,7 @@
              alt="On Device: LAS server homepage on iPhone: server shown Running with its local network address, bearer key controls, and the loaded models it serves">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <div class="shot-cap"><span>Server homepage — running state, local address, bearer key and loaded models.</span><span class="shot-index">03 / Server</span></div>
+      <figcaption class="shot-cap"><span>Server homepage — running state, local address, bearer key and loaded models.</span><span class="shot-index">03 / Server</span></figcaption>
     </figure>
   </div>
 </div></section>
@@ -274,7 +275,7 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
              alt="On Device: LAS server homepage on iPhone: server shown Running with its local network address, bearer key controls, and the loaded models it serves">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <div class="shot-cap"><span>On Device: LAS server homepage</span><span class="shot-index">05 / Server</span></div>
+      <figcaption class="shot-cap"><span>On Device: LAS server homepage</span><span class="shot-index">05 / Server</span></figcaption>
     </figure>
   </div>
 </div></section>
@@ -383,6 +384,6 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
   </div>
 </div>
 
-<script src="/shell/site.js?v=8"></script>
+<script src="/shell/site.js?v=9"></script>
 </body>
 </html>
