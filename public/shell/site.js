@@ -89,6 +89,7 @@
     if (!viewer || !viewerImg) return;
     lastTrigger = trigger;
     viewerImg.src = trigger.dataset.viewerSrc;
+    viewer.querySelector('#viewer-title').textContent = trigger.dataset.viewerTitle || 'Screenshot';
     viewerImg.alt = trigger.querySelector('img') ? trigger.querySelector('img').alt : '';
     viewerImg.dataset.viewerSrc = '';
     if (viewerCap) viewerCap.textContent = trigger.dataset.viewerCap || '';
@@ -108,7 +109,7 @@
   }
 
   if (viewer) {
-    document.querySelectorAll('.shot-open[data-viewer-src]').forEach(function (trigger) {
+    document.querySelectorAll('.shot-hit[data-viewer-src]').forEach(function (trigger) {
       trigger.addEventListener('click', function () { openViewer(trigger); });
     });
     viewer.addEventListener('click', function (event) {
@@ -120,7 +121,7 @@
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape') closeViewer();
       if (event.key !== 'Tab' || viewer.hasAttribute('hidden')) return;
-      var focusables = viewer.querySelectorAll('button, [href], img');
+      var focusables = viewer.querySelectorAll('button, [href], [tabindex="0"]');
       var first = focusables[0];
       var last = focusables[focusables.length - 1];
       if (event.shiftKey && document.activeElement === first) {
