@@ -16,6 +16,8 @@ White and soft-gray surfaces, charcoal text, neutral product stages, and a restr
 
 Product imagery uses existing, unmodified simulator captures inside simple device frames. The mobile gallery scrolls horizontally; each image opens in a keyboard-accessible viewer. Product editions, installation steps, architecture, API examples, and source links share a consistent spacing and border system. Technical details remain expandable.
 
+The header theme toggle supports light and dark modes. It follows the operating system until a choice is made, then remembers the choice in local storage across locales. A small script in the document head applies the saved theme before rendering. On narrow screens, language selection remains available in the mobile menu.
+
 All three locales share `public/shell/site.css` and `public/shell/site.js`. Locale-specific content lives in each `index.html`. Keep release metadata and links synchronized across these pages when updating builds. Product facts are sourced from the software repository; this design refresh does not update releases or platform requirements.
 
 ## Structure
