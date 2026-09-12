@@ -12,7 +12,7 @@ Open http://127.0.0.1:8765. No bundler or package install is required.
 
 ## Design
 
-Warm ivory surfaces, charcoal text, muted sage product stages, and a restrained burnt-orange accent. Self-hosted Inter provides consistent typography across the site. The responsive hero keeps the main download and source actions beside a complete screenshot on desktop and above it on mobile.
+White and soft-gray surfaces, charcoal text, neutral product stages, and a restrained blue accent. Self-hosted Inter provides consistent typography across the site. The responsive hero keeps the main download and source actions beside a complete screenshot on desktop and above it on mobile.
 
 Product imagery uses existing, unmodified simulator captures inside simple device frames. The mobile gallery scrolls horizontally; each image opens in a keyboard-accessible viewer. Product editions, installation steps, architecture, API examples, and source links share a consistent spacing and border system. Technical details remain expandable.
 
