@@ -29,9 +29,9 @@
 <meta name="twitter:image" content="https://ondevice.fun/assets/og-en.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<script src="/shell/theme.js?v=11"></script>
+<script src="/shell/theme.js?v=12"></script>
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shell/site.css?v=11">
+<link rel="stylesheet" href="/shell/site.css?v=12">
 </head>
 <body>
 <a class="skip-link" href="#top">Skip to content</a>
@@ -204,32 +204,24 @@
 <section id="showcase"><div class="wrap">
   <div class="sec-head">
     <h2>Product in action.</h2>
-    <p>Three real screens from the open-source build. Unmodified iPhone Simulator captures; no user content, accounts or tokens are present.</p>
+    <p>Two more views of OnDevice: the assistant and the local API server. Simulator captures from the open-source build.</p>
   </div>
   <div class="gallery">
     <figure class="shot">
-      <button class="shot-hit" type="button" data-viewer-src="/assets/hero-models.png" data-viewer-title="Model library" data-viewer-cap="OnDevice LLM model library: Qwen3-4B 2507 shown as recommended with memory fit and downloadable model families." aria-label="Open screenshot: OnDevice model library">
-        <img src="/assets/hero-models.png" width="1320" height="2868" loading="lazy"
-             alt="OnDevice LLM model library on iPhone: Qwen3-4B 2507 shown as recommended with 2.3 GB and a fit verdict, above downloadable model families with size and memory-fit details">
-      </button>
-      <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <figcaption class="shot-cap"><span>Model library — download and load models with memory fit checks.</span><span class="shot-index">01 / Models</span></figcaption>
-    </figure>
-    <figure class="shot">
-      <button class="shot-hit" type="button" data-viewer-src="/assets/story-app.png" data-viewer-title="Assistant" data-viewer-cap="OnDevice LLM assistant: on-device model answers a SwiftUI question with a code block." aria-label="Open screenshot: OnDevice assistant">
+      <button class="shot-hit" type="button" data-viewer-src="/assets/story-app.png" data-viewer-title="Assistant" data-viewer-cap="Assistant start screen with suggested prompts and no model loaded." aria-label="Open screenshot: OnDevice assistant">
         <img src="/assets/story-app.png" width="1320" height="2868" loading="lazy"
-             alt="OnDevice LLM assistant on iPhone: a conversation where the model answers a SwiftUI question with a code block, model state shown at the top">
+             alt="Assistant start screen with suggested prompts and no model loaded.">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <figcaption class="shot-cap"><span>Assistant — chat, code review and planning against models stored on the device.</span><span class="shot-index">02 / Assistant</span></figcaption>
+      <figcaption class="shot-cap"><span>Assistant start screen with suggested prompts and no model loaded.</span><span class="shot-index">02 / Assistant</span></figcaption>
     </figure>
     <figure class="shot">
-      <button class="shot-hit" type="button" data-viewer-src="/assets/story-tools.png" data-viewer-title="Server homepage" data-viewer-cap="On Device: LAS server homepage: running state, local address, bearer key and loaded models." aria-label="Open screenshot: On Device LAS server homepage">
+      <button class="shot-hit" type="button" data-viewer-src="/assets/story-tools.png" data-viewer-title="Server homepage" data-viewer-cap="LAS server dashboard with device health, local API controls, and no model loaded." aria-label="Open screenshot: On Device LAS server homepage">
         <img src="/assets/story-tools.png" width="990" height="2151" loading="lazy"
-             alt="On Device: LAS server homepage on iPhone: server shown Running with its local network address, bearer key controls, and the loaded models it serves">
+             alt="LAS server dashboard with device health, local API controls, and no model loaded.">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <figcaption class="shot-cap"><span>Server homepage — running state, local address, bearer key and loaded models.</span><span class="shot-index">03 / Server</span></figcaption>
+      <figcaption class="shot-cap"><span>LAS server dashboard with device health, local API controls, and no model loaded.</span><span class="shot-index">03 / Server</span></figcaption>
     </figure>
   </div>
 </div></section>
@@ -274,12 +266,12 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
       <p class="api-note"><b>Boundaries:</b> the listener serves your local network only and stops when iOS backgrounds the app. Rotate the key after installing; do not port-forward it.</p>
     </div>
     <figure class="shot api-shot">
-      <button class="shot-hit" type="button" data-viewer-src="/assets/story-tools.png" data-viewer-title="Server homepage" data-viewer-cap="On Device: LAS server homepage: running state, local address, bearer key and loaded models." aria-label="Open screenshot: On Device LAS server homepage">
+      <button class="shot-hit" type="button" data-viewer-src="/assets/story-tools.png" data-viewer-title="Server homepage" data-viewer-cap="LAS server dashboard with device health, local API controls, and no model loaded." aria-label="Open screenshot: On Device LAS server homepage">
         <img src="/assets/story-tools.png" width="990" height="2151" loading="lazy"
-             alt="On Device: LAS server homepage on iPhone: server shown Running with its local network address, bearer key controls, and the loaded models it serves">
+             alt="LAS server dashboard with device health, local API controls, and no model loaded.">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <figcaption class="shot-cap"><span>On Device: LAS server homepage</span><span class="shot-index">05 / Server</span></figcaption>
+      <figcaption class="shot-cap"><span>LAS server dashboard with device health, local API controls, and no model loaded.</span><span class="shot-index">05 / Server</span></figcaption>
     </figure>
   </div>
 </div></section>
@@ -388,6 +380,6 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
   </div>
 </div>
 
-<script src="/shell/site.js?v=11"></script>
+<script src="/shell/site.js?v=12"></script>
 </body>
 </html>

@@ -28,9 +28,9 @@
 <meta name="twitter:image" content="https://ondevice.fun/assets/og-tr.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<script src="/shell/theme.js?v=11"></script>
+<script src="/shell/theme.js?v=12"></script>
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shell/site.css?v=11">
+<link rel="stylesheet" href="/shell/site.css?v=12">
 </head>
 <body>
 <a class="skip-link" href="#top">İçeriğe geç</a>
@@ -203,32 +203,24 @@
 <section id="showcase"><div class="wrap">
   <div class="sec-head">
     <h2>Ürünün çalışır hâli.</h2>
-    <p>Açık kaynak derlemeden üç gerçek ekran. Değiştirilmemiş iPhone Simulator yakalamaları; kullanıcı içeriği, hesap veya token yoktur.</p>
+    <p>OnDevice’ın iki farklı ekranı: asistan ve yerel API sunucusu. Açık kaynak derlemeden simülatör görüntüleri.</p>
   </div>
   <div class="gallery">
     <figure class="shot">
-      <button class="shot-hit" type="button" data-viewer-src="/assets/hero-models.png" data-viewer-title="Model kitaplığı" data-viewer-cap="OnDevice LLM model kitaplığı: Qwen3-4B 2507, bellek uyumu ve indirilebilir model aileleriyle öneriliyor." aria-label="Ekran görüntüsünü aç: OnDevice model kitaplığı">
-        <img src="/assets/hero-models.png" width="1320" height="2868" loading="lazy"
-             alt="iPhone'da OnDevice LLM model kitaplığı: Qwen3-4B 2507, 2.3 GB ve uyum sonucuyla öneriliyor; altında boyut ve bellek uyumu bilgileriyle indirilebilir model aileleri">
-      </button>
-      <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <figcaption class="shot-cap"><span>Model kitaplığı — bellek uyum kontrolüyle model indirin ve yükleyin.</span><span class="shot-index">01 / Modeller</span></figcaption>
-    </figure>
-    <figure class="shot">
-      <button class="shot-hit" type="button" data-viewer-src="/assets/story-app.png" data-viewer-title="Asistan" data-viewer-cap="OnDevice LLM asistanı: cihaz üstü model SwiftUI sorusunu kod bloğuyla yanıtlıyor." aria-label="Ekran görüntüsünü aç: OnDevice asistan">
+      <button class="shot-hit" type="button" data-viewer-src="/assets/story-app.png" data-viewer-title="Asistan" data-viewer-cap="Önerilen istemler ve henüz yüklenmemiş model ile asistan başlangıç ekranı." aria-label="Ekran görüntüsünü aç: OnDevice asistan">
         <img src="/assets/story-app.png" width="1320" height="2868" loading="lazy"
-             alt="iPhone'da OnDevice LLM asistanı: modelin bir SwiftUI sorusunu kod bloğuyla yanıtladığı bir sohbet, üstte model durumu">
+             alt="Önerilen istemler ve henüz yüklenmemiş model ile asistan başlangıç ekranı.">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <figcaption class="shot-cap"><span>Asistan — cihazda depolanan modellerle sohbet, kod incelemesi ve planlama.</span><span class="shot-index">02 / Asistan</span></figcaption>
+      <figcaption class="shot-cap"><span>Önerilen istemler ve henüz yüklenmemiş model ile asistan başlangıç ekranı.</span><span class="shot-index">02 / Asistan</span></figcaption>
     </figure>
     <figure class="shot">
-      <button class="shot-hit" type="button" data-viewer-src="/assets/story-tools.png" data-viewer-title="Sunucu ana sayfası" data-viewer-cap="On Device: LAS sunucu ana sayfası: çalışma durumu, yerel adres, bearer anahtar ve yüklü modeller." aria-label="Ekran görüntüsünü aç: On Device LAS sunucu ana sayfası">
+      <button class="shot-hit" type="button" data-viewer-src="/assets/story-tools.png" data-viewer-title="Sunucu ana sayfası" data-viewer-cap="Cihaz sağlığı, yerel API kontrolleri ve henüz yüklenmemiş model ile LAS sunucu ekranı." aria-label="Ekran görüntüsünü aç: On Device LAS sunucu ana sayfası">
         <img src="/assets/story-tools.png" width="990" height="2151" loading="lazy"
-             alt="iPhone'da On Device: LAS sunucu ana sayfası: sunucu Running durumunda, yerel ağ adresi, bearer anahtar kontrolleri ve sunduğu yüklü modeller">
+             alt="Cihaz sağlığı, yerel API kontrolleri ve henüz yüklenmemiş model ile LAS sunucu ekranı.">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <figcaption class="shot-cap"><span>Sunucu ana sayfası — çalışma durumu, yerel adres, bearer anahtar ve yüklü modeller.</span><span class="shot-index">03 / Sunucu</span></figcaption>
+      <figcaption class="shot-cap"><span>Cihaz sağlığı, yerel API kontrolleri ve henüz yüklenmemiş model ile LAS sunucu ekranı.</span><span class="shot-index">03 / Sunucu</span></figcaption>
     </figure>
   </div>
 </div></section>
@@ -273,12 +265,12 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
       <p class="api-note"><b>Sınırlar:</b> dinleyici yalnızca yerel ağınıza servis eder ve iOS uygulamayı arka plana alınca durur. Kurulumdan sonra anahtarı döndürün; port forward etmeyin.</p>
     </div>
     <figure class="shot api-shot">
-      <button class="shot-hit" type="button" data-viewer-src="/assets/story-tools.png" data-viewer-title="Sunucu ana sayfası" data-viewer-cap="On Device: LAS sunucu ana sayfası: çalışma durumu, yerel adres, bearer anahtar ve yüklü modeller." aria-label="Ekran görüntüsünü aç: On Device LAS sunucu ana sayfası">
+      <button class="shot-hit" type="button" data-viewer-src="/assets/story-tools.png" data-viewer-title="Sunucu ana sayfası" data-viewer-cap="Cihaz sağlığı, yerel API kontrolleri ve henüz yüklenmemiş model ile LAS sunucu ekranı." aria-label="Ekran görüntüsünü aç: On Device LAS sunucu ana sayfası">
         <img src="/assets/story-tools.png" width="990" height="2151" loading="lazy"
-             alt="On Device: LAS server homepage on iPhone: server shown Running with its local network address, bearer key controls, and the loaded models it serves">
+             alt="Cihaz sağlığı, yerel API kontrolleri ve henüz yüklenmemiş model ile LAS sunucu ekranı.">
       </button>
       <span class="shot-open" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M7 7h10v10"/></svg></span>
-      <figcaption class="shot-cap"><span>On Device: LAS sunucu ana sayfası</span><span class="shot-index">05 / Sunucu</span></figcaption>
+      <figcaption class="shot-cap"><span>Cihaz sağlığı, yerel API kontrolleri ve henüz yüklenmemiş model ile LAS sunucu ekranı.</span><span class="shot-index">05 / Sunucu</span></figcaption>
     </figure>
   </div>
 </div></section>
@@ -386,6 +378,6 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
   </div>
 </div>
 
-<script src="/shell/site.js?v=11"></script>
+<script src="/shell/site.js?v=12"></script>
 </body>
 </html>

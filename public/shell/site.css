@@ -1366,3 +1366,10 @@ main > section.hero { border-top: 0; }
 .paper .btn:not(.solid):hover { background: var(--surface-hover); border-color: var(--p-line-strong); }
 ::selection { color: #18181b; }
 .skip-link { background: #18181b; color: #fff; }
+/* The model library is shown in the hero; the gallery adds two distinct screens. */
+@media (min-width: 621px) {
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 880px; margin-inline: auto; }
+  .gallery .shot:last-child { grid-column: auto; max-width: none; justify-self: stretch; }
+  .gallery .shot-hit { width: min(100%, 290px); }
+  .gallery .shot-open { right: max(16px, calc((100% - 258px)/2)); }
+}
