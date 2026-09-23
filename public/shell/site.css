@@ -644,7 +644,7 @@ main > section.hero { border-top: 0; }
 
 .core-panel p { color: var(--g-muted); font-size: 16px; line-height: 1.55; }
 
-.core-actions { display: flex; align-items: center; gap: 16px; }
+.core-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 
 /* Gallery */
 .gallery {
