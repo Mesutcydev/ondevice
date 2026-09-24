@@ -1,0 +1,62 @@
+# OnDevice
+
+> OnDevice makes free, open-source iPhone apps that run AI models entirely on the device: chat with local LLMs, camera vision, voice, image generation, and an OpenAI-compatible local API. No account, no telemetry, no cloud inference by default. The apps are sideloaded (IPA + AltStore, SideStore or ForgeSign); they are not on the App Store.
+
+Website: https://ondevice.fun/ (English), https://ondevice.fun/tr/ (Turkish), https://ondevice.fun/zh/ (Simplified Chinese)
+Source: https://github.com/Mesutcydev/ondevice-core
+License: MIT for original code; model weights keep their own licences and are downloaded separately.
+
+## Apps
+
+- OnDevice Max — status: coming soon (1.0.0 in testing). iOS 27. The newest all-in-one studio with a new interface: chat, camera Lens (ask, translate, scan, solve), voice conversations, image studio, model library, device status, local API server, paired-Mac tools. Releases will appear at https://github.com/Mesutcydev/ondevice-core/releases
+- OnDevice Core — status: available, 1.0.0 (60). iOS 27. Same on-device engine and features as Max with the original Studio interface. Apple Core AI, MLX, llama.cpp, whisper.cpp, experimental Edge0 mixture-of-experts runtime. IPA (44.0 MB): https://github.com/Mesutcydev/ondevice-core/releases/download/ondevice-core-1.0.0-60/OnDeviceCoreAIStudio-sideload-entitled-1.0.0-60.ipa
+- OnDevice LAS (On Device: LAS) — status: beta, 3.2.6 (143). iOS 18. Local API server: OpenAI-, Anthropic- and Ollama-compatible routes on one port behind a bearer key. IPA (26.3 MB): https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa
+- OnDevice Image Generation (app name "iOS Image Generation") — status: coming soon, 1.0 (16) in testing. iOS / iPadOS 26. Stable Diffusion 1.5, 2.1, SDXL, SDXL Turbo and compatible fine-tunes (e.g. RealVisXL, Animagine XL) with MLX and Core ML; image-to-image, model catalog with device-fit checks, private gallery.
+
+## Choosing
+
+- iOS 27 and want everything today: OnDevice Core.
+- iOS 27 and want the newest interface: OnDevice Max (coming soon).
+- Need an API for Cursor, scripts or agents: OnDevice LAS (iOS 18+), or the API server inside Max/Core.
+- Want to make pictures: OnDevice Image Generation (iOS 26+).
+
+## Install (sideload)
+
+1. Download the IPA from GitHub Releases (links above).
+2. Sign and install it with AltStore (https://altstore.io), SideStore (https://sidestore.io) or ForgeSign (https://github.com/Mesutcydev/ForgeSign-iOS).
+3. Keep the entitlements com.apple.developer.kernel.increased-memory-limit and com.apple.developer.kernel.extended-virtual-addressing when signing; without them iOS stops large models while loading.
+4. Open the app, download a model that fits the device, load it. It then works offline, including in airplane mode.
+
+## Local API (LAS, and the API server in Max/Core)
+
+- OpenAI: GET /v1/models, POST /v1/chat/completions, POST /v1/responses (streaming supported)
+- Anthropic: POST /v1/messages
+- Ollama: model, chat and generate routes under /api
+- Default port 11434. Header: Authorization: Bearer <key shown in the app>.
+- Plain HTTP for a trusted local network only; do not port-forward. The listener stops when iOS backgrounds the app.
+
+Example:
+
+    curl -N http://PHONE-IP:11434/v1/chat/completions \
+      -H "Authorization: Bearer $KEY" \
+      -d '{"model":"MODEL-ID","stream":true,"messages":[{"role":"user","content":"Hello"}]}'
+
+## Model families referenced by the apps
+
+Qwen 3, Qwen 3.5, Qwen2.5-Coder, Llama 3.2, Gemma 3, Phi-4, Mistral, Granite, LFM2.5, SmolLM, Edge0 MoE, SmolVLM2, FastVLM, Whisper, Kokoro, Stable Diffusion 1.5 / 2.1, SDXL, SDXL Turbo, RealVisXL, Animagine XL. Availability of a given model depends on device memory.
+
+## Privacy boundaries
+
+- Inference runs on the device. No account, analytics SDK or telemetry.
+- Network use: model downloads you start, and optional features you enable (web access, Apple Private Cloud Compute in Max, paired Mac).
+- If a model does not fit in memory the app says so; it never silently falls back to a cloud endpoint.
+
+## Docs
+
+- Agent integration: https://github.com/Mesutcydev/ondevice-core/blob/main/Docs/AGENT_INTEGRATION.md
+- Architecture: https://github.com/Mesutcydev/ondevice-core/blob/main/ARCHITECTURE.md
+- Reusable components: https://github.com/Mesutcydev/ondevice-core/blob/main/Docs/REUSABLE_COMPONENTS.md
+- Privacy policy: https://github.com/Mesutcydev/ondevice-core/blob/main/PRIVACY_POLICY.md
+- Security policy: https://github.com/Mesutcydev/ondevice-core/blob/main/SECURITY.md
+
+Independent project, not affiliated with or endorsed by Apple Inc.

@@ -1,3 +1,5 @@
+# Search engines and AI agents are welcome.
+# Agent-readable summary: https://ondevice.fun/llms.txt
 User-agent: *
 Allow: /
 

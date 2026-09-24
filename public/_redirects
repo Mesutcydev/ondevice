@@ -1,7 +1,10 @@
 # Legacy paths and pre-redesign anchors keep working.
-/ondevice.html /#product 301
-/studio /#product 301
-/las /#product 301
-/showcase /#product 301
-/requirements /#editions 301
-/security /#boundaries 301
+/ondevice.html /#apps 301
+/studio /#apps 301
+/las /#api 301
+/showcase /#max 301
+/requirements /#install 301
+/security /#security 301
+/max /#max 301
+/core /#apps 301
+/image /#create 301
