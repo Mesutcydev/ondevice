@@ -30,7 +30,7 @@
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shell/site.css?v=20">
+<link rel="stylesheet" href="/shell/site.css?v=21">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">
 {
@@ -56,18 +56,18 @@
       "@type": "ItemList",
       "name": "OnDevice apps",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "OnDevice Max", "url": "https://ondevice.fun/#max", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 27", "description": "All-in-one local AI studio for iPhone with a new interface: chat, camera Lens, voice, image studio, model library and a local API server.", "image": "https://ondevice.fun/assets/shots/max-chat.webp", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
+        { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "OnDevice Max", "url": "https://ondevice.fun/#max", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 27", "description": "All-in-one local AI studio for iPhone with a new interface: chat, camera Lens, voice, image studio, model library and a local API server.", "softwareVersion": "1.0.0 (60)", "downloadUrl": "https://github.com/Mesutcydev/ondevice-core/releases/download/ondevice-max-1.0.0-60/OnDeviceMax-sideload-entitled-1.0.0-60.ipa", "image": "https://ondevice.fun/assets/shots/max-chat.webp", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
         { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "OnDevice Core", "url": "https://github.com/Mesutcydev/ondevice-core", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 27", "softwareVersion": "1.0.0 (60)", "description": "The same on-device engine as OnDevice Max with the original Studio interface: chat, Lens, voice, image generation, model library and an experimental Edge0 mixture-of-experts runtime.", "downloadUrl": "https://github.com/Mesutcydev/ondevice-core/releases/download/ondevice-core-1.0.0-60/OnDeviceCoreAIStudio-sideload-entitled-1.0.0-60.ipa", "image": "https://ondevice.fun/assets/shots/core-home.webp", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "OnDevice LAS", "alternateName": "On Device: LAS", "url": "https://ondevice.fun/#api", "applicationCategory": "DeveloperApplication", "operatingSystem": "iOS 18", "softwareVersion": "3.2.6 (143)", "description": "Local API server for iPhone: OpenAI-, Anthropic- and Ollama-compatible routes on your LAN behind a bearer key.", "downloadUrl": "https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa", "image": "https://ondevice.fun/assets/shots/las-server.webp", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
+        { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "OnDevice LAS", "alternateName": "On Device: LAS", "url": "https://ondevice.fun/#api", "applicationCategory": "DeveloperApplication", "operatingSystem": "iOS 18", "softwareVersion": "3.2.6 (144)", "description": "Local API server for iPhone: OpenAI-, Anthropic- and Ollama-compatible routes on your LAN behind a bearer key.", "downloadUrl": "https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-144/OnDeviceLAS-sideload-entitled-3.2.6-144.ipa", "image": "https://ondevice.fun/assets/shots/las-server.webp", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
         { "@type": "ListItem", "position": 4, "item": { "@type": "SoftwareApplication", "name": "OnDevice Image Generation", "alternateName": "iOS Image Generation", "url": "https://ondevice.fun/#create", "applicationCategory": "MultimediaApplication", "operatingSystem": "iOS 26", "description": "On-device Stable Diffusion and SDXL image generation for iPhone and iPad with MLX and Core ML.", "image": "https://ondevice.fun/assets/shots/img-onb1.webp", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" }, "publisher": { "@id": "https://ondevice.fun/#org" } } }
       ]
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "How do I run an LLM on my iPhone offline?", "acceptedAnswer": { "@type": "Answer", "text": "Install OnDevice Core (iOS 27), download a model once over Wi-Fi, for example Qwen 3 4B, then load it. From then on chat works with no connection at all, including in airplane mode. OnDevice Max works the same way when it ships." } },
+        { "@type": "Question", "name": "How do I run an LLM on my iPhone offline?", "acceptedAnswer": { "@type": "Answer", "text": "Install OnDevice Max or OnDevice Core (iOS 27), download a model once over Wi-Fi, for example Qwen 3 4B, then load it. From then on chat works with no connection at all, including in airplane mode." } },
         { "@type": "Question", "name": "Are the OnDevice apps on the App Store?", "acceptedAnswer": { "@type": "Answer", "text": "Not at the moment. They are distributed as sideloadable IPA files on GitHub Releases. You sign and install them on your own device with AltStore, SideStore or ForgeSign. The source code is public under the MIT licence." } },
-        { "@type": "Question", "name": "What is the difference between OnDevice Max and OnDevice Core?", "acceptedAnswer": { "@type": "Answer", "text": "They share the same on-device engine and features. Max has a new, calmer interface and is coming soon; Core keeps the original Studio interface and is available today. OnDevice LAS turns an iPhone into a local API server, and OnDevice Image Generation is for making pictures." } },
+        { "@type": "Question", "name": "What is the difference between OnDevice Max and OnDevice Core?", "acceptedAnswer": { "@type": "Answer", "text": "They share the same on-device engine and features. Max has the new, calmer interface and is the newest build; Core keeps the original Studio interface. OnDevice LAS turns an iPhone into a local API server, and OnDevice Image Generation is for making pictures." } },
         { "@type": "Question", "name": "Which iPhones are supported?", "acceptedAnswer": { "@type": "Answer", "text": "OnDevice LAS needs iOS 18 or later, OnDevice Image Generation needs iOS 26, and OnDevice Core and Max need iOS 27. Bigger models need more memory; the model library checks whether a model fits your device before you download it." } },
         { "@type": "Question", "name": "Does anything I type leave my phone?", "acceptedAnswer": { "@type": "Answer", "text": "Not by default. Inference runs on the device and there is no account, analytics or telemetry. The network is used only for model downloads you start and optional features you switch on, such as web access, Apple Private Cloud Compute or a paired Mac." } },
         { "@type": "Question", "name": "Can I generate images on an iPhone without the internet?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. OnDevice Image Generation runs Stable Diffusion 1.5, 2.1, SDXL and SDXL Turbo locally with MLX and Core ML. OnDevice Max and Core also include an image studio." } },
@@ -100,7 +100,6 @@
       <summary aria-label="Menu"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></summary>
       <nav class="menu-panel" aria-label="Mobile">
         <a href="#apps">Apps</a><a href="#max">Max</a><a href="#create">Create</a><a href="#security">Privacy</a><a href="#api">Developers</a><a href="#install">Install</a><a href="#faq">FAQ</a>
-        <span class="lang" role="group" aria-label="Language"><a href="/" aria-current="page" lang="en">EN</a><a href="/tr/" lang="tr">TR</a><a href="/zh/" lang="zh-Hans">中文</a></span>
       </nav>
     </details>
   </div>
@@ -143,7 +142,7 @@
 
   <div class="lineup">
     <article class="app dark reveal" style="--c:var(--c-max)" aria-labelledby="app-max">
-      <div class="app-top"><span class="code">OD—01</span><span class="chip">New · coming soon</span></div>
+      <div class="app-top"><span class="code">OD—01</span><span class="chip">New · early build</span></div>
       <div class="app-body">
         <img class="app-icon" src="/assets/icons/max.webp" width="64" height="64" alt="">
         <h3 id="app-max">OnDevice Max</h3>
@@ -151,9 +150,10 @@
         <p class="app-desc">The newest all-in-one studio, redesigned from scratch: chat, camera Lens, voice, an image studio, a model library and a local API server.</p>
         <dl class="spec">
           <div><dt>Needs</dt><dd>iOS 27</dd></div>
-          <div><dt>Build</dt><dd>1.0.0 · in testing</dd></div>
+          <div><dt>Build</dt><dd>1.0.0 (60)</dd></div>
+          <div><dt>IPA</dt><dd>47.5 MB</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm primary" href="#max">See Max</a><a class="btn sm" href="https://github.com/Mesutcydev/ondevice-core/releases">Watch releases</a></div>
+        <div class="cta"><a class="btn sm primary" href="https://github.com/Mesutcydev/ondevice-core/releases/download/ondevice-max-1.0.0-60/OnDeviceMax-sideload-entitled-1.0.0-60.ipa">Download IPA</a><a class="btn sm" href="#max">See Max</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/max-drawer.webp" width="660" height="1434" loading="lazy" alt="OnDevice Max navigation with Lens, Voice, Image studio, Models, Device and API server shortcuts above recent chats"></div></div>
     </article>
@@ -184,10 +184,10 @@
         <p class="app-desc">A local API server for your tools: OpenAI-, Anthropic- and Ollama-compatible routes on one port, behind a bearer key.</p>
         <dl class="spec">
           <div><dt>Needs</dt><dd>iOS 18</dd></div>
-          <div><dt>Build</dt><dd>3.2.6 (143)</dd></div>
-          <div><dt>IPA</dt><dd>26.3 MB</dd></div>
+          <div><dt>Build</dt><dd>3.2.6 (144)</dd></div>
+          <div><dt>IPA</dt><dd>25.5 MB</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">Download IPA</a><a class="btn sm" href="#api">See the API</a></div>
+        <div class="cta"><a class="btn sm solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-144/OnDeviceLAS-sideload-entitled-3.2.6-144.ipa">Download IPA</a><a class="btn sm" href="#api">See the API</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/las-server.webp" width="660" height="1434" loading="lazy" alt="OnDevice LAS dashboard with device health and the local API server switch"></div></div>
     </article>
@@ -315,9 +315,9 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
     <p class="lede">Still stuck? <a href="https://github.com/Mesutcydev/ondevice-core/issues">Open an issue</a> and we'll help.</p>
   </div>
   <div class="faq reveal">
-    <details open><summary>How do I run an LLM on my iPhone offline?</summary><div><p>Install OnDevice Core (iOS 27), download a model once over Wi-Fi, for example Qwen 3 4B, then load it. From then on chat works with no connection at all, including in airplane mode. OnDevice Max works the same way when it ships.</p></div></details>
+    <details open><summary>How do I run an LLM on my iPhone offline?</summary><div><p>Install OnDevice Max or OnDevice Core (iOS 27), download a model once over Wi-Fi, for example Qwen 3 4B, then load it. From then on chat works with no connection at all, including in airplane mode.</p></div></details>
     <details><summary>Are the OnDevice apps on the App Store?</summary><div><p>Not at the moment. They are distributed as sideloadable IPA files on GitHub Releases. You sign and install them on your own device with AltStore, SideStore or ForgeSign. The source code is public under the MIT licence.</p></div></details>
-    <details><summary>What is the difference between Max and Core?</summary><div><p>They share the same on-device engine and features. <b>Max</b> has a new, calmer interface and is coming soon; <b>Core</b> keeps the original Studio interface and is available today. <b>OnDevice LAS</b> turns an iPhone into a local API server, and <b>OnDevice Image Generation</b> is for making pictures.</p></div></details>
+    <details><summary>What is the difference between Max and Core?</summary><div><p>They share the same on-device engine and features. <b>Max</b> has the new, calmer interface and is the newest build; <b>Core</b> keeps the original Studio interface. <b>OnDevice LAS</b> turns an iPhone into a local API server, and <b>OnDevice Image Generation</b> is for making pictures.</p></div></details>
     <details><summary>Which iPhones are supported?</summary><div><p>OnDevice LAS needs iOS 18 or later, OnDevice Image Generation needs iOS 26, and OnDevice Core and Max need iOS 27. Bigger models need more memory; the model library checks whether a model fits your device before you download it.</p></div></details>
     <details><summary>Does anything I type leave my phone?</summary><div><p>Not by default. Inference runs on the device and there is no account, analytics or telemetry. The network is used only for model downloads you start and optional features you switch on, such as web access, Apple Private Cloud Compute or a paired Mac.</p></div></details>
     <details><summary>Can I generate images on an iPhone without the internet?</summary><div><p>Yes. OnDevice Image Generation runs Stable Diffusion 1.5, 2.1, SDXL and SDXL Turbo locally with MLX and Core ML. OnDevice Max and Core also include an image studio.</p></div></details>
@@ -344,6 +344,6 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
   <p class="fine">Screens are iPhone Simulator captures of the open-source builds; physical-device performance varies with model size and memory. Model weights are not distributed with these apps and keep their own licences. Apple, iPhone, iPad and Mac are trademarks of Apple Inc. OnDevice is an independent project, not affiliated with or endorsed by Apple. Original code MIT licensed.</p>
 </div></footer>
 
-<script src="/shell/site.js?v=20" defer></script>
+<script src="/shell/site.js?v=21" defer></script>
 </body>
 </html>

@@ -30,7 +30,7 @@
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shell/site.css?v=20">
+<link rel="stylesheet" href="/shell/site.css?v=21">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">
 {
@@ -56,20 +56,20 @@
       "@type": "ItemList",
       "name": "OnDevice 应用",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "OnDevice Max", "url": "https://ondevice.fun/#max", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 27", "description": "采用全新界面的 iPhone 一体化本地 AI 工作室：聊天、相机 Lens、语音、图像工作室、模型库和本地 API 服务器。", "image": "https://ondevice.fun/assets/shots/max-chat.webp", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
+        { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "OnDevice Max", "url": "https://ondevice.fun/#max", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 27", "description": "采用全新界面的 iPhone 一体化本地 AI 工作室：聊天、相机 Lens、语音、图像工作室、模型库和本地 API 服务器。", "softwareVersion": "1.0.0 (60)", "downloadUrl": "https://github.com/Mesutcydev/ondevice-core/releases/download/ondevice-max-1.0.0-60/OnDeviceMax-sideload-entitled-1.0.0-60.ipa", "image": "https://ondevice.fun/assets/shots/max-chat.webp", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
         { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "OnDevice Core", "url": "https://github.com/Mesutcydev/ondevice-core", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 27", "softwareVersion": "1.0.0 (60)", "description": "与 OnDevice Max 相同的设备端引擎，采用原版 Studio 界面：聊天、Lens、语音、图像生成、模型库，以及实验性的 Edge0 混合专家运行时。", "downloadUrl": "https://github.com/Mesutcydev/ondevice-core/releases/download/ondevice-core-1.0.0-60/OnDeviceCoreAIStudio-sideload-entitled-1.0.0-60.ipa", "image": "https://ondevice.fun/assets/shots/core-home.webp", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "OnDevice LAS", "alternateName": "On Device: LAS", "url": "https://ondevice.fun/#api", "applicationCategory": "DeveloperApplication", "operatingSystem": "iOS 18", "softwareVersion": "3.2.6 (143)", "description": "iPhone 本地 API 服务器：在局域网内以 Bearer 密钥保护，提供兼容 OpenAI、Anthropic 和 Ollama 的接口。", "downloadUrl": "https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa", "image": "https://ondevice.fun/assets/shots/las-server.webp", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
+        { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "OnDevice LAS", "alternateName": "On Device: LAS", "url": "https://ondevice.fun/#api", "applicationCategory": "DeveloperApplication", "operatingSystem": "iOS 18", "softwareVersion": "3.2.6 (144)", "description": "iPhone 本地 API 服务器：在局域网内以 Bearer 密钥保护，提供兼容 OpenAI、Anthropic 和 Ollama 的接口。", "downloadUrl": "https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-144/OnDeviceLAS-sideload-entitled-3.2.6-144.ipa", "image": "https://ondevice.fun/assets/shots/las-server.webp", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
         { "@type": "ListItem", "position": 4, "item": { "@type": "SoftwareApplication", "name": "OnDevice Image Generation", "alternateName": "iOS Image Generation", "url": "https://ondevice.fun/#create", "applicationCategory": "MultimediaApplication", "operatingSystem": "iOS 26", "description": "借助 MLX 和 Core ML，在 iPhone 和 iPad 上本地运行 Stable Diffusion 与 SDXL 图像生成。", "image": "https://ondevice.fun/assets/shots/img-onb1.webp", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" }, "publisher": { "@id": "https://ondevice.fun/#org" } } }
       ]
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "如何在 iPhone 上离线运行大语言模型？", "acceptedAnswer": { "@type": "Answer", "text": "安装 OnDevice Core（iOS 27），通过 Wi-Fi 下载一次模型（例如 Qwen 3 4B）并加载。之后聊天完全无需联网，飞行模式下也可以。OnDevice Max 发布后用法相同。" } },
+        { "@type": "Question", "name": "如何在 iPhone 上离线运行大语言模型？", "acceptedAnswer": { "@type": "Answer", "text": "安装 OnDevice Max 或 OnDevice Core（iOS 27），通过 Wi-Fi 下载一次模型（例如 Qwen 3 4B）并加载。之后聊天完全无需联网，开着飞行模式也能用。" } },
         { "@type": "Question", "name": "OnDevice 应用在 App Store 上吗？", "acceptedAnswer": { "@type": "Answer", "text": "目前不在。它们以可侧载的 IPA 文件发布在 GitHub Releases 上，你可以用 AltStore、SideStore 或 ForgeSign 在自己的设备上签名安装。源代码以 MIT 许可公开。" } },
-        { "@type": "Question", "name": "OnDevice Max 和 OnDevice Core 有什么区别？", "acceptedAnswer": { "@type": "Answer", "text": "两者共享相同的设备端引擎和功能。Max 采用全新、更安静的界面，即将推出；Core 保留原版 Studio 界面，现已可用。OnDevice LAS 把 iPhone 变成本地 API 服务器，OnDevice Image Generation 用于生成图片。" } },
+        { "@type": "Question", "name": "OnDevice Max 和 OnDevice Core 有什么区别？", "acceptedAnswer": { "@type": "Answer", "text": "两者共享相同的设备端引擎和功能。Max 采用全新、更简洁的界面，是最新版本；Core 保留原版 Studio 界面。OnDevice LAS 把 iPhone 变成本地 API 服务器，OnDevice Image Generation 用于生成图片。" } },
         { "@type": "Question", "name": "支持哪些 iPhone？", "acceptedAnswer": { "@type": "Answer", "text": "OnDevice LAS 需要 iOS 18 或更高版本，OnDevice Image Generation 需要 iOS 26，OnDevice Core 和 Max 需要 iOS 27。模型越大需要的内存越多；模型库会在下载前检查模型是否适合你的设备。" } },
-        { "@type": "Question", "name": "我输入的内容会离开手机吗？", "acceptedAnswer": { "@type": "Answer", "text": "默认不会。推理在设备上运行，没有账号、分析或遥测。网络只用于你发起的模型下载，以及你主动开启的可选功能，例如联网访问、Apple Private Cloud Compute 或配对的 Mac。" } },
+        { "@type": "Question", "name": "我输入的内容会离开手机吗？", "acceptedAnswer": { "@type": "Answer", "text": "默认不会。模型完全在设备上运行，没有账号、分析或遥测。网络只用于你发起的模型下载，以及你主动开启的可选功能，例如联网访问、Apple Private Cloud Compute 或配对的 Mac。" } },
         { "@type": "Question", "name": "能在不联网的 iPhone 上生成图像吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以。OnDevice Image Generation 使用 MLX 和 Core ML 在本地运行 Stable Diffusion 1.5、2.1、SDXL 和 SDXL Turbo。OnDevice Max 和 Core 也内置图像工作室。" } },
         { "@type": "Question", "name": "iPhone 能作为兼容 OpenAI 的 API 使用吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以。OnDevice LAS 在局域网内以 Bearer 密钥保护，提供兼容 OpenAI、Anthropic 和 Ollama 的接口。它面向可信网络，iOS 将应用切到后台时会停止。" } },
         { "@type": "Question", "name": "OnDevice 免费且开源吗？", "acceptedAnswer": { "@type": "Answer", "text": "是的。原创代码采用 MIT 许可，无需账号、无需订阅。模型权重需单独下载，并遵循各自的许可。" } }
@@ -100,7 +100,6 @@
       <summary aria-label="菜单"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></summary>
       <nav class="menu-panel" aria-label="移动端菜单">
         <a href="#apps">应用</a><a href="#max">Max</a><a href="#create">创作</a><a href="#security">隐私</a><a href="#api">开发者</a><a href="#install">安装</a><a href="#faq">常见问题</a>
-        <span class="lang" role="group" aria-label="语言"><a href="/" lang="en">EN</a><a href="/tr/" lang="tr">TR</a><a href="/zh/" aria-current="page" lang="zh-Hans">中文</a></span>
       </nav>
     </details>
   </div>
@@ -112,10 +111,10 @@
   <div class="wrap hero-copy">
     <p class="kicker mono"><span class="live-dot" aria-hidden="true"></span>4 款应用 · 0 字节上云 · 可侧载安装</p>
     <h1 id="hero-title"><span class="dots">AI，</span><span class="dots accent">住进你的 iPhone。</span></h1>
-    <p class="lede">用完全在设备上运行的开源模型聊天、识图、对话和创作。免费开源。无需账号，无需订阅，默认不上云。</p>
+    <p class="lede">用完全在设备上运行的开源模型聊天、识图、语音对话和生成图像。免费开源，无需账号，无需订阅，默认不上云。</p>
     <div class="cta">
       <a class="btn primary" href="#apps">获取应用</a>
-      <a class="btn" href="https://github.com/Mesutcydev/ondevice-core">★ 在 GitHub 上加星</a>
+      <a class="btn" href="https://github.com/Mesutcydev/ondevice-core">★ 在 GitHub 点个 Star</a>
     </div>
   </div>
   <div class="fan">
@@ -143,17 +142,18 @@
 
   <div class="lineup">
     <article class="app dark reveal" style="--c:var(--c-max)" aria-labelledby="app-max">
-      <div class="app-top"><span class="code">OD—01</span><span class="chip">新品 · 即将推出</span></div>
+      <div class="app-top"><span class="code">OD—01</span><span class="chip">新品 · 抢先版</span></div>
       <div class="app-body">
         <img class="app-icon" src="/assets/icons/max.webp" width="64" height="64" alt="">
         <h3 id="app-max">OnDevice Max</h3>
-        <p class="app-line">一个更安静的思考空间。</p>
+        <p class="app-line">一个让思考更从容的地方。</p>
         <p class="app-desc">全新设计的一体化工作室：聊天、相机 Lens、语音、图像工作室、模型库和本地 API 服务器。</p>
         <dl class="spec">
           <div><dt>系统要求</dt><dd>iOS 27</dd></div>
-          <div><dt>版本</dt><dd>1.0.0 · 测试中</dd></div>
+          <div><dt>版本</dt><dd>1.0.0 (60)</dd></div>
+          <div><dt>IPA</dt><dd>47.5 MB</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm primary" href="#max">了解 Max</a><a class="btn sm" href="https://github.com/Mesutcydev/ondevice-core/releases">关注发布</a></div>
+        <div class="cta"><a class="btn sm primary" href="https://github.com/Mesutcydev/ondevice-core/releases/download/ondevice-max-1.0.0-60/OnDeviceMax-sideload-entitled-1.0.0-60.ipa">下载 IPA</a><a class="btn sm" href="#max">了解 Max</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/max-drawer.webp" width="660" height="1434" loading="lazy" alt="OnDevice Max 导航：最近聊天上方是 Lens、语音、图像工作室、模型、设备和 API 服务器入口"></div></div>
     </article>
@@ -184,10 +184,10 @@
         <p class="app-desc">为你的工具提供本地 API 服务器：同一端口上兼容 OpenAI、Anthropic 和 Ollama 的接口，并以 Bearer 密钥保护。</p>
         <dl class="spec">
           <div><dt>系统要求</dt><dd>iOS 18</dd></div>
-          <div><dt>版本</dt><dd>3.2.6 (143)</dd></div>
-          <div><dt>IPA</dt><dd>26.3 MB</dd></div>
+          <div><dt>版本</dt><dd>3.2.6 (144)</dd></div>
+          <div><dt>IPA</dt><dd>25.5 MB</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-143/OnDeviceLAS-sideload-entitled-latest.ipa">下载 IPA</a><a class="btn sm" href="#api">查看 API</a></div>
+        <div class="cta"><a class="btn sm solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-144/OnDeviceLAS-sideload-entitled-3.2.6-144.ipa">下载 IPA</a><a class="btn sm" href="#api">查看 API</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/las-server.webp" width="660" height="1434" loading="lazy" alt="OnDevice LAS 面板：设备状态与本地 API 服务器开关"></div></div>
     </article>
@@ -216,9 +216,9 @@
     <div class="reveal">
       <p class="label" style="color:var(--c-max)">OD—01 · 新品</p>
       <h2 id="max-title" style="margin-top:20px"><span class="dots">OnDevice</span><span class="dots accent">Max.</span></h2>
-      <p class="lede" style="margin-top:26px">OnDevice 积累的一切，汇聚于一款安静的应用。用留在手机上的模型写作、观看、聆听和创作。</p>
+      <p class="lede" style="margin-top:26px">OnDevice 的全部积累，浓缩进一款简洁的应用。模型始终留在手机上：写作、拍照提问、语音对话、生成图像。</p>
       <div class="tabs" role="tablist" aria-label="OnDevice Max 功能">
-        <button class="tab" role="tab" id="t-chat" aria-controls="stage-max" aria-selected="true"><span class="num">01</span><strong>聊天</strong><span>提问、写作、处理文件。回答由 iPhone 上加载的模型流式生成。</span></button>
+        <button class="tab" role="tab" id="t-chat" aria-controls="stage-max" aria-selected="true"><span class="num">01</span><strong>聊天</strong><span>提问、写作、处理文件。回答由 iPhone 上的模型逐字生成。</span></button>
         <button class="tab" role="tab" id="t-image" aria-controls="stage-max" aria-selected="false"><span class="num">02</span><strong>图像工作室</strong><span>描述一幅画面，本地图像模型为你绘制。不上传任何内容。</span></button>
         <button class="tab" role="tab" id="t-voice" aria-controls="stage-max" aria-selected="false"><span class="num">03</span><strong>语音</strong><span>选一个声音，把想法说出来。语音识别与合成都在设备上运行。</span></button>
         <button class="tab" role="tab" id="t-models" aria-controls="stage-max" aria-selected="false"><span class="num">04</span><strong>模型</strong><span>下载、加载和切换模型，查看哪些常驻内存以及占用多少空间。</span></button>
@@ -241,7 +241,7 @@
   <div class="reveal">
     <p class="label" style="color:var(--c-img)">OD—04 · 新品</p>
     <h2 id="create-title" style="margin-top:20px"><span class="dots">用手机</span><span class="dots" style="color:var(--c-img)">作画。</span></h2>
-    <p class="lede" style="margin-top:26px">OnDevice Image Generation 在你口袋里的 Apple 芯片上运行扩散模型。输入提示词，选择风格，看着它渲染出来。提示词和图片都留在设备上。</p>
+    <p class="lede" style="margin-top:26px">OnDevice Image Generation 在你口袋里的 Apple 芯片上运行扩散模型。输入提示词，选择风格，看着画面一点点生成。提示词和图片都留在设备上。</p>
     <ul class="pills" aria-label="支持的模型系列">
       <li>Stable Diffusion 1.5</li><li>SD 2.1</li><li>SDXL</li><li>SDXL Turbo</li><li>RealVisXL</li><li>Animagine XL</li><li>图生图</li><li>MLX + Core ML</li>
     </ul>
@@ -259,13 +259,13 @@
     <p class="zero-num dots" aria-hidden="true">0<span>B</span></p>
     <div class="sec-head" style="margin:0">
       <p class="label">隐私</p>
-      <h2 id="privacy-title">零字节<br>上传云端。</h2>
+      <h2 id="privacy-title">一个字节<br>都不上云。</h2>
       <p class="lede">聊天时，提示词发送到手机内存中的模型，而不是服务器。打开飞行模式，一切照常运行。</p>
     </div>
   </div>
   <div class="facts reveal">
     <div class="fact"><span class="mono">01 / 本地</span><h3>在设备上运行</h3><p>权重、上下文和回答都保存在你的 iPhone 上。唯一的下载是你选择的模型。</p></div>
-    <div class="fact"><span class="mono">02 / 私密</span><h3>无需账号</h3><p>无需注册，没有分析 SDK，没有遥测。不需要登录任何东西。</p></div>
+    <div class="fact"><span class="mono">02 / 私密</span><h3>无需账号</h3><p>无需注册，没有分析 SDK，没有遥测。什么都不用登录。</p></div>
     <div class="fact"><span class="mono">03 / 坦诚</span><h3>不偷偷上云</h3><p>模型装不进内存时会明确告诉你，推理绝不会悄悄转到托管服务。</p></div>
     <div class="fact"><span class="mono">04 / 开放</span><h3>阅读源码</h3><p>基于 MLX、llama.cpp、whisper.cpp 和 Core ML 的 Swift 与 SwiftUI。MIT 许可。</p></div>
   </div>
@@ -275,10 +275,10 @@
   <div class="reveal">
     <p class="label" style="color:var(--c-las)">开发者</p>
     <h2 id="api-title" style="margin-top:20px">你的 iPhone<br>就是服务器。</h2>
-    <p class="lede" style="margin-top:26px">OnDevice LAS 以及 Max 和 Core 中的 API 服务器，可在局域网内响应标准请求。把 Cursor、脚本或智能体指向你的手机，模型始终保持私密。</p>
+    <p class="lede" style="margin-top:26px">OnDevice LAS 以及 Max 和 Core 中的 API 服务器，可在局域网内响应标准请求。让 Cursor、脚本或智能体直接连到你的手机，模型始终留在本地。</p>
     <div class="term">
       <div class="term-bar"><span aria-hidden="true"><i></i><i></i><i></i></span><button class="copy" type="button" data-copy="curl-ex" data-done="✓ 已复制">复制</button></div>
-<pre id="curl-ex"><span class="c"># 占位符，并非真实值</span>
+<pre id="curl-ex"><span class="c"># 示例值，请替换为你自己的</span>
 curl -N http://PHONE-IP:11434/v1/chat/completions \
   -H <span class="v">"Authorization: Bearer $KEY"</span> \
   -d <span class="v">'{"model":"MODEL-ID","stream":true,
@@ -298,7 +298,7 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
   <div class="sec-head reveal">
     <p class="label">安装</p>
     <h2 id="install-title">三步<br>侧载安装。</h2>
-    <p class="lede">这些应用暂未上架 App Store。你需要自行安装 IPA，并用自己的 Apple ID 签名，大约五分钟。</p>
+    <p class="lede">这些应用暂未上架 App Store。你需要自行安装 IPA，并用自己的 Apple 账户签名，大约五分钟。</p>
   </div>
   <div class="steps">
     <article class="step reveal"><span class="step-n dots" aria-hidden="true">01</span><h3>下载 IPA</h3><p>在<a href="#apps">应用一览</a>中选择应用，从 GitHub Releases 下载 IPA。应用不附带模型权重。</p></article>
@@ -315,11 +315,11 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
     <p class="lede">还有疑问？<a href="https://github.com/Mesutcydev/ondevice-core/issues">提交 issue</a>，我们来帮你。</p>
   </div>
   <div class="faq reveal">
-    <details open><summary>如何在 iPhone 上离线运行大语言模型？</summary><div><p>安装 OnDevice Core（iOS 27），通过 Wi-Fi 下载一次模型（例如 Qwen 3 4B）并加载。之后聊天完全无需联网，飞行模式下也可以。OnDevice Max 发布后用法相同。</p></div></details>
+    <details open><summary>如何在 iPhone 上离线运行大语言模型？</summary><div><p>安装 OnDevice Max 或 OnDevice Core（iOS 27），通过 Wi-Fi 下载一次模型（例如 Qwen 3 4B）并加载。之后聊天完全无需联网，开着飞行模式也能用。</p></div></details>
     <details><summary>OnDevice 应用在 App Store 上吗？</summary><div><p>目前不在。它们以可侧载的 IPA 文件发布在 GitHub Releases 上，你可以用 AltStore、SideStore 或 ForgeSign 在自己的设备上签名安装。源代码以 MIT 许可公开。</p></div></details>
-    <details><summary>Max 和 Core 有什么区别？</summary><div><p>两者共享相同的设备端引擎和功能。<b>Max</b> 采用全新、更安静的界面，即将推出；<b>Core</b> 保留原版 Studio 界面，现已可用。<b>OnDevice LAS</b> 把 iPhone 变成本地 API 服务器，<b>OnDevice Image Generation</b> 用于生成图片。</p></div></details>
+    <details><summary>Max 和 Core 有什么区别？</summary><div><p>两者共享相同的设备端引擎和功能。<b>Max</b> 采用全新、更简洁的界面，是最新版本；<b>Core</b> 保留原版 Studio 界面。<b>OnDevice LAS</b> 把 iPhone 变成本地 API 服务器，<b>OnDevice Image Generation</b> 用于生成图片。</p></div></details>
     <details><summary>支持哪些 iPhone？</summary><div><p>OnDevice LAS 需要 iOS 18 或更高版本，OnDevice Image Generation 需要 iOS 26，OnDevice Core 和 Max 需要 iOS 27。模型越大需要的内存越多；模型库会在下载前检查模型是否适合你的设备。</p></div></details>
-    <details><summary>我输入的内容会离开手机吗？</summary><div><p>默认不会。推理在设备上运行，没有账号、分析或遥测。网络只用于你发起的模型下载，以及你主动开启的可选功能，例如联网访问、Apple Private Cloud Compute 或配对的 Mac。</p></div></details>
+    <details><summary>我输入的内容会离开手机吗？</summary><div><p>默认不会。模型完全在设备上运行，没有账号、分析或遥测。网络只用于你发起的模型下载，以及你主动开启的可选功能，例如联网访问、Apple Private Cloud Compute 或配对的 Mac。</p></div></details>
     <details><summary>能在不联网的 iPhone 上生成图像吗？</summary><div><p>可以。OnDevice Image Generation 使用 MLX 和 Core ML 在本地运行 Stable Diffusion 1.5、2.1、SDXL 和 SDXL Turbo。OnDevice Max 和 Core 也内置图像工作室。</p></div></details>
     <details><summary>iPhone 能作为兼容 OpenAI 的 API 使用吗？</summary><div><p>可以。OnDevice LAS 在局域网内以 Bearer 密钥保护，提供兼容 OpenAI、Anthropic 和 Ollama 的接口。它面向可信网络，iOS 将应用切到后台时会停止。</p></div></details>
     <details><summary>OnDevice 免费且开源吗？</summary><div><p>是的。原创代码采用 MIT 许可，无需账号、无需订阅。模型权重需单独下载，并遵循各自的许可。</p></div></details>
@@ -330,7 +330,7 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
   <span id="source"></span>
   <h2 id="end-title"><span class="dots">把模型</span><span class="dots">装进口袋。</span></h2>
   <p>四款应用，一个承诺：你的文字、图片和声音都留在你的 iPhone 上。</p>
-  <div class="cta"><a class="btn solid" href="#apps">获取应用</a><a class="btn" href="https://github.com/Mesutcydev/ondevice-core">★ 在 GitHub 上加星</a></div>
+  <div class="cta"><a class="btn solid" href="#apps">获取应用</a><a class="btn" href="https://github.com/Mesutcydev/ondevice-core">★ 在 GitHub 点个 Star</a></div>
 </div></section>
 </main>
 
@@ -344,6 +344,6 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
   <p class="fine">截图为开源版本在 iPhone 模拟器中的画面；真机性能因模型大小和内存而异。模型权重不随应用分发，并遵循各自的许可。Apple、iPhone、iPad 和 Mac 是 Apple Inc. 的商标。OnDevice 是独立项目，与 Apple 无关联，也未获其认可。原创代码采用 MIT 许可。</p>
 </div></footer>
 
-<script src="/shell/site.js?v=20" defer></script>
+<script src="/shell/site.js?v=21" defer></script>
 </body>
 </html>

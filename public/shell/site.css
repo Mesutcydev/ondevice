@@ -132,11 +132,13 @@ h3 { font-size: 24px; letter-spacing: -.025em; line-height: 1.15; }
 .mast-nav { display: flex; gap: 26px; margin-inline: auto; font-size: 15px; }
 .mast-nav a, .lang a { text-decoration: none; color: var(--muted-d); transition: color 140ms; }
 .mast-nav a:hover, .lang a:hover, .lang a[aria-current] { color: var(--white); }
-.mast-end { display: flex; align-items: center; gap: 18px; }
-.lang { display: flex; gap: 12px; font-family: var(--mono); font-size: 12px; }
+.mast-end { display: flex; align-items: center; gap: 12px; }
+.lang { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--line-d); border-radius: 999px; font-family: var(--mono); font-size: 12px; }
+.lang a { padding: 5px 9px; border-radius: 999px; line-height: 1; }
+.lang a[aria-current] { background: var(--white); color: var(--black) !important; }
 .menu { display: none; }
 @media (max-width: 960px) {
-  .mast-nav, .mast-end .lang { display: none; }
+  .mast-nav { display: none; }
   .mast-end { margin-left: auto; }
   .menu { display: block; }
   .menu summary { list-style: none; cursor: pointer; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line-d); }
@@ -147,7 +149,6 @@ h3 { font-size: 24px; letter-spacing: -.025em; line-height: 1.15; }
     display: grid; gap: 4px; font-size: 22px; font-weight: 600;
   }
   .menu-panel a { text-decoration: none; padding: 8px 0; }
-  .menu-panel .lang { margin-top: 12px; font-size: 14px; }
 }
 @media (max-width: 480px) { .mast .btn { display: none; } }
 
