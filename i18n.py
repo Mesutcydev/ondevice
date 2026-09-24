@@ -99,7 +99,8 @@ TR = head("tr", "tr_TR") + [
     ("OnDevice LAS dashboard with the local API server controls and device health", "Yerel API sunucusu kontrolleri ve cihaz durumuyla OnDevice LAS paneli"),
     ("OnDevice Max image studio showing a generated picture of a house beside a mountain lake", "Dağ gölü kıyısında bir ev resmi üretmiş OnDevice Max görsel stüdyosu"),
     ("OnDevice Max chat answering a request to plan a focused workday with a local model", "Yerel bir modelle odaklı bir iş gününü planlama isteğini yanıtlayan OnDevice Max sohbeti"),
-    ("OnDevice Image Generation welcome screen: Create privately, images made directly on your device", "OnDevice Image Generation karşılama ekranı: gizlice üretin, görseller doğrudan cihazınızda"),
+    ("OnDevice Image Generation create screen with a prompt box, style presets and featured images", "Komut kutusu, hazır stiller ve öne çıkan örneklerle OnDevice Image Generation oluşturma ekranı"),
+    ("Create tab with a prompt field, style chips such as Anime, Portrait and Pixel Art, and featured examples", "Komut alanı, Anime, Portre ve Piksel Sanatı gibi stil seçenekleri ve öne çıkan örneklerle Oluştur sekmesi"),
     ("OnDevice Core Studio home with shortcuts for Lens, Voice and Mac, and a Generate an Image card", "Lens, Ses ve Mac kısayolları ile görsel üretme kartı olan OnDevice Core Studio ana ekranı"),
     ('aria-label="Model families the apps run"', 'aria-label="Uygulamaların çalıştırdığı model aileleri"'),
     # lineup
@@ -165,7 +166,6 @@ TR = head("tr", "tr_TR") + [
     (">Lineup</a>", ">Uygulamalar</a>"),
     (">How it works</a>", ">Nasıl çalışır</a>"),
     ("Create privately: create beautiful images directly on your device, no cloud processing required", "Gizlice üretin: güzel görselleri doğrudan cihazınızda oluşturun, bulutta işlem gerekmez"),
-    ("Made for your iPhone: the app recommends models that match your device and available memory", "iPhone'unuz için: uygulama cihazınıza ve boş belleğe uyan modelleri önerir"),
     # privacy
     ('<p class="label">Privacy</p>', '<p class="label">Gizlilik</p>'),
     ("Zero bytes<br>to the cloud.", "Buluta<br>sıfır bayt."),
@@ -298,7 +298,8 @@ ZH = head("zh", "zh_CN") + [
     ("OnDevice LAS dashboard with the local API server controls and device health", "OnDevice LAS 面板：本地 API 服务器控制与设备状态"),
     ("OnDevice Max image studio showing a generated picture of a house beside a mountain lake", "OnDevice Max 图像工作室：生成了一幅山湖边小屋的图片"),
     ("OnDevice Max chat answering a request to plan a focused workday with a local model", "OnDevice Max 聊天：本地模型帮你规划专注的一天"),
-    ("OnDevice Image Generation welcome screen: Create privately, images made directly on your device", "OnDevice Image Generation 欢迎页：私密创作，图像直接在设备上生成"),
+    ("OnDevice Image Generation create screen with a prompt box, style presets and featured images", "OnDevice Image Generation 创作页：提示词输入框、风格预设和精选示例"),
+    ("Create tab with a prompt field, style chips such as Anime, Portrait and Pixel Art, and featured examples", "创作标签页：提示词输入框、动漫、人像、像素画等风格选项和精选示例"),
     ("OnDevice Core Studio home with shortcuts for Lens, Voice and Mac, and a Generate an Image card", "OnDevice Core Studio 首页：Lens、语音和 Mac 快捷入口，以及生成图像卡片"),
     ('aria-label="Model families the apps run"', 'aria-label="应用支持的模型系列"'),
     # lineup
@@ -365,7 +366,6 @@ ZH = head("zh", "zh_CN") + [
     (">Lineup</a>", ">应用一览</a>"),
     (">How it works</a>", ">工作原理</a>"),
     ("Create privately: create beautiful images directly on your device, no cloud processing required", "私密创作：直接在设备上生成精美图像，无需云端处理"),
-    ("Made for your iPhone: the app recommends models that match your device and available memory", "为你的 iPhone 打造：应用会推荐适合你设备和可用内存的模型"),
     # privacy
     ('<p class="label">Privacy</p>', '<p class="label">隐私</p>'),
     ("Zero bytes<br>to the cloud.", "一个字节<br>都不上云。"),
