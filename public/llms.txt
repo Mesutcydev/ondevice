@@ -1,6 +1,6 @@
 # OnDevice
 
-> OnDevice makes free, open-source iPhone apps that run AI models entirely on the device: chat with local LLMs, camera vision, voice, image generation, and an OpenAI-compatible local API. No account, no telemetry, no cloud inference by default. The apps are sideloaded (IPA + AltStore, SideStore or ForgeSign); they are not on the App Store.
+> OnDevice makes free, open-source iPhone apps that run AI models entirely on the device: chat with local LLMs, camera vision, voice, image generation, and an OpenAI-compatible local API. No account, no telemetry, no cloud inference by default. App Store releases are coming soon. Public sideload downloads have been retired; official App Store links will be added when available.
 
 Website: https://ondevice.fun/ (English), https://ondevice.fun/tr/ (Turkish), https://ondevice.fun/zh/ (Simplified Chinese)
 Source: https://github.com/Mesutcydev/ondevice-core
@@ -8,10 +8,10 @@ License: MIT for original code; model weights keep their own licences and are do
 
 ## Apps
 
-- OnDevice Max — status: early build, 1.0.0 (75). iOS 27. The newest all-in-one studio with a new interface: chat, camera Lens (ask, translate, scan, solve), voice conversations, image studio, model library, device status, local API server, paired-Mac tools. IPA (47.6 MB): https://github.com/Mesutcydev/ondevice-core/releases/download/ondevice-max-1.0.0-75/OnDeviceMax-sideload-entitled-1.0.0-75.ipa
-- OnDevice Core — status: available, 1.0.0 (65). iOS 27. Same on-device engine and features as Max with the original Studio interface. Apple Core AI, MLX, llama.cpp, whisper.cpp, experimental Edge0 mixture-of-experts runtime. IPA (44.0 MB): https://github.com/Mesutcydev/ondevice-core/releases/download/ondevice-core-1.0.0-65/OnDeviceCoreAIStudio-sideload-entitled-1.0.0-65.ipa
-- OnDevice LAS (On Device: LAS) — status: beta, 3.2.6 (146). iOS 18. Local API server: OpenAI-, Anthropic- and Ollama-compatible routes on one port behind a bearer key. IPA (24.8 MB): https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa
-- OnDevice Image Generation (app name "iOS Image Generation") — status: coming soon, 1.0 (16) in testing. iOS / iPadOS 26. Stable Diffusion 1.5, 2.1, SDXL, SDXL Turbo and compatible fine-tunes (e.g. RealVisXL, Animagine XL) with MLX and Core ML; image-to-image, model catalog with device-fit checks, private gallery.
+- OnDevice Max — status: App Store coming soon, 1.0.0 (75). iOS 27. The newest all-in-one studio with a new interface: chat, camera Lens (ask, translate, scan, solve), voice conversations, image studio, model library, device status, local API server, paired-Mac tools.
+- OnDevice Core — status: App Store coming soon, 1.0.0 (65). iOS 27. Same on-device engine and features as Max with the original Studio interface. Apple Core AI, MLX, llama.cpp, whisper.cpp, experimental Edge0 mixture-of-experts runtime.
+- OnDevice LAS (On Device: LAS) — status: App Store coming soon, 3.2.6 (146). iOS 18. Local API server: OpenAI-, Anthropic- and Ollama-compatible routes on one port behind a bearer key.
+- OnDevice Image Generation (app name "iOS Image Generation") — status: App Store coming soon, 1.0 (16) in testing. iOS / iPadOS 26. Stable Diffusion 1.5, 2.1, SDXL, SDXL Turbo and compatible fine-tunes (e.g. RealVisXL, Animagine XL) with MLX and Core ML; image-to-image, model catalog with device-fit checks, private gallery.
 
 ## Choosing
 
@@ -20,12 +20,9 @@ License: MIT for original code; model weights keep their own licences and are do
 - Need an API for Cursor, scripts or agents: OnDevice LAS (iOS 18+), or the API server inside Max/Core.
 - Want to make pictures: OnDevice Image Generation (iOS 26+).
 
-## Install (sideload)
+## Availability
 
-1. Download the IPA from GitHub Releases (links above).
-2. Sign and install it with AltStore (https://altstore.io), SideStore (https://sidestore.io) or ForgeSign (https://github.com/Mesutcydev/ForgeSign-iOS).
-3. Keep the entitlements com.apple.developer.kernel.increased-memory-limit and com.apple.developer.kernel.extended-virtual-addressing when signing; without them iOS stops large models while loading.
-4. Open the app, download a model that fits the device, load it. It then works offline, including in airplane mode.
+App Store releases are coming soon. Public IPA downloads and sideload installation instructions have been retired. Official App Store links will be published at https://ondevice.fun/ when available.
 
 ## Local API (LAS, and the API server in Max/Core)
 
