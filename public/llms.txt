@@ -50,10 +50,12 @@ Qwen 3, Qwen 3.5, Qwen2.5-Coder, Llama 3.2, Gemma 3, Phi-4, Mistral, Granite, LF
 
 ## Docs
 
+- OnDevice Max support: https://ondevice.fun/support/
+
 - Agent integration: https://github.com/Mesutcydev/ondevice-core/blob/main/Docs/AGENT_INTEGRATION.md
 - Architecture: https://github.com/Mesutcydev/ondevice-core/blob/main/ARCHITECTURE.md
 - Reusable components: https://github.com/Mesutcydev/ondevice-core/blob/main/Docs/REUSABLE_COMPONENTS.md
-- Privacy policy: https://github.com/Mesutcydev/ondevice-core/blob/main/PRIVACY_POLICY.md
+- OnDevice Max privacy policy: https://ondevice.fun/privacy/
 - Security policy: https://github.com/Mesutcydev/ondevice-core/blob/main/SECURITY.md
 
 Independent project, not affiliated with or endorsed by Apple Inc.

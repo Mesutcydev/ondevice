@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<title>OnDevice Max Privacy Policy</title>
+<meta name="description" content="How OnDevice Max stores data on your iPhone, and what is sent when you enable downloads, web tools, iCloud sync or local-network features.">
+<link rel="canonical" href="https://ondevice.fun/privacy/">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/shell/site.css?v=21">
+<link rel="stylesheet" href="/shell/documents.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="mast"><div class="wrap">
+  <a class="brand" href="/" aria-label="OnDevice home"><img class="brand-mark" src="/assets/icons/max.webp" width="26" height="26" alt="">OnDevice</a>
+  <nav class="document-nav" aria-label="Primary"><a href="/#max">Max</a><a href="/support/">Support</a><a href="/privacy/" aria-current="page">Privacy</a></nav>
+</div></header>
+<main id="main">
+<div class="document-hero"><div class="wrap">
+  <p class="label">OD—01 / OnDevice Max</p>
+  <h1>Privacy policy.</h1>
+  <p>Local by default, with optional network features you control. This policy covers the OnDevice Max iOS app, maintained by the iOS Local LLM project.</p>
+  <p class="document-date">Last updated: <time datetime="2026-10-02">October 2, 2026</time></p>
+</div></div>
+<div class="document-body"><div class="wrap document-layout">
+  <nav class="document-toc" aria-label="On this page"><h2>On this page</h2><ul>
+    <li><a href="#overview">Overview</a></li><li><a href="#local">On-device data</a></li><li><a href="#network">Network features</a></li><li><a href="#providers">Search providers</a></li><li><a href="#icloud">iCloud sync</a></li><li><a href="#controls">Your controls</a></li><li><a href="#children">Children &amp; parental controls</a></li><li><a href="#permissions">Permissions</a></li><li><a href="#website">Website &amp; support</a></li><li><a href="#contact">Contact &amp; changes</a></li>
+  </ul></nav>
+  <article class="document-copy">
+    <section id="overview"><h2>Overview</h2>
+      <p>OnDevice Max runs compatible AI models and stores app content locally by default. The project does not operate an OnDevice account system, advertising service, analytics service or telemetry backend. The app does not require an OnDevice account and does not include advertising SDKs or third-party trackers.</p>
+      <p>Local inference does not send your prompts, model output, photos, voice or documents to a project-operated inference service. The project cannot inspect content stored only on your iPhone.</p>
+      <p class="document-note">Optional network features send data to the destinations you choose. Local AI does not make a web search, model download or iCloud transfer an on-device operation.</p>
+    </section>
+    <section id="local"><h2>What stays on your device</h2>
+      <ul>
+        <li><strong>Conversations:</strong> saved in the app’s local storage with iOS file protection. Optional iCloud sync is described below.</li>
+        <li><strong>Memories and snippets:</strong> saved in local app preferences.</li>
+        <li><strong>Models:</strong> downloaded or imported into local storage. Model files have their own third-party licenses.</li>
+        <li><strong>Photos, files and analysis history:</strong> selected attachments and history may be saved locally. The share extension stages content in the protected App Group container until the app receives it; unreceived entries expire after 24 hours, and the wipe action clears staged shares.</li>
+        <li><strong>Generated images:</strong> retained locally for viewing and sharing. Copies you export to Photos or another app are controlled by that destination.</li>
+        <li><strong>Diagnostics:</strong> MetricKit crash and performance reports are stored locally for inspection. Apple’s system diagnostic processing follows Apple’s settings and privacy practices.</li>
+        <li><strong>Parental controls:</strong> the parent PIN is stored as a salted derived value in device-only Keychain storage, with restrictions and retry limits. The app does not transmit the PIN.</li>
+      </ul>
+    </section>
+    <section id="network"><h2>When the app uses the network</h2>
+      <ol>
+        <li><strong>Model search and downloads:</strong> searching Hugging Face or choosing a download sends the search or file request over HTTPS. If you save a Hugging Face token for gated repositories, requests may include it. The host receives normal request metadata, such as your IP address.</li>
+        <li><strong>Web tools:</strong> enabling web access and sending a query or fetching a page sends that request to the configured provider or website. See the provider section below.</li>
+        <li><strong>Mac Bridge and Local API:</strong> enabling these features permits authenticated requests between your iPhone and devices on your local network. Requests can include prompts, model results or tool arguments relevant to the operation. The local API is intended for trusted networks and stops when the app backgrounds.</li>
+        <li><strong>iCloud:</strong> enabling conversation sync saves conversations to your private CloudKit database.</li>
+        <li><strong>External links:</strong> opening documentation or another website makes a request to that destination under its own privacy terms.</li>
+      </ol>
+      <p>Private Cloud Compute is available only in an Apple-authorized build after you select it and accept its separate consent. It sends the prompt and included conversation context to Apple for remote inference under Apple’s privacy practices. The public App Store candidate does not include this authorization. Local models never silently fall back to a remote service.</p>
+      <p>The app’s network-activity indicator covers requests made through its monitored networking layer; it is not a system-wide packet monitor.</p>
+    </section>
+    <section id="providers"><h2>Search providers and fetched websites</h2>
+      <p>A configured provider may receive your query, request metadata and provider API credential. A query proposed by the assistant can contain information from your conversation. Review it before approving it, or disable web access. “Always Allow” permits subsequent requests without an individual approval prompt.</p>
+      <p>Queries, provider-account identifiers and request metadata may be retained off-device under the provider’s terms. A credential can associate a request with your provider account. The project does not control these providers’ storage or retention.</p>
+      <ul>
+        <li><a href="https://api-dashboard.search.brave.com/app/documentation/general/privacy-policy">Brave Search API</a> documents query retention of up to 90 days and an enterprise zero-retention option, subject to its legal obligations.</li>
+        <li><a href="https://www.tavily.com/privacy">Tavily</a> describes query collection, service-improvement uses and limited sharing with search-index providers.</li>
+        <li><a href="https://exa.ai/privacy-policy">Exa</a> applies its privacy terms to its search service.</li>
+        <li><a href="https://duckduckgo.com/privacy">DuckDuckGo</a> applies its terms to the optional experimental HTML search integration.</li>
+        <li>For SearXNG and custom endpoints, the operator you choose determines access and retention. OnDevice cannot verify an arbitrary endpoint’s practices.</li>
+      </ul>
+      <p>Fetched websites receive the requested URL and network metadata, such as your IP address. Clearing local app data does not delete records retained by a provider; use that provider’s privacy controls or contact process.</p>
+    </section>
+    <section id="icloud"><h2>Optional iCloud sync</h2>
+      <p>Conversation sync is off by default. If you enable it in Settings, conversations are stored in your private CloudKit database associated with your Apple account. Apple operates this storage; the project does not have access to that private database.</p>
+      <p>You can turn sync off and use the app’s cloud-data controls to remove the cloud copy. Removing local content or uninstalling the app does not automatically erase the iCloud copy.</p>
+    </section>
+    <section id="controls"><h2>Your control and retention</h2>
+      <p>App content remains in local storage until you delete it or clear it through Settings. You can manage downloaded models and remove local content and credentials. Uninstalling removes the app sandbox. Exports remain in the destinations where you saved them.</p>
+      <p>Clearing app data intentionally preserves the parent PIN and restrictions. Changing or removing parental controls requires the parent PIN. Keychain records can survive uninstall; remove parental controls with the PIN before uninstalling if you want to remove that record.</p>
+      <p>You decide whether to enable web tools, iCloud sync and local-network services. Provider-held copies follow the relevant provider’s terms and deletion process.</p>
+    </section>
+    <section id="children"><h2>Children and parental controls</h2>
+      <p>The project operates no personal-data backend. Optional network features send data to the providers described above. A parent can set a PIN to restrict image generation. These controls do not verify age, filter prompts or generated content, or replace iOS Screen Time.</p>
+    </section>
+    <section id="permissions"><h2>Permissions</h2>
+      <p>Camera, microphone, speech recognition, selected-photo access, saving generated images to Photos and local-network access support the features you select. You can change permissions in iOS Settings. Granting a system permission does not give the project access to your content.</p>
+    </section>
+    <section id="website"><h2>This website and support requests</h2>
+      <p>These support and privacy pages do not add analytics scripts, advertising trackers or a contact form. Cloudflare hosts ondevice.fun and processes ordinary web-request metadata to deliver and secure the site under <a href="https://www.cloudflare.com/privacypolicy/">its privacy policy</a>.</p>
+      <p>If you choose to contact the project on GitHub, GitHub processes the information under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">its privacy statement</a>. Public issues and their attachments are visible to others. The project can read and respond to information you choose to post; never include credentials or private app content in a public issue.</p>
+    </section>
+    <section id="contact"><h2>Contact and policy changes</h2>
+      <p>For questions about this policy, use <a href="/support/">OnDevice Max support</a>. The source repository is <a href="https://github.com/Mesutcydev/ios-local-llm">Mesutcydev/ios-local-llm</a>. Do not include private data in a public issue.</p>
+      <p>Changes to this policy will be published on this page with an updated date. This policy describes OnDevice Max; other apps and third-party models or services may have different terms.</p>
+    </section>
+  </article>
+</div></div>
+</main>
+<footer class="document-footer"><div class="wrap"><p>OnDevice Max · Independent open-source project</p><nav aria-label="Footer"><a href="/">OnDevice home</a><a href="/support/">Support</a><a href="https://github.com/Mesutcydev/ios-local-llm">Source code</a></nav></div></footer>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<title>OnDevice Max Support — setup, models and troubleshooting</title>
+<meta name="description" content="Get help with OnDevice Max: model downloads, local chat, voice, camera permissions, storage, parental controls and the local API.">
+<link rel="canonical" href="https://ondevice.fun/support/">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/shell/site.css?v=21">
+<link rel="stylesheet" href="/shell/documents.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="mast"><div class="wrap">
+  <a class="brand" href="/" aria-label="OnDevice home"><img class="brand-mark" src="/assets/icons/max.webp" width="26" height="26" alt="">OnDevice</a>
+  <nav class="document-nav" aria-label="Primary"><a href="/#max">Max</a><a href="/support/" aria-current="page">Support</a><a href="/privacy/">Privacy</a></nav>
+</div></header>
+<main id="main">
+<div class="document-hero"><div class="wrap">
+  <p class="label">OD—01 / OnDevice Max</p>
+  <h1>Help with<br>OnDevice Max.</h1>
+  <p>Start with a compatible model, resolve common problems, or contact the project. OnDevice Max requires iOS 27 or later. No OnDevice account is needed.</p>
+</div></div>
+<div class="document-body"><div class="wrap document-layout">
+  <nav class="document-toc" aria-label="On this page"><h2>On this page</h2><ul>
+    <li><a href="#contact">Contact support</a></li><li><a href="#start">Get started</a></li><li><a href="#downloads">Downloads &amp; storage</a></li><li><a href="#runtime">Models &amp; generation</a></li><li><a href="#permissions">Voice &amp; camera</a></li><li><a href="#network">Local API &amp; web tools</a></li><li><a href="#data">Data &amp; parental controls</a></li>
+  </ul></nav>
+  <article class="document-copy">
+    <section id="contact"><h2>Contact support</h2>
+      <p>For help or a reproducible bug, open an issue in the OnDevice Max source repository. Include your iPhone model, iOS version, app version and build, the model name, and the steps that led to the problem.</p>
+      <div class="cta"><a class="btn primary" href="https://github.com/Mesutcydev/ios-local-llm/issues/new">Open a support issue</a><a class="btn" href="https://github.com/Mesutcydev/ios-local-llm/issues">Browse existing issues</a></div>
+      <p class="document-note">GitHub issues are public. Remove API keys, access tokens, pairing credentials, private conversations, photos and documents before posting. A GitHub account is needed to create an issue.</p>
+      <p>For a security vulnerability, follow the repository’s <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/SECURITY.md">security reporting instructions</a> instead of posting sensitive details publicly. For privacy questions, read the <a href="/privacy/">privacy policy</a> and use the support route above without including private data.</p>
+    </section>
+    <section id="start"><h2>Get started</h2>
+      <ol><li>Open the leading menu and choose <strong>Models</strong>.</li><li>Choose <strong>Discover</strong>, then a compatible model. A small chat example is <strong>Qwen3 0.6B Official iOS</strong>.</li><li>Download the model while connected to the internet. Model files are separate from the app.</li><li>Select the downloaded model for Assistant, start a conversation and send a message.</li></ol>
+      <p>Once a compatible local model is downloaded and loaded, local chat can work offline. Lens, voice and Image Studio need their own compatible models or system capabilities. Optional web tools and iCloud sync still need a connection.</p>
+    </section>
+    <section id="downloads"><h2>Downloads and storage</h2>
+      <p>If a download stops, check your connection and free storage, then retry from Models. Leave room for the downloaded files and any preparation the model requires; the download size alone may not be the full storage requirement.</p>
+      <p>Use the model library to remove packs you no longer need. A deleted model must be downloaded again before use. Never share your Hugging Face token in a support issue.</p>
+    </section>
+    <section id="runtime"><h2>Models and generation</h2>
+      <p>If a model will not load, try a smaller compatible model and unload other active work. The app can refuse or stop work because of memory pressure or device temperature. Let the iPhone cool and retry; repeated retries do not make an oversized model fit.</p>
+      <p>Image Studio requires a supported image model, downloaded separately. Compatibility and speed vary with the model and your iPhone. AI output can be inaccurate; review it before using or sharing it.</p>
+    </section>
+    <section id="permissions"><h2>Voice and camera</h2>
+      <p>Open the feature you want to use and allow the relevant permission when iOS asks. If you previously denied camera, microphone or speech recognition access, change it in iOS Settings for OnDevice Max.</p>
+      <p>Choose the appropriate vision or voice model where required. If a feature stops responding, end the session, let your iPhone cool down and try again with a smaller supported model.</p>
+    </section>
+    <section id="network"><h2>Local API and web tools</h2>
+      <p>Enable the Local API Server only on a network you trust. Use the address and bearer key shown in the app. Keep the iPhone and client on the same local network and allow iOS local-network access. The server stops when the app backgrounds.</p>
+      <p>Do not expose or port-forward the server to the internet. Keep its bearer key and paired-Mac credentials private. See the <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">integration guide</a> for supported routes and their limits.</p>
+      <p>Web tools are optional. Check the provider and credentials you configured if a search fails. Providers receive the request under their own privacy terms; disable web access if you want to keep the workflow local.</p>
+    </section>
+    <section id="data"><h2>Data and parental controls</h2>
+      <p>Settings contains controls for clearing local content and credentials, and for optional iCloud conversation sync. Clearing local data does not automatically remove exported files or copies held by another app or provider. Use the cloud controls for the iCloud copy.</p>
+      <p>A parent can set a PIN to restrict image generation. Changing or removing the restriction requires that PIN. Clearing app data intentionally preserves parental controls, and Keychain records may survive uninstall. The project cannot retrieve a parent PIN or access conversations stored on your iPhone.</p>
+      <p>Read the <a href="/privacy/">privacy policy</a> for storage, retention and optional network behavior.</p>
+    </section>
+  </article>
+</div></div>
+</main>
+<footer class="document-footer"><div class="wrap"><p>OnDevice Max · Independent open-source project</p><nav aria-label="Footer"><a href="/">OnDevice home</a><a href="/privacy/">Privacy policy</a><a href="https://github.com/Mesutcydev/ios-local-llm">Source code</a></nav></div></footer>
+</body>
+</html>
