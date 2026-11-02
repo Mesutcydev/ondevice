@@ -130,14 +130,14 @@ h3 { font-size: 24px; letter-spacing: -.025em; line-height: 1.15; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -.03em; text-decoration: none; }
 .brand-mark { width: 26px; height: 26px; border-radius: 7px; }
 .mast-nav { display: flex; gap: 26px; margin-inline: auto; font-size: 15px; }
-.mast-nav a, .lang a { text-decoration: none; color: var(--muted-d); transition: color 140ms; }
+.mast-nav a, .lang a { text-decoration: none; color: var(--muted-d); transition: color 140ms; white-space: nowrap; }
 .mast-nav a:hover, .lang a:hover, .lang a[aria-current] { color: var(--white); }
 .mast-end { display: flex; align-items: center; gap: 12px; }
 .lang { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--line-d); border-radius: 999px; font-family: var(--mono); font-size: 12px; }
 .lang a { padding: 5px 9px; border-radius: 999px; line-height: 1; }
 .lang a[aria-current] { background: var(--white); color: var(--black) !important; }
 .menu { display: none; }
-@media (max-width: 960px) {
+@media (max-width: 1160px) {
   .mast-nav { display: none; }
   .mast-end { margin-left: auto; }
   .menu { display: block; }

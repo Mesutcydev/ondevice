@@ -1,6 +1,6 @@
 # OnDevice
 
-> OnDevice makes free, open-source iPhone apps that run AI models entirely on the device: chat with local LLMs, camera vision, voice, image generation, and an OpenAI-compatible local API. No account, no telemetry, no cloud inference by default. App Store releases are coming soon. Public sideload downloads have been retired; official App Store links will be added when available.
+> OnDevice makes free, open-source iPhone apps that run AI models entirely on the device: chat with local LLMs, camera vision, voice, image generation, and an OpenAI-compatible local API. No account, no telemetry, no cloud inference by default. Token AI (formerly OnDevice Max) and OnDevice Local AI Studio are free on the App Store. OnDevice LAS is a sideload-only build, and OnDevice Image Generation is waiting for App Store release.
 
 Website: https://ondevice.fun/ (English), https://ondevice.fun/tr/ (Turkish), https://ondevice.fun/zh/ (Simplified Chinese)
 Source: https://github.com/Mesutcydev/ondevice-core
@@ -8,23 +8,26 @@ License: MIT for original code; model weights keep their own licences and are do
 
 ## Apps
 
-- OnDevice Max — status: App Store coming soon, 1.0.0 (75). iOS 27. The newest all-in-one studio with a new interface: chat, camera Lens (ask, translate, scan, solve), voice conversations, image studio, model library, device status, local API server, paired-Mac tools.
-- OnDevice Core — status: App Store coming soon, 1.0.0 (65). iOS 27. Same on-device engine and features as Max with the original Studio interface. Apple Core AI, MLX, llama.cpp, whisper.cpp, experimental Edge0 mixture-of-experts runtime.
-- OnDevice LAS (On Device: LAS) — status: App Store coming soon, 3.2.6 (146). iOS 18. Local API server: OpenAI-, Anthropic- and Ollama-compatible routes on one port behind a bearer key.
-- OnDevice Image Generation (app name "iOS Image Generation") — status: App Store coming soon, 1.0 (16) in testing. iOS / iPadOS 26. Stable Diffusion 1.5, 2.1, SDXL, SDXL Turbo and compatible fine-tunes (e.g. RealVisXL, Animagine XL) with MLX and Core ML; image-to-image, model catalog with device-fit checks, private gallery.
+- Token AI (formerly OnDevice Max; App Store name "Token: Local AI Studio") — status: on the App Store, https://apps.apple.com/app/token-local-ai-studio/id6774354746. iOS 27. The newest all-in-one studio with a new interface: chat, camera Lens (ask, translate, scan, solve), voice conversations, image studio, model library, device status, local API server, paired-Mac tools.
+- OnDevice Local AI Studio (App Store name "OnDevice: Local AI Studio") — status: on the App Store, https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399. iOS 18. The original Studio interface: chat, code and snippets, camera Lens with vision models or built-in OCR, voice conversations, local image generation with an optional parental PIN, optional web search, paired-Mac tools and local API.
+- OnDevice LAS (On Device: LAS) — status: sideload build only, not on the App Store, 3.2.6 (146). iOS 18. Local API server: OpenAI-, Anthropic- and Ollama-compatible routes on one port behind a bearer key.
+- OnDevice Image Generation (app name "iOS Image Generation") — status: waiting for App Store release. iOS / iPadOS 26. Stable Diffusion 1.5, 2.1, SDXL, SDXL Turbo and compatible fine-tunes (e.g. RealVisXL, Animagine XL) with MLX and Core ML; image-to-image, model catalog with device-fit checks, private gallery.
 
 ## Choosing
 
-- iOS 27 and want the newest interface: OnDevice Max.
-- iOS 27 and prefer the original Studio interface: OnDevice Core.
-- Need an API for Cursor, scripts or agents: OnDevice LAS (iOS 18+), or the API server inside Max/Core.
+- iOS 27 and want the newest interface: Token AI.
+- iOS 18 or later, or prefer the original Studio interface: OnDevice Local AI Studio.
+- Need an API for Cursor, scripts or agents: the API server inside Token AI, or OnDevice LAS (iOS 18+, sideload only).
 - Want to make pictures: OnDevice Image Generation (iOS 26+).
 
 ## Availability
 
-App Store releases are coming soon. Public IPA downloads and sideload installation instructions have been retired. Official App Store links will be published at https://ondevice.fun/ when available.
+- Token AI: App Store, https://apps.apple.com/app/token-local-ai-studio/id6774354746
+- OnDevice Local AI Studio: App Store, https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399
+- OnDevice LAS: sideload build only; sign it yourself and keep the increased-memory-limit entitlement.
+- OnDevice Image Generation: waiting for App Store release.
 
-## Local API (LAS, and the API server in Max/Core)
+## Local API (LAS, and the API server in Token AI)
 
 - OpenAI: GET /v1/models, POST /v1/chat/completions, POST /v1/responses (streaming supported)
 - Anthropic: POST /v1/messages
@@ -45,7 +48,7 @@ Qwen 3, Qwen 3.5, Qwen2.5-Coder, Llama 3.2, Gemma 3, Phi-4, Mistral, Granite, LF
 ## Privacy boundaries
 
 - Inference runs on the device. No account, analytics SDK or telemetry.
-- Network use: model downloads you start, and optional features you enable (web access, Apple Private Cloud Compute in Max, paired Mac).
+- Network use: model downloads you start, and optional features you enable (web access, Apple Private Cloud Compute in Token AI, paired Mac).
 - If a model does not fit in memory the app says so; it never silently falls back to a cloud endpoint.
 
 ## Docs

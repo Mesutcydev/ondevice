@@ -10,13 +10,13 @@ use the repository's public issue tracker for support.
 
 | Code | App | Status | Needs |
 | --- | --- | --- | --- |
-| OD—01 | **OnDevice Max** — new interface, all-in-one studio | App Store coming soon | iOS 27 |
-| OD—02 | **OnDevice Core** — same engine as Max, classic Studio UI ([repo](https://github.com/Mesutcydev/ondevice-core)) | App Store coming soon | iOS 27 |
-| OD—03 | **OnDevice LAS** — local OpenAI/Anthropic/Ollama-compatible API server | App Store coming soon | iOS 18 |
+| OD—01 | **Token AI** (formerly OnDevice Max) — new interface, all-in-one studio | [App Store](https://apps.apple.com/app/token-local-ai-studio/id6774354746) | iOS 27 |
+| OD—02 | **OnDevice Local AI Studio** — classic Studio UI ([repo](https://github.com/Mesutcydev/ios-local-llm)) | [App Store](https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399) | iOS 18 |
+| OD—03 | **OnDevice LAS** — local OpenAI/Anthropic/Ollama-compatible API server | Sideload build only | iOS 18 |
 | OD—04 | **OnDevice Image Generation** (app name "iOS Image Generation") — Stable Diffusion / SDXL | App Store coming soon | iOS 26 |
 
-App Store releases are coming soon. Public sideload downloads have been retired;
-official App Store links will be added when the apps are available.
+Token AI and OnDevice Local AI Studio are on the App Store. OnDevice LAS ships only
+as a sideload build; OnDevice Image Generation is waiting for App Store release.
 
 ## Design
 
