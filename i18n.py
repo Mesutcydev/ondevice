@@ -199,7 +199,7 @@ TR = head("tr", "tr_TR") + [
     (">Architecture<", ">Mimari<"),
     (">Reusable components<", ">Yeniden kullanılabilir bileşenler<"),
     (">Releases<", ">Sürümler<"),
-    (">Max privacy policy<", ">Max gizlilik politikası<"),
+    (">Token AI privacy policy<", ">Token AI gizlilik politikası<"),
     (">Security<", ">Güvenlik<"),
     ("Screens are iPhone Simulator captures of the open-source builds; physical-device performance varies with model size and memory. Model weights are not distributed with these apps and keep their own licences. Apple, iPhone, iPad and Mac are trademarks of Apple Inc. OnDevice is an independent project, not affiliated with or endorsed by Apple. Original code MIT licensed.",
      "Ekranlar, açık kaynak derlemelerin iPhone Simülatörü görüntüleridir; fiziksel cihaz performansı model boyutuna ve belleğe göre değişir. Model ağırlıkları bu uygulamalarla dağıtılmaz ve kendi lisanslarını korur. Apple, iPhone, iPad ve Mac, Apple Inc.'in ticari markalarıdır. OnDevice bağımsız bir projedir; Apple ile bağlantılı değildir ve Apple tarafından onaylanmamıştır. Özgün kod MIT lisanslıdır."),
@@ -376,7 +376,7 @@ ZH = head("zh", "zh_CN") + [
     (">Architecture<", ">架构<"),
     (">Reusable components<", ">可复用组件<"),
     (">Releases<", ">发布<"),
-    (">Max privacy policy<", ">Max 隐私政策<"),
+    (">Token AI privacy policy<", ">Token AI 隐私政策<"),
     (">Security<", ">安全<"),
     ("Screens are iPhone Simulator captures of the open-source builds; physical-device performance varies with model size and memory. Model weights are not distributed with these apps and keep their own licences. Apple, iPhone, iPad and Mac are trademarks of Apple Inc. OnDevice is an independent project, not affiliated with or endorsed by Apple. Original code MIT licensed.",
      "截图为开源版本在 iPhone 模拟器中的画面；真机性能因模型大小和内存而异。模型权重不随应用分发，并遵循各自的许可。Apple、iPhone、iPad 和 Mac 是 Apple Inc. 的商标。OnDevice 是独立项目，与 Apple 无关联，也未获其认可。原创代码采用 MIT 许可。"),
@@ -395,7 +395,7 @@ TR += [
     ('Get it on the App Store', 'App Store’dan indirin'),
     ('Install <a href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">Token AI</a> (iOS 27) or <a href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">OnDevice Local AI Studio</a> (iOS 18). Both are free.', 'App Store’dan kurun: <a href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">Token AI</a> (iOS 27) ya da <a href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">OnDevice Local AI Studio</a> (iOS 18). İkisi de ücretsiz.'),
     ('Sideload LAS', 'LAS için sideload'),
-    ('OnDevice LAS ships only as a sideload build. Sign it with AltStore, SideStore or ForgeSign and keep the <code>increased-memory-limit</code> entitlement so large models can load.', 'OnDevice LAS yalnızca sideload derlemesi olarak sunulur. AltStore, SideStore ya da ForgeSign ile imzalayın ve büyük modellerin yüklenebilmesi için <code>increased-memory-limit</code> yetkisini koruyun.'),
+    ('OnDevice LAS ships only as a sideload build. Download the <a href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">IPA</a>, sign it with AltStore, SideStore or ForgeSign and keep the <code>increased-memory-limit</code> entitlement so large models can load.', 'OnDevice LAS yalnızca sideload derlemesi olarak sunulur. <a href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">IPA dosyasını</a> indirin, AltStore, SideStore ya da ForgeSign ile imzalayın ve büyük modellerin yüklenebilmesi için <code>increased-memory-limit</code> yetkisini koruyun.'),
     ('Get a model, go offline', 'Modeli indirin, internetsiz kullanın'),
     ('Once installed, download a model that fits your phone and load it. Then switch on airplane mode and keep going.', 'Kurulumdan sonra telefonunuza uyan bir modeli indirip yükleyin. Ardından uçak modunu açın ve devam edin.'),
 ]
@@ -411,7 +411,7 @@ ZH += [
     ('Get it on the App Store', '从 App Store 下载'),
     ('Install <a href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">Token AI</a> (iOS 27) or <a href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">OnDevice Local AI Studio</a> (iOS 18). Both are free.', '安装 <a href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">Token AI</a>（iOS 27）或 <a href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">OnDevice Local AI Studio</a>（iOS 18），两款均免费。'),
     ('Sideload LAS', '侧载 LAS'),
-    ('OnDevice LAS ships only as a sideload build. Sign it with AltStore, SideStore or ForgeSign and keep the <code>increased-memory-limit</code> entitlement so large models can load.', 'OnDevice LAS 仅提供侧载版本。请用 AltStore、SideStore 或 ForgeSign 签名，并保留 <code>increased-memory-limit</code> 权限，以便加载大模型。'),
+    ('OnDevice LAS ships only as a sideload build. Download the <a href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">IPA</a>, sign it with AltStore, SideStore or ForgeSign and keep the <code>increased-memory-limit</code> entitlement so large models can load.', 'OnDevice LAS 仅提供侧载版本。下载 <a href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">IPA</a>，用 AltStore、SideStore 或 ForgeSign 签名，并保留 <code>increased-memory-limit</code> 权限，以便加载大模型。'),
     ('Get a model, go offline', '下载模型，离线使用'),
     ('Once installed, download a model that fits your phone and load it. Then switch on airplane mode and keep going.', '安装后，下载适合你手机的模型并加载。然后打开飞行模式，继续使用。'),
 ]
@@ -422,6 +422,8 @@ TR += [
     ('Formerly OnDevice Max. ', 'Eski adıyla OnDevice Max. '),
     ('<span class="chip">Sideload only</span>', '<span class="chip">Yalnızca sideload</span>'),
     ('<dd>Sideload build</dd>', '<dd>Sideload derlemesi</dd>'),
+    ('<dt>Build</dt>', '<dt>Derleme</dt>'),
+    ('>Download IPA<', '>IPA’yı indirin<'),
 ]
 
 ZH += [
@@ -429,6 +431,8 @@ ZH += [
     ('Formerly OnDevice Max. ', '原名 OnDevice Max。'),
     ('<span class="chip">Sideload only</span>', '<span class="chip">仅限侧载</span>'),
     ('<dd>Sideload build</dd>', '<dd>侧载版本</dd>'),
+    ('<dt>Build</dt>', '<dt>版本号</dt>'),
+    ('>Download IPA<', '>下载 IPA<'),
 ]
 
 

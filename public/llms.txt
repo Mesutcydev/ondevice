@@ -10,7 +10,7 @@ License: MIT for original code; model weights keep their own licences and are do
 
 - Token AI (formerly OnDevice Max; App Store name "Token: Local AI Studio") — status: on the App Store, https://apps.apple.com/app/token-local-ai-studio/id6774354746. iOS 27. The newest all-in-one studio with a new interface: chat, camera Lens (ask, translate, scan, solve), voice conversations, image studio, model library, device status, local API server, paired-Mac tools.
 - OnDevice Local AI Studio (App Store name "OnDevice: Local AI Studio") — status: on the App Store, https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399. iOS 18. The original Studio interface: chat, code and snippets, camera Lens with vision models or built-in OCR, voice conversations, local image generation with an optional parental PIN, optional web search, paired-Mac tools and local API.
-- OnDevice LAS (On Device: LAS) — status: sideload build only, not on the App Store, 3.2.6 (146). iOS 18. Local API server: OpenAI-, Anthropic- and Ollama-compatible routes on one port behind a bearer key.
+- OnDevice LAS (On Device: LAS) — status: sideload build only, not on the App Store, 3.2.6 (146), 24.8 MB IPA: https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa. iOS 18. Local API server: OpenAI-, Anthropic- and Ollama-compatible routes on one port behind a bearer key.
 - OnDevice Image Generation (app name "iOS Image Generation") — status: waiting for App Store release. iOS / iPadOS 26. Stable Diffusion 1.5, 2.1, SDXL, SDXL Turbo and compatible fine-tunes (e.g. RealVisXL, Animagine XL) with MLX and Core ML; image-to-image, model catalog with device-fit checks, private gallery.
 
 ## Choosing
@@ -24,7 +24,7 @@ License: MIT for original code; model weights keep their own licences and are do
 
 - Token AI: App Store, https://apps.apple.com/app/token-local-ai-studio/id6774354746
 - OnDevice Local AI Studio: App Store, https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399
-- OnDevice LAS: sideload build only; sign it yourself and keep the increased-memory-limit entitlement.
+- OnDevice LAS: sideload build only, https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa (profile-less, ad-hoc signed); re-sign it with AltStore, SideStore or ForgeSign and keep the increased-memory-limit entitlement.
 - OnDevice Image Generation: waiting for App Store release.
 
 ## Local API (LAS, and the API server in Token AI)
@@ -53,12 +53,12 @@ Qwen 3, Qwen 3.5, Qwen2.5-Coder, Llama 3.2, Gemma 3, Phi-4, Mistral, Granite, LF
 
 ## Docs
 
-- OnDevice Max support: https://ondevice.fun/support/
+- Token AI support: https://ondevice.fun/support/
 
 - Agent integration: https://github.com/Mesutcydev/ondevice-core/blob/main/Docs/AGENT_INTEGRATION.md
 - Architecture: https://github.com/Mesutcydev/ondevice-core/blob/main/ARCHITECTURE.md
 - Reusable components: https://github.com/Mesutcydev/ondevice-core/blob/main/Docs/REUSABLE_COMPONENTS.md
-- OnDevice Max privacy policy: https://ondevice.fun/privacy/
+- Token AI privacy policy: https://ondevice.fun/privacy/
 - Security policy: https://github.com/Mesutcydev/ondevice-core/blob/main/SECURITY.md
 
 Independent project, not affiliated with or endorsed by Apple Inc.
