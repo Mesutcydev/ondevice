@@ -31,7 +31,8 @@ codes, one colour per product), Moonshot (big quiet hero).
   auto-advancing Max showcase tabs. All of it stops under `prefers-reduced-motion`.
 - Screenshots are iPhone Simulator captures (Max via `QA/NativeUI` review host
   fixtures, Image Generation via onboarding), stored as 660px WebP in
-  `assets/shots/`.
+  `assets/shots/`. The two `-mobile.webp` variants are 440px resizes of the
+  original hero screenshots in this directory.
 
 ## Layout
 
@@ -42,7 +43,9 @@ public/
   support/         Token AI setup and troubleshooting
   privacy/         Token AI privacy policy
   llms.txt          agent-readable summary: apps, availability, API routes
-  404.html  robots.txt  sitemap.xml  _headers  _redirects
+  token-ai/  local-ai-studio/  iphone-local-api/   English product pages
+  guides/run-local-llm-on-iphone/                  English setup guide
+  404.html  robots.txt  sitemap.xml  _headers
   assets/shots/     app screenshots (WebP)
   assets/icons/     app icons (WebP)
   assets/og-*.png   share cards per locale
@@ -50,6 +53,7 @@ public/
   shell/documents.css support and privacy page layouts
   shell/site.js     menu, reveal, showcase tabs, copy button
 i18n.py             builds tr/ and zh/ from the English page
+worker.mjs          canonical URL redirects and static asset forwarding
 wrangler.jsonc      Worker config: assets dir + custom domains
 ```
 
@@ -60,11 +64,14 @@ wrangler.jsonc      Worker config: assets dir + custom domains
    longer has a translation; add those pairs to `TR` and `ZH`, then rerun.
 3. Bump `?v=` on `site.css` / `site.js` when either changes.
 
-SEO and agents: each page carries JSON-LD (`Organization`, `WebSite`, an
-`ItemList` of `SoftwareApplication`, and a `FAQPage` matching the visible FAQ),
-hreflang alternates and per-locale share cards. `llms.txt` is linked from every
-page head and from `robots.txt`.
+The homepages have `Organization`, `WebSite` and `ItemList` markup, reciprocal
+language alternates and locale-specific share cards. Product pages use
+`MobileApplication` markup, and the setup guide uses `Article` markup.
+Add new canonical pages to `public/sitemap.xml` and `pageDirectories` in
+`worker.mjs`. The Worker redirects alternate hosts, schemes and known path
+aliases in one hop, preserving the query string.
 
+Preview locally with `npx wrangler dev --infer-origin-from-routes=false`.
 No bundler, no `package.json`. Wrangler runs through `npx` in Workers Builds;
 pushing to `main` deploys. Custom domains `ondevice.fun` and `www.ondevice.fun`
 are declared in `wrangler.jsonc`.

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a0a0a">
+<meta name="google-site-verification" content="fUWtabxl9jHOEUYx5kTT1YcaHOn5cpzVUo-BL0HNn9Y">
 <title>OnDevice — Private AI apps that run offline on your iPhone</title>
 <meta name="description" content="Free, open-source iPhone apps that run AI offline: chat with local LLMs, see through your camera, talk by voice, generate images and serve an OpenAI-compatible API. No account, no cloud by default.">
 <link rel="canonical" href="https://ondevice.fun/">
@@ -30,7 +31,7 @@
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shell/site.css?v=21">
+<link rel="stylesheet" href="/shell/site.css?v=22">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">
 {
@@ -42,37 +43,49 @@
       "name": "OnDevice",
       "url": "https://ondevice.fun/",
       "logo": "https://ondevice.fun/assets/apple-touch-icon.png",
-      "sameAs": ["https://github.com/Mesutcydev/ondevice-core", "https://github.com/Mesutcydev"]
+      "sameAs": [
+        "https://github.com/Mesutcydev/ondevice-core",
+        "https://github.com/Mesutcydev"
+      ]
     },
     {
       "@type": "WebSite",
       "@id": "https://ondevice.fun/#site",
       "url": "https://ondevice.fun/",
       "name": "OnDevice",
-      "inLanguage": ["en", "tr", "zh-Hans"],
-      "publisher": { "@id": "https://ondevice.fun/#org" }
+      "inLanguage": [
+        "en",
+        "tr",
+        "zh-Hans"
+      ],
+      "publisher": {
+        "@id": "https://ondevice.fun/#org"
+      }
     },
     {
       "@type": "ItemList",
       "name": "OnDevice apps",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "Token AI", "alternateName": ["Token: Local AI Studio", "OnDevice Max"], "url": "https://ondevice.fun/#max", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 27", "description": "All-in-one local AI studio for iPhone with a new interface: chat, camera Lens, voice, image studio, model library and a local API server.", "image": "https://ondevice.fun/assets/shots/max-chat.webp", "downloadUrl": "https://apps.apple.com/app/token-local-ai-studio/id6774354746", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "OnDevice Local AI Studio", "alternateName": "OnDevice: Local AI Studio", "url": "https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 18", "description": "Local-first AI studio for iPhone with the original Studio interface: chat, code, camera Lens with OCR, voice and local image generation.", "image": "https://ondevice.fun/assets/shots/core-home.webp", "license": "https://opensource.org/licenses/MIT", "downloadUrl": "https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "OnDevice LAS", "alternateName": "On Device: LAS", "url": "https://ondevice.fun/#api", "applicationCategory": "DeveloperApplication", "operatingSystem": "iOS 18", "softwareVersion": "3.2.6 (146)", "downloadUrl": "https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa", "description": "Local API server for iPhone: OpenAI-, Anthropic- and Ollama-compatible routes on your LAN behind a bearer key.", "image": "https://ondevice.fun/assets/shots/las-server.webp", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 4, "item": { "@type": "SoftwareApplication", "name": "OnDevice Image Generation", "alternateName": "iOS Image Generation", "url": "https://ondevice.fun/#create", "applicationCategory": "MultimediaApplication", "operatingSystem": "iOS 26", "description": "On-device Stable Diffusion and SDXL image generation for iPhone and iPad with MLX and Core ML.", "image": "https://ondevice.fun/assets/shots/img-create.webp", "isAccessibleForFree": true, "publisher": { "@id": "https://ondevice.fun/#org" } } }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "How do I run an LLM on my iPhone offline?", "acceptedAnswer": { "@type": "Answer", "text": "Install Token AI (iOS 27) or OnDevice Local AI Studio (iOS 18) from the App Store, download a model once over Wi-Fi, for example Qwen 3 4B, then load it. From then on chat works with no connection at all, including in airplane mode." } },
-        { "@type": "Question", "name": "Are the OnDevice apps on the App Store?", "acceptedAnswer": { "@type": "Answer", "text": "Two of them are. Token AI (formerly OnDevice Max) and OnDevice Local AI Studio are free on the App Store. OnDevice LAS is available only as a sideload build, and OnDevice Image Generation is still waiting for its App Store release. The source code remains public under the MIT licence." } },
-        { "@type": "Question", "name": "What is the difference between Token AI and OnDevice Local AI Studio?", "acceptedAnswer": { "@type": "Answer", "text": "Token AI, formerly OnDevice Max, is the newest all-in-one studio with the new, calmer interface and needs iOS 27. OnDevice Local AI Studio keeps the original Studio interface and runs on iOS 18 or later. OnDevice LAS turns an iPhone into a local API server, and OnDevice Image Generation is for making pictures." } },
-        { "@type": "Question", "name": "Which iPhones are supported?", "acceptedAnswer": { "@type": "Answer", "text": "OnDevice Local AI Studio and OnDevice LAS need iOS 18 or later, OnDevice Image Generation needs iOS 26, and Token AI needs iOS 27. Bigger models need more memory; the model library checks whether a model fits your device before you download it." } },
-        { "@type": "Question", "name": "Does anything I type leave my phone?", "acceptedAnswer": { "@type": "Answer", "text": "Not by default. Inference runs on the device and there is no account, analytics or telemetry. The network is used only for model downloads you start and optional features you switch on, such as web access, Apple Private Cloud Compute or a paired Mac." } },
-        { "@type": "Question", "name": "Can I generate images on an iPhone without the internet?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. OnDevice Image Generation runs Stable Diffusion 1.5, 2.1, SDXL and SDXL Turbo locally with MLX and Core ML. Token AI and OnDevice Local AI Studio also include image generation." } },
-        { "@type": "Question", "name": "Can my iPhone act as an OpenAI-compatible API?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. OnDevice LAS serves OpenAI-, Anthropic- and Ollama-compatible routes on your local network behind a bearer key. It is meant for a network you trust and stops when iOS sends the app to the background." } },
-        { "@type": "Question", "name": "Is OnDevice free and open source?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Original code is MIT licensed, with no account and no subscription. Model weights are downloaded separately and keep their own licences." } }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://ondevice.fun/token-ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://ondevice.fun/local-ai-studio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://ondevice.fun/iphone-local-api/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://ondevice.fun/#create"
+        }
       ]
     }
   ]
@@ -118,11 +131,11 @@
     </div>
   </div>
   <div class="fan">
-    <div class="fan-item" style="--i:0"><div class="phone"><img src="/assets/shots/las-server.webp" width="660" height="1434" alt="OnDevice LAS dashboard with the local API server controls and device health"></div></div>
-    <div class="fan-item" style="--i:1"><div class="phone"><img src="/assets/shots/max-image.webp" width="660" height="1434" alt="Token AI image studio showing a generated picture of a house beside a mountain lake"></div></div>
+    <div class="fan-item" style="--i:0"><div class="phone"><img src="/assets/shots/las-server.webp" loading="lazy" width="660" height="1434" alt="OnDevice LAS dashboard with the local API server controls and device health"></div></div>
+    <div class="fan-item" style="--i:1"><div class="phone"><picture><source media="(max-width: 700px)" srcset="/assets/shots/max-image-mobile.webp"><img src="/assets/shots/max-image.webp" fetchpriority="low" width="660" height="1434" alt="Token AI image studio showing a generated picture of a house beside a mountain lake"></picture></div></div>
     <div class="fan-item" style="--i:2"><div class="phone"><img src="/assets/shots/max-chat.webp" width="660" height="1434" fetchpriority="high" alt="Token AI chat answering a request to plan a focused workday with a local model"></div></div>
-    <div class="fan-item" style="--i:3"><div class="phone"><img src="/assets/shots/img-create.webp" width="660" height="1434" alt="OnDevice Image Generation create screen with a prompt box, style presets and featured images"></div></div>
-    <div class="fan-item" style="--i:4"><div class="phone"><img src="/assets/shots/core-home.webp" width="660" height="1434" alt="OnDevice Local AI Studio home with shortcuts for Lens, Voice and Mac, and a Generate an Image card"></div></div>
+    <div class="fan-item" style="--i:3"><div class="phone"><picture><source media="(max-width: 700px)" srcset="/assets/shots/img-create-mobile.webp"><img src="/assets/shots/img-create.webp" fetchpriority="low" width="660" height="1434" alt="OnDevice Image Generation create screen with a prompt box, style presets and featured images"></picture></div></div>
+    <div class="fan-item" style="--i:4"><div class="phone"><img src="/assets/shots/core-home.webp" loading="lazy" width="660" height="1434" alt="OnDevice Local AI Studio home with shortcuts for Lens, Voice and Mac, and a Generate an Image card"></div></div>
   </div>
   <div class="ticker" aria-label="Model families the apps run">
     <div class="ticker-track">
@@ -152,7 +165,7 @@
           <div><dt>Needs</dt><dd>iOS 27</dd></div>
           <div><dt>Availability</dt><dd>App Store</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm primary" href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">Get on the App Store</a><a class="btn sm" href="#max">See Token AI</a></div>
+        <div class="cta"><a class="btn sm primary" href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">Get on the App Store</a><a class="btn sm" href="/token-ai/" hreflang="en">Explore Token AI</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/max-drawer.webp" width="660" height="1434" loading="lazy" alt="Token AI navigation with Lens, Voice, Image studio, Models, Device and API server shortcuts above recent chats"></div></div>
     </article>
@@ -168,7 +181,7 @@
           <div><dt>Needs</dt><dd>iOS 18</dd></div>
           <div><dt>Availability</dt><dd>App Store</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm solid" href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">Get on the App Store</a><a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm">Source</a></div>
+        <div class="cta"><a class="btn sm solid" href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">Get on the App Store</a><a class="btn sm" href="/local-ai-studio/" hreflang="en">Explore Local AI Studio</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/core-home.webp" width="660" height="1434" loading="lazy" alt="OnDevice Local AI Studio home with a New chat button, Lens, Voice and Mac shortcuts"></div></div>
     </article>
@@ -186,7 +199,7 @@
           <div><dt>Build</dt><dd>3.2.6 (146)</dd></div>
           <div><dt>IPA</dt><dd>24.8 MB</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">Download IPA</a><a class="btn sm" href="#api">See the API</a></div>
+        <div class="cta"><a class="btn sm solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">Download IPA</a><a class="btn sm" href="/iphone-local-api/" hreflang="en">Explore the iPhone local API</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/las-server.webp" width="660" height="1434" loading="lazy" alt="OnDevice LAS dashboard with device health and the local API server switch"></div></div>
     </article>
@@ -263,8 +276,8 @@
     </div>
   </div>
   <div class="facts reveal">
-    <div class="fact"><span class="mono">01 / Local</span><h3>Runs on device</h3><p>Weights, context and answers live on your iPhone. The only download is a model you choose.</p></div>
-    <div class="fact"><span class="mono">02 / Private</span><h3>No account</h3><p>No sign-up, no analytics SDK, no telemetry. Nothing to log in to.</p></div>
+    <div class="fact"><span class="mono">01 / Local</span><h3>Runs on device</h3><p>Downloaded models process your prompts on your iPhone when you use local chat.</p></div>
+    <div class="fact"><span class="mono">02 / Private</span><h3>No account</h3><p>Local chat works without an OnDevice account. Optional services may require their own credentials.</p></div>
     <div class="fact"><span class="mono">03 / Honest</span><h3>No silent cloud</h3><p>If a model won't fit in memory, you're told. Inference never moves to a hosted endpoint quietly.</p></div>
     <div class="fact"><span class="mono">04 / Open</span><h3>Read the code</h3><p>Swift and SwiftUI over MLX, llama.cpp, whisper.cpp and Core ML. MIT licensed.</p></div>
   </div>
@@ -313,11 +326,11 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
     <p class="lede">Still stuck? <a href="https://github.com/Mesutcydev/ondevice-core/issues">Open an issue</a> and we'll help.</p>
   </div>
   <div class="faq reveal">
-    <details open><summary>How do I run an LLM on my iPhone offline?</summary><div><p>Install Token AI (iOS 27) or OnDevice Local AI Studio (iOS 18) from the App Store, download a model once over Wi-Fi, for example Qwen 3 4B, then load it. From then on chat works with no connection at all, including in airplane mode.</p></div></details>
+    <details open><summary>How do I run an LLM on my iPhone offline?</summary><div><p>Install Token AI (iOS 27+) or OnDevice Local AI Studio (iOS 18+), then download a compatible local model over Wi-Fi. Try Qwen3 0.6B for a smaller first download. Once loaded, the model can answer in airplane mode.</p><p><a href="/guides/run-local-llm-on-iphone/" hreflang="en">Offline LLM setup guide</a></p></div></details>
     <details><summary>Are the OnDevice apps on the App Store?</summary><div><p>Two of them are. Token AI (formerly OnDevice Max) and OnDevice Local AI Studio are free on the App Store. OnDevice LAS is available only as a sideload build, and OnDevice Image Generation is still waiting for its App Store release. The source code remains public under the MIT licence.</p></div></details>
     <details><summary>What is the difference between Token AI and Local AI Studio?</summary><div><p><b>Token AI</b>, formerly OnDevice Max, is the newest all-in-one studio with the new, calmer interface and needs iOS 27. <b>OnDevice Local AI Studio</b> keeps the original Studio interface and runs on iOS 18 or later. <b>OnDevice LAS</b> turns an iPhone into a local API server, and <b>OnDevice Image Generation</b> is for making pictures.</p></div></details>
     <details><summary>Which iPhones are supported?</summary><div><p>OnDevice Local AI Studio and OnDevice LAS need iOS 18 or later, OnDevice Image Generation needs iOS 26, and Token AI needs iOS 27. Bigger models need more memory; the model library checks whether a model fits your device before you download it.</p></div></details>
-    <details><summary>Does anything I type leave my phone?</summary><div><p>Not by default. Inference runs on the device and there is no account, analytics or telemetry. The network is used only for model downloads you start and optional features you switch on, such as web access, Apple Private Cloud Compute or a paired Mac.</p></div></details>
+    <details><summary>Does anything I type leave my phone?</summary><div><p>Local chat with a downloaded model processes prompts on your iPhone. Optional web tools and external model providers can receive content you choose to send. iCloud sync and paired Mac tools also use the network when enabled.</p></div></details>
     <details><summary>Can I generate images on an iPhone without the internet?</summary><div><p>Yes. OnDevice Image Generation runs Stable Diffusion 1.5, 2.1, SDXL and SDXL Turbo locally with MLX and Core ML. Token AI and OnDevice Local AI Studio also include image generation.</p></div></details>
     <details><summary>Can my iPhone act as an OpenAI-compatible API?</summary><div><p>Yes. OnDevice LAS serves OpenAI-, Anthropic- and Ollama-compatible routes on your local network behind a bearer key. It is meant for a network you trust and stops when iOS sends the app to the background.</p></div></details>
     <details><summary>Is OnDevice free and open source?</summary><div><p>Yes. Original code is MIT licensed, with no account and no subscription. Model weights are downloaded separately and keep their own licences.</p></div></details>

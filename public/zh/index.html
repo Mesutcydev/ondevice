@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a0a0a">
+<meta name="google-site-verification" content="fUWtabxl9jHOEUYx5kTT1YcaHOn5cpzVUo-BL0HNn9Y">
 <title>OnDevice — 在 iPhone 上离线运行的私密 AI 应用</title>
 <meta name="description" content="免费开源的 iPhone 应用，离线运行 AI：与本地大模型聊天、用相机识别、语音对话、生成图像，并提供兼容 OpenAI 的本地 API。无需账号，默认不上云。">
 <link rel="canonical" href="https://ondevice.fun/zh/">
@@ -30,7 +31,7 @@
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shell/site.css?v=21">
+<link rel="stylesheet" href="/shell/site.css?v=22">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">
 {
@@ -42,37 +43,49 @@
       "name": "OnDevice",
       "url": "https://ondevice.fun/",
       "logo": "https://ondevice.fun/assets/apple-touch-icon.png",
-      "sameAs": ["https://github.com/Mesutcydev/ondevice-core", "https://github.com/Mesutcydev"]
+      "sameAs": [
+        "https://github.com/Mesutcydev/ondevice-core",
+        "https://github.com/Mesutcydev"
+      ]
     },
     {
       "@type": "WebSite",
       "@id": "https://ondevice.fun/#site",
       "url": "https://ondevice.fun/",
       "name": "OnDevice",
-      "inLanguage": ["en", "tr", "zh-Hans"],
-      "publisher": { "@id": "https://ondevice.fun/#org" }
+      "inLanguage": [
+        "en",
+        "tr",
+        "zh-Hans"
+      ],
+      "publisher": {
+        "@id": "https://ondevice.fun/#org"
+      }
     },
     {
       "@type": "ItemList",
       "name": "OnDevice 应用",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "Token AI", "alternateName": ["Token: Local AI Studio", "OnDevice Max"], "url": "https://ondevice.fun/#max", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 27", "description": "采用全新界面的 iPhone 一体化本地 AI 工作室：聊天、相机 Lens、语音、图像工作室、模型库和本地 API 服务器。", "image": "https://ondevice.fun/assets/shots/max-chat.webp", "downloadUrl": "https://apps.apple.com/app/token-local-ai-studio/id6774354746", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "OnDevice Local AI Studio", "alternateName": "OnDevice: Local AI Studio", "url": "https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 18", "description": "采用原版 Studio 界面的 iPhone 本地优先 AI 工作室：聊天、代码、带 OCR 的相机 Lens、语音和本地图像生成。", "image": "https://ondevice.fun/assets/shots/core-home.webp", "license": "https://opensource.org/licenses/MIT", "downloadUrl": "https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "OnDevice LAS", "alternateName": "On Device: LAS", "url": "https://ondevice.fun/#api", "applicationCategory": "DeveloperApplication", "operatingSystem": "iOS 18", "softwareVersion": "3.2.6 (146)", "downloadUrl": "https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa", "description": "iPhone 本地 API 服务器：在局域网内以 Bearer 密钥保护，提供兼容 OpenAI、Anthropic 和 Ollama 的接口。", "image": "https://ondevice.fun/assets/shots/las-server.webp", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 4, "item": { "@type": "SoftwareApplication", "name": "OnDevice Image Generation", "alternateName": "iOS Image Generation", "url": "https://ondevice.fun/#create", "applicationCategory": "MultimediaApplication", "operatingSystem": "iOS 26", "description": "借助 MLX 和 Core ML，在 iPhone 和 iPad 上本地运行 Stable Diffusion 与 SDXL 图像生成。", "image": "https://ondevice.fun/assets/shots/img-create.webp", "isAccessibleForFree": true, "publisher": { "@id": "https://ondevice.fun/#org" } } }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "如何在 iPhone 上离线运行大语言模型？", "acceptedAnswer": { "@type": "Answer", "text": "从 App Store 安装 Token AI（iOS 27）或 OnDevice Local AI Studio（iOS 18），通过 Wi-Fi 下载一次模型（例如 Qwen 3 4B）并加载。之后聊天完全无需联网，开着飞行模式也能用。" } },
-        { "@type": "Question", "name": "OnDevice 应用在 App Store 上吗？", "acceptedAnswer": { "@type": "Answer", "text": "其中两款已上架。Token AI（原名 OnDevice Max）和 OnDevice Local AI Studio 已在 App Store 免费提供。OnDevice LAS 仅提供侧载版本，OnDevice Image Generation 仍在等待 App Store 上架。源代码继续以 MIT 许可公开。" } },
-        { "@type": "Question", "name": "Token AI 和 OnDevice Local AI Studio 有什么区别？", "acceptedAnswer": { "@type": "Answer", "text": "Token AI（原名 OnDevice Max）是采用全新、更简洁界面的最新一体化工作室，需要 iOS 27。OnDevice Local AI Studio 保留原版 Studio 界面，支持 iOS 18 及更高版本。OnDevice LAS 把 iPhone 变成本地 API 服务器，OnDevice Image Generation 用于生成图片。" } },
-        { "@type": "Question", "name": "支持哪些 iPhone？", "acceptedAnswer": { "@type": "Answer", "text": "OnDevice Local AI Studio 和 OnDevice LAS 需要 iOS 18 或更高版本，OnDevice Image Generation 需要 iOS 26，Token AI 需要 iOS 27。模型越大需要的内存越多；模型库会在下载前检查模型是否适合你的设备。" } },
-        { "@type": "Question", "name": "我输入的内容会离开手机吗？", "acceptedAnswer": { "@type": "Answer", "text": "默认不会。模型完全在设备上运行，没有账号、分析或遥测。网络只用于你发起的模型下载，以及你主动开启的可选功能，例如联网访问、Apple Private Cloud Compute 或配对的 Mac。" } },
-        { "@type": "Question", "name": "能在不联网的 iPhone 上生成图像吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以。OnDevice Image Generation 使用 MLX 和 Core ML 在本地运行 Stable Diffusion 1.5、2.1、SDXL 和 SDXL Turbo。Token AI 和 OnDevice Local AI Studio 也内置图像生成。" } },
-        { "@type": "Question", "name": "iPhone 能作为兼容 OpenAI 的 API 使用吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以。OnDevice LAS 在局域网内以 Bearer 密钥保护，提供兼容 OpenAI、Anthropic 和 Ollama 的接口。它面向可信网络，iOS 将应用切到后台时会停止。" } },
-        { "@type": "Question", "name": "OnDevice 免费且开源吗？", "acceptedAnswer": { "@type": "Answer", "text": "是的。原创代码采用 MIT 许可，无需账号、无需订阅。模型权重需单独下载，并遵循各自的许可。" } }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://ondevice.fun/token-ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://ondevice.fun/local-ai-studio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://ondevice.fun/iphone-local-api/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://ondevice.fun/#create"
+        }
       ]
     }
   ]
@@ -118,11 +131,11 @@
     </div>
   </div>
   <div class="fan">
-    <div class="fan-item" style="--i:0"><div class="phone"><img src="/assets/shots/las-server.webp" width="660" height="1434" alt="OnDevice LAS 面板：本地 API 服务器控制与设备状态"></div></div>
-    <div class="fan-item" style="--i:1"><div class="phone"><img src="/assets/shots/max-image.webp" width="660" height="1434" alt="Token AI 图像工作室：生成了一幅山湖边小屋的图片"></div></div>
+    <div class="fan-item" style="--i:0"><div class="phone"><img src="/assets/shots/las-server.webp" loading="lazy" width="660" height="1434" alt="OnDevice LAS 面板：本地 API 服务器控制与设备状态"></div></div>
+    <div class="fan-item" style="--i:1"><div class="phone"><picture><source media="(max-width: 700px)" srcset="/assets/shots/max-image-mobile.webp"><img src="/assets/shots/max-image.webp" fetchpriority="low" width="660" height="1434" alt="Token AI 图像工作室：生成了一幅山湖边小屋的图片"></picture></div></div>
     <div class="fan-item" style="--i:2"><div class="phone"><img src="/assets/shots/max-chat.webp" width="660" height="1434" fetchpriority="high" alt="Token AI 聊天：本地模型帮你规划专注的一天"></div></div>
-    <div class="fan-item" style="--i:3"><div class="phone"><img src="/assets/shots/img-create.webp" width="660" height="1434" alt="OnDevice Image Generation 创作页：提示词输入框、风格预设和精选示例"></div></div>
-    <div class="fan-item" style="--i:4"><div class="phone"><img src="/assets/shots/core-home.webp" width="660" height="1434" alt="OnDevice Local AI Studio 首页：Lens、语音和 Mac 快捷入口，以及生成图像卡片"></div></div>
+    <div class="fan-item" style="--i:3"><div class="phone"><picture><source media="(max-width: 700px)" srcset="/assets/shots/img-create-mobile.webp"><img src="/assets/shots/img-create.webp" fetchpriority="low" width="660" height="1434" alt="OnDevice Image Generation 创作页：提示词输入框、风格预设和精选示例"></picture></div></div>
+    <div class="fan-item" style="--i:4"><div class="phone"><img src="/assets/shots/core-home.webp" loading="lazy" width="660" height="1434" alt="OnDevice Local AI Studio 首页：Lens、语音和 Mac 快捷入口，以及生成图像卡片"></div></div>
   </div>
   <div class="ticker" aria-label="应用支持的模型系列">
     <div class="ticker-track">
@@ -152,7 +165,7 @@
           <div><dt>系统要求</dt><dd>iOS 27</dd></div>
           <div><dt>上架状态</dt><dd>App Store</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm primary" href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">在 App Store 下载</a><a class="btn sm" href="#max">了解 Token AI</a></div>
+        <div class="cta"><a class="btn sm primary" href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">在 App Store 下载</a><a class="btn sm" href="/token-ai/" hreflang="en">了解 Token AI（英语）</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/max-drawer.webp" width="660" height="1434" loading="lazy" alt="Token AI 导航：最近聊天上方是 Lens、语音、图像工作室、模型、设备和 API 服务器入口"></div></div>
     </article>
@@ -168,7 +181,7 @@
           <div><dt>系统要求</dt><dd>iOS 18</dd></div>
           <div><dt>上架状态</dt><dd>App Store</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm solid" href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">在 App Store 下载</a><a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm">源代码</a></div>
+        <div class="cta"><a class="btn sm solid" href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">在 App Store 下载</a><a class="btn sm" href="/local-ai-studio/" hreflang="en">了解 Local AI Studio（英语）</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/core-home.webp" width="660" height="1434" loading="lazy" alt="OnDevice Local AI Studio 首页：新建聊天按钮，以及 Lens、语音和 Mac 快捷入口"></div></div>
     </article>
@@ -186,7 +199,7 @@
           <div><dt>版本号</dt><dd>3.2.6 (146)</dd></div>
           <div><dt>IPA</dt><dd>24.8 MB</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">下载 IPA</a><a class="btn sm" href="#api">查看 API</a></div>
+        <div class="cta"><a class="btn sm solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">下载 IPA</a><a class="btn sm" href="/iphone-local-api/" hreflang="en">了解 iPhone 本地 API（英语）</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/las-server.webp" width="660" height="1434" loading="lazy" alt="OnDevice LAS 面板：设备状态与本地 API 服务器开关"></div></div>
     </article>
@@ -263,8 +276,8 @@
     </div>
   </div>
   <div class="facts reveal">
-    <div class="fact"><span class="mono">01 / 本地</span><h3>在设备上运行</h3><p>权重、上下文和回答都保存在你的 iPhone 上。唯一的下载是你选择的模型。</p></div>
-    <div class="fact"><span class="mono">02 / 私密</span><h3>无需账号</h3><p>无需注册，没有分析 SDK，没有遥测。什么都不用登录。</p></div>
+    <div class="fact"><span class="mono">01 / 本地</span><h3>在设备上运行</h3><p>使用本地聊天时，下载的模型会在你的 iPhone 上处理提示词。</p></div>
+    <div class="fact"><span class="mono">02 / 隐私</span><h3>无需账户</h3><p>本地聊天无需 OnDevice 账户。可选服务可能需要各自的登录凭据。</p></div>
     <div class="fact"><span class="mono">03 / 坦诚</span><h3>不偷偷上云</h3><p>模型装不进内存时会明确告诉你，推理绝不会悄悄转到托管服务。</p></div>
     <div class="fact"><span class="mono">04 / 开放</span><h3>阅读源码</h3><p>基于 MLX、llama.cpp、whisper.cpp 和 Core ML 的 Swift 与 SwiftUI。MIT 许可。</p></div>
   </div>
@@ -313,11 +326,11 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
     <p class="lede">还有疑问？<a href="https://github.com/Mesutcydev/ondevice-core/issues">提交 issue</a>，我们来帮你。</p>
   </div>
   <div class="faq reveal">
-    <details open><summary>如何在 iPhone 上离线运行大语言模型？</summary><div><p>从 App Store 安装 Token AI（iOS 27）或 OnDevice Local AI Studio（iOS 18），通过 Wi-Fi 下载一次模型（例如 Qwen 3 4B）并加载。之后聊天完全无需联网，开着飞行模式也能用。</p></div></details>
+    <details open><summary>如何在 iPhone 上离线运行大语言模型？</summary><div><p>安装 Token AI（iOS 27+）或 OnDevice Local AI Studio（iOS 18+），再通过 Wi-Fi 下载兼容的本地模型。首次下载可试用体积更小的 Qwen3 0.6B。加载后，模型可以在飞行模式下回答问题。</p><p><a href="/guides/run-local-llm-on-iphone/" hreflang="en">离线大模型设置指南（英语）</a></p></div></details>
     <details><summary>OnDevice 应用在 App Store 上吗？</summary><div><p>其中两款已上架。Token AI（原名 OnDevice Max）和 OnDevice Local AI Studio 已在 App Store 免费提供。OnDevice LAS 仅提供侧载版本，OnDevice Image Generation 仍在等待 App Store 上架。源代码继续以 MIT 许可公开。</p></div></details>
     <details><summary>Token AI 和 Local AI Studio 有什么区别？</summary><div><p><b>Token AI</b>（原名 OnDevice Max）是采用全新、更简洁界面的最新一体化工作室，需要 iOS 27。<b>OnDevice Local AI Studio</b> 保留原版 Studio 界面，支持 iOS 18 及更高版本。<b>OnDevice LAS</b> 把 iPhone 变成本地 API 服务器，<b>OnDevice Image Generation</b> 用于生成图片。</p></div></details>
     <details><summary>支持哪些 iPhone？</summary><div><p>OnDevice Local AI Studio 和 OnDevice LAS 需要 iOS 18 或更高版本，OnDevice Image Generation 需要 iOS 26，Token AI 需要 iOS 27。模型越大需要的内存越多；模型库会在下载前检查模型是否适合你的设备。</p></div></details>
-    <details><summary>我输入的内容会离开手机吗？</summary><div><p>默认不会。模型完全在设备上运行，没有账号、分析或遥测。网络只用于你发起的模型下载，以及你主动开启的可选功能，例如联网访问、Apple Private Cloud Compute 或配对的 Mac。</p></div></details>
+    <details><summary>我输入的内容会离开手机吗？</summary><div><p>使用已下载模型进行本地聊天时，提示词在 iPhone 上处理。可选的网页工具和外部模型提供方可以接收你选择发送的内容。iCloud 同步和配对的 Mac 工具在启用时也会使用网络。</p></div></details>
     <details><summary>能在不联网的 iPhone 上生成图像吗？</summary><div><p>可以。OnDevice Image Generation 使用 MLX 和 Core ML 在本地运行 Stable Diffusion 1.5、2.1、SDXL 和 SDXL Turbo。Token AI 和 OnDevice Local AI Studio 也内置图像生成。</p></div></details>
     <details><summary>iPhone 能作为兼容 OpenAI 的 API 使用吗？</summary><div><p>可以。OnDevice LAS 在局域网内以 Bearer 密钥保护，提供兼容 OpenAI、Anthropic 和 Ollama 的接口。它面向可信网络，iOS 将应用切到后台时会停止。</p></div></details>
     <details><summary>OnDevice 免费且开源吗？</summary><div><p>是的。原创代码采用 MIT 许可，无需账号、无需订阅。模型权重需单独下载，并遵循各自的许可。</p></div></details>

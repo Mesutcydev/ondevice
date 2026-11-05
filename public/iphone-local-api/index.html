@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<title>iPhone Local LLM API Server — OnDevice LAS</title>
+<meta name="description" content="Turn an iPhone into an authenticated local LLM server with OnDevice LAS. Use OpenAI-, Anthropic-, and Ollama-compatible routes on your LAN. Sideload on iOS 18+.">
+<link rel="canonical" href="https://ondevice.fun/iphone-local-api/">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/shell/site.css?v=22">
+<link rel="stylesheet" href="/shell/documents.css?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OnDevice">
+<meta property="og:title" content="iPhone Local LLM API Server — OnDevice LAS">
+<meta property="og:description" content="Turn an iPhone into an authenticated local LLM server with OnDevice LAS. Use OpenAI-, Anthropic-, and Ollama-compatible routes on your LAN. Sideload on iOS 18+.">
+<meta property="og:url" content="https://ondevice.fun/iphone-local-api/">
+<meta property="og:image" content="https://ondevice.fun/assets/og-en.png">
+<script type="application/ld+json">
+{
+  "@type": "MobileApplication",
+  "name": "OnDevice LAS",
+  "alternateName": [
+    "On Device: LAS",
+    "OnDevice Local API Server"
+  ],
+  "operatingSystem": "iOS 18 or later",
+  "description": "Turn an iPhone into an authenticated local LLM server with OnDevice LAS. Use OpenAI-, Anthropic-, and Ollama-compatible routes on your LAN. Sideload on iOS 18+.",
+  "image": "https://ondevice.fun/assets/shots/las-server.webp",
+  "downloadUrl": "https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa",
+  "publisher": {
+    "@id": "https://ondevice.fun/#org"
+  },
+  "applicationCategory": "DeveloperApplication",
+  "@context": "https://schema.org",
+  "@id": "https://ondevice.fun/iphone-local-api/#app",
+  "url": "https://ondevice.fun/iphone-local-api/",
+  "inLanguage": "en"
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="mast"><div class="wrap">
+  <a class="brand" href="/" aria-label="OnDevice home"><img class="brand-mark" src="/assets/icons/max.webp" width="26" height="26" alt="">OnDevice</a>
+  <nav class="document-nav" aria-label="Primary"><a href="/#apps">Apps</a><a href="/guides/run-local-llm-on-iphone/">Offline setup</a><a href="/support/">Token AI support</a></nav>
+</div></header>
+<main id="main">
+  <div class="document-hero"><div class="wrap product-hero">
+    <div>
+      <p class="label">OD—03 / OnDevice LAS</p>
+      <h1>Run a local LLM API on iPhone</h1>
+      <p>OnDevice LAS serves a model running on your iPhone to your tools over a trusted local network. The dedicated server build requires iOS 18 or later and is distributed as a sideload IPA.</p>
+      <div class="cta product-cta"><a class="btn primary" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">Download the LAS IPA</a><a class="btn" href="https://github.com/Mesutcydev/ios-local-llm">View source code</a></div>
+    </div>
+    <figure class="product-shot phone"><img src="/assets/shots/las-server.webp" width="660" height="1434" alt="OnDevice LAS dashboard showing the local API controls and device health"></figure>
+  </div></div>
+  <div class="document-body"><div class="wrap document-layout">
+    <aside class="document-toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#install">Install the server</a></li><li><a href="#connect">Connect from your Mac or another LAN client</a></li><li><a href="#routes">Supported API routes</a></li></ul></aside>
+    <article class="document-copy">
+    <section id="install">
+      <h2>Install the server</h2>
+      <p>Download the OnDevice LAS 3.2.6 (146) IPA above (24.8 MB). Sign and install it with a compatible sideloading tool. The <code>increased-memory-limit</code> entitlement may be needed for larger models. <a href="/token-ai/">Token AI</a> includes a local API server and is available through the App Store.</p>
+    </section>
+    <section id="connect">
+      <h2>Connect from your Mac or another LAN client</h2>
+      <ol>
+        <li>Download and load a compatible chat model in OnDevice LAS.</li>
+        <li>Enable the Local API Server. Allow Local Network access and keep the app in the foreground.</li>
+        <li>On the same trusted network, copy the address and bearer key shown in the app. Use those values in your client.</li>
+      </ol>
+      <pre class="document-code"><code>curl "http://PHONE-IP:11434/v1/models" \
+  -H "Authorization: Bearer $ONDEVICE_KEY"</code></pre>
+      <p>Use the returned model ID in your chat request. The server stops when the app goes to the background. The LAS build uses HTTP on the LAN, so keep the bearer key private and avoid port forwarding or public exposure.</p>
+    </section>
+    <section id="routes">
+      <h2>Supported API routes</h2>
+      <ul>
+        <li><strong>OpenAI-compatible:</strong> <code>GET /v1/models</code>, <code>POST /v1/chat/completions</code>, and <code>POST /v1/responses</code>.</li>
+        <li><strong>Anthropic-compatible:</strong> <code>POST /v1/messages</code>.</li>
+        <li><strong>Ollama-compatible:</strong> model, chat, and generation routes under <code>/api</code>.</li>
+      </ul>
+      <p>See the <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">integration guide</a> for request examples and route limits.</p>
+    </section>
+    </article>
+  </div></div>
+</main>
+<footer class="document-footer"><div class="wrap">
+  <p>OnDevice · Independent open-source project</p>
+  <nav aria-label="Footer"><a href="/#apps">Compare apps</a><a href="/token-ai/">Token AI</a><a href="/local-ai-studio/">Local AI Studio</a><a href="/iphone-local-api/">iPhone local API</a></nav>
+</div></footer>
+</body>
+</html>

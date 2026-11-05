@@ -305,7 +305,7 @@ main > section { padding-block: var(--section); position: relative; }
 @media (max-width: 640px) { .zero { grid-template-columns: 1fr; } .facts { grid-template-columns: 1fr; } }
 
 /* ---------- developers ---------- */
-.dev { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(36px, 6vw, 90px); align-items: center; }
+.dev { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(36px, 6vw, 90px); align-items: center; }
 .term { margin-top: 34px; background: var(--black-2); border: 1px solid var(--line-d); border-radius: 18px; overflow: hidden; }
 .term-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--line-d); }
 .term-bar i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #333; margin-right: 6px; }
@@ -317,7 +317,7 @@ main > section { padding-block: var(--section); position: relative; }
 .routes li { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line-d); font-size: 15px; }
 .routes li b { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--c-las); padding-top: 2px; }
 .note { margin-top: 20px; font-size: 14.5px; color: var(--muted-d); }
-@media (max-width: 860px) { .dev { grid-template-columns: 1fr; } .dev .stage { width: min(70%, 300px); } }
+@media (max-width: 860px) { .dev { grid-template-columns: minmax(0, 1fr); } .dev .stage { width: min(70%, 300px); } }
 
 /* ---------- install ---------- */
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: s; }

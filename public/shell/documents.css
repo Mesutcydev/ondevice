@@ -31,7 +31,7 @@
 .document-footer p, .document-footer a { font-size: 14px; color: var(--muted-d); }
 .document-footer nav { display: flex; flex-wrap: wrap; gap: 24px; }
 @media (max-width: 720px) {
-  .document-layout { grid-template-columns: 1fr; gap: 30px; }
+  .document-layout { grid-template-columns: minmax(0, 1fr); gap: 30px; }
   .document-toc { position: static; }
   .document-toc ul { display: flex; flex-wrap: wrap; gap: 10px 18px; }
   .document-nav { gap: 14px; font-size: 14px; }
@@ -44,4 +44,24 @@
   .document-hero p { color: black; }
   .document-layout { display: block; }
   .document-copy { font-size: 11pt; }
+}
+
+.product-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(145px, 19vw, 212px);
+  align-items: center;
+  gap: clamp(26px, 6vw, 80px);
+}
+.product-cta { justify-content: flex-start; margin-top: 24px; }
+.product-shot { width: 100%; margin: 0; }
+.document-code {
+  overflow-x: auto;
+  padding: 16px;
+  background: var(--white);
+  border: 1px solid var(--line-l);
+  border-radius: 10px;
+}
+@media (max-width: 720px) {
+  .product-hero { grid-template-columns: 1fr; }
+  .product-shot { max-width: 170px; justify-self: center; }
 }

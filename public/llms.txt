@@ -1,6 +1,6 @@
 # OnDevice
 
-> OnDevice makes free, open-source iPhone apps that run AI models entirely on the device: chat with local LLMs, camera vision, voice, image generation, and an OpenAI-compatible local API. No account, no telemetry, no cloud inference by default. Token AI (formerly OnDevice Max) and OnDevice Local AI Studio are free on the App Store. OnDevice LAS is a sideload-only build, and OnDevice Image Generation is waiting for App Store release.
+> OnDevice makes free, open-source iPhone apps that run compatible AI models on the device for chat, vision, voice and image generation. Local chat requires no OnDevice account. Optional features can use the network. Token AI (formerly OnDevice Max) and OnDevice Local AI Studio are free on the App Store. OnDevice LAS is a sideload-only build, and OnDevice Image Generation is waiting for App Store release.
 
 Website: https://ondevice.fun/ (English), https://ondevice.fun/tr/ (Turkish), https://ondevice.fun/zh/ (Simplified Chinese)
 Source: https://github.com/Mesutcydev/ondevice-core
@@ -47,12 +47,16 @@ Qwen 3, Qwen 3.5, Qwen2.5-Coder, Llama 3.2, Gemma 3, Phi-4, Mistral, Granite, LF
 
 ## Privacy boundaries
 
-- Inference runs on the device. No account, analytics SDK or telemetry.
-- Network use: model downloads you start, and optional features you enable (web access, Apple Private Cloud Compute in Token AI, paired Mac).
+- Downloaded local models process prompts on the device. Local chat works without an OnDevice account.
+- Model discovery and downloads use the network. Optional web tools, external API providers, iCloud sync and paired Mac features use the network when enabled.
 - If a model does not fit in memory the app says so; it never silently falls back to a cloud endpoint.
 
 ## Docs
 
+- Token AI: https://ondevice.fun/token-ai/
+- OnDevice Local AI Studio: https://ondevice.fun/local-ai-studio/
+- OnDevice LAS setup and API: https://ondevice.fun/iphone-local-api/
+- Offline chat setup guide: https://ondevice.fun/guides/run-local-llm-on-iphone/
 - Token AI support: https://ondevice.fun/support/
 
 - Agent integration: https://github.com/Mesutcydev/ondevice-core/blob/main/Docs/AGENT_INTEGRATION.md

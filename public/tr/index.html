@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a0a0a">
+<meta name="google-site-verification" content="fUWtabxl9jHOEUYx5kTT1YcaHOn5cpzVUo-BL0HNn9Y">
 <title>OnDevice — iPhone'da internetsiz çalışan, gizliliğinize saygılı yapay zekâ uygulamaları</title>
 <meta name="description" content="iPhone'da yapay zekâyı internetsiz çalıştıran ücretsiz, açık kaynak uygulamalar: yerel modellerle sohbet, kamerayla soru sorma, sesli konuşma, görsel üretme ve OpenAI uyumlu yerel API. Hesap gerekmez, varsayılan olarak hiçbir şey buluta gitmez.">
 <link rel="canonical" href="https://ondevice.fun/tr/">
@@ -30,7 +31,7 @@
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/shell/site.css?v=21">
+<link rel="stylesheet" href="/shell/site.css?v=22">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">
 {
@@ -42,37 +43,49 @@
       "name": "OnDevice",
       "url": "https://ondevice.fun/",
       "logo": "https://ondevice.fun/assets/apple-touch-icon.png",
-      "sameAs": ["https://github.com/Mesutcydev/ondevice-core", "https://github.com/Mesutcydev"]
+      "sameAs": [
+        "https://github.com/Mesutcydev/ondevice-core",
+        "https://github.com/Mesutcydev"
+      ]
     },
     {
       "@type": "WebSite",
       "@id": "https://ondevice.fun/#site",
       "url": "https://ondevice.fun/",
       "name": "OnDevice",
-      "inLanguage": ["en", "tr", "zh-Hans"],
-      "publisher": { "@id": "https://ondevice.fun/#org" }
+      "inLanguage": [
+        "en",
+        "tr",
+        "zh-Hans"
+      ],
+      "publisher": {
+        "@id": "https://ondevice.fun/#org"
+      }
     },
     {
       "@type": "ItemList",
       "name": "OnDevice uygulamaları",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "Token AI", "alternateName": ["Token: Local AI Studio", "OnDevice Max"], "url": "https://ondevice.fun/#max", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 27", "description": "Yeni arayüzlü, iPhone için hepsi bir arada yerel yapay zekâ stüdyosu: sohbet, kamera Lens, ses, görsel stüdyosu, model kütüphanesi ve yerel API sunucusu.", "image": "https://ondevice.fun/assets/shots/max-chat.webp", "downloadUrl": "https://apps.apple.com/app/token-local-ai-studio/id6774354746", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "OnDevice Local AI Studio", "alternateName": "OnDevice: Local AI Studio", "url": "https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399", "applicationCategory": "ProductivityApplication", "operatingSystem": "iOS 18", "description": "iPhone için özgün Studio arayüzlü, yerel öncelikli yapay zekâ stüdyosu: sohbet, kod, OCR destekli kamera Lens, ses ve yerel görsel üretimi.", "image": "https://ondevice.fun/assets/shots/core-home.webp", "license": "https://opensource.org/licenses/MIT", "downloadUrl": "https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399", "isAccessibleForFree": true, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "OnDevice LAS", "alternateName": "On Device: LAS", "url": "https://ondevice.fun/#api", "applicationCategory": "DeveloperApplication", "operatingSystem": "iOS 18", "softwareVersion": "3.2.6 (146)", "downloadUrl": "https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa", "description": "iPhone için yerel API sunucusu: yerel ağınızda, bearer anahtarıyla korunan OpenAI, Anthropic ve Ollama uyumlu uç noktalar.", "image": "https://ondevice.fun/assets/shots/las-server.webp", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "publisher": { "@id": "https://ondevice.fun/#org" } } },
-        { "@type": "ListItem", "position": 4, "item": { "@type": "SoftwareApplication", "name": "OnDevice Image Generation", "alternateName": "iOS Image Generation", "url": "https://ondevice.fun/#create", "applicationCategory": "MultimediaApplication", "operatingSystem": "iOS 26", "description": "MLX ve Core ML ile iPhone ve iPad için cihaz içi Stable Diffusion ve SDXL görsel üretimi.", "image": "https://ondevice.fun/assets/shots/img-create.webp", "isAccessibleForFree": true, "publisher": { "@id": "https://ondevice.fun/#org" } } }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "iPhone'da çevrimdışı LLM nasıl çalıştırılır?", "acceptedAnswer": { "@type": "Answer", "text": "App Store’dan Token AI (iOS 27) ya da OnDevice Local AI Studio (iOS 18) uygulamasını kurun, bir modeli (örneğin Qwen 3 4B) Wi-Fi üzerinden bir kez indirip yükleyin. Bundan sonra sohbet, uçak modunda bile internetsiz çalışır." } },
-        { "@type": "Question", "name": "OnDevice uygulamaları App Store'da mı?", "acceptedAnswer": { "@type": "Answer", "text": "İkisi App Store’da. Token AI (eski adıyla OnDevice Max) ve OnDevice Local AI Studio App Store’da ücretsiz. OnDevice LAS yalnızca sideload derlemesi olarak sunuluyor; OnDevice Image Generation ise hâlâ App Store’da yayınlanmayı bekliyor. Kaynak kod MIT lisansıyla herkese açık olmaya devam ediyor." } },
-        { "@type": "Question", "name": "Token AI ile OnDevice Local AI Studio arasındaki fark nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Token AI (eski adıyla OnDevice Max), yeni ve daha sade arayüzüyle her şeyi bir arada sunan en yeni stüdyodur ve iOS 27 gerektirir. OnDevice Local AI Studio özgün Studio arayüzünü korur ve iOS 18 veya üstünde çalışır. OnDevice LAS iPhone'u yerel bir API sunucusuna çevirir, OnDevice Image Generation ise görsel üretmek içindir." } },
-        { "@type": "Question", "name": "Hangi iPhone'lar destekleniyor?", "acceptedAnswer": { "@type": "Answer", "text": "OnDevice Local AI Studio ve OnDevice LAS iOS 18 veya üstünü, OnDevice Image Generation iOS 26'yı, Token AI ise iOS 27'yi gerektirir. Büyük modeller daha fazla bellek ister; model kütüphanesi, indirmeden önce modelin cihazınıza sığıp sığmadığını kontrol eder." } },
-        { "@type": "Question", "name": "Yazdıklarım telefonumdan çıkıyor mu?", "acceptedAnswer": { "@type": "Answer", "text": "Varsayılan olarak hayır. Model tamamen cihazda çalışır; hesap, analiz veya telemetri yoktur. Ağ yalnızca başlattığınız model indirmeleri ve açtığınız isteğe bağlı özellikler (web erişimi, Apple Private Cloud Compute veya eşleştirilmiş bir Mac gibi) için kullanılır." } },
-        { "@type": "Question", "name": "iPhone'da internetsiz görsel üretebilir miyim?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. OnDevice Image Generation, Stable Diffusion 1.5, 2.1, SDXL ve SDXL Turbo'yu MLX ve Core ML ile yerel olarak çalıştırır. Token AI ve OnDevice Local AI Studio da görsel üretimi içerir." } },
-        { "@type": "Question", "name": "iPhone'um OpenAI uyumlu bir API olarak çalışabilir mi?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. OnDevice LAS, yerel ağınızda, bearer anahtarıyla korunan OpenAI, Anthropic ve Ollama uyumlu uç noktalar sunar. Güvendiğiniz bir ağ için tasarlanmıştır ve iOS uygulamayı arka plana gönderdiğinde durur." } },
-        { "@type": "Question", "name": "OnDevice ücretsiz ve açık kaynak mı?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. Özgün kod MIT lisanslıdır; hesap ve abonelik yoktur. Model ağırlıkları ayrıca indirilir ve kendi lisanslarını korur." } }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://ondevice.fun/token-ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://ondevice.fun/local-ai-studio/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://ondevice.fun/iphone-local-api/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://ondevice.fun/#create"
+        }
       ]
     }
   ]
@@ -118,11 +131,11 @@
     </div>
   </div>
   <div class="fan">
-    <div class="fan-item" style="--i:0"><div class="phone"><img src="/assets/shots/las-server.webp" width="660" height="1434" alt="Yerel API sunucusu kontrolleri ve cihaz durumuyla OnDevice LAS paneli"></div></div>
-    <div class="fan-item" style="--i:1"><div class="phone"><img src="/assets/shots/max-image.webp" width="660" height="1434" alt="Dağ gölü kıyısında bir ev resmi üretmiş Token AI görsel stüdyosu"></div></div>
+    <div class="fan-item" style="--i:0"><div class="phone"><img src="/assets/shots/las-server.webp" loading="lazy" width="660" height="1434" alt="Yerel API sunucusu kontrolleri ve cihaz durumuyla OnDevice LAS paneli"></div></div>
+    <div class="fan-item" style="--i:1"><div class="phone"><picture><source media="(max-width: 700px)" srcset="/assets/shots/max-image-mobile.webp"><img src="/assets/shots/max-image.webp" fetchpriority="low" width="660" height="1434" alt="Dağ gölü kıyısında bir ev resmi üretmiş Token AI görsel stüdyosu"></picture></div></div>
     <div class="fan-item" style="--i:2"><div class="phone"><img src="/assets/shots/max-chat.webp" width="660" height="1434" fetchpriority="high" alt="Yerel bir modelle odaklı bir iş gününü planlama isteğini yanıtlayan Token AI sohbeti"></div></div>
-    <div class="fan-item" style="--i:3"><div class="phone"><img src="/assets/shots/img-create.webp" width="660" height="1434" alt="Komut kutusu, hazır stiller ve öne çıkan örneklerle OnDevice Image Generation oluşturma ekranı"></div></div>
-    <div class="fan-item" style="--i:4"><div class="phone"><img src="/assets/shots/core-home.webp" width="660" height="1434" alt="Lens, Ses ve Mac kısayolları ile görsel üretme kartı olan OnDevice Local AI Studio ana ekranı"></div></div>
+    <div class="fan-item" style="--i:3"><div class="phone"><picture><source media="(max-width: 700px)" srcset="/assets/shots/img-create-mobile.webp"><img src="/assets/shots/img-create.webp" fetchpriority="low" width="660" height="1434" alt="Komut kutusu, hazır stiller ve öne çıkan örneklerle OnDevice Image Generation oluşturma ekranı"></picture></div></div>
+    <div class="fan-item" style="--i:4"><div class="phone"><img src="/assets/shots/core-home.webp" loading="lazy" width="660" height="1434" alt="Lens, Ses ve Mac kısayolları ile görsel üretme kartı olan OnDevice Local AI Studio ana ekranı"></div></div>
   </div>
   <div class="ticker" aria-label="Uygulamaların çalıştırdığı model aileleri">
     <div class="ticker-track">
@@ -152,7 +165,7 @@
           <div><dt>Gereksinim</dt><dd>iOS 27</dd></div>
           <div><dt>Yayın durumu</dt><dd>App Store</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm primary" href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">App Store’dan indirin</a><a class="btn sm" href="#max">Token AI hakkında</a></div>
+        <div class="cta"><a class="btn sm primary" href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">App Store’dan indirin</a><a class="btn sm" href="/token-ai/" hreflang="en">Token AI’ı keşfedin (İngilizce)</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/max-drawer.webp" width="660" height="1434" loading="lazy" alt="Son sohbetlerin üstünde Lens, Ses, Görsel stüdyosu, Modeller, Cihaz ve API sunucusu kısayollarıyla Token AI menüsü"></div></div>
     </article>
@@ -168,7 +181,7 @@
           <div><dt>Gereksinim</dt><dd>iOS 18</dd></div>
           <div><dt>Yayın durumu</dt><dd>App Store</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm solid" href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">App Store’dan indirin</a><a class="btn sm" href="https://github.com/Mesutcydev/ios-local-llm">Kaynak kod</a></div>
+        <div class="cta"><a class="btn sm solid" href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">App Store’dan indirin</a><a class="btn sm" href="/local-ai-studio/" hreflang="en">Local AI Studio’yu keşfedin (İngilizce)</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/core-home.webp" width="660" height="1434" loading="lazy" alt="Yeni sohbet düğmesi ile Lens, Ses ve Mac kısayollarını gösteren OnDevice Local AI Studio ana ekranı"></div></div>
     </article>
@@ -186,7 +199,7 @@
           <div><dt>Derleme</dt><dd>3.2.6 (146)</dd></div>
           <div><dt>IPA</dt><dd>24.8 MB</dd></div>
         </dl>
-        <div class="cta"><a class="btn sm solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">IPA’yı indirin</a><a class="btn sm" href="#api">API'yi inceleyin</a></div>
+        <div class="cta"><a class="btn sm solid" href="https://github.com/Mesutcydev/ios-local-llm/releases/download/sideload-3.2.6-146/OnDeviceLAS-sideload-entitled-3.2.6-146.ipa">IPA’yı indirin</a><a class="btn sm" href="/iphone-local-api/" hreflang="en">iPhone yerel API’sini keşfedin (İngilizce)</a></div>
       </div>
       <div class="app-shot"><div class="phone"><img src="/assets/shots/las-server.webp" width="660" height="1434" loading="lazy" alt="Cihaz durumu ve yerel API sunucusu anahtarıyla OnDevice LAS paneli"></div></div>
     </article>
@@ -263,8 +276,8 @@
     </div>
   </div>
   <div class="facts reveal">
-    <div class="fact"><span class="mono">01 / Yerel</span><h3>Cihazda çalışır</h3><p>Model dosyaları, sohbetler ve yanıtlar iPhone'unuzda kalır. İndirilen tek şey, sizin seçtiğiniz model.</p></div>
-    <div class="fact"><span class="mono">02 / Özel</span><h3>Hesap yok</h3><p>Üyelik yok, analiz aracı yok, telemetri yok. Giriş yapmanız gereken hiçbir yer yok.</p></div>
+    <div class="fact"><span class="mono">01 / Yerel</span><h3>Cihazda çalışır</h3><p>Yerel sohbeti kullandığınızda, indirdiğiniz modeller istemlerinizi iPhone’unuzda işler.</p></div>
+    <div class="fact"><span class="mono">02 / Özel</span><h3>Hesap yok</h3><p>Yerel sohbet için OnDevice hesabı gerekmez. İsteğe bağlı hizmetler kendi kimlik bilgilerini isteyebilir.</p></div>
     <div class="fact"><span class="mono">03 / Dürüst</span><h3>Gizlice buluta geçmez</h3><p>Model belleğe sığmazsa bunu açıkça söyler; işlem hiçbir zaman gizlice bir sunucuya aktarılmaz.</p></div>
     <div class="fact"><span class="mono">04 / Açık</span><h3>Kodu okuyun</h3><p>Swift ve SwiftUI ile yazıldı; MLX, llama.cpp, whisper.cpp ve Core ML kullanır. MIT lisanslı.</p></div>
   </div>
@@ -313,11 +326,11 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
     <p class="lede">Takıldınız mı? <a href="https://github.com/Mesutcydev/ondevice-core/issues">GitHub'da bir issue açın</a>, yardımcı olalım.</p>
   </div>
   <div class="faq reveal">
-    <details open><summary>iPhone'da çevrimdışı LLM nasıl çalıştırılır?</summary><div><p>App Store’dan Token AI (iOS 27) ya da OnDevice Local AI Studio (iOS 18) uygulamasını kurun, bir modeli (örneğin Qwen 3 4B) Wi-Fi üzerinden bir kez indirip yükleyin. Bundan sonra sohbet, uçak modunda bile internetsiz çalışır.</p></div></details>
+    <details open><summary>iPhone'da çevrimdışı LLM nasıl çalıştırılır?</summary><div><p>Token AI’ı (iOS 27+) veya OnDevice Local AI Studio’yu (iOS 18+) kurup Wi-Fi üzerinden uyumlu bir yerel model indirin. Daha küçük bir ilk indirme için Qwen3 0.6B’yi deneyin. Model yüklendikten sonra uçak modunda da yanıt verebilir.</p><p><a href="/guides/run-local-llm-on-iphone/" hreflang="en">Çevrimdışı LLM kurulum rehberi (İngilizce)</a></p></div></details>
     <details><summary>OnDevice uygulamaları App Store'da mı?</summary><div><p>İkisi App Store’da. Token AI (eski adıyla OnDevice Max) ve OnDevice Local AI Studio App Store’da ücretsiz. OnDevice LAS yalnızca sideload derlemesi olarak sunuluyor; OnDevice Image Generation ise hâlâ App Store’da yayınlanmayı bekliyor. Kaynak kod MIT lisansıyla herkese açık olmaya devam ediyor.</p></div></details>
     <details><summary>Token AI ile Local AI Studio arasındaki fark nedir?</summary><div><p><b>Token AI</b> (eski adıyla OnDevice Max), yeni ve daha sade arayüzüyle her şeyi bir arada sunan en yeni stüdyodur ve iOS 27 gerektirir. <b>OnDevice Local AI Studio</b> özgün Studio arayüzünü korur ve iOS 18 veya üstünde çalışır. <b>OnDevice LAS</b> iPhone'u yerel bir API sunucusuna çevirir, <b>OnDevice Image Generation</b> ise görsel üretmek içindir.</p></div></details>
     <details><summary>Hangi iPhone'lar destekleniyor?</summary><div><p>OnDevice Local AI Studio ve OnDevice LAS iOS 18 veya üstünü, OnDevice Image Generation iOS 26'yı, Token AI ise iOS 27'yi gerektirir. Büyük modeller daha fazla bellek ister; model kütüphanesi, indirmeden önce modelin cihazınıza sığıp sığmadığını kontrol eder.</p></div></details>
-    <details><summary>Yazdıklarım telefonumdan çıkıyor mu?</summary><div><p>Varsayılan olarak hayır. Model tamamen cihazda çalışır; hesap, analiz veya telemetri yoktur. Ağ yalnızca başlattığınız model indirmeleri ve açtığınız isteğe bağlı özellikler (web erişimi, Apple Private Cloud Compute veya eşleştirilmiş bir Mac gibi) için kullanılır.</p></div></details>
+    <details><summary>Yazdıklarım telefonumdan çıkıyor mu?</summary><div><p>İndirilmiş bir modelle yerel sohbet, istemlerinizi iPhone’unuzda işler. İsteğe bağlı web araçları ve harici model sağlayıcıları, göndermeyi seçtiğiniz içeriği alabilir. iCloud eşzamanlama ve eşleştirilmiş Mac araçları da etkinleştirildiğinde ağı kullanır.</p></div></details>
     <details><summary>iPhone'da internetsiz görsel üretebilir miyim?</summary><div><p>Evet. OnDevice Image Generation, Stable Diffusion 1.5, 2.1, SDXL ve SDXL Turbo'yu MLX ve Core ML ile yerel olarak çalıştırır. Token AI ve OnDevice Local AI Studio da görsel üretimi içerir.</p></div></details>
     <details><summary>iPhone'um OpenAI uyumlu bir API olarak çalışabilir mi?</summary><div><p>Evet. OnDevice LAS, yerel ağınızda, bearer anahtarıyla korunan OpenAI, Anthropic ve Ollama uyumlu uç noktalar sunar. Güvendiğiniz bir ağ için tasarlanmıştır ve iOS uygulamayı arka plana gönderdiğinde durur.</p></div></details>
     <details><summary>OnDevice ücretsiz ve açık kaynak mı?</summary><div><p>Evet. Özgün kod MIT lisanslıdır; hesap ve abonelik yoktur. Model ağırlıkları ayrıca indirilir ve kendi lisanslarını korur.</p></div></details>

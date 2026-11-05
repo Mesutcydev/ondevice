@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<title>How to Run a Local LLM on iPhone Offline — OnDevice</title>
+<meta name="description" content="Set up offline AI chat on iPhone. Choose an app, download a small Qwen3 model over Wi-Fi, and verify it works in airplane mode.">
+<link rel="canonical" href="https://ondevice.fun/guides/run-local-llm-on-iphone/">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/shell/site.css?v=22">
+<link rel="stylesheet" href="/shell/documents.css?v=2">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="OnDevice">
+<meta property="og:title" content="How to Run a Local LLM on iPhone Offline — OnDevice">
+<meta property="og:description" content="Set up offline AI chat on iPhone. Choose an app, download a small Qwen3 model over Wi-Fi, and verify it works in airplane mode.">
+<meta property="og:url" content="https://ondevice.fun/guides/run-local-llm-on-iphone/">
+<meta property="og:image" content="https://ondevice.fun/assets/og-en.png">
+<script type="application/ld+json">
+{
+  "@type": "Article",
+  "headline": "How to Run a Local LLM on iPhone Offline",
+  "description": "Set up offline AI chat on iPhone. Choose an app, download a small Qwen3 model over Wi-Fi, and verify it works in airplane mode.",
+  "datePublished": "2026-11-05",
+  "image": "https://ondevice.fun/assets/og-en.png",
+  "author": {
+    "@type": "Organization",
+    "name": "OnDevice",
+    "url": "https://ondevice.fun/"
+  },
+  "publisher": {
+    "@id": "https://ondevice.fun/#org"
+  },
+  "@context": "https://schema.org",
+  "@id": "https://ondevice.fun/guides/run-local-llm-on-iphone/#guide",
+  "url": "https://ondevice.fun/guides/run-local-llm-on-iphone/",
+  "inLanguage": "en"
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="mast"><div class="wrap">
+  <a class="brand" href="/" aria-label="OnDevice home"><img class="brand-mark" src="/assets/icons/max.webp" width="26" height="26" alt="">OnDevice</a>
+  <nav class="document-nav" aria-label="Primary"><a href="/#apps">Apps</a><a href="/guides/run-local-llm-on-iphone/" aria-current="page">Offline setup</a><a href="/support/">Token AI support</a></nav>
+</div></header>
+<main id="main">
+  <div class="document-hero"><div class="wrap">
+    <div>
+      <p class="label">Guide / Local AI setup</p>
+      <h1>How to Run a Local LLM on iPhone Offline</h1>
+      <p>Install an app, download a compatible model once over Wi-Fi, and then check that local chat works with the phone disconnected.</p>
+
+    </div>
+
+  </div></div>
+  <div class="document-body"><div class="wrap document-layout">
+    <aside class="document-toc" aria-label="On this page"><h2>On this page</h2><ul><li><a href="#choose">1. Choose the app for your iOS version</a></li><li><a href="#download">2. Download a small chat model</a></li><li><a href="#offline">3. Verify chat in airplane mode</a></li><li><a href="#troubleshoot">If a model will not load</a></li></ul></aside>
+    <article class="document-copy">
+    <section id="choose">
+      <h2>1. Choose the app for your iOS version</h2>
+      <ul>
+        <li><strong>iOS 27 or later:</strong> <a href="/token-ai/">Token AI</a> offers the newer interface with chat, Lens, voice, and Image Studio. <a href="https://apps.apple.com/app/token-local-ai-studio/id6774354746">Download Token AI</a>.</li>
+        <li><strong>iOS 18 or later:</strong> <a href="/local-ai-studio/">OnDevice Local AI Studio</a> offers the original interface and works on earlier iOS versions. <a href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">Download Local AI Studio</a>.</li>
+      </ul>
+      <p>These are the App Store OS requirements. Model fit also depends on the iPhone’s available memory, free storage, and temperature. In <strong>Settings → General → About</strong>, check your model name and iOS version. The app’s model picker can help you choose a compatible download.</p>
+    </section>
+    <section id="download">
+      <h2>2. Download a small chat model</h2>
+      <ol>
+        <li>Connect to Wi-Fi. In the app, open <strong>Models</strong> and then <strong>Discover</strong>.</li>
+        <li>Look for <strong>Qwen3-0.6B</strong>, the 4-bit MLX chat model. The app catalog estimates about <strong>400 MB</strong> for the download. On supported iOS 27 devices, the Core AI picker also lists <strong>Qwen3 0.6B · Official iOS</strong>, about <strong>456 MB</strong>.</li>
+        <li>Check the size and device fit shown in the app, then download the model. Allow additional storage for preparation and keep the app open until the download finishes.</li>
+        <li>Open <strong>Assistant</strong>, select the downloaded local model, and send a short test message.</li>
+      </ol>
+      <p>Download size and memory use are different. Start with the smallest compatible model and move up after you’ve tried it. The <a href="https://huggingface.co/mlx-community/Qwen3-0.6B-4bit">Qwen3 MLX model card</a> describes the 4-bit variant.</p>
+    </section>
+    <section id="offline">
+      <h2>3. Verify chat in airplane mode</h2>
+      <ol>
+        <li>Keep the downloaded local model selected and start a new chat.</li>
+        <li>Turn on Airplane Mode and check that Wi-Fi is off. iOS can remember that you previously left Wi-Fi on in Airplane Mode.</li>
+        <li>Send a new prompt such as “Give me three ideas for a rainy afternoon.” Check that the answer streams while the phone is offline.</li>
+      </ol>
+      <p>Local chat can run with the downloaded model while disconnected. Model downloads, web search, iCloud sync, and remote model providers need connectivity. Camera, image generation, and voice may need their own compatible downloads.</p>
+    </section>
+    <section id="troubleshoot">
+      <h2>If a model will not load</h2>
+      <p>Confirm that the download finished and that a local model is selected. Free storage, try a smaller model, unload other active models, or let the iPhone cool before retrying. For a reproducible report, note the iPhone model, iOS and app versions, the model name, and the step that failed. See <a href="/support/">Token AI troubleshooting</a> or <a href="https://github.com/Mesutcydev/ios-local-llm/issues">Local AI Studio support</a>.</p>
+    </section>
+    </article>
+  </div></div>
+</main>
+<footer class="document-footer"><div class="wrap">
+  <p>OnDevice · Independent open-source project</p>
+  <nav aria-label="Footer"><a href="/#apps">Compare apps</a><a href="/token-ai/">Token AI</a><a href="/local-ai-studio/">Local AI Studio</a><a href="/iphone-local-api/">iPhone local API</a></nav>
+</div></footer>
+</body>
+</html>
