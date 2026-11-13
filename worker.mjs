@@ -2,7 +2,7 @@ const canonicalOrigin = "https://ondevice.fun";
 
 const pageDirectories = new Set([
   "/", "/tr/", "/zh/", "/support/", "/privacy/",
-  "/token-ai/", "/local-ai-studio/", "/iphone-local-api/",
+  "/token-ai/", "/local-ai-studio/", "/local-ai-studio/support/", "/local-ai-studio/privacy/", "/iphone-local-api/",
   "/guides/run-local-llm-on-iphone/",
 ]);
 

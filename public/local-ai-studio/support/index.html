@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<title>OnDevice Local AI Studio Support — contact, safety reports and troubleshooting</title>
+<meta name="description" content="Contact the project, report unsafe AI output, and fix common problems with OnDevice Local AI Studio: downloads, models, permissions, Calendar and Reminders, and the local API.">
+<link rel="canonical" href="https://ondevice.fun/local-ai-studio/support/">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="stylesheet" href="/shell/site.css?v=22">
+<link rel="stylesheet" href="/shell/documents.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="mast"><div class="wrap">
+  <a class="brand" href="/" aria-label="OnDevice home"><img class="brand-mark" src="/assets/icons/max.webp" width="26" height="26" alt="">OnDevice</a>
+  <nav class="document-nav" aria-label="Primary"><a href="/local-ai-studio/">Local AI Studio</a><a href="/local-ai-studio/support/" aria-current="page">Support</a><a href="/local-ai-studio/privacy/">Privacy</a></nav>
+</div></header>
+<main id="main">
+<div class="document-hero"><div class="wrap">
+  <p class="label">OD—02 / OnDevice Local AI Studio</p>
+  <h1>Help with<br>Local AI Studio.</h1>
+  <p>Contact the project, report unsafe AI output, or resolve common problems. OnDevice Local AI Studio requires iOS 18 or later. No OnDevice account is needed.</p>
+</div></div>
+<div class="document-body"><div class="wrap document-layout">
+  <nav class="document-toc" aria-label="On this page"><h2>On this page</h2><ul>
+    <li><a href="#contact">Contact support</a></li><li><a href="#report">Report unsafe or offensive AI output</a></li><li><a href="#downloads">Downloads and storage</a></li><li><a href="#models">Models and generation</a></li><li><a href="#permissions">Camera, voice and photos</a></li><li><a href="#calendar">Calendar and Reminders</a></li><li><a href="#network">Local API and web search</a></li><li><a href="#data">Your data</a></li>
+  </ul></nav>
+  <article class="document-copy">
+    <section id="contact"><h2>Contact support</h2>
+      <p>Email <a href="mailto:mesutcydev@gmail.com">mesutcydev@gmail.com</a> with your iPhone model, iOS version, app version, the model you were using and the steps that led to the problem. You can also open an issue in the public source repository; a GitHub account is needed for that.</p>
+      <div class="cta"><a class="btn primary" href="mailto:mesutcydev@gmail.com">Email support</a><a class="btn" href="https://github.com/Mesutcydev/ios-local-llm/issues/new">Open a support issue</a></div>
+      <p class="document-note">GitHub issues are public. Remove API keys, access tokens, pairing credentials, private conversations, photos and documents before posting or emailing.</p>
+      <p>For a security vulnerability, follow the repository’s <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/SECURITY.md">security reporting instructions</a> instead of posting sensitive details publicly. For privacy questions, read the <a href="/local-ai-studio/privacy/">privacy policy</a>.</p>
+    </section>
+    <section id="report"><h2>Report unsafe or offensive AI output</h2>
+      <p>If a response is unsafe, offensive or inappropriate, email <a href="mailto:mesutcydev@gmail.com">mesutcydev@gmail.com</a> with the app version and a short description of what happened. You do not need to send private text. Recent versions of the app also have a <strong>Report</strong> action: press and hold an AI response and tap it to open this page.</p>
+      <p>Reports are reviewed and used to improve the safeguards. Conversations are stored only on your device, so they cannot be seen or removed from here. Image prompts and outputs are checked on the device, and a parent can restrict image generation with a PIN. These checks can make mistakes, and downloaded models differ in how well they follow safety instructions.</p>
+    </section>
+    <section id="downloads"><h2>Downloads and storage</h2>
+      <p>If a download stops, check your connection and free storage, then retry from the model list. The download screen shows each model’s size before you start. Use the model library to remove models you no longer need; a deleted model must be downloaded again before use.</p>
+      <p>Never share your Hugging Face token in an email or issue.</p>
+    </section>
+    <section id="models"><h2>Models and generation</h2>
+      <p>Which models run, and how fast, depends on your iPhone’s memory, storage and temperature. A model that is too large for your device is declined with a message instead of closing the app. If a model will not load, try a smaller one and close other apps. If the iPhone gets warm, let it cool and try again.</p>
+      <p>AI output can be inaccurate. Review it before using or sharing it.</p>
+    </section>
+    <section id="permissions"><h2>Camera, voice and photos</h2>
+      <p>Open the feature you want to use and allow the permission when iOS asks. If you denied camera, microphone or speech recognition earlier, change it in iOS Settings. Speech recognition uses on-device recognition only; if it is unavailable the app declines instead of sending audio to a server.</p>
+    </section>
+    <section id="calendar"><h2>Calendar and Reminders</h2>
+      <p>In versions that include them, the assistant can read upcoming calendar events, add an event, or add a reminder. Each request asks for your approval in the chat and shows exactly what will be read or written, then iOS asks for its own permission. You can decline, and you can turn access off in iOS Settings at any time. Voice conversations cannot use these tools.</p>
+    </section>
+    <section id="network"><h2>Local API and web search</h2>
+      <p>The Local API is optional and off until you turn it on. It requires an API key, uses HTTPS, is meant for networks you trust, and stops when the app goes to the background. Do not expose it to the internet. See the <a href="https://github.com/Mesutcydev/ios-local-llm/blob/main/Docs/AGENT_INTEGRATION.md">integration guide</a>.</p>
+      <p>Web search is optional. A permission sheet shows the provider and the exact query before anything is sent. Providers receive the request under their own privacy terms.</p>
+    </section>
+    <section id="data"><h2>Your data</h2>
+      <p>Open Settings in the app and choose <strong>Wipe all on-device data</strong> to clear local conversations, models, caches and saved credentials. It does not delete iCloud copies, exported files or records held by a web search provider; the <a href="/local-ai-studio/privacy/">privacy policy</a> explains how to remove those.</p>
+    </section>
+  </article>
+</div></div>
+</main>
+<footer class="document-footer"><div class="wrap"><p>OnDevice Local AI Studio · Independent open-source project</p><nav aria-label="Footer"><a href="/">OnDevice home</a><a href="/local-ai-studio/">Local AI Studio</a><a href="/local-ai-studio/support/">Support</a><a href="/local-ai-studio/privacy/">Privacy policy</a><a href="https://github.com/Mesutcydev/ios-local-llm">Source code</a></nav></div></footer>
+</body>
+</html>
