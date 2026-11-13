@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0a0a0a">
 <meta name="google-site-verification" content="fUWtabxl9jHOEUYx5kTT1YcaHOn5cpzVUo-BL0HNn9Y">
 <title>OnDevice — iPhone'da internetsiz çalışan, gizliliğinize saygılı yapay zekâ uygulamaları</title>
-<meta name="description" content="iPhone'da yapay zekâyı internetsiz çalıştıran ücretsiz, açık kaynak uygulamalar: yerel modellerle sohbet, kamerayla soru sorma, sesli konuşma, görsel üretme ve OpenAI uyumlu yerel API. Hesap gerekmez, varsayılan olarak hiçbir şey buluta gitmez.">
+<meta name="description" content="iPhone'da yapay zekâyı internetsiz çalıştıran ücretsiz uygulamalar: yerel modellerle sohbet, kamerayla soru sorma, sesli konuşma, görsel üretme ve OpenAI uyumlu yerel API. Hesap gerekmez, varsayılan olarak hiçbir şey buluta gitmez.">
 <link rel="canonical" href="https://ondevice.fun/tr/">
 <link rel="alternate" hreflang="en" href="https://ondevice.fun/">
 <link rel="alternate" hreflang="tr" href="https://ondevice.fun/tr/">
@@ -16,7 +16,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OnDevice">
 <meta property="og:title" content="OnDevice — Yapay zekâ cebinde yaşar">
-<meta property="og:description" content="Tamamen iPhone'unuzda çalışan açık kaynak modellerle sohbet edin, kamerayla sorun, sesle konuşun, görsel üretin. Ücretsiz ve açık kaynak; hesap gerekmez.">
+<meta property="og:description" content="Tamamen iPhone'unuzda çalışan açık kaynak modellerle sohbet edin, kamerayla sorun, sesle konuşun, görsel üretin. Ücretsiz uygulamalar; hesap gerekmez.">
 <meta property="og:url" content="https://ondevice.fun/tr/">
 <meta property="og:image" content="https://ondevice.fun/assets/og-tr.png">
 <meta property="og:image:width" content="1200">
@@ -26,7 +26,7 @@
 <meta property="og:locale:alternate" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="OnDevice — Yapay zekâ cebinde yaşar">
-<meta name="twitter:description" content="İnternetsiz sohbet, görüntü tanıma, sesli asistan, görsel üretimi ve yerel API için ücretsiz, açık kaynak iPhone uygulamaları.">
+<meta name="twitter:description" content="İnternetsiz sohbet, görüntü tanıma, sesli asistan, görsel üretimi ve yerel API için ücretsiz iPhone uygulamaları.">
 <meta name="twitter:image" content="https://ondevice.fun/assets/og-tr.png">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -124,7 +124,7 @@
   <div class="wrap hero-copy">
     <p class="kicker mono"><span class="live-dot" aria-hidden="true"></span>4 uygulama · varsayılan olarak yerel · 2’si App Store’da</p>
     <h1 id="hero-title"><span class="dots">Yapay zekâ</span><span class="dots accent">cebinde yaşar.</span></h1>
-    <p class="lede">Tamamen cihazınızda çalışan açık kaynak modellerle sohbet edin, kamerayla sorun, sesle konuşun ve görsel üretin. Ücretsiz ve açık kaynak. Hesap yok, abonelik yok; varsayılan olarak hiçbir şey buluta gitmez.</p>
+    <p class="lede">Tamamen cihazınızda çalışan açık kaynak modellerle sohbet edin, kamerayla sorun, sesle konuşun ve görsel üretin. Ücretsiz. Hesap yok, abonelik yok; varsayılan olarak hiçbir şey buluta gitmez.</p>
     <div class="cta">
       <a class="btn primary" href="#apps">Uygulamaları keşfedin</a>
       <a class="btn" href="https://github.com/Mesutcydev/ondevice-core">★ GitHub'da yıldız verin</a>
@@ -279,7 +279,7 @@
     <div class="fact"><span class="mono">01 / Yerel</span><h3>Cihazda çalışır</h3><p>Yerel sohbeti kullandığınızda, indirdiğiniz modeller istemlerinizi iPhone’unuzda işler.</p></div>
     <div class="fact"><span class="mono">02 / Özel</span><h3>Hesap yok</h3><p>Yerel sohbet için OnDevice hesabı gerekmez. İsteğe bağlı hizmetler kendi kimlik bilgilerini isteyebilir.</p></div>
     <div class="fact"><span class="mono">03 / Dürüst</span><h3>Gizlice buluta geçmez</h3><p>Model belleğe sığmazsa bunu açıkça söyler; işlem hiçbir zaman gizlice bir sunucuya aktarılmaz.</p></div>
-    <div class="fact"><span class="mono">04 / Açık</span><h3>Kodu okuyun</h3><p>Swift ve SwiftUI ile yazıldı; MLX, llama.cpp, whisper.cpp ve Core ML kullanır. MIT lisanslı.</p></div>
+    <div class="fact"><span class="mono">04 / Açık</span><h3>Kodu okuyun</h3><p>OnDevice Local AI Studio ve LAS: Swift ve SwiftUI ile yazıldı; MLX, llama.cpp, whisper.cpp ve Core ML kullanır. MIT lisanslı.</p></div>
   </div>
 </div></section>
 
@@ -327,13 +327,13 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
   </div>
   <div class="faq reveal">
     <details open><summary>iPhone'da çevrimdışı LLM nasıl çalıştırılır?</summary><div><p>Token AI’ı (iOS 27+) veya OnDevice Local AI Studio’yu (iOS 18+) kurup Wi-Fi üzerinden uyumlu bir yerel model indirin. Daha küçük bir ilk indirme için Qwen3 0.6B’yi deneyin. Model yüklendikten sonra uçak modunda da yanıt verebilir.</p><p><a href="/guides/run-local-llm-on-iphone/" hreflang="en">Çevrimdışı LLM kurulum rehberi (İngilizce)</a></p></div></details>
-    <details><summary>OnDevice uygulamaları App Store'da mı?</summary><div><p>İkisi App Store’da. Token AI (eski adıyla OnDevice Max) ve OnDevice Local AI Studio App Store’da ücretsiz. OnDevice LAS yalnızca sideload derlemesi olarak sunuluyor; OnDevice Image Generation ise hâlâ App Store’da yayınlanmayı bekliyor. Kaynak kod MIT lisansıyla herkese açık olmaya devam ediyor.</p></div></details>
+    <details><summary>OnDevice uygulamaları App Store'da mı?</summary><div><p>İkisi App Store’da. Token AI (eski adıyla OnDevice Max) ve OnDevice Local AI Studio App Store’da ücretsiz. OnDevice LAS yalnızca sideload derlemesi olarak sunuluyor; OnDevice Image Generation ise hâlâ App Store’da yayınlanmayı bekliyor. OnDevice Local AI Studio ve OnDevice LAS’ın kaynak kodu MIT lisansıyla herkese açıktır; Token AI açık kaynak değildir.</p></div></details>
     <details><summary>Token AI ile Local AI Studio arasındaki fark nedir?</summary><div><p><b>Token AI</b> (eski adıyla OnDevice Max), yeni ve daha sade arayüzüyle her şeyi bir arada sunan en yeni stüdyodur ve iOS 27 gerektirir. <b>OnDevice Local AI Studio</b> özgün Studio arayüzünü korur ve iOS 18 veya üstünde çalışır. <b>OnDevice LAS</b> iPhone'u yerel bir API sunucusuna çevirir, <b>OnDevice Image Generation</b> ise görsel üretmek içindir.</p></div></details>
     <details><summary>Hangi iPhone'lar destekleniyor?</summary><div><p>OnDevice Local AI Studio ve OnDevice LAS iOS 18 veya üstünü, OnDevice Image Generation iOS 26'yı, Token AI ise iOS 27'yi gerektirir. Büyük modeller daha fazla bellek ister; model kütüphanesi, indirmeden önce modelin cihazınıza sığıp sığmadığını kontrol eder.</p></div></details>
     <details><summary>Yazdıklarım telefonumdan çıkıyor mu?</summary><div><p>İndirilmiş bir modelle yerel sohbet, istemlerinizi iPhone’unuzda işler. İsteğe bağlı web araçları ve harici model sağlayıcıları, göndermeyi seçtiğiniz içeriği alabilir. iCloud eşzamanlama ve eşleştirilmiş Mac araçları da etkinleştirildiğinde ağı kullanır.</p></div></details>
     <details><summary>iPhone'da internetsiz görsel üretebilir miyim?</summary><div><p>Evet. OnDevice Image Generation, Stable Diffusion 1.5, 2.1, SDXL ve SDXL Turbo'yu MLX ve Core ML ile yerel olarak çalıştırır. Token AI ve OnDevice Local AI Studio da görsel üretimi içerir.</p></div></details>
     <details><summary>iPhone'um OpenAI uyumlu bir API olarak çalışabilir mi?</summary><div><p>Evet. OnDevice LAS, yerel ağınızda, bearer anahtarıyla korunan OpenAI, Anthropic ve Ollama uyumlu uç noktalar sunar. Güvendiğiniz bir ağ için tasarlanmıştır ve iOS uygulamayı arka plana gönderdiğinde durur.</p></div></details>
-    <details><summary>OnDevice ücretsiz ve açık kaynak mı?</summary><div><p>Evet. Özgün kod MIT lisanslıdır; hesap ve abonelik yoktur. Model ağırlıkları ayrıca indirilir ve kendi lisanslarını korur.</p></div></details>
+    <details><summary>OnDevice uygulamaları ücretsiz ve açık kaynak mı?</summary><div><p>Hepsi ücretsizdir; hesap ve abonelik yoktur. OnDevice Local AI Studio ve OnDevice LAS açık kaynaktır; özgün kod MIT lisanslıdır. Token AI ücretsizdir ancak açık kaynak değildir. Model ağırlıkları ayrıca indirilir ve kendi lisanslarını korur.</p></div></details>
   </div>
 </div></section>
 
@@ -347,12 +347,12 @@ curl -N http://PHONE-IP:11434/v1/chat/completions \
 
 <footer class="footer"><div class="wrap">
   <div class="foot-grid">
-    <div class="foot-brand"><a class="brand" href="/tr/"><img class="brand-mark" src="/assets/icons/max.webp" width="26" height="26" alt="">OnDevice</a><p>iPhone'unuzda çalışan ücretsiz, açık kaynak yapay zekâ uygulamaları. Hesap yok, varsayılan olarak bulut yok.</p></div>
+    <div class="foot-brand"><a class="brand" href="/tr/"><img class="brand-mark" src="/assets/icons/max.webp" width="26" height="26" alt="">OnDevice</a><p>iPhone'unuzda çalışan ücretsiz yapay zekâ uygulamaları. Hesap yok, varsayılan olarak bulut yok.</p></div>
     <div><h2>Uygulamalar</h2><ul><li><a href="#max">Token AI</a></li><li><a href="https://apps.apple.com/app/ondevice-local-ai-studio/id6770114399">OnDevice Local AI Studio</a></li><li><a href="#api">OnDevice LAS</a></li><li><a href="#create">OnDevice Image Generation</a></li></ul></div>
     <div><h2>Geliştiriciler</h2><ul><li><a href="https://github.com/Mesutcydev/ondevice-core/blob/main/Docs/AGENT_INTEGRATION.md">Ajan entegrasyonu</a></li><li><a href="https://github.com/Mesutcydev/ondevice-core/blob/main/ARCHITECTURE.md">Mimari</a></li><li><a href="https://github.com/Mesutcydev/ondevice-core/blob/main/Docs/REUSABLE_COMPONENTS.md">Yeniden kullanılabilir bileşenler</a></li><li><a href="/llms.txt">llms.txt</a></li></ul></div>
     <div><h2>Proje</h2><ul><li><a href="https://github.com/Mesutcydev/ondevice-core">GitHub</a></li><li><a href="https://github.com/Mesutcydev/ondevice-core/releases">Sürümler</a></li><li><a href="/support/">Destek</a></li><li><a href="/privacy/">Token AI gizlilik politikası</a></li><li><a href="https://github.com/Mesutcydev/ondevice-core/blob/main/SECURITY.md">Güvenlik</a></li></ul></div>
   </div>
-  <p class="fine">Ekranlar, açık kaynak derlemelerin iPhone Simülatörü görüntüleridir; fiziksel cihaz performansı model boyutuna ve belleğe göre değişir. Model ağırlıkları bu uygulamalarla dağıtılmaz ve kendi lisanslarını korur. Apple, iPhone, iPad ve Mac, Apple Inc.'in ticari markalarıdır. OnDevice bağımsız bir projedir; Apple ile bağlantılı değildir ve Apple tarafından onaylanmamıştır. Özgün kod MIT lisanslıdır.</p>
+  <p class="fine">Ekranlar iPhone Simülatörü görüntüleridir; fiziksel cihaz performansı model boyutuna ve belleğe göre değişir. Model ağırlıkları bu uygulamalarla dağıtılmaz ve kendi lisanslarını korur. Apple, iPhone, iPad ve Mac, Apple Inc.'in ticari markalarıdır. OnDevice bağımsız bir projedir; Apple ile bağlantılı değildir ve Apple tarafından onaylanmamıştır. OnDevice Local AI Studio ve LAS'ın özgün kodu MIT lisanslıdır.</p>
 </div></footer>
 
 <script src="/shell/site.js?v=21" defer></script>
