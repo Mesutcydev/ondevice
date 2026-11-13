@@ -1,7 +1,7 @@
 # ondevice.fun
 
-Promotional site for the **OnDevice** apps: free, open-source iPhone apps that
-run AI on the device. One page per locale: English (`/`), Turkish (`/tr/`),
+Promotional site for the **OnDevice** apps: free iPhone apps that run AI on the
+device. OnDevice Local AI Studio and OnDevice LAS are open source; Token AI is not. One page per locale: English (`/`), Turkish (`/tr/`),
 Simplified Chinese (`/zh/`).
 
 Token AI support and privacy information is available in English at
