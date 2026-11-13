@@ -1,6 +1,6 @@
 # OnDevice
 
-> OnDevice makes free, open-source iPhone apps that run compatible AI models on the device for chat, vision, voice and image generation. Local chat requires no OnDevice account. Optional features can use the network. Token AI (formerly OnDevice Max) and OnDevice Local AI Studio are free on the App Store. OnDevice LAS is a sideload-only build, and OnDevice Image Generation is waiting for App Store release.
+> OnDevice makes free iPhone apps (OnDevice Local AI Studio and OnDevice LAS are open source; Token AI is not) that run compatible AI models on the device for chat, vision, voice and image generation. Local chat requires no OnDevice account. Optional features can use the network. Token AI (formerly OnDevice Max) and OnDevice Local AI Studio are free on the App Store. OnDevice LAS is a sideload-only build, and OnDevice Image Generation is waiting for App Store release.
 
 Website: https://ondevice.fun/ (English), https://ondevice.fun/tr/ (Turkish), https://ondevice.fun/zh/ (Simplified Chinese)
 Source: https://github.com/Mesutcydev/ondevice-core
